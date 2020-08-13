@@ -24,3 +24,47 @@ Food Diary Web Application. Allows you to keep track of calories, and adhere to 
         firebase serve
 
 Should work ;)
+
+### Project structure
+
+```TEXT
+diet-routine/
+├── functions/ <----------- Backend - Cloud functions folder
+|   ├── node_modules/
+|   ├── .eslint.json
+|   ├── .gitignore
+|   ├── index.js
+|   ├── package.json
+|   └── package-lock.json
+|
+├── web-client/ <---------- Frontend - Web app folder
+|   ├── build/ <----------- Production build
+│   ├── node_modules/
+│   ├── public/
+│   │   ├── favicon.ico
+│   │   ├── index.html
+│   │   └── manifest.json
+│   ├── src/
+│   |    ├── App.css
+│   |    ├── App.js
+│   |    ├── App.test.js
+│   |    ├── index.css
+│   |    ├── index.js
+│   |    ├── logo.svg
+│   |    ├── serviceWorker.js
+│   |    └── setupTests.js
+│   ├── README.md
+│   ├── package.json
+│   ├── package-lock.json
+│   └── .gitignore
+|
+├── .firebaserc
+├── .gitignore
+├── database.rules.json
+├── firebase.json <---------- Firebase configuration file
+├── firestore.rules
+├── firestore.indexes.json
+├── LICENSE
+├── README.md
+└── storage.rules
+```
