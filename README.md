@@ -10,7 +10,7 @@ Food Diary Web Application. Allows you to keep track of calories, and adhere to 
 
         firebase login
 
-1. Init Firebase project with exist project `diet-routine`. *Refuse to offer to replace any files during the wizard - [see more](https://github.com/Glajik/diet-routine/issues/13)*
+1. Init Firebase project with exist project `diet-routine`. *Refuse to offer to replace any files during the wizard - see section 5. Initialize Firebase project on local PC of [this instruction](https://github.com/Glajik/diet-routine/issues/13)*
 
         firebase init
 
