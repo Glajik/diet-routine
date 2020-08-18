@@ -1,0 +1,25 @@
+parser: babel-eslint
+parserOptions:
+  ecmaFeatures:
+    jsx: true
+  ecmaVersion: 11
+  sourceType: module
+  allowImportExportEverywhere: false,
+env:
+  browser: true
+  es2020: true
+  jest: true
+extends:
+  # - eslint:recommended
+  - react-app
+  - airbnb
+  - plugin:react/recommended
+  - plugin:prettier/recommended
+  - prettier/babel
+  - prettier/react
+  - prettier/standard
+plugins:
+  - react
+  - prettier
+rules:
+  prettier/prettier: error
