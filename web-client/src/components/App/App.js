@@ -1,12 +1,13 @@
 import React from 'react'
-import {Switch, Route} from 'react-router-dom'
-import Start from '../Start'
+import {Route, Switch} from 'react-router-dom'
+import SignInOrSignUpForm from '../SignInOrSignUpForm'
 
 const App = () => {
   return (
     <div>
       <Switch>
-        <Route path="/" component={Start} />
+        <Route path="/sign-up" render={() => <SignInOrSignUpForm signUp/>}/>
+        <Route path="/" render={() => <SignInOrSignUpForm signIn/>}/>
       </Switch>
     </div>
   )

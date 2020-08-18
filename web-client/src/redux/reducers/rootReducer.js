@@ -1,10 +1,12 @@
 // Here we will combine all our reducers
 
 import {combineReducers} from 'redux'
-// import {counterReducer} from './counterReducer'
+import {authReducer} from './authReducer'
+import {loaderReducer} from './loaderReducer'
 
 const rootReducer = combineReducers({
-  // counter: counterReducer
+  auth: authReducer,
+  loader: loaderReducer
 })
 
 export default rootReducer
