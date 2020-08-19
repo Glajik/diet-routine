@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
-import { useSelector } from 'react-redux'
+import { connect } from 'react-redux'
+import { withHandlers } from 'recompose'
 
 import {
   useFirestoreConnect,
@@ -13,20 +14,10 @@ import styles from './Counter.module.css'
 
 const collection = 'counters'
 const document = 'first'
+const firestoreDocPath = `${collection}/${document}`
 
-function Counter(props) {
-  const { firestore } = props
+function Counter({ current, increment, decrement, data }) {
   useFirestoreConnect([collection])
-
-  const select = path([collection, document, 'value'])
-  const data = useSelector(state => state.firestore.data)
-  const count = select(data)
-
-  const updateOn = delta =>
-    firestore.update(`${collection}/${document}`, { value: count + delta })
-
-  const increment = (value = 1) => updateOn(value)
-  const decrement = (value = -1) => updateOn(value)
 
   const [incrementAmount, setIncrementAmount] = useState('2')
 
@@ -48,7 +39,7 @@ function Counter(props) {
           onClick={() => increment()}>
           +
         </button>
-        <span className={styles.value}>{count}</span>
+        <span className={styles.value}>{current}</span>
         <button
           type="button"
           className={styles.button}
@@ -81,4 +72,30 @@ function Counter(props) {
   )
 }
 
-export default compose(withFirestore)(Counter)
+const firestoreDataSelector = state => state.firestore.data
+
+const mapStateToProps = state => {
+  const data = firestoreDataSelector(state)
+  const selectValue = path([collection, document, 'value'])
+  return {
+    data,
+    current: selectValue(data),
+    isLoading: !isLoaded(data),
+    noData: isEmpty(data),
+  }
+}
+
+const updateCounterValue = ({ firestore, current }, delta) =>
+  firestore.update(firestoreDocPath, { value: current + delta })
+
+// Order is important
+const enhance = compose(
+  withHandlers({
+    increment: props => (value = 1) => updateCounterValue(props, value),
+    decrement: props => (value = -1) => updateCounterValue(props, value),
+  }),
+  connect(mapStateToProps),
+  withFirestore
+)
+
+export default enhance(Counter)

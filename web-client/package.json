@@ -21,6 +21,7 @@
     "react-redux-firebase": "^3.7.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.3",
+    "recompose": "^0.30.0",
     "redux": "^4.0.5",
     "redux-firestore": "^0.13.0",
     "redux-form": "^8.3.6",
