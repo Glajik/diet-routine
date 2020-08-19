@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import { withHandlers } from 'recompose'
-
 import {
   useFirestoreConnect,
   isLoaded,
@@ -9,6 +8,7 @@ import {
   withFirestore,
 } from 'react-redux-firebase'
 import { compose } from 'redux'
+import p from 'prop-types'
 import { path } from 'ramda'
 import styles from './Counter.module.css'
 
@@ -16,18 +16,16 @@ const collection = 'counters'
 const document = 'first'
 const firestoreDocPath = `${collection}/${document}`
 
-function Counter({ current, increment, decrement, data }) {
+const Loading = () => <div>Loading...</div>
+const Empty = () => <div>No data</div>
+
+function Counter({ value, increment, decrement, loading, empty }) {
   useFirestoreConnect([collection])
 
   const [incrementAmount, setIncrementAmount] = useState('2')
 
-  if (!isLoaded(data)) {
-    return <div>Loading...</div>
-  }
-
-  if (isEmpty(data)) {
-    return <div>No data</div>
-  }
+  if (loading) return <Loading />
+  if (empty) return <Empty />
 
   return (
     <div>
@@ -39,7 +37,7 @@ function Counter({ current, increment, decrement, data }) {
           onClick={() => increment()}>
           +
         </button>
-        <span className={styles.value}>{current}</span>
+        <span className={styles.value}>{value}</span>
         <button
           type="button"
           className={styles.button}
@@ -72,30 +70,43 @@ function Counter({ current, increment, decrement, data }) {
   )
 }
 
+Counter.propTypes = {
+  value: p.number,
+  increment: p.func.isRequired,
+  decrement: p.func.isRequired,
+  loading: p.bool,
+  empty: p.bool,
+}
+
+Counter.defaultProps = {
+  value: 0,
+  loading: false,
+  empty: true,
+}
+
 const firestoreDataSelector = state => state.firestore.data
 
 const mapStateToProps = state => {
   const data = firestoreDataSelector(state)
   const selectValue = path([collection, document, 'value'])
   return {
-    data,
-    current: selectValue(data),
-    isLoading: !isLoaded(data),
-    noData: isEmpty(data),
+    loading: !isLoaded(data),
+    empty: isEmpty(data),
+    value: selectValue(data),
   }
 }
 
-const updateCounterValue = ({ firestore, current }, delta) =>
-  firestore.update(firestoreDocPath, { value: current + delta })
+const updateCounterValue = ({ firestore, value }, delta) =>
+  firestore.update(firestoreDocPath, { value: value + delta })
 
 // Order is important
 const enhance = compose(
-  withHandlers({
-    increment: props => (value = 1) => updateCounterValue(props, value),
-    decrement: props => (value = -1) => updateCounterValue(props, value),
-  }),
+  withFirestore,
   connect(mapStateToProps),
-  withFirestore
+  withHandlers({
+    increment: props => (delta = 1) => updateCounterValue(props, delta),
+    decrement: props => (delta = -1) => updateCounterValue(props, delta),
+  })
 )
 
 export default enhance(Counter)
