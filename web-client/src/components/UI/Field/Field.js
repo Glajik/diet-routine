@@ -1,17 +1,17 @@
 import React from 'react'
 import {
-  FolderWrapper,
+  FieldWrapper,
   Input,
   Label,
   Error
 } from './style'
 
-const folder = (props) => {
-  let folderType
+const field = (props) => {
+  let fieldType
 
   switch (props.folderType) {
     case 'input':
-      folderType = (
+      fieldType = (
         <Input
           type={props.type}
           value={props.value}
@@ -21,7 +21,7 @@ const folder = (props) => {
       )
       break
     case 'textarea':
-      folderType = (
+      fieldType = (
         <textarea
           cols="30"
           rows="10"
@@ -31,10 +31,10 @@ const folder = (props) => {
       )
       break
     case 'select':
-      folderType = <select name={props.name}>{props.children}</select>
+      fieldType = <select name={props.name}>{props.children}</select>
       break
     default:
-      folderType = (
+      fieldType = (
         <Input
           type={props.type}
           value={props.value}
@@ -45,12 +45,12 @@ const folder = (props) => {
   }
 
   return (
-    <FolderWrapper>
+    <FieldWrapper>
       <Label>{props.label}</Label>
-      {folderType}
+      {fieldType}
       <Error>{props.errorMessage}</Error>
-    </FolderWrapper>
+    </FieldWrapper>
   )
 }
 
-export default folder
+export default field

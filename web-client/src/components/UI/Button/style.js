@@ -21,6 +21,14 @@ export const Button = styled.button`
         &:hover {
           background: ${p.disabled ? 'grey' : '#007575'}; 
         }`
-    : ''
+    : p.action === 'Cancel'
+        ? `
+            display: block; 
+            margin: 20px auto;
+            background: none;
+            border: none;
+            color: #a52a2a;
+            font-weight: bold;`
+        : ''
   }
 `

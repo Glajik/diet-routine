@@ -30,4 +30,5 @@ export const auth = async (event, folders, url) => {
   }
   console.log('Response: ', response)
   console.log(formData)
+  return response
 }

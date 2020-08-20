@@ -1,19 +1,15 @@
 import React from 'react'
 import Button from '../Button'
-import classes from './Modal.module.css'
+import {Modal, Header} from './style'
 
-const modal = props => {
+const modal = (props) => {
   return (
-    <div
-      className={classes.Modal}
-      style={{
-        transform: props.show ? 'translateY(0)' : 'translateY(-100vh)'
-      }}>
-      <h2>{props.message}</h2>
+    <Modal show={props.show}>
+      <Header>{props.message}</Header>
       <Button
         action="Cancel"
-        clicked={props.buttonClicked} />
-    </div>
+        clicked={props.clicked} />
+    </Modal>
   )
 }
 

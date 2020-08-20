@@ -57,5 +57,7 @@ export const signUpState = {
       }
     }
   },
-  isDisabled: false
+  isDisabled: false,
+  successMessage: 'You have passed your registration successfully',
+  errorMessage: 'We have such user already'
 }

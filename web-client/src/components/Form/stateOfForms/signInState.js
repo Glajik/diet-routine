@@ -29,5 +29,7 @@ export const signInState = {
       }
     }
   },
-  isDisabled: false
+  isDisabled: false,
+  successMessage: 'You have logged in successfully',
+  errorMessage: 'Please, enter correct email or/and password'
 }

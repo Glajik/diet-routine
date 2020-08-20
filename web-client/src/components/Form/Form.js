@@ -1,37 +1,30 @@
-import React, {useEffect} from 'react'
+import React from 'react'
 import {connect} from 'react-redux'
 import {disableButton} from '../../utility'
 import Button from '../UI/Button'
-import Folder from '../UI/Folder'
+import Field from '../UI/Field'
 import Loader from '../UI/Loader'
 import {
   submitForm,
-  folderChanged,
+  fieldChanged,
   initSignUpForm,
   initSignInForm
-} from '../../redux/actions/authAction'
+} from '../../redux/actions/formAction'
 
 const signUpUrl = 'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyBIRNMdmhRvjersBGsJDfNLD5uICKQYSpU'
 const signInUrl = 'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyBIRNMdmhRvjersBGsJDfNLD5uICKQYSpU'
 
 const Form = (props) => {
-  useEffect(() => {
-    if (props.signUp) {
-      props.initSignUpForm()
-    } else if (props.signIn) {
-      props.initSignInForm()
-    }
-  })
-
   const changeHandler = (event) => {
-    props.folderChanged(event)
+    event.persist()
+    props.fieldChanged(event.target)
   }
 
   const submitHandler = (event) => {
     if (props.signUp) {
-      props.submit(event, {...props.controls}, signUpUrl)
+      props.submit(event, {...props.controls}, signUpUrl, props.successMessage, props.errorMessage)
     } else if (props.signIn) {
-      props.submit(event, {...props.controls}, signInUrl)
+      props.submit(event, {...props.controls}, signInUrl, props.successMessage, props.errorMessage)
     }
   }
 
@@ -52,17 +45,17 @@ const Form = (props) => {
   return (
     <form>
       {
-        form.map(folder => {
+        form.map(field => {
           return (
-            <Folder
-              key={folder.id}
-              name={folder.name}
-              value={folder.value}
-              folderType={folder.folderType}
-              type={folder.type}
-              label={folder.label}
-              placeholder={folder.placeholder}
-              errorMessage={folder.errorMessage}
+            <Field
+              key={field.id}
+              name={field.name}
+              value={field.value}
+              fieldType={field.folderType}
+              type={field.type}
+              label={field.label}
+              placeholder={field.placeholder}
+              errorMessage={field.errorMessage}
               changed={changeHandler}/>
           )
         })
@@ -80,18 +73,20 @@ const Form = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    controls: state.auth.controls,
+    controls: state.form.controls,
     isLoading: state.loader.isLoading,
-    isDisabled: state.auth.isDisabled
+    isDisabled: state.form.isDisabled,
+    successMessage: state.form.successMessage,
+    errorMessage: state.form.errorMessage
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    folderChanged: (event) => dispatch(folderChanged(event)),
+    fieldChanged: (eventTarget) => dispatch(fieldChanged(eventTarget)),
     initSignUpForm: () => dispatch(initSignUpForm()),
     initSignInForm: () => dispatch(initSignInForm()),
-    submit: (event, controls, url) => dispatch(submitForm(event, controls, url))
+    submit: (event, controls, url, successMessage, errorMessage) => dispatch(submitForm(event, controls, url, successMessage, errorMessage))
   }
 }
 

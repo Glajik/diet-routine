@@ -1,7 +1,7 @@
 import {signInState} from '../../components/Form/stateOfForms/signInState'
 import {signUpState} from '../../components/Form/stateOfForms/signUpState'
 import {
-  FOLDER_CHANGED,
+  FIELD_CHANGED,
   CLEAR_FORM,
   DISABLED,
   NOT_DISABLED,
@@ -9,7 +9,8 @@ import {
   INIT_SIGN_IN_FORM
 } from '../actionTypes'
 
-export const authReducer = (state, action) => {
+
+export const formReducer = (state, action) => {
   switch (action.type) {
     case INIT_SIGN_UP_FORM:
       state = signUpState
@@ -17,18 +18,18 @@ export const authReducer = (state, action) => {
     case INIT_SIGN_IN_FORM:
       state = signInState
       return state
-    case FOLDER_CHANGED:
+    case FIELD_CHANGED:
       const controls = {...state.controls}
-      const event = action.payload
-      const {name} = event.target
-      controls[name].value = event.target.value
+      const eventTarget = action.payload
+      const {name} = eventTarget
+      controls[name].value = eventTarget.value
       return {...state, controls}
     case CLEAR_FORM:
-      const folders = {...state.controls}
-      for (let key in folders) {
-        folders[key].value = ''
+      const fields = {...state.controls}
+      for (let key in fields) {
+        fields[key].value = ''
       }
-      return {...state, controls: folders}
+      return {...state, controls: fields}
     case DISABLED:
       return {...state, isDisabled: true}
     case NOT_DISABLED:

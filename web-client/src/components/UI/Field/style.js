@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import {colors} from '../../../assets/colors'
 
-export const FolderWrapper = styled.div`
+export const FieldWrapper = styled.div`
   display: flex;
   flex-direction: column;
   margin-bottom: 15px;

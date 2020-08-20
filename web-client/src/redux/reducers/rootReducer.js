@@ -1,12 +1,14 @@
 // Here we will combine all our reducers
 
 import {combineReducers} from 'redux'
-import {authReducer} from './authReducer'
+import {formReducer} from './formReducer'
 import {loaderReducer} from './loaderReducer'
+import {modalReducer} from './modalReducer'
 
 const rootReducer = combineReducers({
-  auth: authReducer,
-  loader: loaderReducer
+  form: formReducer,
+  loader: loaderReducer,
+  modal: modalReducer
 })
 
 export default rootReducer

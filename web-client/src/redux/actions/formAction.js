@@ -1,6 +1,7 @@
 import {auth} from '../../utility'
+import {setModalMessage, showModal} from './modalAction'
 import {
-  FOLDER_CHANGED,
+  FIELD_CHANGED,
   CLEAR_FORM,
   LOAD,
   NOT_LOAD,
@@ -22,26 +23,28 @@ export const initSignInForm = () => {
   }
 }
 
-export const folderChanged = (event) => {
-  event.persist()
-
+export const fieldChanged = (eventTarget) => {
   return {
-    type: FOLDER_CHANGED,
-    payload: event
+    type: FIELD_CHANGED,
+    payload: eventTarget
   }
 }
 
-export const submitForm = (event, folders, url) => {
+export const submitForm = (event, fields, url, successMessage, errorMessage) => {
   return async (dispatch) => {
     dispatch({type: LOAD})
     dispatch({type: DISABLED})
     try {
-      await auth(event, folders, url)
+      await auth(event, fields, url)
       dispatch({type: CLEAR_FORM})
+      dispatch(setModalMessage(successMessage))
     } catch (e) {
       console.log(e)
+      dispatch(setModalMessage(errorMessage))
     }
-    dispatch({type: NOT_LOAD})
+
     dispatch({type: NOT_DISABLED})
+    dispatch({type: NOT_LOAD})
+    dispatch(showModal())
   }
 }
