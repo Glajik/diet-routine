@@ -1,16 +1,17 @@
 import React from 'react'
+import {FormattedMessage} from 'react-intl'
 import Button from '../Button'
-import {Modal, Header} from './style'
+import {Header, Modal} from './style'
 
-const modal = (props) => {
-  return (
-    <Modal show={props.show}>
-      <Header>{props.message}</Header>
-      <Button
-        action="Cancel"
-        clicked={props.clicked} />
-    </Modal>
-  )
-}
+const modal = (props) => (
+  <Modal show={props.show}>
+    <Header>
+      <FormattedMessage id={props.message}/>
+    </Header>
+    <Button
+      action="cancel"
+      clicked={props.clicked}/>
+  </Modal>
+)
 
 export default modal

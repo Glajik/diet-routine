@@ -2,7 +2,7 @@ import {HIDE_MODAL, SET_MODAL_MESSAGE, SHOW_MODAL} from '../actionTypes'
 
 const initialState = {
   isModal: false,
-  message: 'Message'
+  message: 'message'
 }
 
 export const modalReducer = (state = initialState, action) => {

@@ -1,9 +1,9 @@
 import React from 'react'
+import {injectIntl} from 'react-intl'
 import {connect} from 'react-redux'
 import {disableButton} from '../../utility'
 import Button from '../UI/Button'
 import Field from '../UI/Field'
-import Loader from '../UI/Loader'
 import {
   submitForm,
   fieldChanged,
@@ -37,9 +37,9 @@ const Form = (props) => {
   }
 
   const submitAction = props.signIn
-    ? 'Sign In'
+    ? 'signIn'
     : props.signUp
-      ? 'Sign Up'
+      ? 'signUp'
       : ''
 
   return (
@@ -53,8 +53,8 @@ const Form = (props) => {
               value={field.value}
               fieldType={field.folderType}
               type={field.type}
-              label={field.label}
-              placeholder={field.placeholder}
+              label={props.intl.formatMessage({id: field.label})}
+              placeholder={props.intl.formatMessage({id: field.placeholder})}
               errorMessage={field.errorMessage}
               changed={changeHandler}/>
           )
@@ -62,7 +62,7 @@ const Form = (props) => {
       }
 
       <Button
-        action={props.isLoading ? <Loader /> : submitAction}
+        action={submitAction}
         type="submit"
         isLoading={props.isLoading}
         disabled={disableButton(props.isDisabled, form)}
@@ -90,4 +90,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Form)
+export default connect(mapStateToProps, mapDispatchToProps)(injectIntl(Form))

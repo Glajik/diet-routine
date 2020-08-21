@@ -1,9 +1,11 @@
 import React, {useEffect} from 'react'
 import {connect} from 'react-redux'
+import {FormattedMessage} from 'react-intl'
 import {Link} from 'react-router-dom'
 import withModal from '../../hoc/withModal'
 import {initSignInForm, initSignUpForm} from '../../redux/actions/formAction'
 import Form from '../Form'
+import Loader from '../UI/Loader'
 import {FormWrapper, Header, Navlink} from './style'
 
 const SignInOrSignUpForm = (props) => {
@@ -15,14 +17,14 @@ const SignInOrSignUpForm = (props) => {
     }
   })
 
-  return (
+  const form =  (
     <FormWrapper>
       <Header>
         {
           props.signIn
-            ? 'Log in'
+            ? <FormattedMessage id="logIn"/>
             : props.signUp
-            ? 'Create an account'
+            ? <FormattedMessage id="createAccount"/>
             : ''
         }
       </Header>
@@ -32,9 +34,9 @@ const SignInOrSignUpForm = (props) => {
         <Navlink>
           {
             props.signIn
-              ? 'Sign Up'
+              ? <FormattedMessage id="signUp"/>
               : props.signUp
-              ? 'Sign In'
+              ? <FormattedMessage id="signIn"/>
               : ''
           }
         </Navlink>
@@ -42,6 +44,16 @@ const SignInOrSignUpForm = (props) => {
       <Form signIn={props.signIn} signUp={props.signUp}/>
     </FormWrapper>
   )
+
+  return props.isLoading
+    ? <Loader style={{position: 'absolute', left: '45%', top: '40%'}} />
+    : form
+}
+
+const mapStateToProps = (state) => {
+  return {
+    isLoading: state.loader.isLoading
+  }
 }
 
 const mapDispatchToProps = (dispatch) => {
@@ -51,4 +63,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(null, mapDispatchToProps)(withModal(SignInOrSignUpForm))
+export default connect(mapStateToProps, mapDispatchToProps)(withModal(SignInOrSignUpForm))

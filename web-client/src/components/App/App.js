@@ -1,5 +1,9 @@
 import React from 'react'
 import {Route, Switch} from 'react-router-dom'
+import {IntlProvider} from 'react-intl'
+import en from '../../i18n/locales/en'
+import ru from '../../i18n/locales/ru'
+import ua from '../../i18n/locales/ua'
 
 /*
  We will need lazyLoading function when we will create more pages and when we will have to paste them to our routes. This
@@ -20,14 +24,16 @@ import {Route, Switch} from 'react-router-dom'
 import lazyLoading from '../../hoc/lazyLoading'
 import SignInOrSignUpForm from '../SignInOrSignUpForm'
 
+const local = navigator.language
+
 const App = () => {
   return (
-    <div>
+    <IntlProvider locale={local} messages={ru}>
       <Switch>
         <Route path="/sign-up" render={() => <SignInOrSignUpForm signUp/>}/>
         <Route path="/" render={() => <SignInOrSignUpForm signIn/>}/>
       </Switch>
-    </div>
+    </IntlProvider>
   )
 }
 
