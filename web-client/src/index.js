@@ -1,13 +1,15 @@
-import { createFirestoreInstance } from 'redux-firestore'
-import { ReactReduxFirebaseProvider } from 'react-redux-firebase'
 import React from 'react'
 import ReactDOM from 'react-dom'
-import './index.css'
+import { BrowserRouter } from 'react-router-dom'
 import { Provider } from 'react-redux'
-import firebase from './app/firebase'
-import App from './App'
-import store from './app/store'
+import { ReactReduxFirebaseProvider } from 'react-redux-firebase'
+import { createFirestoreInstance } from 'redux-firestore'
+import firebase from './firebase'
+import store from './store'
 import * as serviceWorker from './serviceWorker'
+
+import App from './components/App'
+import './index.css'
 
 // react-redux-firebase config
 const rrfConfig = {
@@ -23,12 +25,13 @@ ReactDOM.render(
         config={rrfConfig}
         dispatch={store.dispatch}
         createFirestoreInstance={createFirestoreInstance}>
-        <App />
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
       </ReactReduxFirebaseProvider>
     </Provider>
   </React.StrictMode>,
-  document.getElementById('root')
-)
+  document.getElementById('root'))
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

@@ -7,10 +7,11 @@ import { ReactReduxFirebaseProvider } from 'react-redux-firebase'
 import { createFirestoreInstance } from 'redux-firestore'
 import firebase from 'firebase/app'
 import React from 'react'
+import { BrowserRouter } from 'react-router-dom'
 import { render } from '@testing-library/react'
 import { Provider } from 'react-redux'
-import store from '../app/store'
-import App from '../App'
+import store from '../../store'
+import App from './App'
 
 // react-redux-firebase config
 const rrfConfig = {
@@ -26,10 +27,12 @@ test('renders learn react link', () => {
         config={rrfConfig}
         dispatch={store.dispatch}
         createFirestoreInstance={createFirestoreInstance}>
+      <BrowserRouter>
         <App />
+      </BrowserRouter>
       </ReactReduxFirebaseProvider>
     </Provider>
   )
 
-  expect(getByText(/learn/i)).toBeInTheDocument()
+  expect(getByText(/Hi!/i)).toBeInTheDocument()
 })
