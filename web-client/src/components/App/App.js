@@ -1,10 +1,3 @@
-import React from 'react'
-import {Route, Switch} from 'react-router-dom'
-import {IntlProvider} from 'react-intl'
-import en from '../../i18n/locales/en'
-import ru from '../../i18n/locales/ru'
-import ua from '../../i18n/locales/ua'
-
 /*
  We will need lazyLoading function when we will create more pages and when we will have to paste them to our routes. This
  function will import our components and render them only when user visit this rotes. This function makes our
@@ -21,20 +14,29 @@ import ua from '../../i18n/locales/ua'
      same component which I need to import by myself because I have to show log in form to users)
 */
 
+import React from 'react'
+import { Route, Switch } from 'react-router-dom'
+
+import { IntlProvider } from 'react-intl'
+import en from '../../i18n/locales/en'
+import ru from '../../i18n/locales/ru'
+import ua from '../../i18n/locales/ua'
+
 import lazyLoading from '../../hoc/lazyLoading'
+
+import Demo from '../Demo'
 import SignInOrSignUpForm from '../SignInOrSignUpForm'
 
-const local = navigator.language
-
-const App = () => {
-  return (
-    <IntlProvider locale={local} messages={ru}>
+const App = () => (
+  <div className="App">
+    <IntlProvider locale={navigator.language} messages={ru}>
       <Switch>
-        <Route path="/sign-up" render={() => <SignInOrSignUpForm signUp/>}/>
-        <Route path="/" render={() => <SignInOrSignUpForm signIn/>}/>
+        <Route path="/sign-up" render={() => <SignInOrSignUpForm signUp />} />
+        <Route path="/" render={() => <SignInOrSignUpForm signIn />} />
+        <Route path="/demo" component={Demo} />
       </Switch>
     </IntlProvider>
-  )
-}
+  </div>
+)
 
 export default App
