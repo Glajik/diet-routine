@@ -6,8 +6,8 @@ export const signInState = {
       name: 'email',
       folderType: 'input',
       type: 'email',
-      label: 'Email',
-      placeholder: 'Your email',
+      label: 'emailLabel',
+      placeholder: 'emailPlaceholder',
       errorMessage: '',
       rules: {
         required: true,
@@ -20,8 +20,8 @@ export const signInState = {
       name: 'password',
       folderType: 'input',
       type: 'password',
-      label: 'Password',
-      placeholder: 'Your password',
+      label: 'passwordLabel',
+      placeholder: 'passwordPlaceholder',
       errorMessage: '',
       rules: {
         required: true,
@@ -30,6 +30,6 @@ export const signInState = {
     }
   },
   isDisabled: false,
-  successMessage: 'You have logged in successfully',
-  errorMessage: 'Please, enter correct email or/and password'
+  successMessage: 'signInSuccessMessage',
+  errorMessage: 'signInErrorMessage'
 }

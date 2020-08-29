@@ -8,10 +8,9 @@ export const Button = styled.button`
   font-size: 18px;
   transition: background .3s ease-in-out;
   ${p =>
-  p.action === 'Sign Up' || p.action === 'Sign In' || p.isLoading
-    ? `
-        width: 91px;
-        height: 43px;
+  p.action ==='signIn' || p.action === 'signUp' 
+    ? ` 
+        padding: 10px 20px;
         display: block;
         color: ${colors.white}; 
         background: ${p.disabled ? 'grey' : '#009898'};
@@ -21,7 +20,7 @@ export const Button = styled.button`
         &:hover {
           background: ${p.disabled ? 'grey' : '#007575'}; 
         }`
-    : p.action === 'Cancel'
+    : p.action === 'cancel'
         ? `
             display: block; 
             margin: 20px auto;
