@@ -13,20 +13,29 @@
     (I understand that user may not visit registration form, but log in and registration form was created from the
      same component which I need to import by myself because I have to show log in form to users)
 */
+
 import React from 'react'
-import { Switch, Route } from 'react-router-dom'
-import Start from '../Start'
-import Demo from '../Demo'
+import { Route, Switch } from 'react-router-dom'
+
+import { IntlProvider } from 'react-intl'
+import en from '../../i18n/locales/en'
+import ru from '../../i18n/locales/ru'
+import ua from '../../i18n/locales/ua'
+
 import lazyLoading from '../../hoc/lazyLoading'
+
+import Demo from '../Demo'
 import SignInOrSignUpForm from '../SignInOrSignUpForm'
 
 const App = () => (
   <div className="App">
-    <Switch>
-      <Route path="/sign-up" render={() => <SignInOrSignUpForm signUp/>}/>
-      <Route path="/" render={() => <SignInOrSignUpForm signIn/>}/>
-      <Route path="/demo" component={Demo} />
-    </Switch>
+    <IntlProvider locale={navigator.language} messages={ru}>
+      <Switch>
+        <Route path="/sign-up" render={() => <SignInOrSignUpForm signUp />} />
+        <Route path="/demo" component={Demo} />
+        <Route path="/" render={() => <SignInOrSignUpForm signIn />} />
+      </Switch>
+    </IntlProvider>
   </div>
 )
 

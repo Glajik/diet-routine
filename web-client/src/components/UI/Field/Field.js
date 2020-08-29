@@ -31,7 +31,11 @@ const field = (props) => {
       )
       break
     case 'select':
-      fieldType = <select name={props.name}>{props.children}</select>
+      fieldType = (
+        <select name={props.name}>
+          {props.options.map(option => <option>{option}</option>)}
+        </select>
+      )
       break
     default:
       fieldType = (

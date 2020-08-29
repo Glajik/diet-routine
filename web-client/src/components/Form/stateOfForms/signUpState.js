@@ -6,8 +6,8 @@ export const signUpState = {
       name: 'name',
       folderType: 'input',
       type: 'text',
-      label: 'Name',
-      placeholder: 'Your name',
+      label: 'nameLabel',
+      placeholder: 'namePlaceholder',
       errorMessage: '',
       rules: {
         required: true,
@@ -21,8 +21,8 @@ export const signUpState = {
       name: 'age',
       folderType: 'input',
       type: 'number',
-      label: 'Age',
-      placeholder: 'Your age',
+      label: 'ageLabel',
+      placeholder: 'agePlaceholder',
       errorMessage: '',
       rules: {
         required: true
@@ -34,8 +34,8 @@ export const signUpState = {
       name: 'email',
       folderType: 'input',
       type: 'email',
-      label: 'Email',
-      placeholder: 'Your email',
+      label: 'emailLabel',
+      placeholder: 'emailPlaceholder',
       errorMessage: '',
       rules: {
         required: true,
@@ -48,8 +48,8 @@ export const signUpState = {
       name: 'password',
       folderType: 'input',
       type: 'password',
-      label: 'Password',
-      placeholder: 'Your password',
+      label: 'passwordLabel',
+      placeholder: 'passwordPlaceholder',
       errorMessage: '',
       rules: {
         required: true,
@@ -58,6 +58,6 @@ export const signUpState = {
     }
   },
   isDisabled: false,
-  successMessage: 'You have passed your registration successfully',
-  errorMessage: 'We have such user already'
+  successMessage: 'signUpSuccessMessage',
+  errorMessage: 'signUpErrorMessage'
 }
