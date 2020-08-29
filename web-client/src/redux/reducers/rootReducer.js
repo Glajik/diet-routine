@@ -1,6 +1,7 @@
 // Here we will combine all our reducers
-
-import {combineReducers} from 'redux'
+import { combineReducers } from 'redux'
+import { firebaseReducer } from 'react-redux-firebase'
+import { firestoreReducer } from 'redux-firestore'
 import {formReducer} from './formReducer'
 import {loaderReducer} from './loaderReducer'
 import {modalReducer} from './modalReducer'
@@ -8,7 +9,9 @@ import {modalReducer} from './modalReducer'
 const rootReducer = combineReducers({
   form: formReducer,
   loader: loaderReducer,
-  modal: modalReducer
+  modal: modalReducer,
+  firebase: firebaseReducer,
+  firestore: firestoreReducer, // <- needed if using firestore
 })
 
 export default rootReducer

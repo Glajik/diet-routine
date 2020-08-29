@@ -1,6 +1,3 @@
-import React from 'react'
-import {Route, Switch} from 'react-router-dom'
-
 /*
  We will need lazyLoading function when we will create more pages and when we will have to paste them to our routes. This
  function will import our components and render them only when user visit this rotes. This function makes our
@@ -16,19 +13,21 @@ import {Route, Switch} from 'react-router-dom'
     (I understand that user may not visit registration form, but log in and registration form was created from the
      same component which I need to import by myself because I have to show log in form to users)
 */
-
+import React from 'react'
+import { Switch, Route } from 'react-router-dom'
+import Start from '../Start'
+import Demo from '../Demo'
 import lazyLoading from '../../hoc/lazyLoading'
 import SignInOrSignUpForm from '../SignInOrSignUpForm'
 
-const App = () => {
-  return (
-    <div>
-      <Switch>
-        <Route path="/sign-up" render={() => <SignInOrSignUpForm signUp/>}/>
-        <Route path="/" render={() => <SignInOrSignUpForm signIn/>}/>
-      </Switch>
-    </div>
-  )
-}
+const App = () => (
+  <div className="App">
+    <Switch>
+      <Route path="/sign-up" render={() => <SignInOrSignUpForm signUp/>}/>
+      <Route path="/" render={() => <SignInOrSignUpForm signIn/>}/>
+      <Route path="/demo" component={Demo} />
+    </Switch>
+  </div>
+)
 
 export default App
