@@ -11,8 +11,8 @@ import { compose } from 'redux'
 import p from 'prop-types'
 import { path } from 'ramda'
 import styles from './Counter.module.css'
-import { Redirect } from 'react-router-dom'
 import { signOut } from '../../redux/actions/authActions'
+
 
 const collection = 'counters'
 const document = 'first'
@@ -21,66 +21,66 @@ const firestoreDocPath = `${collection}/${document}`
 const Loading = () => <div>Loading...</div>
 const Empty = () => <div>No data</div>
 
-function Counter({ value, increment, decrement, loading, empty, auth, signOut }) {
+function Counter({ value, increment, decrement, loading, empty, signOut }) {
   useFirestoreConnect([collection])
 
   const [incrementAmount, setIncrementAmount] = useState('2')
 
-  
+
   if (loading) return <Loading />
   if (empty) return <Empty />
 
-  if(!auth.uid) return <Redirect to='/sign-in'/>
-
-  return (
-    <div>
-      <div className={styles.row}>
-        <button
-          type="button"
-          className={styles.button}
-          aria-label="Increment value"
-          onClick={() => increment()}>
-          +
+    return (
+      <div>
+        <div className={styles.row}>
+          <button
+            type="button"
+            className={styles.button}
+            aria-label="Increment value"
+            onClick={() => increment()}>
+            +
         </button>
-        <span className={styles.value}>{value}</span>
-        <button
-          type="button"
-          className={styles.button}
-          aria-label="Decrement value"
-          onClick={() => decrement()}>
-          -
+          <span className={styles.value}>{value}</span>
+          <button
+            type="button"
+            className={styles.button}
+            aria-label="Decrement value"
+            onClick={() => decrement()}>
+            -
         </button>
+        </div>
+        <div className={styles.row}>
+          <input
+            className={styles.textbox}
+            aria-label="Set increment amount"
+            value={incrementAmount}
+            onChange={e => setIncrementAmount(e.target.value)}
+          />
+          <button
+            type="button"
+            className={styles.button}
+            onClick={() => increment(Number(incrementAmount) || 0)}>
+            Add Amount
+        </button>
+          <button
+            type="button"
+            className={styles.asyncButton}
+            onClick={() => increment(Number(incrementAmount) || 0)}>
+            Add Async
+        </button>
+        </div>
+        <div className={styles.row}>
+          <button
+            type="button"
+            className={styles.button}
+            aria-label="Decrement value"
+            onClick={signOut}>
+            Log Out
+        </button>
+        </div>
       </div>
-      <div className={styles.row}>
-        <input
-          className={styles.textbox}
-          aria-label="Set increment amount"
-          value={incrementAmount}
-          onChange={e => setIncrementAmount(e.target.value)}
-        />
-        <button
-          type="button"
-          className={styles.button}
-          onClick={() => increment(Number(incrementAmount) || 0)}>
-          Add Amount
-        </button>
-        <button
-          type="button"
-          className={styles.asyncButton}
-          onClick={() => increment(Number(incrementAmount) || 0)}>
-          Add Async
-        </button>
-      </div>
-
-      <button
-          type="button"
-          className={styles.button}
-          aria-label="Decrement value"
-          onClick={signOut}>
-          Log Out
-        </button>
-    </div>
-  )
+    )
+  //}
 }
 
 Counter.propTypes = {
@@ -105,8 +105,7 @@ const mapStateToProps = state => {
   return {
     loading: !isLoaded(data),
     empty: isEmpty(data),
-    value: selectValue(data),
-    auth:state.firebase.auth
+    value: selectValue(data)
   }
 }
 
