@@ -51,15 +51,18 @@ const SignInOrSignUpForm = (props) => {
 }
 
 const mapStateToProps = (state) => {
+  console.log(state)
   return {
-    isLoading: state.loader.isLoading
+    isLoading: state.loader.isLoading,
+    
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
     initSignInForm: () => dispatch(initSignInForm()),
-    initSignUpForm: () => dispatch(initSignUpForm())
+    initSignUpForm: () => dispatch(initSignUpForm()),
+    
   }
 }
 

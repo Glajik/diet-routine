@@ -24,7 +24,7 @@ import ua from '../../i18n/locales/ua'
 
 import lazyLoading from '../../hoc/lazyLoading'
 
-import Demo from '../Demo'
+import Counter from '../Counter/Counter'
 import SignInOrSignUpForm from '../SignInOrSignUpForm'
 
 const App = () => (
@@ -32,8 +32,8 @@ const App = () => (
     <IntlProvider locale={navigator.language} messages={ru}>
       <Switch>
         <Route path="/sign-up" render={() => <SignInOrSignUpForm signUp />} />
-        <Route path="/" render={() => <SignInOrSignUpForm signIn />} />
-        <Route path="/demo" component={Demo} />
+        <Route path="/sign-in" render={() => <SignInOrSignUpForm signIn />} />
+        <Route exact path="/" component={Counter} />
       </Switch>
     </IntlProvider>
   </div>

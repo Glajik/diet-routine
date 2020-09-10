@@ -11,6 +11,8 @@ import { compose } from 'redux'
 import p from 'prop-types'
 import { path } from 'ramda'
 import styles from './Counter.module.css'
+import { Redirect } from 'react-router-dom'
+import { signOut } from '../../redux/actions/authActions'
 
 const collection = 'counters'
 const document = 'first'
@@ -19,13 +21,16 @@ const firestoreDocPath = `${collection}/${document}`
 const Loading = () => <div>Loading...</div>
 const Empty = () => <div>No data</div>
 
-function Counter({ value, increment, decrement, loading, empty }) {
+function Counter({ value, increment, decrement, loading, empty, auth, signOut }) {
   useFirestoreConnect([collection])
 
   const [incrementAmount, setIncrementAmount] = useState('2')
 
+  
   if (loading) return <Loading />
   if (empty) return <Empty />
+
+  if(!auth.uid) return <Redirect to='/sign-in'/>
 
   return (
     <div>
@@ -66,6 +71,14 @@ function Counter({ value, increment, decrement, loading, empty }) {
           Add Async
         </button>
       </div>
+
+      <button
+          type="button"
+          className={styles.button}
+          aria-label="Decrement value"
+          onClick={signOut}>
+          Log Out
+        </button>
     </div>
   )
 }
@@ -93,6 +106,7 @@ const mapStateToProps = state => {
     loading: !isLoaded(data),
     empty: isEmpty(data),
     value: selectValue(data),
+    auth:state.firebase.auth
   }
 }
 
@@ -109,4 +123,10 @@ const enhance = compose(
   })
 )
 
-export default enhance(Counter)
+const mapDispatchToProps = dispatch => {
+  return {
+    signOut: () => dispatch(signOut())
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(enhance(Counter))

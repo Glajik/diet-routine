@@ -2,8 +2,10 @@ import React from 'react'
 import logo from './logo.svg'
 import Counter from '../Counter'
 import './Demo.css'
+import { connect } from 'react-redux'
 
-const Demo = () => (
+const Demo = (props) => (
+  const {auth} = props
   <div className="Demo">
     <header className="Demo-header">
       <img src={logo} className="Demo-logo" alt="logo" />
@@ -48,5 +50,9 @@ const Demo = () => (
     </header>
   </div>
 )
-
-export default Demo
+const mapStateToProps = state => {
+  return {
+    auth:state.firebase.auth
+  }
+}
+export default connect(mapStateToProps)(Demo)
