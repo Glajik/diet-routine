@@ -1,0 +1,61 @@
+                This is instruction about how we will use react-intl(i18n)
+
+This library will help us to make our website multilingual.
+
+First of all, I created i18n directory (search in src folder). In this folder I created locales directory. Here I
+created 3 directories which are named by shorted names of that languages which we will ue (if we want to add one more
+language
+we have to add one more directory and name it by shorted name of that language which we want to add). In every of these
+folders I created index.js file where we have to export default object.
+
+PLEASE, look on this 3 files and only after that read below!
+
+IMPORTANT! If you were attentive you could notice that all 3 objects have the same keys. It's very important!!! It
+doesn't matter how you name them, but they must be repeated in other objects!
+
+Also you could notice that the values of objects' keys have the same meaning, but they are written on different
+languages. It's how react-intl works. Instead of text we will paste keys from our objects. But it won't work if we just
+paste keys instead of text. So, I will explain how to set react-intl in our code.
+
+1. The main settings of react-intl you can see in App.js (path: src/components/App/App.js).
+We can choose language which we want to use manually from App.js (code string - 31), but letter it will be chosen
+conditionally.
+2. We have to import FormattedMessage from react-intl before we use text.
+(import {FormattedMessage} from 'react-intl')
+3. Instead of text we create FormattedMessage component.
+Like this:
+    <FormattedMessage id="some_text"/>
+Id - is one of that keys which we created in our translation objects.
+
+For example:
+    <h1>
+        <FormattedMessage id="createAccount"/>
+    </h1>
+
+Instead of <FormattedMessage id="createAccount"/> we will get text on that language which we chose in App.js (code
+string - 31).
+
+Also we can use FormattedMessage conditionally (look on file SignInOrSignUpForm (path:
+src/components/SignInOrSignUpForm)
+ (Navlink component code line - 34)
+
+ IMPORTANT! Typeof id has to be string. Anyone tells that id cannot be equal to variable or prop, but this
+ variable or prop has to contain string.
+ For example:
+  Look on file Button (path: src/components/UI/Button/Button.js) (code line - 11) and on file Form (path:
+  src/components/Form/Form.js) (code line - 65 and then 39. That strings that you can see on 40 and 42 code lines are
+  keys from our translation objects).
+4. Also we may have to paste text by using props in our component (for example: placeholder or label for input).
+We canNOT do like this:
+   NOT! <input type="text" placeholder={<FormattedMessage id="placeholder"/>} />
+Instead of this we have to import injectIntl from react-intl.
+(import {injectIntl} from 'react-intl')
+Then we have to wrap our component by injectIntl, certainly before export (like hoc)
+For example:
+    export default connect(mapStateToProps, mapDispatchToProps)(injectIntl(Form))
+Then we can write this:
+    placeholder={props.intl.formatMessage({id: "placeholder"})}
+It will be correct.
+You can also see how it works in Form component (path: src/components/Form/Form.js)
+
+P.S. Happy hacking!)
