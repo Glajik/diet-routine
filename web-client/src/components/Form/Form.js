@@ -4,7 +4,6 @@ import {connect} from 'react-redux'
 import {disableButton} from '../../utility'
 import Button from '../UI/Button'
 import Field from '../UI/Field'
-import PasswordDot from '../UI/PasswordDot'
 import {
   submitForm,
   fieldChanged,
@@ -18,7 +17,7 @@ const signInUrl = 'https://identitytoolkit.googleapis.com/v1/accounts:signInWith
 const Form = (props) => {
   const changeHandler = (event) => {
     event.persist()
-    props.fieldChanged(event.target, <PasswordDot/>)
+    props.fieldChanged(event.target)
   }
 
   const submitHandler = (event) => {
@@ -84,7 +83,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    fieldChanged: (eventTarget, passwordDot) => dispatch(fieldChanged(eventTarget, passwordDot)),
+    fieldChanged: (eventTarget) => dispatch(fieldChanged(eventTarget)),
     initSignUpForm: () => dispatch(initSignUpForm()),
     initSignInForm: () => dispatch(initSignInForm()),
     submit: (event, controls, url, successMessage, errorMessage) => dispatch(submitForm(event, controls, url, successMessage, errorMessage))
