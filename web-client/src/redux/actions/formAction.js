@@ -1,3 +1,4 @@
+import React from 'react'
 import {auth} from '../../utility'
 import {setModalMessage, showModal} from './modalAction'
 import {

@@ -10,6 +10,7 @@ const modal = (props) => (
     </Header>
     <Button
       action="cancel"
+      btnType="primary"
       clicked={props.clicked}/>
   </Modal>
 )

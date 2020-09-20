@@ -4,6 +4,7 @@ import {connect} from 'react-redux'
 import {disableButton} from '../../utility'
 import Button from '../UI/Button'
 import Field from '../UI/Field'
+import PasswordDot from '../UI/PasswordDot'
 import {
   submitForm,
   fieldChanged,
@@ -17,7 +18,7 @@ const signInUrl = 'https://identitytoolkit.googleapis.com/v1/accounts:signInWith
 const Form = (props) => {
   const changeHandler = (event) => {
     event.persist()
-    props.fieldChanged(event.target)
+    props.fieldChanged(event.target, <PasswordDot/>)
   }
 
   const submitHandler = (event) => {
@@ -27,7 +28,6 @@ const Form = (props) => {
       props.submit(event, {...props.controls}, signInUrl, props.successMessage, props.errorMessage)
     }
   }
-
 
   const form = []
   const controls = {...props.controls}
@@ -51,7 +51,6 @@ const Form = (props) => {
               key={field.id}
               name={field.name}
               value={field.value}
-              vasibleValue={field.value}
               fieldType={field.folderType}
               type={field.type}
               label={props.intl.formatMessage({id: field.label})}
@@ -85,7 +84,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    fieldChanged: (eventTarget) => dispatch(fieldChanged(eventTarget)),
+    fieldChanged: (eventTarget, passwordDot) => dispatch(fieldChanged(eventTarget, passwordDot)),
     initSignUpForm: () => dispatch(initSignUpForm()),
     initSignInForm: () => dispatch(initSignInForm()),
     submit: (event, controls, url, successMessage, errorMessage) => dispatch(submitForm(event, controls, url, successMessage, errorMessage))
