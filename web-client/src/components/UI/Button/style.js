@@ -30,6 +30,8 @@ export const Button = styled.button`
           margin: 0 auto;
           border: 2px solid ${p.disabled ? 'grey' : colors.secondary};
         `
+      default:
+        return ''
     }
   }
 }

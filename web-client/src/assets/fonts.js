@@ -1,10 +1,11 @@
 import {createGlobalStyle} from 'styled-components'
 
-export function fontFace(name, src, fontWeight = 'normal') {
+function fontFace(name, src, fontWeight = 'normal') {
   return `
     @font-face{
       font-family: "${name}";
       src: url(${require('../fonts/ibm/' + src + '_' + fontWeight + '.ttf')});
+      src: url(${require('./images/password-dot.svg')});
       font-weight: ${fontWeight};
     }
   `
@@ -20,5 +21,9 @@ export const ibmFont = createGlobalStyle`
   
   button {
     font-family: ibmBold, sans-serif;
+ }
+ 
+ input::placeholder {
+  font-family: ibmRegular, sans-serif;
  }
 `

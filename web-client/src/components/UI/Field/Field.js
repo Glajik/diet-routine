@@ -13,9 +13,9 @@ const field = (props) => {
     case 'input':
       fieldType = (
         <Input
+          style={props.style}
           type={props.type}
           value={props.value}
-          vasibleValue={props.vasibleValue}
           name={props.name}
           placeholder={props.placeholder}
           onChange={props.changed}/>
