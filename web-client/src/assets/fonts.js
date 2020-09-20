@@ -4,7 +4,7 @@ function fontFace(name, src, fontWeight = 'normal') {
   return `
     @font-face{
       font-family: "${name}";
-      src: url(${require('../fonts/ibm/' + src + '_' + fontWeight + '.ttf')});
+      src: url(${require('./fonts/ibm/' + src + '_' + fontWeight + '.ttf')});
       src: url(${require('./images/password-dot.svg')});
       font-weight: ${fontWeight};
     }
