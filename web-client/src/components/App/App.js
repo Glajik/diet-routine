@@ -26,9 +26,10 @@ import lazyLoading from '../../hoc/lazyLoading'
 
 import Demo from '../Demo'
 import SignInOrSignUpForm from '../SignInOrSignUpForm'
+import {AppWrapper} from './style'
 
 const App = () => (
-  <div className="App">
+  <AppWrapper>
     <IntlProvider locale={navigator.language} messages={ru}>
       <Switch>
         <Route path="/sign-up" render={() => <SignInOrSignUpForm signUp />} />
@@ -36,7 +37,7 @@ const App = () => (
         <Route path="/" render={() => <SignInOrSignUpForm signIn />} />
       </Switch>
     </IntlProvider>
-  </div>
+  </AppWrapper>
 )
 
 export default App

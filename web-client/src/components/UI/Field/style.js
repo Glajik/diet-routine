@@ -13,12 +13,18 @@ export const Label = styled.label`
 `
 
 export const Input = styled.input`
+  width: 100%;
   font-size: 16px;
   box-sizing: border-box;
-  padding: 10px 15px;
-  border: 1px solid #ccc;
-  border-radius: 7px;
+  padding: 15px;
+  border: 1px solid ${colors.secondary};
+  border-radius: 100px;
   outline: none;
+  color: ${colors.inputValuePlaceholder};
+  
+  &::placeholder {
+    color: ${colors.inputValuePlaceholder}; 
+  }
 `
 
 export const Error = styled.p`

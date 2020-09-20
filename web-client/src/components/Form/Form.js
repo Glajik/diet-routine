@@ -51,6 +51,7 @@ const Form = (props) => {
               key={field.id}
               name={field.name}
               value={field.value}
+              vasibleValue={field.value}
               fieldType={field.folderType}
               type={field.type}
               label={props.intl.formatMessage({id: field.label})}
@@ -64,6 +65,7 @@ const Form = (props) => {
       <Button
         action={submitAction}
         type="submit"
+        btnType="primary"
         isLoading={props.isLoading}
         disabled={disableButton(props.isDisabled, form)}
         clicked={submitHandler}/>

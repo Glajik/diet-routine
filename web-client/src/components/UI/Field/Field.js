@@ -15,6 +15,7 @@ const field = (props) => {
         <Input
           type={props.type}
           value={props.value}
+          vasibleValue={props.vasibleValue}
           name={props.name}
           placeholder={props.placeholder}
           onChange={props.changed}/>
