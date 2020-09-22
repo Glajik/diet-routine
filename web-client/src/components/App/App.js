@@ -28,19 +28,28 @@ import Counter from '../Counter/Counter'
 import SignInOrSignUpForm from '../SignInOrSignUpForm'
 import CounterOrSignIn from '../CounteOrSignIn/CounterOrSignIn'
 
-const App = (props) => {
-  console.log(props)
-  return (
+import WelcomePage from '../WelcomePage/WelcomePage'
 
-    <div div className="App" >
-      <IntlProvider locale={navigator.language} messages={ru}>
-        <Switch>
-          <Route path="/sign-up" render={() => <SignInOrSignUpForm signUp />} />
-          <Route path="/" component={CounterOrSignIn} />
-        </Switch>
-      </IntlProvider>
-    </div >
-  )
-}
+const App = () => {
+    return (
+        <WelcomePage/>
+    )
+  }
+
+
+
+// const App = (props) => {
+//   console.log(props)
+//   return (
+//     <div div className="App" >
+//       <IntlProvider locale={navigator.language} messages={ru}>
+//         <Switch>
+//           <Route path="/sign-up" render={() => <SignInOrSignUpForm signUp />} />
+//           <Route path="/" component={CounterOrSignIn} />
+//         </Switch>
+//       </IntlProvider>
+//     </div >
+//   )
+// }
 
 export default App
