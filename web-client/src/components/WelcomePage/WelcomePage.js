@@ -1,5 +1,14 @@
 import React from 'react'
-import { Wrapper, HeaderImageDiv, LogoWrapper, HeaderPhrase, PhraseAuthor } from './style'
+import {
+  Wrapper,
+  HeaderImageDiv,
+  LogoWrapper,
+  HeaderPhrase,
+  PhraseAuthor,
+  PhraseDiv,
+  FormWrapper,
+  NameQuestion
+} from './style'
 import logo from '../../assets/images/logo.svg'
 
 const WelcomePage = () => {
@@ -7,13 +16,16 @@ const WelcomePage = () => {
     <Wrapper>
       <HeaderImageDiv>
         <LogoWrapper src={logo} />
-        <HeaderPhrase>
-          ”Нет любви более искренней, чем любовь к еде!”
-      </HeaderPhrase>
-        <PhraseAuthor>
-          Джордж Бернард Шоу
-      </PhraseAuthor>
+        <PhraseDiv>
+          <HeaderPhrase>”Нет любви более искренней, чем  <br/> любовь к еде!”</HeaderPhrase>
+          <PhraseAuthor>Джордж Бернард Шоу</PhraseAuthor>
+        </PhraseDiv>
       </HeaderImageDiv>
+      <FormWrapper>
+        <NameQuestion>
+          Как тебя зовут?
+        </NameQuestion>
+      </FormWrapper>
     </Wrapper>
   )
 }
