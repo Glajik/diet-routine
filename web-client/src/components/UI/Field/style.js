@@ -9,16 +9,23 @@ export const FieldWrapper = styled.div`
 
 export const Label = styled.label`
   margin-bottom: 10px;
+  margin-left:20px;
   color: #666666;
 `
 
 export const Input = styled.input`
-  font-size: 16px;
-  box-sizing: border-box;
-  padding: 10px 15px;
-  border: 1px solid #ccc;
-  border-radius: 7px;
-  outline: none;
+width: 100%;
+font-size: 16px;
+box-sizing: border-box;
+padding: 15px;
+border: 1px solid ${colors.secondary};
+border-radius: 100px;
+outline: none;
+color: ${colors.inputValuePlaceholder};
+
+&::placeholder {
+  color: ${colors.inputValuePlaceholder}; 
+}
 `
 
 export const Error = styled.p`
