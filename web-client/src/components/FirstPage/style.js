@@ -8,6 +8,7 @@ export const MainDiv = styled.div`
     background-image: url(${img});
     background-size: cover; 
     min-height: 100vh;
+    transition:all 0.5s;
 `
 
 export const LogoWrapper = styled.img`
