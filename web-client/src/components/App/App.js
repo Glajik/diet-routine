@@ -15,7 +15,8 @@
 */
 
 import React from 'react'
-import { Route, Switch } from 'react-router-dom'
+import { Route, Switch, withRouter } from 'react-router-dom'
+import { TransitionGroup, CSSTransition } from 'react-transition-group'
 
 import { IntlProvider } from 'react-intl'
 import en from '../../i18n/locales/en'
@@ -24,42 +25,36 @@ import ua from '../../i18n/locales/ua'
 
 import lazyLoading from '../../hoc/lazyLoading'
 
-import Counter from '../Counter/Counter'
-import SignInOrSignUpForm from '../SignInOrSignUpForm'
-import CounterOrSignIn from '../CounteOrSignIn/CounterOrSignIn'
-
 import WelcomePage from '../WelcomePage/WelcomePage'
 import FirstPage from '../FirstPage/FirstPage'
-import Form from '../Form'
+import { Wrapper } from './style'
 
-const App = () => {
+
+
+const App = ({ location }) => {
+  console.log(location)
   return (
     <IntlProvider locale={navigator.language} messages={ru}>
-      <Switch>
-        <Route exact path='/'>
-          <FirstPage />
-        </Route>
-        <Route path='/welcome_page'>
-          <WelcomePage />
-        </Route>
-      </Switch>
+      <Wrapper>
+        <TransitionGroup>
+          <CSSTransition
+            key={location.key}
+            classNames='fade'
+            timeout={1000}>
+            <Switch location={location}>
+              <Route exact path='/'>
+                <FirstPage />
+              </Route>
+              <Route path='/welcome_page'>
+                <WelcomePage />
+              </Route>
+            </Switch>
+          </CSSTransition>
+        </TransitionGroup>
+      </Wrapper>
     </IntlProvider>
   )
 }
 
-// 
-// const App = (props) => {
-//   console.log(props)
-//   return (
-//     <div div className="App" >
-//       <IntlProvider locale={navigator.language} messages={ru}>
-//         <Switch>
-//           <Route path="/sign-up" render={() => <SignInOrSignUpForm signUp />} />
-//           <Route path="/" component={CounterOrSignIn} />
-//         </Switch>
-//       </IntlProvider>
-//     </div >
-//   )
-// }
+export default withRouter(App)
 
-export default App
