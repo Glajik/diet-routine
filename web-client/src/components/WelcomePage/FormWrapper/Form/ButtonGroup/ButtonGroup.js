@@ -2,7 +2,7 @@ import React from 'react'
 import { ButtonsDiv, ButtonDiv } from './style'
 import { Button } from '../../../../UI/Button/style'
 
-const ButtonGroup = () => {
+const ButtonGroup = ({ onOnwardBtnClick }) => {
 
     return (
         <ButtonsDiv>
@@ -10,7 +10,10 @@ const ButtonGroup = () => {
                 <Button btnType='secondary'>УЖЕ ЕСТЬ АККАУНТ</Button>
             </ButtonDiv>
             <ButtonDiv>
-                <Button btnType='primary'>ДАЛЬШЕ</Button>
+                <Button btnType='primary'
+                    onClick={() => onOnwardBtnClick()}>
+                    ДАЛЬШЕ
+                </Button>
             </ButtonDiv>
         </ButtonsDiv>
     )

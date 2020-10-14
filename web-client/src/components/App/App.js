@@ -29,15 +29,25 @@ import SignInOrSignUpForm from '../SignInOrSignUpForm'
 import CounterOrSignIn from '../CounteOrSignIn/CounterOrSignIn'
 
 import WelcomePage from '../WelcomePage/WelcomePage'
+import FirstPage from '../FirstPage/FirstPage'
+import Form from '../Form'
 
 const App = () => {
-    return (
-        <WelcomePage/>
-    )
-  }
+  return (
+    <IntlProvider locale={navigator.language} messages={ru}>
+      <Switch>
+        <Route exact path='/'>
+          <FirstPage />
+        </Route>
+        <Route path='/welcome_page'>
+          <WelcomePage />
+        </Route>
+      </Switch>
+    </IntlProvider>
+  )
+}
 
-
-
+// 
 // const App = (props) => {
 //   console.log(props)
 //   return (

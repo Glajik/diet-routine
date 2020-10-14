@@ -1,12 +1,15 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Input, Label } from '../../../../UI/Field/style'
 import { InputDiv } from './style'
 
-const InputField = () => {
+const InputField = ({ values, setValues }) => {
+
     return (
         <InputDiv>
             <Label>Как тебя зовут?</Label>
-            <Input />
+            <Input
+                onChange={event => setValues(event.target.value)}
+                value={values} />
         </InputDiv>
     )
 }

@@ -8,7 +8,7 @@ align-items: center;
 justify-content: center;
 `
 
-export const NameQuestion = styled.h1`
+export const NameQuestion = styled.p`
 font-family: Ubuntu;
 font-style: normal;
 font-weight: 300;
