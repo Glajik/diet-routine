@@ -24,10 +24,6 @@ import ua from '../../i18n/locales/ua'
 
 import lazyLoading from '../../hoc/lazyLoading'
 
-import Counter from '../Counter/Counter'
-import SignInOrSignUpForm from '../SignInOrSignUpForm'
-import CounterOrSignIn from '../CounteOrSignIn/CounterOrSignIn'
-
 import WelcomePage from '../WelcomePage/WelcomePage'
 
 const App = () => {
