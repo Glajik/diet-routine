@@ -13,6 +13,7 @@ const field = (props) => {
     case 'input':
       fieldType = (
         <Input
+          style={props.style}
           type={props.type}
           value={props.value}
           name={props.name}

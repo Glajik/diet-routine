@@ -38,6 +38,7 @@ export const Button = styled.button`
   box-sizing: border-box;
   font-size: 18px;
   transition: background .3s ease-in-out;
+  text-transform: uppercase;
   ${conditionalStyles}
 }
 `

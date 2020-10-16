@@ -1,16 +1,21 @@
 import React from 'react'
 import { ButtonsDiv, ButtonDiv } from './style'
-import { Button } from '../../../../UI/Button/style'
+import { FormattedMessage } from 'react-intl'
+import Button from '../../../../UI/Button'
 
 const ButtonGroup = () => {
 
     return (
         <ButtonsDiv>
             <ButtonDiv>
-                <Button btnType='secondary'>УЖЕ ЕСТЬ АККАУНТ</Button>
+                <Button btnType='secondary'>
+                    <FormattedMessage id='haveAccountBtn'/>
+                </Button>
             </ButtonDiv>
             <ButtonDiv>
-                <Button btnType='primary'>ДАЛЬШЕ</Button>
+                <Button btnType='primary'>
+                    <FormattedMessage id='nextBtn'/>
+                </Button>
             </ButtonDiv>
         </ButtonsDiv>
     )
