@@ -19,4 +19,5 @@ export default {
   message: 'Message',
   haveAccountBtn: 'Already have an account',
   nextBtn: 'Next',
+  nameQuestion: 'What is your name?'
 }

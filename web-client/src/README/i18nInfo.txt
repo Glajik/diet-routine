@@ -1,4 +1,4 @@
-                This is instruction about how we will use react-intl(i18n)
+                This is the instruction about how we will use react-intl(i18n)
 
 This library will help us to make our website multilingual.
 
@@ -20,8 +20,12 @@ paste keys instead of text. So, I will explain how to set react-intl in our code
 1. The main settings of react-intl you can see in App.js (path: src/components/App/App.js).
 We can choose language which we want to use manually from App.js (code string - 31), but letter it will be chosen
 conditionally.
+
+
 2. We have to import FormattedMessage from react-intl before we use text.
 (import {FormattedMessage} from 'react-intl')
+
+
 3. Instead of text we create FormattedMessage component.
 Like this:
     <FormattedMessage id="some_text"/>
@@ -45,6 +49,8 @@ src/components/SignInOrSignUpForm)
   Look on file Button (path: src/components/UI/Button/Button.js) (code line - 11) and on file Form (path:
   src/components/Form/Form.js) (code line - 65 and then 39. That strings that you can see on 40 and 42 code lines are
   keys from our translation objects).
+
+
 4. Also we may have to paste text by using props in our component (for example: placeholder or label for input).
 We canNOT do like this:
    NOT! <input type="text" placeholder={<FormattedMessage id="placeholder"/>} />

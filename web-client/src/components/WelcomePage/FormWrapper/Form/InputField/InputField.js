@@ -1,6 +1,11 @@
 import React from 'react'
 import Field from '../../../../UI/Field'
 
-const InputField = () => <Field label="Как тебя зовут?"/>
+// You can find the explanation for this code in i18nInfo.txt (4 paragraph)
+import {injectIntl} from 'react-intl'
 
-export default InputField
+const InputField = (props) => (
+  <Field label={props.intl.formatMessage({id: "nameQuestion"})}/>
+)
+
+export default injectIntl(InputField)
