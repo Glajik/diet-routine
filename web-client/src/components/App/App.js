@@ -24,32 +24,20 @@ import ua from '../../i18n/locales/ua'
 
 import lazyLoading from '../../hoc/lazyLoading'
 
-import Counter from '../Counter/Counter'
-import SignInOrSignUpForm from '../SignInOrSignUpForm'
-import CounterOrSignIn from '../CounteOrSignIn/CounterOrSignIn'
-
 import WelcomePage from '../WelcomePage/WelcomePage'
 
-const App = () => {
-    return (
-        <WelcomePage/>
-    )
-  }
-
-
-
-// const App = (props) => {
-//   console.log(props)
-//   return (
-//     <div div className="App" >
-//       <IntlProvider locale={navigator.language} messages={ru}>
-//         <Switch>
-//           <Route path="/sign-up" render={() => <SignInOrSignUpForm signUp />} />
-//           <Route path="/" component={CounterOrSignIn} />
-//         </Switch>
-//       </IntlProvider>
-//     </div >
-//   )
-// }
+const App = (props) => {
+  console.log(props)
+  return (
+    <div className="App" >
+      <IntlProvider locale={navigator.language} messages={ru}>
+        <Switch>
+          {/* <Route path="/sign-up" render={() => <SignInOrSignUpForm signUp />} /> */}
+          <Route path="/" component={WelcomePage} />
+        </Switch>
+      </IntlProvider>
+    </div>
+  )
+}
 
 export default App
