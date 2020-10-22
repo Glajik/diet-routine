@@ -30,13 +30,14 @@ import CounterOrSignIn from '../CounteOrSignIn/CounterOrSignIn'
 
 import WelcomePage from '../WelcomePage/WelcomePage'
 
+import FeaturesPage from '../FeaturesPage/FeaturesPage'
+import FeaturesPreview from '../FeaturesPreview/FeaturesPreview'
+
 const App = () => {
     return (
-        <WelcomePage/>
+        <FeaturesPage />
     )
   }
-
-
 
 // const App = (props) => {
 //   console.log(props)
