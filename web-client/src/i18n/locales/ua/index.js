@@ -16,5 +16,7 @@ export default {
   signInErrorMessage: 'Ви ввели направильний e-mail та/або пароль',
   signUpSuccessMessage: 'Ви успішно пройшли реєстрацію аккаунта',
   signUpErrorMessage: 'Такий користувач вже існує',
-  message: 'Повідомлення'
+  message: 'Повідомлення',
+  haveAccountBtn: 'Вже маєш аккаунт',
+  nextBtn: 'Далі',
 }
