@@ -8,7 +8,7 @@ import {
 
 const field = (props) => (
   <FieldWrapper>
-    <Label>{props.label}</Label>
+    {/* <Label>{props.label}</Label> */}
     <Input
         style={props.style}
         type={props.type}
