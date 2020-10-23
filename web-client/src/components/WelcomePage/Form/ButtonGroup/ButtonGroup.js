@@ -1,7 +1,8 @@
 import React from 'react'
 import { ButtonsDiv, ButtonDiv } from './style'
 import { FormattedMessage } from 'react-intl'
-import Button from '../../../../UI/Button'
+import { Button } from '../../../UI/Button/style'
+
 
 const ButtonGroup = ({ onOnwardBtnClick }) => {
   return (

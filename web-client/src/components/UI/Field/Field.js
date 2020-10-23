@@ -3,7 +3,7 @@ import { FieldWrapper, Input, Label, Error } from './style'
 
 const field = props => (
   <FieldWrapper>
-    {/* Vadim Oleynik comment - не потрібний  при анімації WelcomePAge */}
+    {/* Vadim Oleynik comment - не потрібний при анімації WelcomePage */}
     {/* <Label>{props.label}</Label>  */}
     <Input
       style={props.style}

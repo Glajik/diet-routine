@@ -2,8 +2,10 @@ import React from 'react'
 import { FieldsDiv, FormDiv } from './style'
 import ButtonGroup from './ButtonGroup/ButtonGroup'
 import { useState } from 'react/cjs/react.development'
-import { Label } from '../../../UI/Field/style'
-import Field from '../../../UI/Field'
+
+import Field from '../../UI/Field'
+import { Label } from '../../UI/Field/style'
+
 
 const Form = () => {
   const [values, setValues] = useState('')
