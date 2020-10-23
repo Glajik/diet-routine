@@ -1,23 +1,23 @@
 import styled from 'styled-components'
 
-export const FormDiv = styled.div`
-  background-color: white;
-  min-height: 40vh;
+export const FieldsDiv = styled.div`
+transform: translate(10%, 0);
+animation: form-animation 4s;
 
+}
+
+@keyframes form-animation {
+from {
+    transform: translate(10%, 200%);
+}
+
+to {
+    transform: translate(10%, 0);
+}
+`
+export const FormDiv = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  transform: translate(0, -390px);
-  animation: form-animation 4s;
-
-  @keyframes form-animation {
-    from {
-      transform: translate(0, 0);
-    }
-
-    to {
-      transform: translate(0, -390px);
-    }
-  }
+  margin-bottom: 15px;
+  width: 304px;
 `

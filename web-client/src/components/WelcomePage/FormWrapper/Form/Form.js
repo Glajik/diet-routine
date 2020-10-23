@@ -1,24 +1,27 @@
 import React from 'react'
-import { FormDiv } from './style'
-import InputField from './InputField/InputField'
+import { FieldsDiv, FormDiv } from './style'
 import ButtonGroup from './ButtonGroup/ButtonGroup'
 import { useState } from 'react/cjs/react.development'
-
+import { Label } from '../../../UI/Field/style'
+import Field from '../../../UI/Field'
 
 const Form = () => {
-    const [values, setValues] = useState('')
+  const [values, setValues] = useState('')
 
-    const onOnwardBtnClick = () => {
-        console.log(values)
-        setValues('')
-    }
+  const onOnwardBtnClick = () => {
+    console.log(values)
+    setValues('')
+  }
 
-    return (
-        <FormDiv>
-            <InputField values={values} setValues={setValues} />
-            <ButtonGroup onOnwardBtnClick={onOnwardBtnClick} />
-        </FormDiv>
-    )
+  return (
+    <FormDiv>
+      <Label>Как тебя зовут?</Label>
+      <FieldsDiv>
+        <Field />
+        <ButtonGroup onOnwardBtnClick={onOnwardBtnClick} />
+      </FieldsDiv>
+    </FormDiv>
+  )
 }
 
 export default Form
