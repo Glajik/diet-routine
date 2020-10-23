@@ -1,22 +1,23 @@
 import React from 'react'
 import { ButtonsDiv, ButtonDiv } from './style'
-import { Button } from '../../../../UI/Button/style'
+import { FormattedMessage } from 'react-intl'
+import Button from '../../../../UI/Button'
 
 const ButtonGroup = ({ onOnwardBtnClick }) => {
-
-    return (
-        <ButtonsDiv>
-            <ButtonDiv>
-                <Button btnType='secondary'>УЖЕ ЕСТЬ АККАУНТ</Button>
-            </ButtonDiv>
-            <ButtonDiv>
-                <Button btnType='primary'
-                    onClick={() => onOnwardBtnClick()}>
-                    ДАЛЬШЕ
-                </Button>
-            </ButtonDiv>
-        </ButtonsDiv>
-    )
+  return (
+    <ButtonsDiv>
+      <ButtonDiv>
+        <Button btnType="secondary">
+          <FormattedMessage id="haveAccountBtn" />
+        </Button>
+      </ButtonDiv>
+      <ButtonDiv>
+        <Button btnType="primary">
+          <FormattedMessage id="nextBtn" />
+        </Button>
+      </ButtonDiv>
+    </ButtonsDiv>
+  )
 }
 
 export default ButtonGroup

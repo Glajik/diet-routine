@@ -16,5 +16,7 @@ export default {
   signInErrorMessage: 'Вы ввели неправильный e-mail и/или пароль',
   signUpSuccessMessage: 'Вы успешно прошли регистрацию аккаунта',
   signUpErrorMessage: 'Такой пользователь уже существует',
-  message: 'Сообщение'
+  message: 'Сообщение',
+  haveAccountBtn: 'Уже есть аккаунт',
+  nextBtn: 'Дальше',
 }

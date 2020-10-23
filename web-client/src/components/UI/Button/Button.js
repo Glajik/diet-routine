@@ -1,14 +1,14 @@
 import React from 'react'
-import {FormattedMessage} from 'react-intl'
 import {Button} from './style'
 
 const button = (props) => (
-  <Button
+  <Button 
     type={props.type}
+    btnType={props.btnType}
     action={props.action}
     disabled={props.disabled}
-    onClick={props.clicked}>
-      <FormattedMessage id={props.action}/>
+    onClick={props.onClick}>
+      {props.children}
     </Button>
 )
 

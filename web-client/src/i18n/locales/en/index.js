@@ -16,5 +16,7 @@ export default {
   signInErrorMessage: 'Please, enter correct email or/and password',
   signUpSuccessMessage: 'You have passed your registration successfully',
   signUpErrorMessage: 'We have such user already',
-  message: 'Message'
+  message: 'Message',
+  haveAccountBtn: 'Already have an account',
+  nextBtn: 'Next',
 }

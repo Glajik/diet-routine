@@ -30,7 +30,6 @@ import FirstPage from '../FirstPage/FirstPage'
 import { Wrapper } from './style'
 
 
-
 const App = ({ location }) => {
   console.log(location)
   return (
@@ -57,4 +56,3 @@ const App = ({ location }) => {
 }
 
 export default withRouter(App)
-

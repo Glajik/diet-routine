@@ -5,6 +5,7 @@ export const FieldWrapper = styled.div`
   display: flex;
   flex-direction: column;
   margin-bottom: 15px;
+  width: 304px;
 `
 
 export const Label = styled.label`
