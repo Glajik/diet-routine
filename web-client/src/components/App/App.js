@@ -25,6 +25,7 @@ import ua from '../../i18n/locales/ua'
 import lazyLoading from '../../hoc/lazyLoading'
 
 import WelcomePage from '../WelcomePage/WelcomePage'
+import FeaturesPage from '../FeaturesPage/FeaturesPage'
 
 const App = (props) => {
   console.log(props)
@@ -33,6 +34,7 @@ const App = (props) => {
       <IntlProvider locale={navigator.language} messages={ru}>
         <Switch>
           {/* <Route path="/sign-up" render={() => <SignInOrSignUpForm signUp />} /> */}
+          <Route path="/features" component={FeaturesPage} />
           <Route path="/" component={WelcomePage} />
         </Switch>
       </IntlProvider>
