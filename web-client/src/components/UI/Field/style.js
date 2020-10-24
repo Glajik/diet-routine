@@ -12,17 +12,17 @@ export const Label = styled.label`
   margin-bottom: 10px;
   margin-left: 20px;
   color: #666666;
-  transform: translate(10%, 0);
+  transform: translate(0, 0);
   animation: label-animation 4s;
 
   @keyframes label-animation {
     0% {
-      transform: translate(10%, 300%);
+      transform: translate(0, 300%);
       font-size: 35px;
     }
 
     100% {
-      transform: translate(10%, 0);
+      transform: translate(0, 0);
     }
   }
 `
