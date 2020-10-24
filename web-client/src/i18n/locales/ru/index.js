@@ -1,5 +1,5 @@
 export default {
-  logIn: 'Вход',
+  logIn: 'Авторизация',
   createAccount: 'Создать аккаунт',
   emailPlaceholder: 'Ваш e-mail',
   passwordPlaceholder: 'Ваш пароль',
@@ -10,11 +10,13 @@ export default {
   emailLabel: 'E-mail',
   passwordLabel: 'Пароль',
   signIn: 'Войти',
-  signUp: 'Зарегистрироваться',
+  signUp: 'Регистрация',
   cancel: 'Отмена',
   signInSuccessMessage: 'Вы успешно вошли в систему',
   signInErrorMessage: 'Вы ввели неправильный e-mail и/или пароль',
   signUpSuccessMessage: 'Вы успешно прошли регистрацию аккаунта',
   signUpErrorMessage: 'Такой пользователь уже существует',
-  message: 'Сообщение'
+  message: 'Сообщение',
+  haveAccountBtn: 'Уже есть аккаунт',
+  nextBtn: 'Дальше',
 }

@@ -4,12 +4,10 @@
   website much faster because when we load our project we don't wait until all components would be loaded. Also we
    need this function because user may not want to see other pages. In such case we don't need to load these pages. This
     function will load page only when user visit it. If he doesn't we don't load page.
-
     We can use lazyLoading function by writing such script:
       const asyncComponent = lazyLoading(() => {
         return import('./component')
       })
-
     (I understand that user may not visit registration form, but log in and registration form was created from the
      same component which I need to import by myself because I have to show log in form to users)
 */
@@ -24,32 +22,23 @@ import ua from '../../i18n/locales/ua'
 
 import lazyLoading from '../../hoc/lazyLoading'
 
-import Counter from '../Counter/Counter'
-import SignInOrSignUpForm from '../SignInOrSignUpForm'
-import CounterOrSignIn from '../CounteOrSignIn/CounterOrSignIn'
-
 import WelcomePage from '../WelcomePage/WelcomePage'
+import RegistrationPage from '../RegistrationPage/RegistrationPage'
+import AuthorizationPage from '../AuthorizationPage/AuthorizationPage'
 
-const App = () => {
-    return (
-        <WelcomePage/>
-    )
-  }
-
-
-
-// const App = (props) => {
-//   console.log(props)
-//   return (
-//     <div div className="App" >
-//       <IntlProvider locale={navigator.language} messages={ru}>
-//         <Switch>
-//           <Route path="/sign-up" render={() => <SignInOrSignUpForm signUp />} />
-//           <Route path="/" component={CounterOrSignIn} />
-//         </Switch>
-//       </IntlProvider>
-//     </div >
-//   )
-// }
+const App = props => {
+  console.log(props)
+  return (
+    <div className="App">
+      <IntlProvider locale={navigator.language} messages={ru}>
+        <Switch>
+          <Route path="/signup" component={RegistrationPage} />
+          <Route path="/login" component={AuthorizationPage} />
+          <Route path="/" component={WelcomePage} />
+        </Switch>
+      </IntlProvider>
+    </div>
+  )
+}
 
 export default App

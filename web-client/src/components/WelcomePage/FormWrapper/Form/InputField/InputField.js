@@ -1,14 +1,6 @@
 import React from 'react'
-import { Input, Label } from '../../../../UI/Field/style'
-import { InputDiv } from './style'
+import Field from '../../../../UI/Field'
 
-const InputField = () => {
-    return (
-        <InputDiv>
-            <Label>Как тебя зовут?</Label>
-            <Input />
-        </InputDiv>
-    )
-}
+const InputField = () => <Field label="Как тебя зовут?"/>
 
 export default InputField
