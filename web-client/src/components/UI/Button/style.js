@@ -27,7 +27,6 @@ const conditionalStyles = p => {
   }
 }
 
-
 export const Button = styled.button`
   display: block;
   width: 304px;
@@ -41,4 +40,14 @@ export const Button = styled.button`
   text-transform: uppercase;
   ${conditionalStyles}
 }
+`
+
+export const Icon = styled.i`
+  color: ${p => p.iconColor};
+  ${p => 
+     p.leftIcon 
+       ? 'margin-right: 10px'
+       : p.rightIcon
+         ? 'margin-left: 10px'
+         : ''};
 `
