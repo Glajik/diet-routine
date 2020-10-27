@@ -41,3 +41,13 @@ export const Button = styled.button`
   ${conditionalStyles}
 }
 `
+
+export const Icon = styled.i`
+  color: ${p => p.iconColor};
+  ${p => 
+     p.leftIcon 
+       ? 'margin-right: 10px'
+       : p.rightIcon
+         ? 'margin-left: 10px'
+         : ''};
+`

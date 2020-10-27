@@ -19,4 +19,5 @@ export default {
   message: 'Повідомлення',
   haveAccountBtn: 'Вже маєш аккаунт',
   nextBtn: 'Далі',
+  nameQuestion: 'Як Вас звати?'
 }
