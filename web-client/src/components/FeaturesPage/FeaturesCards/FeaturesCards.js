@@ -1,12 +1,13 @@
 import React, {useState} from 'react'
 import { Wrapper, Title, CardContainer, BackgroundGradient } from '../FeaturesCards/style'
 import Slider from './Slider/Slider'
+import { FormattedMessage } from 'react-intl'
 
 const FeaturesCards = () => {
     const [cards, setCards] = useState([
         {
-            title: 'Умные порции',
-            description: 'Больше нет нужды прописывать все в граммах. Наше приложение умеет различать продукты. Яблоки измеряются в штуках, а чипсы в пачках. Кроме того, вы сможете настроить свои.',
+            title: <FormattedMessage id='smartPortions'/>,
+            description: <FormattedMessage id='smartPortionsDescription'/>,
             isActive: true,
         },
         {
@@ -47,7 +48,7 @@ const FeaturesCards = () => {
 
     return (
         <Wrapper>
-            <Title id='features_title'>Возможности</Title>
+            <Title id='features_title'><FormattedMessage id='features'/></Title>
             <CardContainer>
                 <BackgroundGradient>
                     <Slider cards={cards} handleDot={handleDot}/>

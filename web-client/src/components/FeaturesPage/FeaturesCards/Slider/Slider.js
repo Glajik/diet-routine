@@ -1,6 +1,7 @@
 import React from 'react'
 import { Wrapper, Dot, Feature, Bar, FeatureTitle, FeatureDescription, Detailed } from './style'
 import {ReactComponent as Arrow} from '../../../../assets/images/arrowRight.svg'
+import { FormattedMessage } from 'react-intl'
 
 const Slider = ({cards, handleDot}) => {
     return (
@@ -10,7 +11,7 @@ const Slider = ({cards, handleDot}) => {
                     <Feature key={i}>
                         <FeatureTitle className='feature_title'>{card.title}</FeatureTitle>
                         <FeatureDescription className='feature_description'>{card.description}</FeatureDescription>
-                        <Detailed className='detailed'>Подробнее<Arrow /></Detailed>
+                        <Detailed className='detailed'><FormattedMessage id='detailed'/><Arrow /></Detailed>
                     </Feature>
                 )
             })}
