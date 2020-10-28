@@ -25,8 +25,8 @@ height: 16vh;
 width: 20px;
 `
 export const FeatureTitle = styled.h2`
-font-family: IBM Plex Sans;
 font-weight: 300;
+font-style: normal;
 font-size: 24px;
 line-height: 31px;
 color: #FFFFFF;
@@ -37,13 +37,10 @@ color: #FFFFFF;
 margin: 10px 19px;
 width: 80vw;
 max-width: 360px;
-font-family: IBM Plex Sans;
 font-size: 16px;
 line-height: 21px;
 `
 export const Detailed = styled.button`
-font-family: IBM Plex Sans;
-font-weight: bold;
 font-size: 18px;
 line-height: 23px;
 text-align: center;

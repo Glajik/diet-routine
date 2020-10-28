@@ -26,14 +26,15 @@ import lazyLoading from '../../hoc/lazyLoading'
 
 import WelcomePage from '../WelcomePage/WelcomePage'
 import FeaturesPage from '../FeaturesPage/FeaturesPage'
+import { IbmFont } from '../../assets/fonts'
 
 const App = (props) => {
   console.log(props)
   return (
     <div className="App" >
+      <IbmFont />
       <IntlProvider locale={navigator.language} messages={ru}>
         <Switch>
-          {/* <Route path="/sign-up" render={() => <SignInOrSignUpForm signUp />} /> */}
           <Route path="/features" component={FeaturesPage} />
           <Route path="/" component={WelcomePage} />
         </Switch>

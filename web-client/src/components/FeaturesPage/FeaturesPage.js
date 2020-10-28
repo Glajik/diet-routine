@@ -15,7 +15,7 @@ const FeaturesPage = () => {
       <Logo />
       <HelloUser />
       <FeaturesCards />
-      <Button type='button' btnType='secondary'>Регистрация</Button>
+      <Button type='button' btnType='secondary' id='button_features'>Регистрация</Button>
       <Button type='button' btnType='primary'>Уже начать</Button>
     </Wrapper>
   )

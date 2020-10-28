@@ -4,7 +4,7 @@ import { HelloMsg, Wrapper } from './style'
 const HelloUser = () => {
     return (
         <Wrapper>
-            <HelloMsg>Добро пожаловать, Антонина</HelloMsg>
+            <HelloMsg id='hello_msg'>Добро пожаловать, Антонина</HelloMsg>
         </Wrapper>
     )
 } 

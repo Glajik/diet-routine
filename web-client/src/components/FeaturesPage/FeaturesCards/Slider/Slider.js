@@ -1,16 +1,16 @@
 import React from 'react'
-import { Wrapper, Dot, Title, Vector, CardContainer, BackgroundGradient, Feature, Bar, FeatureTitle, FeatureDescription, Detailed } from './style'
+import { Wrapper, Dot, Feature, Bar, FeatureTitle, FeatureDescription, Detailed } from './style'
 import {ReactComponent as Arrow} from '../../../../assets/images/arrowRight.svg'
 
 const Slider = ({cards, handleDot}) => {
     return (
         <Wrapper>
-            {cards.filter(card => card.isActive).map(card => {
+            {cards.filter(card => card.isActive).map((card, i) => {
                 return (
-                    <Feature>
-                        <FeatureTitle>{card.title}</FeatureTitle>
-                        <FeatureDescription>{card.description}</FeatureDescription>
-                        <Detailed>Подробнее<Arrow /></Detailed>
+                    <Feature key={i}>
+                        <FeatureTitle className='feature_title'>{card.title}</FeatureTitle>
+                        <FeatureDescription className='feature_description'>{card.description}</FeatureDescription>
+                        <Detailed className='detailed'>Подробнее<Arrow /></Detailed>
                     </Feature>
                 )
             })}

@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import { Wrapper, Dot, Title, Vector, CardContainer, BackgroundGradient } from '../FeaturesCards/style'
+import { Wrapper, Title, CardContainer, BackgroundGradient } from '../FeaturesCards/style'
 import Slider from './Slider/Slider'
 
 const FeaturesCards = () => {
@@ -47,7 +47,7 @@ const FeaturesCards = () => {
 
     return (
         <Wrapper>
-            <Title>Возможности</Title>
+            <Title id='features_title'>Возможности</Title>
             <CardContainer>
                 <BackgroundGradient>
                     <Slider cards={cards} handleDot={handleDot}/>
