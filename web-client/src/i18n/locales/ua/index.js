@@ -19,5 +19,8 @@ export default {
   message: 'Повідомлення',
   haveAccountBtn: 'Вже маєш аккаунт',
   nextBtn: 'Далі',
-  nameQuestion: 'Як Вас звати?'
+  nameQuestion: 'Як Вас звати?',
+  approachYourDietWithConfidence:'Підійди до свого раціону впевнено',
+  georgeBernardShaw : 'Джордж Бернард Шоу',
+  thereIsNoLoveSincererThanTheLoveOfFood: '”Немає любові більш щирої, ніж любов до їжі!”'
 }

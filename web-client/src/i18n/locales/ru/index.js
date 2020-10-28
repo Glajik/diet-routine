@@ -19,5 +19,8 @@ export default {
   message: 'Сообщение',
   haveAccountBtn: 'Уже есть аккаунт',
   nextBtn: 'Дальше',
-  nameQuestion: 'Как тебя зовут?'
+  nameQuestion: 'Как тебя зовут?',
+  approachYourDietWithConfidence:'Подойди к своему рациону уверенно',
+  georgeBernardShaw : 'Джордж Бернард Шоу',
+  thereIsNoLoveSincererThanTheLoveOfFood: '”Нет любви более искренней, чем  любовь к еде!”'
 }

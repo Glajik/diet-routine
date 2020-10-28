@@ -4,7 +4,7 @@ import { FormattedMessage } from 'react-intl'
 import { Button } from '../../../UI/Button/style'
 
 
-const ButtonGroup = ({ onOnwardBtnClick }) => {
+const ButtonGroup = () => {
   return (
     <ButtonsDiv>
       <ButtonDiv>
