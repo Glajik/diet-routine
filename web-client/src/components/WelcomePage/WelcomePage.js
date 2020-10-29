@@ -1,13 +1,15 @@
 import React from 'react'
 import { Wrapper } from './style'
 import HeaderWrapper from './HeaderWrapper/HeaderWrapper'
-import FormWrapper from './FormWrapper/FormWrapper'
+import Form from './Form/Form'
+
+
 
 const WelcomePage = () => {
   return (
     <Wrapper>
       <HeaderWrapper />
-      <FormWrapper />
+      <Form />
     </Wrapper>
   )
 }

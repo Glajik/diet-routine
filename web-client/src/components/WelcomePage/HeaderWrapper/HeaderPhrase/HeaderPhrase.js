@@ -1,17 +1,17 @@
 import React from 'react'
 import { PhraseDiv, PhraseWrapper, PhraseAuthor } from './style'
-
+import { FormattedMessage } from 'react-intl'
 const HeaderPhrase = () => {
-    return (
-        <PhraseDiv>
-            <PhraseWrapper>
-                ”Нет любви более искренней, чем  <br /> любовь к еде!”
-            </PhraseWrapper>
-            <PhraseAuthor>
-                Джордж Бернард Шоу
-            </PhraseAuthor>
-        </PhraseDiv>
-    )
+  return (
+    <PhraseDiv>
+      <PhraseWrapper>
+        <FormattedMessage id="thereIsNoLoveSincererThanTheLoveOfFood" />
+      </PhraseWrapper>
+      <PhraseAuthor>
+        <FormattedMessage id="georgeBernardShaw" />
+      </PhraseAuthor>
+    </PhraseDiv>
+  )
 }
 
 export default HeaderPhrase

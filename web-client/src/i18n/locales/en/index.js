@@ -19,5 +19,9 @@ export default {
   message: 'Message',
   haveAccountBtn: 'Already have an account',
   nextBtn: 'Next',
-  nameQuestion: 'What is your name?'
+  nameQuestion: 'What is your name?',
+  approachYourDietWithConfidence: 'Approach your diet with confidence',
+  georgeBernardShaw: 'George Bernard Shaw',
+  thereIsNoLoveSincererThanTheLoveOfFood:
+    '”There is no love sincerer than the love of food!”',
 }
