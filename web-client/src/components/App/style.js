@@ -1,7 +1,5 @@
 import styled from 'styled-components'
 
-import { ibmFont } from '../../assets/fonts'
-
 export const Wrapper = styled.div`
   .fade-enter {
     transition: transform 1000ms linear;
@@ -11,6 +9,7 @@ export const Wrapper = styled.div`
   .fade-enter.fade-enter-active {
     transform: translateX(0%);
   }
+  
   .fade-exit {
     position: absolute;
     top: 0;
@@ -26,7 +25,3 @@ export const Wrapper = styled.div`
   }
 `
 
-
-export const AppWrapper = styled.div`
-  font-family: ${ibmFont};
-`
