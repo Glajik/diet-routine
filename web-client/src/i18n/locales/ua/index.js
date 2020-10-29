@@ -20,11 +20,12 @@ export default {
   haveAccountBtn: 'Вже маєш аккаунт',
   nextBtn: 'Далі',
   nameQuestion: 'Як Вас звати?',
-  register: 'Зареєструватися',
   start: 'Вже розпочати',
   helloUser: 'Ласкаво просимо, Антоніна',
   features: 'Можливості',
   smartPortions: 'Розумні порції',
   smartPortionsDescription: 'Більше не потрібно писати все в грамах. Наш додаток здатен розрізняти продукти. Яблука вимірюються штуками, а чіпси - пачками. Окрім цього, ви зможете налаштувати свої.',
-  detailed: 'Детальніше'
+  detailed: 'Детальніше',
+  approachYourDietWithConfidence:'Підійди до свого раціону впевнено',
+  thereIsNoLoveSincererThanTheLoveOfFood: '”Немає любові більш щирої, ніж любов до їжі!”'
 }

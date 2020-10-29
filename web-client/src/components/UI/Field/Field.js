@@ -1,7 +1,7 @@
 import React from 'react'
-import PropTypes from 'prop-types'
-import {Error, FieldWrapper, Input, Label, Icon} from './style'
 
+import PropTypes from 'prop-types'
+import { Error, FieldWrapper, Input, Label, Icon } from './style'
 
 /**
  * @typedef Props
@@ -26,17 +26,18 @@ import {Error, FieldWrapper, Input, Label, Icon} from './style'
  * Color of border is changed depends from parameters like isValid or isTouched
  * @param {Props} props
  */
-const field = (props) => (
+const field = props => (
   <FieldWrapper>
-    <Label
-      isValid={props.isValid}
-      isTouched={props.isTouched}>{props.label}</Label>
+    <Label isValid={props.isValid} isTouched={props.isTouched}>
+      {props.label}
+    </Label>
     <Icon
       className={props.leftIconClassNames}
       leftIcon
       isValid={props.isValid}
       isTouched={props.isTouched}
-      iconColor={props.iconColor}/>
+      iconColor={props.iconColor}
+    />
     <Input
       type={props.type}
       value={props.value}
@@ -46,22 +47,24 @@ const field = (props) => (
       isTouched={props.isTouched}
       leftIconClassNames={props.leftIconClassNames}
       rightIconClassNames={props.rightIconClassNames}
-      onChange={props.onChange}/>
+      onChange={props.onChange}
+    />
     <Icon
       className={props.rightIconClassNames}
       rightIcon
       isValid={props.isValid}
       isTouched={props.isTouched}
-      iconColor={props.iconColor}/>
-    <Error
-      isValid={props.isValid}
-      isTouched={props.isTouched}>{props.errorMessage}</Error>
+      iconColor={props.iconColor}
+    />
+    <Error isValid={props.isValid} isTouched={props.isTouched}>
+      {props.errorMessage}
+    </Error>
   </FieldWrapper>
 )
 
 field.propTypes = {
   type: PropTypes.string.isRequired,
-  value: PropTypes.oneOfType([ PropTypes.string, PropTypes.number ]),
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   name: PropTypes.string,
   label: PropTypes.string,
   placeholder: PropTypes.string,
@@ -75,10 +78,10 @@ field.propTypes = {
 }
 
 field.defaultProps = {
-  type: "text", 
+  type: 'text',
   isValid: true,
   isTouched: false,
-  iconColor: "black",
+  iconColor: 'black',
 }
 
 export default field

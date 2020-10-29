@@ -15,7 +15,8 @@
 */
 
 import React from 'react'
-import { Route, Switch } from 'react-router-dom'
+import { Route, Switch, withRouter } from 'react-router-dom'
+import { TransitionGroup, CSSTransition } from 'react-transition-group'
 
 import { IntlProvider } from 'react-intl'
 import en from '../../i18n/locales/en'
@@ -27,20 +28,37 @@ import lazyLoading from '../../hoc/lazyLoading'
 import WelcomePage from '../WelcomePage/WelcomePage'
 import FeaturesPage from '../FeaturesPage/FeaturesPage'
 import { IbmFont } from '../../assets/fonts'
+import FirstPage from '../FirstPage/FirstPage'
+import { Wrapper } from './style'
 
-const App = (props) => {
-  console.log(props)
+
+const App = ({ location }) => {
+  console.log(location)
   return (
     <div className="App" >
       <IbmFont />
       <IntlProvider locale={navigator.language} messages={ru}>
-        <Switch>
-          <Route path="/features" component={FeaturesPage} />
-          <Route path="/" component={WelcomePage} />
-        </Switch>
+        <Wrapper>
+          <TransitionGroup>
+            <CSSTransition
+              key={location.key}
+              classNames='fade'
+              timeout={1000}>
+              <Switch location={location}>
+                <Route exact path='/'>
+                  <FirstPage />
+                </Route>
+                <Route path='/welcome_page'>
+                  <WelcomePage />
+                </Route>
+                <Route path="/features" component={FeaturesPage} />
+              </Switch>
+            </CSSTransition>
+          </TransitionGroup>
+        </Wrapper>
       </IntlProvider>
     </div>
   )
 }
 
-export default App
+export default withRouter(App)

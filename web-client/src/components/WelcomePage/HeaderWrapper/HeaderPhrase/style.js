@@ -4,7 +4,6 @@ export const PhraseDiv = styled.div`
 
 `
 export const PhraseWrapper = styled.h1`
-    font-family: IBM Plex Sans;
     font-style: italic;
     font-weight: 500;
     font-size: 35px;
@@ -14,7 +13,6 @@ export const PhraseWrapper = styled.h1`
 `
 
 export const PhraseAuthor = styled.p`
-    font-family: IBM Plex Sans;
     font-style: italic;
     font-weight: 500;
     font-size: 14px;

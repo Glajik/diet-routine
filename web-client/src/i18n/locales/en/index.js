@@ -26,5 +26,9 @@ export default {
   features: 'Features',
   smartPortions: 'Smart portions',
   smartPortionsDescription: 'There is no more need to prescribe everything in grams. Our application is able to distinguish between products. Apples are measured in pieces and chips in packs. Additionally, you can customize your own.',
-  detailed: 'In more details'
+  detailed: 'In more details',
+  approachYourDietWithConfidence: 'Approach your diet with confidence',
+  georgeBernardShaw: 'George Bernard Shaw',
+  thereIsNoLoveSincererThanTheLoveOfFood:
+    '”There is no love sincerer than the love of food!”',
 }
