@@ -1,6 +1,7 @@
 import React from 'react'
-import { PhraseDiv, PhraseWrapper, PhraseAuthor } from './style'
 import { FormattedMessage } from 'react-intl'
+import { PhraseDiv, PhraseWrapper, PhraseAuthor } from './style'
+
 const HeaderPhrase = () => {
   return (
     <PhraseDiv>

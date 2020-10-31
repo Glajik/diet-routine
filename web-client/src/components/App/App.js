@@ -15,17 +15,14 @@
 */
 
 import React from 'react'
-
 import {IntlProvider} from 'react-intl'
 import {Route, Switch, withRouter} from 'react-router-dom'
 import {CSSTransition, TransitionGroup} from 'react-transition-group'
-import ru from '../../i18n/locales/ru'
-import FeaturesPage from '../FeaturesPage/FeaturesPage'
-import FirstPage from '../FirstPage/FirstPage'
 
-import WelcomePage from '../WelcomePage/WelcomePage'
+import {ru} from '../../i18n'
+
+import {FeaturesPage, FirstPage, WelcomePage} from '../index'
 import {Wrapper} from './style'
-
 
 const App = ({location}) => {
   console.log(location)

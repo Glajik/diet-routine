@@ -1,7 +1,16 @@
 import React from 'react'
-import { Wrapper, Dot, Feature, Bar, FeatureTitle, FeatureDescription, Detailed } from './style'
-import {ReactComponent as Arrow} from '../../../../assets/images/arrowRight.svg'
 import { FormattedMessage } from 'react-intl'
+
+import {ReactComponent as Arrow} from '../../../../assets/images/arrowRight.svg'
+import {
+  Wrapper,
+  Dot,
+  Feature,
+  Bar,
+  FeatureTitle,
+  FeatureDescription,
+  Detailed
+} from './style'
 
 const Slider = ({cards, handleDot}) => {
     return (

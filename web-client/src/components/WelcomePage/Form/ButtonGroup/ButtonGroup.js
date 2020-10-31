@@ -1,6 +1,7 @@
 import React from 'react'
-import { ButtonsDiv, ButtonDiv } from './style'
 import { FormattedMessage } from 'react-intl'
+
+import { ButtonsDiv, ButtonDiv } from './style'
 import { Button } from '../../../UI/Button/style'
 
 

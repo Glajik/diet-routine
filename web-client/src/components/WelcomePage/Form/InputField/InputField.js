@@ -1,5 +1,5 @@
 import React from 'react'
-import Field from '../../../UI/Field'
+import {Field} from '../../../UI'
 
 // You can find the explanation for this code in i18nInfo.txt (4 paragraph)
 import { injectIntl } from 'react-intl'

@@ -1,11 +1,19 @@
 import React from 'react'
-import { Wrapper, BackdropWrapper, WelcomeAnimation, CardsAnimated } from './style'
+import { FormattedMessage } from 'react-intl'
+
 import HelloUser from './HelloUser/HelloUser'
 import FeaturesCards from './FeaturesCards/FeaturesCards'
-import Button from '../UI/Button/index'
+import {Button} from '../UI'
+
 import { ReactComponent as Backdrop } from '../../assets/images/backdrop.svg'
 import { ReactComponent as Logo } from '../../assets/images/logo_feature.svg'
-import { FormattedMessage } from 'react-intl'
+import {
+  Wrapper,
+  BackdropWrapper,
+  WelcomeAnimation,
+  CardsAnimated
+} from './style'
+
 
 const FeaturesPage = () => {
   return (

@@ -1,7 +1,7 @@
 import React from 'react'
 import HeaderPhrase from './HeaderPhrase/HeaderPhrase'
+import {logo} from '../../../assets'
 import { HeaderImageDiv, LogoWrapper } from './style'
-import logo from '../../../assets/images/logo.svg'
 
 const HeaderWrapper = () => {
     return (

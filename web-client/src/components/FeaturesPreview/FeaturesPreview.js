@@ -1,7 +1,7 @@
 import React from 'react'
-import { Preview } from './style'
-import { Wrapper } from '../FeaturesPage/style'
 import Logo from '../FeaturesPage/Logo/Logo'
+import { Wrapper } from '../FeaturesPage/style'
+import { Preview } from './style'
 
 const FeaturesPreview = () => {
     return (
