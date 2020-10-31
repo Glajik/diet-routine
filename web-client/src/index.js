@@ -10,6 +10,7 @@ import * as serviceWorker from './serviceWorker'
 import { createStoreWithFirebase, a} from './store'
 
 import App from './components/App'
+import './fonts.css'
 import './index.css'
 
 // react-redux-firebase config

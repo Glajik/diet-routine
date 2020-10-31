@@ -19,7 +19,6 @@ import React from 'react'
 import {IntlProvider} from 'react-intl'
 import {Route, Switch, withRouter} from 'react-router-dom'
 import {CSSTransition, TransitionGroup} from 'react-transition-group'
-import {IbmFont} from '../../assets/fonts'
 import ru from '../../i18n/locales/ru'
 import FeaturesPage from '../FeaturesPage/FeaturesPage'
 import FirstPage from '../FirstPage/FirstPage'
@@ -32,7 +31,6 @@ const App = ({location}) => {
   console.log(location)
   return (
     <div className="App">
-      <IbmFont/>
       <IntlProvider locale={navigator.language} messages={ru}>
         <Wrapper>
           <TransitionGroup>

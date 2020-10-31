@@ -28,6 +28,8 @@ const conditionalStyles = p => {
 }
 
 export const Button = styled.button`
+  font-weight: 700;
+  letter-spacing: .1em;
   display: block;
   width: 304px;
   padding: 15px 0;

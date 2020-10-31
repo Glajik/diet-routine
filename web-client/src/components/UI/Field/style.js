@@ -37,7 +37,7 @@ export const Input = styled.input`
   outline: none;
   color: ${colors.inputValuePlaceholder};
 
-  &::placeholder {
+  &::placeholder { 
     color: ${colors.inputValuePlaceholder};
   }
 `
