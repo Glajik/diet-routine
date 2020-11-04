@@ -21,7 +21,7 @@ import {Route, Switch, withRouter} from 'react-router-dom'
 import {CSSTransition, TransitionGroup} from 'react-transition-group'
 import ru from '../../i18n/locales/ru'
 import FeaturesPage from '../FeaturesPage/FeaturesPage'
-import { IbmFont } from '../../assets/fonts/fonts'
+import { IbmFont } from '../../assets/fonts'
 import FirstPage from '../FirstPage/FirstPage'
 
 import WelcomePage from '../WelcomePage/WelcomePage'

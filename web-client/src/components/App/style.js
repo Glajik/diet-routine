@@ -1,6 +1,11 @@
 import styled from 'styled-components'
 
 export const Wrapper = styled.div`
+  width: 100vw;
+  max-width: 360px;
+  margin: auto;
+  justify-content: center;
+  background: #F0F0F0;
   .fade-enter {
     transition: transform 1000ms linear;
     transform: translateX(100%);
