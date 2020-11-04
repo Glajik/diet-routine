@@ -1,6 +1,5 @@
 import styled from 'styled-components'
 import {colors} from '../../../assets/colors'
-import { ibmFont } from '../../../assets/fonts'
 
 const conditionalStyles = p => {
   switch (p.btnType) {
@@ -29,7 +28,6 @@ const conditionalStyles = p => {
 }
 
 export const Button = styled.button`
-  font-family: ${ibmFont};
   display: block;
   width: 304px;
   padding: 15px 0;
@@ -39,7 +37,7 @@ export const Button = styled.button`
   box-sizing: border-box;
   font-size: 18px;
   transition: background .3s ease-in-out;
-
+  text-transform: uppercase;
   ${conditionalStyles}
 }
 `

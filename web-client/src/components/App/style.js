@@ -1,8 +1,11 @@
 import styled from 'styled-components'
 
-import { ibmFont } from '../../assets/fonts'
-
 export const Wrapper = styled.div`
+  width: 100vw;
+  max-width: 360px;
+  margin: auto;
+  justify-content: center;
+  background: #F0F0F0;
   .fade-enter {
     transition: transform 1000ms linear;
     transform: translateX(100%);
@@ -11,6 +14,7 @@ export const Wrapper = styled.div`
   .fade-enter.fade-enter-active {
     transform: translateX(0%);
   }
+  
   .fade-exit {
     position: absolute;
     top: 0;
@@ -26,7 +30,3 @@ export const Wrapper = styled.div`
   }
 `
 
-
-export const AppWrapper = styled.div`
-  font-family: ${ibmFont};
-`

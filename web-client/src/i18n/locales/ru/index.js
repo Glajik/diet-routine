@@ -20,6 +20,13 @@ export default {
   haveAccountBtn: 'Уже есть аккаунт',
   nextBtn: 'Дальше',
   nameQuestion: 'Как тебя зовут?',
+  register: 'Зарегистрироваться',
+  start: 'Уже начать',
+  helloUser: 'Добро пожаловать, Антонина',
+  features: 'Возможности',
+  smartPortions: 'Умные порции',
+  smartPortionsDescription: 'Больше нет нужды прописывать все в граммах. Наше приложение умеет различать продукты. Яблоки измеряются в штуках, а чипсы в пачках. Кроме того, вы сможете настроить свои.',
+  detailed: 'Подробнее',
   approachYourDietWithConfidence:'Подойди к своему рациону уверенно',
   georgeBernardShaw : 'Джордж Бернард Шоу',
   thereIsNoLoveSincererThanTheLoveOfFood: '”Нет любви более искренней, чем  любовь к еде!”'
