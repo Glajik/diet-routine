@@ -3,9 +3,9 @@ import { Wrapper, Dot, Feature, Bar, FeatureTitle, FeatureDescription, Detailed,
 import {ReactComponent as Arrow} from '../../../../assets/images/arrowRight.svg'
 import { FormattedMessage } from 'react-intl'
 
-const Slider = ({cards, handleDot}) => {
+const Slider = ({cards, handleDot, handleSlider}) => {
     return (
-        <WrapperBlock>
+        <WrapperBlock id='SliderBlock' onClick={(e)=>handleSlider(e)}>
             <Wrapper>
                 {cards.filter(card => card.isActive).map((card, i) => {
                     return (
