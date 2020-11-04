@@ -27,7 +27,7 @@ import lazyLoading from '../../hoc/lazyLoading'
 
 import WelcomePage from '../WelcomePage/WelcomePage'
 import FeaturesPage from '../FeaturesPage/FeaturesPage'
-import { IbmFont } from '../../assets/fonts'
+import { IbmFont } from '../../assets/fonts/fonts'
 import FirstPage from '../FirstPage/FirstPage'
 import { Wrapper } from './style'
 
