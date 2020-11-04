@@ -7,10 +7,7 @@ import Field from '../../UI/Field'
 import { Label } from '../../UI/Field/style'
 
 const Form = () => {
-  const [values, setValues] = useState('')
-
   
-
   return (
     <FormDiv>
       <AnimatQuestion>
