@@ -21,7 +21,7 @@ export const LogoWrapper = styled.div`
 
 export const CardsAnimated = styled.div`
     transform: translate(0, 0);
-    animation: form-animation 4s;
+    animation: form-animation 3s;
 
     }
 
@@ -47,7 +47,7 @@ export const HeaderWrapper = styled.div`
 
 export const WelcomeAnimation = styled.div`
     transform: translate(0, 0);
-    animation: label-animation 4s;
+    animation: label-animation 3s;
     @keyframes label-animation {
     0%, 50% {
         transform: translate(0, 200%);

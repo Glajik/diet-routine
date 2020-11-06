@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import { Wrapper, Title, CardContainer, BackgroundGradient } from '../FeaturesCards/style'
 import Slider from './Slider/Slider'
 import { FormattedMessage } from 'react-intl'
@@ -32,7 +32,7 @@ const FeaturesCards = () => {
         },
     ])
 
-    const sliderBlock = document.getElementById('SliderBlock');
+    // const sliderBlock = document.getElementById('SliderBlock');
 
     const handleDot = (i) => {
         setCards(
@@ -47,6 +47,21 @@ const FeaturesCards = () => {
             })
         )
     }
+
+    const handleAuto = (i) => {
+        if ((i + 1) > (cards.length - 1)) {
+            handleDot(0)  
+        } else {
+            handleDot(i + 1)
+        } 
+    }
+
+    useEffect(() => {     
+        const indexOfActiveCard = cards.map(card => card.isActive).indexOf(true)
+        return () => {
+            setTimeout(() => handleAuto(indexOfActiveCard), 3000)
+        }
+    })
 
     // закомментировал, потому что нарушает работоспособность слайдера по нажатию на точки
     // const handleSlider = (e) => {

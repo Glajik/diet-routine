@@ -55,7 +55,8 @@ letter-spacing: 0.1em;
 text-transform: uppercase;
 color: #FFFFFF;
 background: none;
-border: 0;
+border: none;
+outline: none;
 `
 
 export const Dot = styled.button`
@@ -64,4 +65,5 @@ border: 0;
 width: 12px;
 height: 12px;
 border-radius: 50%;
+outline: none;
 `
