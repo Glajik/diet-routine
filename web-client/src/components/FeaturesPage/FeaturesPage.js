@@ -1,4 +1,5 @@
 import React from 'react'
+import { useHistory } from 'react-router-dom'
 import {FormattedMessage} from 'react-intl'
 
 import {ReactComponent as Backdrop} from '../../assets/images/backdrop.svg'
@@ -14,6 +15,7 @@ import {
   LogoWrapper,
   SingleButton,
   WelcomeAnimation,
+  HeaderWrapper,
   Wrapper
 } from './style'
 

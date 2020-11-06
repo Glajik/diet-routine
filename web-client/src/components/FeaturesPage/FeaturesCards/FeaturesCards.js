@@ -1,9 +1,6 @@
 import React, {useState, useEffect} from 'react'
-import { Wrapper, Title, CardContainer, BackgroundGradient } from '../FeaturesCards/style'
 import Slider from './Slider/Slider'
 import { FormattedMessage } from 'react-intl'
-
-import Slider from './Slider/Slider'
 import {
   Wrapper,
   Title,
@@ -66,9 +63,8 @@ const FeaturesCards = () => {
 
     useEffect(() => {     
         const indexOfActiveCard = cards.map(card => card.isActive).indexOf(true)
-        return () => {
-            setTimeout(() => handleAuto(indexOfActiveCard), 3000)
-        }
+        const timer = setTimeout(() => handleAuto(indexOfActiveCard), 3000)
+        return () => clearTimeout(timer)
     })
 
     // закомментировал, потому что нарушает работоспособность слайдера по нажатию на точки
