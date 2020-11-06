@@ -5,6 +5,7 @@ You can use Field component by writing such code:
 <Input
    type="text"
    label="Email"
+   labelColor="#0000ff"
    value={state.value}
    name="email"
    placeholder="Enter you email"
@@ -20,18 +21,21 @@ You can use Field component by writing such code:
 
 2. label - the label of input
 
-3. value - here you save that text which user entered in the field
+3. labelColor - the color of the label
 
-4. placeholder - the placeholder for your input
+4. value - here you save that text which user entered in the field
 
-5. isValid - you can get the value of this param (true or false) from the state
+5. placeholder - the placeholder for your input
 
-6. isTouched - you need this param to understand if the input was touched. You can get the value of this param (true or
+6. isValid - you can get the value of this param (true or false) from the state
+
+7. isTouched - you need this param to understand if the input was touched. You can get the value of this param (true
+or
 false) from the state
 
-7. errorMessage - you will save the error message for your input here
+8. errorMessage - you will save the error message for your input here
 
-8. leftIconClassNames (rightIconClassNames) - this param helps you to paste the icon into the input on the left or right
+9. leftIconClassNames (rightIconClassNames) - this param helps you to paste the icon into the input on the left or right
 
 side. I have used the Font Awesome as the API for icons (you can see its' CDN in public/index.html), so as the value of
 this param
@@ -39,13 +43,13 @@ you have to
 paste Font Awesome
 classes of that icon which you want to use
 
-9. iconColor - this param offers you to set the color for the icon. You need this param because the icons will have
+10. iconColor - this param offers you to set the color for the icon. You need this param because the icons will have
 different colors in
 the different parts of the project
 
-10. onChange - this param will describe the behavior of your input after the value was changed
+11. onChange - this param will describe the behavior of your input after the value was changed
 
-11. name - here will be quite long description :)
+12. name - here will be quite long description :)
   So, I think that the good practice would be to write onChange function for all inputs together rather than for
   everyone
    separately.

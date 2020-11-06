@@ -5,7 +5,7 @@ import {Field} from '../../../UI'
 import { injectIntl } from 'react-intl'
 
 const InputField = props => (
-  <Field label={props.intl.formatMessage({ id: 'nameQuestion' })} />
+  <Field label={props.intl.formatMessage({ id: 'nameQuestion' })}/>
 )
 
 export default injectIntl(InputField)

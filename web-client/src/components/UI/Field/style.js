@@ -22,7 +22,7 @@ export const FieldWrapper = styled.div`
 export const Label = styled.label`
   margin-bottom: 10px;
   margin-left: 20px;
-  color: ${p => (!p.isValid && p.isTouched ? colors.error : '#666666')};
+  color: ${p => (!p.isValid && p.isTouched ? colors.error : p.labelColor)};
 `
 
 export const Input = styled.input`

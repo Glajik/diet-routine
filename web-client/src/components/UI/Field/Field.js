@@ -10,6 +10,7 @@ import { Error, FieldWrapper, Input, Label, Icon } from './style'
  * @prop {string | number} value — Here you save that text which user entered in the field
  * @prop {string} name — Name property for Input component
  * @prop {string} label — Label text above Input
+ * @prop {string} labelColor - the color of the label
  * @prop {string} placeholder — The placeholder for Input
  * @prop {boolean} isValid — Use Input border to indicate, that users input is valid
  * @prop {boolean} isTouched — If true, changes Input border to indicate, that user touched control
@@ -28,7 +29,10 @@ import { Error, FieldWrapper, Input, Label, Icon } from './style'
  */
 const field = props => (
   <FieldWrapper>
-    <Label isValid={props.isValid} isTouched={props.isTouched}>
+    <Label
+      labelColor={props.labelColor}
+      isValid={props.isValid}
+      isTouched={props.isTouched}>
       {props.label}
     </Label>
     <Icon
@@ -67,6 +71,7 @@ field.propTypes = {
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   name: PropTypes.string,
   label: PropTypes.string,
+  labelColor: PropTypes.string,
   placeholder: PropTypes.string,
   isValid: PropTypes.bool,
   isTouched: PropTypes.bool,
