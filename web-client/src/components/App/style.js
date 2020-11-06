@@ -6,6 +6,7 @@ export const Wrapper = styled.div`
   margin: auto;
   justify-content: center;
   background: #F0F0F0;
+  min-height: 100vh;
   .fade-enter {
     transition: transform 1000ms linear;
     transform: translateX(100%);

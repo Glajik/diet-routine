@@ -26,12 +26,12 @@ export const CardsAnimated = styled.div`
     }
 
     @keyframes form-animation {
-    from {
-        transform: translate(0, 200%);
+    0%, 50% {
+        opacity: 0;
     }
 
-    to {
-        transform: translate(0, 0);
+    100% {
+        opacity: 1;
     }
 `
 
@@ -43,17 +43,20 @@ export const WelcomeAnimation = styled.div`
     position: relative;
     width: 100vw;
     max-width: 360px;
+`
+
+export const WelcomeAnimation2 = styled.div`
     transform: translate(0, 0);
     animation: label-animation 4s;
     @keyframes label-animation {
-    0% {
+    0%, 50% {
         transform: translate(0, 200%);
     }
     100% {
         transform: translate(0, 0);
     }
     }
-    `
+`
 
     export const ButtonGroup = styled.div`
     margin-top: 30px;

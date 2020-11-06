@@ -1,5 +1,5 @@
 import React from 'react'
-import { Wrapper, BackdropWrapper, WelcomeAnimation, CardsAnimated, LogoWrapper, ButtonGroup, SingleButton } from './style'
+import { Wrapper, BackdropWrapper, WelcomeAnimation, WelcomeAnimation2, CardsAnimated, LogoWrapper, ButtonGroup, SingleButton } from './style'
 import HelloUser from './HelloUser/HelloUser'
 import FeaturesCards from './FeaturesCards/FeaturesCards'
 import Button from '../UI/Button/index'
@@ -17,7 +17,9 @@ const FeaturesPage = () => {
         <LogoWrapper>
           <Logo />
         </LogoWrapper>
-        <HelloUser />
+        <WelcomeAnimation2>
+          <HelloUser />   
+        </WelcomeAnimation2>
       </WelcomeAnimation>
       <CardsAnimated>
         <FeaturesCards />
