@@ -2,9 +2,11 @@ import React from 'react'
 import { ButtonsDiv, ButtonDiv } from './style'
 import { FormattedMessage } from 'react-intl'
 import { Button } from '../../../UI/Button/style'
+import { useHistory } from 'react-router-dom'
 
 
 const ButtonGroup = () => {
+  const history = useHistory();
   return (
     <ButtonsDiv>
       <ButtonDiv>
@@ -13,7 +15,7 @@ const ButtonGroup = () => {
         </Button>
       </ButtonDiv>
       <ButtonDiv>
-        <Button btnType="primary">
+        <Button onClick={() => history.push('/features')} btnType="primary">
           <FormattedMessage id="nextBtn" />
         </Button>
       </ButtonDiv>
