@@ -10,9 +10,13 @@ export const Wrapper = styled.div`
 
 export const BackdropWrapper = styled.div`
     position: absolute;
-    align-self: flex-start;
-    margin-top: 25px;
-    margin-left: 25px;
+    margin-left: 20px;
+    margin-top: 20px;
+    align-self: start;
+`
+
+export const LogoWrapper = styled.div`
+    margin-top: 18px;
 `
 
 export const CardsAnimated = styled.div`
@@ -32,6 +36,13 @@ export const CardsAnimated = styled.div`
 `
 
 export const WelcomeAnimation = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justiy-content: center;
+    position: relative;
+    width: 100vw;
+    max-width: 360px;
     transform: translate(0, 0);
     animation: label-animation 4s;
     @keyframes label-animation {
@@ -43,3 +54,11 @@ export const WelcomeAnimation = styled.div`
     }
     }
     `
+
+    export const ButtonGroup = styled.div`
+    margin-top: 30px;
+`
+
+    export const SingleButton = styled.div`
+    margin-top: 20px;
+`

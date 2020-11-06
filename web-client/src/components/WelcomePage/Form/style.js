@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 export const FieldsDiv = styled.div`
 transform: translate(0, 0);
-animation: form-animation 4s;
+animation: form-animation 0.5s;
 
 }
 
@@ -21,13 +21,13 @@ export const FormDiv = styled.div`
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 15px;
-  width: 304px;
+ 
 `
 export const AnimatQuestion = styled.div`
-  margin-bottom: 10px;
+  margin-bottom: -10px;
   color: #666666;
   transform: translate(0, 0);
-  animation: label-animation 4s;
+  animation: label-animation 0.5s;
   @keyframes label-animation {
     0% {
       transform: translate(0, 300%);

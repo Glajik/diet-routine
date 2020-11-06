@@ -1,34 +1,44 @@
 import React from 'react'
-import { FormattedMessage } from 'react-intl'
+import {FormattedMessage} from 'react-intl'
 
-import HelloUser from './HelloUser/HelloUser'
-import FeaturesCards from './FeaturesCards/FeaturesCards'
+import {ReactComponent as Backdrop} from '../../assets/images/backdrop.svg'
+import {ReactComponent as Logo} from '../../assets/images/logo_feature.svg'
 import {Button} from '../UI'
+import FeaturesCards from './FeaturesCards/FeaturesCards'
+import HelloUser from './HelloUser/HelloUser'
 
-import { ReactComponent as Backdrop } from '../../assets/images/backdrop.svg'
-import { ReactComponent as Logo } from '../../assets/images/logo_feature.svg'
 import {
-  Wrapper,
   BackdropWrapper,
+  ButtonGroup,
+  CardsAnimated,
+  LogoWrapper,
+  SingleButton,
   WelcomeAnimation,
-  CardsAnimated
+  Wrapper
 } from './style'
-
 
 const FeaturesPage = () => {
   return (
     <Wrapper>
       <WelcomeAnimation>
         <BackdropWrapper>
-          <Backdrop />
+          <Backdrop/>
         </BackdropWrapper>
-        <Logo />
-        <HelloUser />
+        <LogoWrapper>
+          <Logo/>
+        </LogoWrapper>
+        <HelloUser/>
       </WelcomeAnimation>
       <CardsAnimated>
-        <FeaturesCards />
-        <Button type='button' btnType='secondary' id='button_features'><FormattedMessage id='register'/></Button>
-        <Button type='button' btnType='primary'><FormattedMessage id='start'/></Button>
+        <FeaturesCards/>
+        <ButtonGroup>
+          <SingleButton>
+            <Button type='button' btnType='secondary' id='button_features'><FormattedMessage id='register'/></Button>
+          </SingleButton>
+          <SingleButton>
+            <Button type='button' btnType='primary'><FormattedMessage id='start'/></Button>
+          </SingleButton>
+        </ButtonGroup>
       </CardsAnimated>
     </Wrapper>
   )

@@ -2,10 +2,17 @@ import styled from 'styled-components'
 
 export const Wrapper = styled.div`
 display: flex;
-align-items:center;
-justify-content:space-around;
+align-items: center;
 flex-direction: row;
+max-width: 360px;
 `
+
+export const WrapperBlock = styled.div`
+display: flex;
+align-items: center;
+flex-direction: column;
+`
+
 export const Title = styled.h1`
 font-family: Ubuntu;
 font-style: normal;
@@ -23,6 +30,8 @@ text-align: left;
 export const Bar = styled.div`
 height: 16vh;
 width: 20px;
+padding: 11px;
+margin-top: 40px;
 `
 export const FeatureTitle = styled.h2`
 font-weight: 300;
@@ -34,11 +43,9 @@ margin: 14px 17px;
 `
 export const FeatureDescription = styled.p`
 color: #FFFFFF;
-margin: 10px 19px;
-width: 80vw;
-max-width: 360px;
+margin: 0px 0px 0px 19px;
 font-size: 16px;
-line-height: 21px;
+line-height: 24px;
 `
 export const Detailed = styled.button`
 font-size: 18px;

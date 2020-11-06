@@ -18,7 +18,6 @@ import React from 'react'
 import {IntlProvider} from 'react-intl'
 import {Route, Switch, withRouter} from 'react-router-dom'
 import {CSSTransition, TransitionGroup} from 'react-transition-group'
-
 import {ru} from '../../i18n'
 
 import {FeaturesPage, FirstPage, WelcomePage} from '../index'

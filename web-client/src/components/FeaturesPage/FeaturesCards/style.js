@@ -4,8 +4,8 @@ import {bgFeatures} from '../../../assets'
 export const Wrapper = styled.div`
 display: flex;
 align-items:center;
-justify-content:space-around;
 flex-direction: column;
+max-width: 360px;
 `
 export const Title = styled.h1`
 font-style: normal;
@@ -17,19 +17,15 @@ color: #9D53B4;
 export const CardContainer = styled.div`
 background: url(${bgFeatures}) no-repeat center center;
 mix-blend-mode: darken;
-height: 32vh;
-width: 100vw;
-max-width: 480px;
 background-size: cover;
 `
 
 export const BackgroundGradient = styled.div`
 background: linear-gradient(180deg, rgba(13, 10, 1, 0.42) 0%, rgba(13, 10, 1, 0.525) 60.94%);
-height: 32vh;
 display: flex;
 align-items:center;
-justify-content:space-around;
 flex-direction: row;
+max-width: 360px;
 `
 
 export const Feature = styled.div`
@@ -38,6 +34,7 @@ flex-direction: column;
 text-align: left;
 `
 export const Slider = styled.div`
+position: absolute;
 height: 16vh;
 width: 20px;
 `
