@@ -5,7 +5,7 @@ import { FormattedMessage } from 'react-intl'
 
 const Slider = ({cards, handleDot, handleSlider}) => {
     return (
-        <WrapperBlock id='SliderBlock' onClick={(e)=>handleSlider(e)}>
+        <WrapperBlock id='SliderBlock' /*onClick={(e)=>handleSlider(e)}*/>
             <Wrapper>
                 {cards.filter(card => card.isActive).map((card, i) => {
                     return (

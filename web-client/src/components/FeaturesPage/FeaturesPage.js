@@ -1,5 +1,5 @@
 import React from 'react'
-import { Wrapper, BackdropWrapper, WelcomeAnimation, WelcomeAnimation2, CardsAnimated, LogoWrapper, ButtonGroup, SingleButton } from './style'
+import { Wrapper, BackdropWrapper, WelcomeAnimation, HeaderWrapper, CardsAnimated, LogoWrapper, ButtonGroup, SingleButton } from './style'
 import HelloUser from './HelloUser/HelloUser'
 import FeaturesCards from './FeaturesCards/FeaturesCards'
 import Button from '../UI/Button/index'
@@ -10,17 +10,17 @@ import { FormattedMessage } from 'react-intl'
 const FeaturesPage = () => {
   return (
     <Wrapper>
-      <WelcomeAnimation>
+      <HeaderWrapper>
         <BackdropWrapper>
           <Backdrop />
         </BackdropWrapper>
         <LogoWrapper>
           <Logo />
         </LogoWrapper>
-        <WelcomeAnimation2>
+        <WelcomeAnimation>
           <HelloUser />   
-        </WelcomeAnimation2>
-      </WelcomeAnimation>
+        </WelcomeAnimation>
+      </HeaderWrapper>
       <CardsAnimated>
         <FeaturesCards />
         <ButtonGroup>

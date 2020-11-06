@@ -35,7 +35,7 @@ export const CardsAnimated = styled.div`
     }
 `
 
-export const WelcomeAnimation = styled.div`
+export const HeaderWrapper = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -45,7 +45,7 @@ export const WelcomeAnimation = styled.div`
     max-width: 360px;
 `
 
-export const WelcomeAnimation2 = styled.div`
+export const WelcomeAnimation = styled.div`
     transform: translate(0, 0);
     animation: label-animation 4s;
     @keyframes label-animation {

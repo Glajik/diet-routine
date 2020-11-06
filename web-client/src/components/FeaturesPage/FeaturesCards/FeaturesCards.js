@@ -48,26 +48,27 @@ const FeaturesCards = () => {
         )
     }
 
-    const handleSlider = (e) => {
-        const cordTop = sliderBlock.getBoundingClientRect().y;
-        const cordBottom = sliderBlock.getBoundingClientRect().bottom;
-        const cordMiddle = (cordTop + cordBottom) / 2;
-        const i = cards.map(card => card.isActive).indexOf(true);
-        if (e.clientY > cordMiddle) {
-            console.log('bottom', i);
-            (i + 1) > (cards.length - 1) ? handleDot(0) : handleDot(i + 1);
-        } else if (e.clientY < cordMiddle) {
-            console.log ('top', i);
-            (i - 1) < 0 ? handleDot(cards.length - 1) : handleDot(i - 1);
-        } else return ''
-    }
+    // закомментировал, потому что нарушает работоспособность слайдера по нажатию на точки
+    // const handleSlider = (e) => {
+    //     const cordTop = sliderBlock.getBoundingClientRect().y;
+    //     const cordBottom = sliderBlock.getBoundingClientRect().bottom;
+    //     const cordMiddle = (cordTop + cordBottom) / 2;
+    //     const i = cards.map(card => card.isActive).indexOf(true);
+    //     if (e.clientY > cordMiddle) {
+    //         console.log('bottom', i);
+    //         (i + 1) > (cards.length - 1) ? handleDot(0) : handleDot(i + 1);
+    //     } else if (e.clientY < cordMiddle) {
+    //         console.log ('top', i);
+    //         (i - 1) < 0 ? handleDot(cards.length - 1) : handleDot(i - 1);
+    //     } else return ''
+    // }
 
     return (
         <Wrapper>
             <Title id='features_title'><FormattedMessage id='features'/></Title>
             <CardContainer>
                 <BackgroundGradient>
-                    <Slider cards={cards} handleDot={handleDot} handleSlider={handleSlider}/>
+                    <Slider cards={cards} handleDot={handleDot} /*handleSlider={handleSlider}*//>
                 </BackgroundGradient>
             </CardContainer>
         </Wrapper>
