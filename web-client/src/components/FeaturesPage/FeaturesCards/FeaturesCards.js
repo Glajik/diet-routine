@@ -3,6 +3,14 @@ import { Wrapper, Title, CardContainer, BackgroundGradient } from '../FeaturesCa
 import Slider from './Slider/Slider'
 import { FormattedMessage } from 'react-intl'
 
+import Slider from './Slider/Slider'
+import {
+  Wrapper,
+  Title,
+  CardContainer,
+  BackgroundGradient
+} from '../FeaturesCards/style'
+
 const FeaturesCards = () => {
     const [cards, setCards] = useState([
         {

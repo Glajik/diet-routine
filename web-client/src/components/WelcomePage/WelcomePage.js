@@ -1,9 +1,7 @@
 import React from 'react'
-import { Wrapper } from './style'
 import HeaderWrapper from './HeaderWrapper/HeaderWrapper'
 import Form from './Form/Form'
-
-
+import { Wrapper } from './style'
 
 const WelcomePage = () => {
   return (

@@ -1,8 +1,8 @@
 import styled from 'styled-components'
-import img from '../../../assets/images/welcome_image.png'
+import {welcomeImg} from '../../../assets'
 
 export const HeaderImageDiv = styled.div`
-background: linear-gradient(rgba(28, 53, 2, 0.5), rgba(28, 53, 2, 0.5)), url(${img}) center top no-repeat;
+background: linear-gradient(rgba(28, 53, 2, 0.5), rgba(28, 53, 2, 0.5)), url(${welcomeImg}) center top no-repeat;
 background-size: cover;  
 min-height: 53vh;
 

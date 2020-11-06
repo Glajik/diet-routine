@@ -1,15 +1,12 @@
-import React from 'react'
-import { FieldsDiv, FormDiv, AnimatQuestion } from './style'
-import ButtonGroup from './ButtonGroup/ButtonGroup'
-import { useState } from 'react/cjs/react.development'
+import React, {useState} from 'react'
 import { FormattedMessage } from 'react-intl'
-import Field from '../../UI/Field'
+import ButtonGroup from './ButtonGroup/ButtonGroup'
+import {Field} from '../../UI'
 import { Label } from '../../UI/Field/style'
+import { FieldsDiv, FormDiv, AnimatQuestion } from './style'
 
 const Form = () => {
   const [values, setValues] = useState('')
-
-  
 
   return (
     <FormDiv>

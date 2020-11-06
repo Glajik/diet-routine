@@ -15,7 +15,6 @@ export const LogoWrapper = styled.img`
 `
 
 export const LinkPhrase = styled.p`
-    font-family: IBM Plex Sans;
     font-style: normal;
     color: #94AE27;
     line-height: 31px;

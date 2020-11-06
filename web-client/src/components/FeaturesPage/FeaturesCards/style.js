@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import img from '../../../assets/images/bgFeatures.png'
+import {bgFeatures} from '../../../assets'
 
 export const Wrapper = styled.div`
 display: flex;
@@ -15,7 +15,7 @@ line-height: 55px;
 color: #9D53B4;
 `
 export const CardContainer = styled.div`
-background: url(${img}) no-repeat center center;
+background: url(${bgFeatures}) no-repeat center center;
 mix-blend-mode: darken;
 background-size: cover;
 `

@@ -1,10 +1,9 @@
 import React, { useEffect } from 'react'
-import { LinkPhrase, LogoWrapper, MainDiv } from './style'
-import logo from '../../assets/images/logo_first_page.svg'
-import { NavLink } from 'react-router-dom'
-import { useHistory } from 'react-router-dom'
+import { NavLink, useHistory } from 'react-router-dom'
 import { FormattedMessage } from 'react-intl'
 
+import {logoFirstPage} from '../../assets'
+import { LinkPhrase, LogoWrapper, MainDiv } from './style'
 
 const FirstPage = () => {
   const history = useHistory()
@@ -17,7 +16,7 @@ const FirstPage = () => {
 
   return (
     <MainDiv>
-      <LogoWrapper src={logo} />
+      <LogoWrapper src={logoFirstPage} />
       <NavLink to="welcome_page" className="link">
         <LinkPhrase>
           <FormattedMessage id="approachYourDietWithConfidence" />

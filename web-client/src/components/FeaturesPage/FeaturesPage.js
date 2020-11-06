@@ -1,12 +1,21 @@
 import React from 'react'
-import { Wrapper, BackdropWrapper, WelcomeAnimation, HeaderWrapper, CardsAnimated, LogoWrapper, ButtonGroup, SingleButton } from './style'
-import HelloUser from './HelloUser/HelloUser'
+import {FormattedMessage} from 'react-intl'
+
+import {ReactComponent as Backdrop} from '../../assets/images/backdrop.svg'
+import {ReactComponent as Logo} from '../../assets/images/logo_feature.svg'
+import {Button} from '../UI'
 import FeaturesCards from './FeaturesCards/FeaturesCards'
-import Button from '../UI/Button/index'
-import { ReactComponent as Backdrop } from '../../assets/images/backdrop.svg'
-import { ReactComponent as Logo } from '../../assets/images/logo_feature.svg'
-import { FormattedMessage } from 'react-intl'
-import { useHistory } from 'react-router-dom';
+import HelloUser from './HelloUser/HelloUser'
+
+import {
+  BackdropWrapper,
+  ButtonGroup,
+  CardsAnimated,
+  LogoWrapper,
+  SingleButton,
+  WelcomeAnimation,
+  Wrapper
+} from './style'
 
 const FeaturesPage = () => {
   const history = useHistory();
@@ -17,22 +26,22 @@ const FeaturesPage = () => {
           <Backdrop onClick={()=>history.push('/welcome_page')}/>
         </BackdropWrapper>
         <LogoWrapper>
-          <Logo />
+          <Logo/>
         </LogoWrapper>
         <WelcomeAnimation>
           <HelloUser />   
         </WelcomeAnimation>
       </HeaderWrapper>
       <CardsAnimated>
-        <FeaturesCards />
+        <FeaturesCards/>
         <ButtonGroup>
           <SingleButton>
-            <Button type='button' btnType='secondary' id='button_features'><FormattedMessage id='register'/></Button>  
+            <Button type='button' btnType='secondary' id='button_features'><FormattedMessage id='register'/></Button>
           </SingleButton>
           <SingleButton>
             <Button type='button' btnType='primary'><FormattedMessage id='start'/></Button>
           </SingleButton>
-        </ButtonGroup>    
+        </ButtonGroup>
       </CardsAnimated>
     </Wrapper>
   )
