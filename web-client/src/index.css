@@ -1,5 +1,7 @@
 * {
   font-family: 'IBM Plex Sans', sans-serif;
+  margin: 0;
+  padding: 0;
 }
 
 body {
@@ -9,10 +11,40 @@ body {
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
 
 .link {
-      text-decoration: none;
-    }
+  text-decoration: none;
+}
+
+input[type='password'] {
+  font-family: 'input';
+  font-style: normal;
+  font-weight: normal;
+  speak: none;
+  color: #9d53b4;
+  font-size: 25px;
+  padding: 10px 15px;
+  /*font-size: 25px;*/
+
+  /* For safety - reset parent styles, that can break glyph codes*/
+  font-variant: normal;
+  text-transform: none;
+
+  /* Font smoothing. That was taken from TWBS */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /* Uncomment for 3D effect */
+  /* text-shadow: 1px 1px 1px rgba(127, 127, 127, 0.3); */
+
+  /* add spacing to better separate each image */
+  letter-spacing: 3px;
+}
+
+input[type='password']::placeholder {
+  letter-spacing: 0;
+  font-size: 16px;
+  position: relative;
+  bottom: 3px;
+}

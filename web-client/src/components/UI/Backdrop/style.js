@@ -6,6 +6,6 @@ export const Backdrop = styled.div`
   left: 0;
   bottom: ${p => (p.show ? '0' : '100vh')};
   right: 0;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.4);
   transition: all 0.3s ease-out;
 `

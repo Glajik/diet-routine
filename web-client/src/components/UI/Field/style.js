@@ -15,8 +15,11 @@ export const FieldWrapper = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
-  margin-bottom: 15px;
-  width: 304px;
+  margin-bottom: 10px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
 `
 
 export const Label = styled.label`
@@ -37,13 +40,13 @@ export const Input = styled.input`
   outline: none;
   color: ${colors.inputValuePlaceholder};
 
-  &::placeholder { 
+  &::placeholder {
     color: ${colors.inputValuePlaceholder};
   }
 `
 
 export const Error = styled.p`
-  color: ${colors.red};
+  color: ${colors.error};
   margin: 0;
   padding-top: 5px;
   padding-right: 15px;

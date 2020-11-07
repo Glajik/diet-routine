@@ -1,5 +1,5 @@
 export default {
-  logIn: 'Log in',
+  signInName: 'Log in',
   createAccount: 'Create an account',
   emailPlaceholder: 'Your email',
   passwordPlaceholder: 'Your password',
@@ -25,7 +25,8 @@ export default {
   helloUser: 'Hello, Antonina',
   features: 'Features',
   smartPortions: 'Smart portions',
-  smartPortionsDescription: 'There is no more need to prescribe everything in grams. Our application is able to distinguish between products. Apples are measured in pieces and chips in packs. Additionally, you can customize your own.',
+  smartPortionsDescription:
+    'There is no more need to prescribe everything in grams. Our application is able to distinguish between products. Apples are measured in pieces and chips in packs. Additionally, you can customize your own.',
   detailed: 'In more details',
   approachYourDietWithConfidence: 'Approach your diet with confidence',
   georgeBernardShaw: 'George Bernard Shaw',

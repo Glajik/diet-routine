@@ -17,14 +17,9 @@ import { IntlProvider } from 'react-intl'
 import { Route, Switch, withRouter } from 'react-router-dom'
 import { CSSTransition, TransitionGroup } from 'react-transition-group'
 import { ru } from '../../i18n'
-
-import { FeaturesPage, FirstPage, WelcomePage } from '../index'
-
 import lazyLoading from '../../hoc/lazyLoading'
+import { FeaturesPage, FirstPage, WelcomePage, LoginPage } from '../index'
 
-import RegistrationPage from '../RegistrationPage/RegistrationPage'
-import AuthorizationPage from '../AuthorizationPage/AuthorizationPage'
-import In from '../In/In'
 import { Wrapper } from './style'
 
 const App = ({ location }) => {
@@ -38,9 +33,7 @@ const App = ({ location }) => {
               <Switch location={location}>
                 <Route path="/welcome_page" component={WelcomePage} />
                 <Route path="/features" component={FeaturesPage} />
-                <Route path="/signup" component={RegistrationPage} />
-                <Route path="/login" component={AuthorizationPage} />
-                <Route path="/in" component={In} />
+                <Route path="/login" component={LoginPage} />
                 <Route path="/" component={FirstPage} />
               </Switch>
             </CSSTransition>

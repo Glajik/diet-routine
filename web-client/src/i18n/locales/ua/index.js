@@ -1,5 +1,5 @@
 export default {
-  logIn: 'Вхід',
+  signInName: 'Вхід',
   createAccount: 'Створити аккаунт',
   emailPlaceholder: 'Ваш e-mail',
   passwordPlaceholder: 'Ваш пароль',

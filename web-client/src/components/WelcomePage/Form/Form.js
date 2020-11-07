@@ -16,7 +16,7 @@ const Form = () => {
         </Label>
       </AnimatQuestion>
       <FieldsDiv>
-        <Field label="jhi" />
+        <Field />
         <ButtonGroup />
       </FieldsDiv>
     </FormDiv>

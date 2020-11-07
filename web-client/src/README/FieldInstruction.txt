@@ -2,7 +2,7 @@
 
 You can use Field component by writing such code:
 
-<Input
+<Field
    type="text"
    label="Email"
    labelColor="#0000ff"

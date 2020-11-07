@@ -31,7 +31,7 @@ export const Button = styled.button`
   font-weight: 700;
   letter-spacing: .1em;
   display: block;
-  width: 304px;
+  width: 100%;
   padding: 15px 0;
   outline: none;
   border-radius: 50px;
@@ -46,10 +46,6 @@ export const Button = styled.button`
 
 export const Icon = styled.i`
   color: ${p => p.iconColor};
-  ${p => 
-     p.leftIcon 
-       ? 'margin-right: 10px'
-       : p.rightIcon
-         ? 'margin-left: 10px'
-         : ''};
+  ${p =>
+    p.leftIcon ? 'margin-right: 10px' : p.rightIcon ? 'margin-left: 10px' : ''};
 `
