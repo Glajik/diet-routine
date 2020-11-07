@@ -32,3 +32,13 @@ export const auth = async (event, folders, url) => {
   console.log(formData)
   return response
 }
+
+export const inputChangeHandler = (event, stateControls) => {
+  const controls = { ...stateControls }
+  const { name } = event.target
+  controls[name].value = event.target.value
+  controls[name].touched = true
+  controls[name].valid = checkValidity(event.target.value, controls[name].validation)
+
+  return controls
+}

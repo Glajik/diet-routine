@@ -1,5 +1,5 @@
 export default {
-  logIn: 'Вход',
+  logIn: 'Авторизация',
   createAccount: 'Создать аккаунт',
   emailPlaceholder: 'Ваш e-mail',
   passwordPlaceholder: 'Ваш пароль',
@@ -7,10 +7,10 @@ export default {
   agePlaceholder: 'Ваш возраст',
   nameLabel: 'Имя',
   ageLabel: 'Возраст',
-  emailLabel: 'E-mail',
+  emailLabel: 'Электронный адрес',
   passwordLabel: 'Пароль',
   signIn: 'Войти',
-  signUp: 'Зарегистрироваться',
+  signUp: 'Регистрация',
   cancel: 'Отмена',
   signInSuccessMessage: 'Вы успешно вошли в систему',
   signInErrorMessage: 'Вы ввели неправильный e-mail и/или пароль',
@@ -25,9 +25,22 @@ export default {
   helloUser: 'Добро пожаловать, Антонина',
   features: 'Возможности',
   smartPortions: 'Умные порции',
-  smartPortionsDescription: 'Больше нет нужды прописывать все в граммах. Наше приложение умеет различать продукты. Яблоки измеряются в штуках, а чипсы в пачках. Кроме того, вы сможете настроить свои.',
+  smartPortionsDescription:
+    'Больше нет нужды прописывать все в граммах. Наше приложение умеет различать продукты. Яблоки измеряются в штуках, а чипсы в пачках. Кроме того, вы сможете настроить свои.',
   detailed: 'Подробнее',
-  approachYourDietWithConfidence:'Подойди к своему рациону уверенно',
-  georgeBernardShaw : 'Джордж Бернард Шоу',
-  thereIsNoLoveSincererThanTheLoveOfFood: '”Нет любви более искренней, чем  любовь к еде!”'
+  approachYourDietWithConfidence: 'Подойди к своему рациону уверенно',
+  georgeBernardShaw: 'Джордж Бернард Шоу',
+  thereIsNoLoveSincererThanTheLoveOfFood:
+    '”Нет любви более искренней, чем  любовь к еде!”',
+  approachYourDietWithConfidence: 'Подойди к своему рациону уверенно',
+  georgeBernardShaw: 'Джордж Бернард Шоу',
+  thereIsNoLoveSincererThanTheLoveOfFood:
+    '”Нет любви более искренней, чем  любовь к еде!”',
+  inputNameUserSignUp: 'Введите имя',
+  passwordLabelConfirm: 'Подтвердите пароль',
+  errorMessageEmail: 'Неверный адрес!',
+  errorMessagePassword: 'Неверный пароль!',
+  errorMessagePasswordConfirm: 'Пароли не совпадают!',
+  textForChangeTypeAuth: 'или',
+  forgotPassword: 'Забыли пароль?',
 }

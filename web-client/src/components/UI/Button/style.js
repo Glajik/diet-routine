@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import {colors} from '../../../assets/colors'
+import { colors } from '../../../assets/colors'
 
 const conditionalStyles = p => {
   switch (p.btnType) {
@@ -35,7 +35,7 @@ export const Button = styled.button`
   padding: 15px 0;
   outline: none;
   border-radius: 50px;
-  cursor: ${p => p.disabled ? 'not-allowed' : 'pointer'};
+  cursor: ${p => (p.disabled ? 'not-allowed' : 'pointer')};
   box-sizing: border-box;
   font-size: 18px;
   transition: background .3s ease-in-out;

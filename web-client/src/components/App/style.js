@@ -5,7 +5,7 @@ export const Wrapper = styled.div`
   max-width: 360px;
   margin: auto;
   justify-content: center;
-  background: #F0F0F0;
+  background: #f0f0f0;
   min-height: 100vh;
   .fade-enter {
     transition: transform 1000ms linear;
@@ -15,7 +15,7 @@ export const Wrapper = styled.div`
   .fade-enter.fade-enter-active {
     transform: translateX(0%);
   }
-  
+
   .fade-exit {
     position: absolute;
     top: 0;
@@ -30,4 +30,3 @@ export const Wrapper = styled.div`
     transition: transform 1000ms linear;
   }
 `
-

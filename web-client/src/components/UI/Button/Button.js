@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import {Button, Icon} from './style'
+import { Button, Icon } from './style'
 
 /**
  * @typedef Props
@@ -17,24 +17,26 @@ import {Button, Icon} from './style'
 
 /**
  * Our custom styled Button
- * @param {Props} props 
+ * @param {Props} props
  */
-const button = (props) => (
-  <Button 
+const button = props => (
+  <Button
     type={props.type}
     btnType={props.btnType || 'primary'}
     disabled={props.disabled}
     onClick={props.onClick}>
-      <Icon
-        className={props.leftIconClassNames}
-        leftIcon
-        iconColor={props.iconColor}/>
-      {props.children}
-      <Icon
-        className={props.rightIconClassNames}
-        rightIcon
-        iconColor={props.iconColor}/>
-    </Button>
+    <Icon
+      className={props.leftIconClassNames}
+      leftIcon
+      iconColor={props.iconColor}
+    />
+    {props.children}
+    <Icon
+      className={props.rightIconClassNames}
+      rightIcon
+      iconColor={props.iconColor}
+    />
+  </Button>
 )
 
 button.propTypes = {
@@ -49,9 +51,9 @@ button.propTypes = {
 }
 
 button.defaultProps = {
-  type: "button",
-  btnType: "primary",
-  iconColor: "black",
+  type: 'button',
+  btnType: 'primary',
+  iconColor: 'black',
 }
 
 export default button

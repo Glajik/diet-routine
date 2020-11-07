@@ -1,5 +1,4 @@
 import React from 'react'
-
 import PropTypes from 'prop-types'
 import { Error, FieldWrapper, Input, Label, Icon } from './style'
 

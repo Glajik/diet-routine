@@ -57,6 +57,7 @@ the different parts of the project
   reuse your onChange function in other forms. You can write this function in the utils file.
    In such case your
    code looks like this:
+   
      export const inputChangeHandler = (event, stateControls) => {
        const controls = {...stateControls}
        const {name} = event.target

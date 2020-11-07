@@ -1,7 +1,7 @@
-import React, {useState} from 'react'
-import { FormattedMessage } from 'react-intl'
+import React, { useState } from 'react'
 import ButtonGroup from './ButtonGroup/ButtonGroup'
-import {Field} from '../../UI'
+import { FormattedMessage } from 'react-intl'
+import { Field } from '../../UI'
 import { Label } from '../../UI/Field/style'
 import { FieldsDiv, FormDiv, AnimatQuestion } from './style'
 
@@ -16,7 +16,7 @@ const Form = () => {
         </Label>
       </AnimatQuestion>
       <FieldsDiv>
-        <Field />
+        <Field label="jhi" />
         <ButtonGroup />
       </FieldsDiv>
     </FormDiv>

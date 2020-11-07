@@ -6,5 +6,6 @@ export const colors = {
   primaryOnHover: '#657D1F',
   secondary: '#9D53B4',
   inputValuePlaceholder: '#212529',
-  error: '#ff0000'
+  wrong: '#FFE600',
+  error: '#ff0000',
 }

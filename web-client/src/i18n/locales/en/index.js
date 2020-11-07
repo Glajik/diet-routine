@@ -7,7 +7,7 @@ export default {
   agePlaceholder: 'Your age',
   nameLabel: 'Name',
   ageLabel: 'Age',
-  emailLabel: 'Email',
+  emailLabel: 'Email address',
   passwordLabel: 'Password',
   signIn: 'Sign In',
   signUp: 'Sign Up',
@@ -31,4 +31,11 @@ export default {
   georgeBernardShaw: 'George Bernard Shaw',
   thereIsNoLoveSincererThanTheLoveOfFood:
     '”There is no love sincerer than the love of food!”',
+  inputNameUserSignUp: 'Enter your name',
+  passwordLabelConfirm: 'Confirm the password',
+  errorMessageEmail: 'Wrong address!',
+  errorMessagePassword: 'Wrong password!',
+  errorMessagePasswordConfirm: 'Passwords do not match!',
+  textForChangeTypeAuth: 'or',
+  forgotPassword: 'Forgot your password?',
 }
