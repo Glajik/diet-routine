@@ -9,3 +9,7 @@ export const Wrapper = styled.div`
   background-size: contain;
   background-attachment: fixed;
 `
+export const RegisterWrapper = styled.div`
+  position: relative;
+  z-index: 999;
+`

@@ -16,7 +16,10 @@ import iconTwitter from '../../../assets/images/twitter.svg'
 import iconVK from '../../../assets/images/vk.svg'
 import iconLinkIn from '../../../assets/images/linkin.svg'
 
-const HeaderWrapper = () => {
+const HeaderWrapper = props => {
+  const textForChangeTypeAuthIntl = props.intl.formatMessage({
+    id: 'textForChangeTypeAuth',
+  })
   return (
     <HeaderImageDiv>
       <LogoWrapper src={logo} />
@@ -30,7 +33,7 @@ const HeaderWrapper = () => {
         <HeaderIcon src={iconVK} alt="fb-logo" />
         <HeaderIcon src={iconLinkIn} alt="fb-logo" />
       </HeaderIcons>
-      <HeaderOR>или</HeaderOR>
+      <HeaderOR>{textForChangeTypeAuthIntl}</HeaderOR>
     </HeaderImageDiv>
   )
 }

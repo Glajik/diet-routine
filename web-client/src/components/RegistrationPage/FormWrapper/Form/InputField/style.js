@@ -1,13 +1,18 @@
 import styled from 'styled-components'
 import { colors } from '../../../../../assets/colors'
-import { Label, Input, Error } from '../../../../UI/Field/style'
+import { Label, Input } from '../../../../UI/Field/style'
 
 export const InputDiv = styled(Input)`
+  border: 1px solid ${colors.secondary};
   &[type='password'] {
-    color: ${p => (!p.isValid && p.isTouched ? colors.error : colors.secondary)};
+    color: ${colors.secondary};
   }
   &[type='email'] {
-    color: ${p => (!p.isValid && p.isTouched ? colors.error : colors.secondary)};
+    color: ${colors.secondary};
+  }
+  &:focus {
+    border: 2px solid
+      ${p => (!p.isValid && p.isTouched ? colors.secondary : colors.wrong)};
   }
 `
 
@@ -19,7 +24,7 @@ export const LabelDiv = styled(Label)`
   font-weight: 600;
   font-size: 14px;
   line-height: 16px;
-  color: ${p => (!p.isValid && p.isTouched ? colors.error : colors.white)};
+  color: ${p => (!p.isValid && p.isTouched ? colors.secondary : colors.white)};
 `
 export const InputErrorDiv = styled.div`
   font-family: IBM Plex Sans;
@@ -29,8 +34,9 @@ export const InputErrorDiv = styled.div`
   font-size: 14px;
   line-height: 16px;
   margin-top: 4px;
-  color: ${p => (!p.isValid && p.isTouched ? colors.error : colors.wrong)};
+  color: ${p => (!p.isValid && p.isTouched ? colors.secondary : colors.wrong)};
 `
+
 export const FildElement = styled.div`
   margin-bottom: 20px;
 `

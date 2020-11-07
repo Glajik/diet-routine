@@ -1,16 +1,11 @@
 import React from 'react'
 import { FieldsDiv, FormDiv, AnimatQuestion } from './style'
 import ButtonGroup from './ButtonGroup/ButtonGroup'
-import { useState } from 'react/cjs/react.development'
 import { FormattedMessage } from 'react-intl'
 import Field from '../../UI/Field'
 import { Label } from '../../UI/Field/style'
 
 const Form = () => {
-  const [values, setValues] = useState('')
-
-  
-
   return (
     <FormDiv>
       <AnimatQuestion>
@@ -19,7 +14,7 @@ const Form = () => {
         </Label>
       </AnimatQuestion>
       <FieldsDiv>
-        <Field />
+        <Field label="jhi" />
         <ButtonGroup />
       </FieldsDiv>
     </FormDiv>

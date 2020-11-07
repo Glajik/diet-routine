@@ -2,6 +2,17 @@ import styled from 'styled-components'
 import { colors } from '../../../assets/colors'
 import img from '../../../assets/images/registration_pencil.svg'
 
+export const InputNameDiv = styled.div`
+  border: 1px solid ${colors.secondary};
+  &[type='text'] {
+    color: ${colors.secondary};
+  }
+  &:focus {
+    border: 2px solid
+      ${p => (!p.isValid && p.isTouched ? colors.secondary : colors.wrong)};
+  }
+`
+
 export const HeaderImageDiv = styled.div`
   display: flex;
   flex-direction: column;
@@ -29,6 +40,7 @@ export const HeaderAuthor = styled.div`
   line-height: 31px;
   margin-bottom: 30px;
   color: ${colors.white};
+  cursor: pointer;
   &::before {
     content: '';
     position: absolute;
@@ -37,5 +49,6 @@ export const HeaderAuthor = styled.div`
     left: -30px;
     top: 5px;
     background: url(${img}) center 0 no-repeat;
+    cursor: pointer;
   }
 `

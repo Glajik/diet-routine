@@ -7,7 +7,7 @@ export default {
   agePlaceholder: 'Ваш возраст',
   nameLabel: 'Имя',
   ageLabel: 'Возраст',
-  emailLabel: 'E-mail',
+  emailLabel: 'Электронный адрес',
   passwordLabel: 'Пароль',
   signIn: 'Войти',
   signUp: 'Регистрация',
@@ -24,4 +24,11 @@ export default {
   georgeBernardShaw: 'Джордж Бернард Шоу',
   thereIsNoLoveSincererThanTheLoveOfFood:
     '”Нет любви более искренней, чем  любовь к еде!”',
+  inputNameUserSignUp: 'Введите имя',
+  passwordLabelConfirm: 'Подтвердите пароль',
+  errorMessageEmail: 'Неверный адрес!',
+  errorMessagePassword: 'Неверный пароль!',
+  errorMessagePasswordConfirm: 'Пароли не совпадают!',
+  textForChangeTypeAuth: 'или',
+  forgotPassword: 'Забыли пароль?',
 }

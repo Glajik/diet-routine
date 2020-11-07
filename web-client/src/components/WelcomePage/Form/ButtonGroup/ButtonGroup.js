@@ -3,7 +3,6 @@ import { ButtonsDiv, ButtonDiv } from './style'
 import { FormattedMessage } from 'react-intl'
 import { Button } from '../../../UI/Button/style'
 
-
 const ButtonGroup = () => {
   return (
     <ButtonsDiv>

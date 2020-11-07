@@ -25,25 +25,38 @@ import lazyLoading from '../../hoc/lazyLoading'
 
 import WelcomePage from '../WelcomePage/WelcomePage'
 import FirstPage from '../FirstPage/FirstPage'
+import RegistrationPage from '../RegistrationPage/RegistrationPage'
+import AuthorizationPage from '../AuthorizationPage/AuthorizationPage'
+import In from '../In/In'
 import { Wrapper } from './style'
+// import { IbmFont } from '../../assets/fonts'
+// import Page from '../Page/Page'
 
 const App = ({ location }) => {
-  console.log(location)
   return (
     <IntlProvider locale={navigator.language} messages={ru}>
       <Wrapper>
-        <TransitionGroup>
-          <CSSTransition key={location.key} classNames="fade" timeout={1000}>
-            <Switch location={location}>
-              <Route exact path="/">
-                <FirstPage />
-              </Route>
-              <Route path="/welcome_page">
-                <WelcomePage />
-              </Route>
-            </Switch>
-          </CSSTransition>
-        </TransitionGroup>
+        {/* <TransitionGroup>
+          <CSSTransition key={location.key} classNames="fade" timeout={1000}> */}
+        <Switch location={location}>
+          <Route exact path="/">
+            <FirstPage />
+          </Route>
+          <Route path="/welcome_page">
+            <WelcomePage />
+          </Route>
+          <Route path="/signup">
+            <RegistrationPage />
+          </Route>
+          <Route path="/login">
+            <AuthorizationPage />
+          </Route>
+          <Route path="/in">
+            <In />
+          </Route>
+        </Switch>
+        {/* </CSSTransition>
+        </TransitionGroup> */}
       </Wrapper>
     </IntlProvider>
   )

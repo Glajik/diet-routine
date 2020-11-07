@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import { colors } from '../../../assets/colors'
+import { device } from '../../../assets/device'
 
 export const HeaderImageDiv = styled.div`
   display: flex;
@@ -18,6 +19,13 @@ export const HeaderTitle = styled.div`
   line-height: 55px;
   color: ${colors.white};
   margin-bottom: 78px;
+  @media ${device.laptop} {
+    max-width: 800px;
+  }
+
+  @media ${device.desktop} {
+    max-width: 1400px;
+  }
 `
 export const HeaderIcons = styled.div`
   display: flex;

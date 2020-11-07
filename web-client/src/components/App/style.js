@@ -26,7 +26,6 @@ export const Wrapper = styled.div`
   }
 `
 
-
-export const AppWrapper = styled.div`
-  font-family: ${ibmFont};
-`
+// export const AppWrapper = styled.div`
+//   font-family: ${ibmFont};
+// `

@@ -4,9 +4,12 @@ import { FormattedMessage } from 'react-intl'
 
 const BtnEnter = () => {
   return (
-    <ButtonDiv btnType="primary">
-      <FormattedMessage id="signIn" />
-    </ButtonDiv>
+    <>
+      {/* <ButtonDiv btnType="primary">
+        <FormattedMessage id="signIn" />
+     
+      </ButtonDiv> */}
+    </>
   )
 }
 

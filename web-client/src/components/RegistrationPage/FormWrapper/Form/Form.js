@@ -7,7 +7,7 @@ const Form = () => {
   return (
     <FormDiv>
       <InputField />
-      <ButtonEnter />
+      {/* <ButtonEnter /> */}
     </FormDiv>
   )
 }
