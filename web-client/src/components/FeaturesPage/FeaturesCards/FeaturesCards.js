@@ -65,7 +65,7 @@ const FeaturesCards = () => {
         const indexOfActiveCard = cards.map(card => card.isActive).indexOf(true)
         const timer = setTimeout(() => handleAuto(indexOfActiveCard), 3000)
         return () => clearTimeout(timer)
-    })
+    }, [cards])
 
     // закомментировал, потому что нарушает работоспособность слайдера по нажатию на точки
     // const handleSlider = (e) => {
