@@ -38,7 +38,7 @@ export default {
   passwordLabelConfirm: 'Підтвердіть пароль',
   repeatErrorMessageRequired: 'Підтвердіть пароль',
   repeatErrorMessageWrong: 'Паролі не співпадають',
-  error: 'error',
+  error: 'Error',
   errorMessageEmail: 'Введіть валідний email',
   errorMessageEmailRequired: 'Введіть email',
   errorMessagePasswordRequired: 'Введіть пароль',

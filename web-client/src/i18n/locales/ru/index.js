@@ -40,7 +40,7 @@ export default {
   passwordLabelConfirm: 'Подтвердите пароль',
   repeatErrorMessageRequired: 'Подтвердите пароль',
   repeatErrorMessageWrong: 'Пароли не совпадают',
-  error: 'error',
+  error: 'Error',
   errorMessageEmail: 'Введите валидный email',
   errorMessageEmailRequired: 'Введите еmail',
   errorMessagePasswordRequired: 'Введите пароль',

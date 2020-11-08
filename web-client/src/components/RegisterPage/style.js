@@ -15,7 +15,7 @@ export const FormWrapper = styled.div`
   flex-wrap: wrap;
   position: relative;
   max-width: 80%;
-  margin: 15px auto 20px;
+  margin: 15px auto 10px;
   z-index: 999;
 
   @media screen and (max-width: 359px) {

@@ -33,7 +33,7 @@ export default {
   passwordLabelConfirm: 'Confirm the password',
   repeatErrorMessageRequired: 'Confirm the password',
   repeatErrorMessageWrong: "Passwords aren't similar",
-  error: 'error',
+  error: 'Error',
   errorMessageEmail: 'Enter valid email',
   errorMessageEmailRequired: 'Email is required',
   errorMessagePasswordRequired: 'Password is required',
