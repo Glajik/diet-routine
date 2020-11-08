@@ -51,6 +51,7 @@ const field = props => (
       leftIconClassNames={props.leftIconClassNames}
       rightIconClassNames={props.rightIconClassNames}
       onChange={props.onChange}
+      onBlur={props.onBlur}
     />
     <Icon
       className={props.rightIconClassNames}
