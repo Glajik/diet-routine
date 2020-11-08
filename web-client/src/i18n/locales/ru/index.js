@@ -1,6 +1,6 @@
 export default {
   signInName: 'Авторизация',
-  createAccount: 'Создать аккаунт',
+  signUpName: 'Регистрация',
   emailPlaceholder: 'Ваш e-mail',
   passwordPlaceholder: 'Ваш пароль',
   namePlaceholder: 'Ваше имя',
@@ -38,6 +38,8 @@ export default {
     '”Нет любви более искренней, чем  любовь к еде!”',
   inputNameUserSignUp: 'Введите имя',
   passwordLabelConfirm: 'Подтвердите пароль',
+  repeatErrorMessageRequired: 'Подтвердите пароль',
+  repeatErrorMessageWrong: 'Пароли не совпадают',
   error: 'error',
   errorMessageEmail: 'Введите валидный email',
   errorMessageEmailRequired: 'Введите еmail',

@@ -22,7 +22,7 @@ import { Button, Icon } from './style'
 const button = props => (
   <Button
     type={props.type}
-    btnType={props.btnType || 'primary'}
+    btnType={props.btnType}
     disabled={props.disabled}
     onClick={props.onClick}>
     <Icon

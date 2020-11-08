@@ -18,7 +18,13 @@ import { Route, Switch, withRouter } from 'react-router-dom'
 import { CSSTransition, TransitionGroup } from 'react-transition-group'
 import { ru } from '../../i18n'
 import lazyLoading from '../../hoc/lazyLoading'
-import { FeaturesPage, FirstPage, WelcomePage, LoginPage } from '../index'
+import {
+  FeaturesPage,
+  FirstPage,
+  WelcomePage,
+  LoginPage,
+  RegisterPage,
+} from '../index'
 
 import { Wrapper } from './style'
 
@@ -34,6 +40,7 @@ const App = ({ location }) => {
                 <Route path="/welcome_page" component={WelcomePage} />
                 <Route path="/features" component={FeaturesPage} />
                 <Route path="/login" component={LoginPage} />
+                <Route path="/register" component={RegisterPage} />
                 <Route path="/" component={FirstPage} />
               </Switch>
             </CSSTransition>

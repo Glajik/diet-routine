@@ -48,3 +48,7 @@ export const FieldsWrapper = styled.div`
     margin-bottom: 50px;
   }
 `
+
+export const LoaderWrapper = styled.div`
+  margin: 0 auto;
+`

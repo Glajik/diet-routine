@@ -1,6 +1,6 @@
 export default {
   signInName: 'Вхід',
-  createAccount: 'Створити аккаунт',
+  signUpName: 'Регістрація',
   emailPlaceholder: 'Ваш e-mail',
   passwordPlaceholder: 'Ваш пароль',
   namePlaceholder: "Ваше ім'я",
@@ -36,6 +36,8 @@ export default {
     '”Немає любові більш щирої, ніж любов до їжі!”',
   inputNameUserSignUp: 'Введіть імя',
   passwordLabelConfirm: 'Підтвердіть пароль',
+  repeatErrorMessageRequired: 'Підтвердіть пароль',
+  repeatErrorMessageWrong: 'Паролі не співпадають',
   error: 'error',
   errorMessageEmail: 'Введіть валідний email',
   errorMessageEmailRequired: 'Введіть email',

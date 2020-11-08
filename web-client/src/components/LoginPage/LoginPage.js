@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import { injectIntl, FormattedMessage } from 'react-intl'
-import { Backdrop, Field, Button } from '../UI'
-import { checkValidity, disableButton } from '../../utils'
+import * as firebase from 'firebase/app'
+import { Backdrop, Field, Button, Loader } from '../UI'
+import { checkValidity, disableButton, createErrorMessage } from '../../utils'
 import { logo } from '../../assets'
 import {
   LoginWrapper,
@@ -10,6 +11,7 @@ import {
   LoginName,
   Form,
   FieldsWrapper,
+  LoaderWrapper,
 } from './style'
 
 const LoginPage = props => {
@@ -40,28 +42,7 @@ const LoginPage = props => {
   })
 
   const [isDisabledButton, setDisabledButton] = useState(true)
-
-  const createErrorMessage = () => {
-    const controlItems = { ...controls }
-
-    if (controlItems.email.value === '') {
-      controlItems.email.errorMessage = 'errorMessageEmailRequired'
-    } else if (controlItems.email.value !== '') {
-      controlItems.email.errorMessage = 'errorMessageEmail'
-    }
-
-    setControls(controlItems)
-
-    if (controlItems.password.value === '') {
-      controlItems.password.errorMessage = 'errorMessagePasswordRequired'
-    } else if (controlItems.password.value.length < 6) {
-      controlItems.password.errorMessage = 'errorMessagePasswordSmall'
-    } else if (controlItems.password.value.length > 60) {
-      controlItems.password.errorMessage = 'errorMessagePasswordLong'
-    }
-
-    setControls(controlItems)
-  }
+  const [isLoading, setLoading] = useState(false)
 
   const changeHandler = event => {
     const controlItems = { ...controls }
@@ -72,7 +53,7 @@ const LoginPage = props => {
       event.target.value,
       controlItems[name].validation
     )
-    createErrorMessage()
+    createErrorMessage(controlItems, setControls)
     setDisabledButton(disableButton(controlItems))
     setControls(controlItems)
   }
@@ -80,7 +61,45 @@ const LoginPage = props => {
   const blurHandler = event => {
     const controlItems = { ...controls }
     const { name } = event.target
-    controlItems[name].isTouched = true
+
+    if (controlItems[name].value.trim() !== '') {
+      controlItems[name].isTouched = true
+    }
+
+    setControls(controlItems)
+  }
+
+  const submitHandler = event => {
+    event.preventDefault()
+
+    const controlItems = { ...controls }
+    const formData = {}
+
+    for (let control in controls) {
+      formData[control] = controls[control].value
+    }
+
+    setDisabledButton(true)
+    setLoading(true)
+
+    firebase
+      .auth()
+      .signInWithEmailAndPassword(controls.email.value, controls.password.value)
+      // .createUserWithEmailAndPassword(controls.email.value, controls.password.value)
+      // .then(() => console.log('Register: ', formData))
+      .then(() => setLoading(false))
+      .then(() => console.log('LogIn: ', formData))
+      .catch(e => {
+        console.log(e)
+        setLoading(false)
+      })
+
+    for (let control in controlItems) {
+      controlItems[control].value = ''
+      controlItems[control].isValid = false
+      controlItems[control].isTouched = false
+    }
+
     setControls(controlItems)
   }
 
@@ -95,47 +114,54 @@ const LoginPage = props => {
         <LoginName>
           <FormattedMessage id="signInName" />
         </LoginName>
-        <Form>
-          <FieldsWrapper>
-            <Field
-              type="text"
-              label={props.intl.formatMessage({ id: 'emailLabel' })}
-              labelColor="#fff"
-              value={controls.email.value}
-              name="email"
-              placeholder="example@gmail.com"
-              isValid={controls.email.isValid}
-              isTouched={controls.email.isTouched}
-              errorMessage={props.intl.formatMessage({ id: `${emailErrorMessage}` })}
-              onChange={changeHandler}
-              onBlur={blurHandler}
-            />
-            <Field
-              type="password"
-              label={props.intl.formatMessage({ id: 'passwordLabel' })}
-              labelColor="#fff"
-              value={controls.password.value}
-              name="password"
-              placeholder="password"
-              isValid={controls.password.isValid}
-              isTouched={controls.password.isTouched}
-              errorMessage={props.intl.formatMessage({
-                id: `${passwordErrorMessage}`,
-              })}
-              onChange={changeHandler}
-              onBlur={blurHandler}
-            />
-          </FieldsWrapper>
+        {!isLoading ? (
+          <Form>
+            <FieldsWrapper>
+              <Field
+                type="text"
+                label={props.intl.formatMessage({ id: 'emailLabel' })}
+                labelColor="#fff"
+                value={controls.email.value}
+                name="email"
+                placeholder="example@gmail.com"
+                isValid={controls.email.isValid}
+                isTouched={controls.email.isTouched}
+                errorMessage={props.intl.formatMessage({
+                  id: `${emailErrorMessage}`,
+                })}
+                onChange={changeHandler}
+                onBlur={blurHandler}
+              />
+              <Field
+                type="password"
+                label={props.intl.formatMessage({ id: 'passwordLabel' })}
+                labelColor="#fff"
+                value={controls.password.value}
+                name="password"
+                placeholder="password"
+                isValid={controls.password.isValid}
+                isTouched={controls.password.isTouched}
+                errorMessage={props.intl.formatMessage({
+                  id: `${passwordErrorMessage}`,
+                })}
+                onChange={changeHandler}
+                onBlur={blurHandler}
+              />
+            </FieldsWrapper>
 
-          <Button
-            type="submit"
-            btnType="primary"
-            disabled={isDisabledButton}
-            // onClick={clickHandler}>
-          >
-            <FormattedMessage id="signIn" />
-          </Button>
-        </Form>
+            <Button
+              type="submit"
+              btnType="primary"
+              disabled={isDisabledButton}
+              onClick={submitHandler}>
+              <FormattedMessage id="signIn" />
+            </Button>
+          </Form>
+        ) : (
+          <LoaderWrapper>
+            <Loader />
+          </LoaderWrapper>
+        )}
       </FormWrapper>
     </LoginWrapper>
   )
