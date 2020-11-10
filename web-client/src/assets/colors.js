@@ -5,6 +5,6 @@ export const colors = {
   primary: '#94AE27',
   primaryOnHover: '#657D1F',
   secondary: '#9D53B4',
-  inputValuePlaceholder: '#212529',
-  error: '#FFE600',
+  inputValuePlaceholder: '#474b4f',
+  error: '#FFE600'
 }

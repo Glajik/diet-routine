@@ -1,8 +1,6 @@
 export default {
   signInName: 'Авторизация',
   signUpName: 'Регистрация',
-  emailPlaceholder: 'Ваш e-mail',
-  passwordPlaceholder: 'Ваш пароль',
   namePlaceholder: 'Ваше имя',
   agePlaceholder: 'Ваш возраст',
   nameLabel: 'Имя',
@@ -32,14 +30,13 @@ export default {
   georgeBernardShaw: 'Джордж Бернард Шоу',
   thereIsNoLoveSincererThanTheLoveOfFood:
     '”Нет любви более искренней, чем  любовь к еде!”',
-  approachYourDietWithConfidence: 'Подойди к своему рациону уверенно',
-  georgeBernardShaw: 'Джордж Бернард Шоу',
-  thereIsNoLoveSincererThanTheLoveOfFood:
-    '”Нет любви более искренней, чем  любовь к еде!”',
   inputNameUserSignUp: 'Введите имя',
   passwordLabelConfirm: 'Подтвердите пароль',
   repeatErrorMessageRequired: 'Подтвердите пароль',
   repeatErrorMessageWrong: 'Пароли не совпадают',
+  passwordPlaceholder: 'Пароль',
+  repeatPasswordPlaceholder: 'Повторите пароль',
+  emailPlaceholder: 'Электронный адрес',
   error: 'Error',
   errorMessageEmail: 'Введите валидный email',
   errorMessageEmailRequired: 'Введите еmail',

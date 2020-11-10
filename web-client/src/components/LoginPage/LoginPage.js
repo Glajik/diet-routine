@@ -85,12 +85,10 @@ const LoginPage = props => {
     firebase
       .auth()
       .signInWithEmailAndPassword(controls.email.value, controls.password.value)
-      // .createUserWithEmailAndPassword(controls.email.value, controls.password.value)
-      // .then(() => console.log('Register: ', formData))
       .then(() => setLoading(false))
       .then(() => console.log('LogIn: ', formData))
       .catch(e => {
-        console.log(e)
+        console.log('Error: ', e)
         setLoading(false)
       })
 
@@ -123,7 +121,7 @@ const LoginPage = props => {
                 labelColor="#fff"
                 value={controls.email.value}
                 name="email"
-                placeholder="example@gmail.com"
+                placeholder="emailPlaceholder"
                 isValid={controls.email.isValid}
                 isTouched={controls.email.isTouched}
                 errorMessage={props.intl.formatMessage({
@@ -138,7 +136,7 @@ const LoginPage = props => {
                 labelColor="#fff"
                 value={controls.password.value}
                 name="password"
-                placeholder="password"
+                placeholder="passwordPlaceholder"
                 isValid={controls.password.isValid}
                 isTouched={controls.password.isTouched}
                 errorMessage={props.intl.formatMessage({

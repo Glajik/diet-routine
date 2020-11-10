@@ -155,7 +155,7 @@ const RegisterPage = props => {
                 labelColor="#fff"
                 value={controls.email.value}
                 name="email"
-                placeholder="example@gmail.com"
+                placeholder="emailPlaceholder"
                 isValid={controls.email.isValid}
                 isTouched={controls.email.isTouched}
                 errorMessage={props.intl.formatMessage({
@@ -170,7 +170,7 @@ const RegisterPage = props => {
                 labelColor="#fff"
                 value={controls.password.value}
                 name="password"
-                placeholder="password"
+                placeholder="passwordPlaceholder"
                 isValid={controls.password.isValid}
                 isTouched={controls.password.isTouched}
                 errorMessage={props.intl.formatMessage({
@@ -185,7 +185,7 @@ const RegisterPage = props => {
                 labelColor="#fff"
                 value={controls.repeatPassword.value}
                 name="repeatPassword"
-                placeholder="password"
+                placeholder="repeatPasswordPlaceholder"
                 isValid={controls.repeatPassword.isValid}
                 isTouched={controls.repeatPassword.isTouched}
                 errorMessage={props.intl.formatMessage({

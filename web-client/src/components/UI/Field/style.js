@@ -23,8 +23,9 @@ export const FieldWrapper = styled.div`
 `
 
 export const Label = styled.label`
-  margin-bottom: 10px;
-  margin-left: 20px;
+  margin-bottom: 4px;
+  margin-left: 15px;
+  font-size: 12px;
   color: ${p => (!p.isValid && p.isTouched ? colors.error : p.labelColor)};
 `
 
@@ -47,6 +48,7 @@ export const Input = styled.input`
 
 export const Error = styled.p`
   color: ${colors.error};
+  font-size: 12px;
   margin: 0;
   padding-top: 5px;
   padding-right: 15px;

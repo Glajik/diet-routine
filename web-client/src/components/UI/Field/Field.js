@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import {injectIntl} from 'react-intl'
 import { Error, FieldWrapper, Input, Label, Icon } from './style'
 
 /**
@@ -45,7 +46,7 @@ const field = props => (
       type={props.type}
       value={props.value}
       name={props.name}
-      placeholder={props.placeholder}
+      placeholder={props.intl.formatMessage({id: `${props.placeholder}`})}
       isValid={props.isValid}
       isTouched={props.isTouched}
       leftIconClassNames={props.leftIconClassNames}
@@ -89,4 +90,4 @@ field.defaultProps = {
   iconColor: 'black',
 }
 
-export default field
+export default injectIntl(field)
