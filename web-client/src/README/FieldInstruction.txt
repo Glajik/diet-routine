@@ -14,7 +14,8 @@ You can use Field component by writing such code:
    errorMessage={state.errorMessage}
    leftIconClassNames="far fa-envelope"
    iconColor="green"
-   onChange={onChangeHandler}/>
+   onChange={onChangeHandler}
+   onBlur={onBlurHandler}/>
 
 
 1. type - the type of input (email, password etc.)
@@ -95,5 +96,7 @@ the different parts of the project
 
        setState({controls})
      }
+
+13. onBlur - the behavior of input after the blur
 
 P.S. Happy hacking!)

@@ -19,5 +19,6 @@ export const PhraseAuthor = styled.p`
     line-height: 18px;
     text-align: center;
     color: #FFFFFF;
-    margin-top: -20px;
+    // Commented because the elem was looking bad with this style 
+    //margin-top: -20px;
 `
