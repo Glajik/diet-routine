@@ -1,7 +1,7 @@
 import styled from 'styled-components'
-import { colors } from '../../../assets/colors'
+import {colors} from '../../../assets/colors'
 
-const conditionalStyles = p => {
+const btnTypeStyles = p => {
   switch (p.btnType) {
     case 'primary':
       return `
@@ -27,25 +27,38 @@ const conditionalStyles = p => {
   }
 }
 
+const positionStyles = p => {
+  switch (p.position) {
+    case 'authLayout':
+      return `
+        position: absolute;
+        bottom: 30px; 
+      `
+    default:
+      return ``
+  }
+}
+
 export const Button = styled.button`
-  font-weight: 700;
-  letter-spacing: .1em;
   display: block;
   width: 100%;
+  border-radius: 50px;
+  font-weight: 700;
+  letter-spacing: .1em;
   padding: 15px 0;
   outline: none;
-  border-radius: 50px;
   cursor: ${p => (p.disabled ? 'not-allowed' : 'pointer')};
   box-sizing: border-box;
   font-size: 18px;
   transition: background .3s ease-in-out;
   text-transform: uppercase;
-  ${conditionalStyles}
+  ${positionStyles};
+  ${btnTypeStyles};
 }
 `
 
 export const Icon = styled.i`
   color: ${p => p.iconColor};
   ${p =>
-    p.leftIcon ? 'margin-right: 10px' : p.rightIcon ? 'margin-left: 10px' : ''};
+  p.leftIcon ? 'margin-right: 10px' : p.rightIcon ? 'margin-left: 10px' : ''};
 `

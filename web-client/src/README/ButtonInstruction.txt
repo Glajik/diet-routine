@@ -8,6 +8,7 @@ You can use Button component by writing such code:
   disabled={state.isDisabled}
   leftIconClassNames="far fa-envelope"
   iconColor="green"
+  position="authLayout"
   onClick={clickHandler}>Click me</Button>
 
 
@@ -23,5 +24,7 @@ The settings for all types of the button you can find in the style file of the B
 5. iconColor - this param offers you to set the color for the icon. You need this param because the icons will have different colors in the different parts of the project
 
 6. onClick - this param will describe the behavior of your button after it was clicked
+
+7. position - we use this prop if our button has special position (for example the button on login and register pages. It has position absolute). I think that we shouldn't use words "absolute, relative, sticky, fixed", because our project can have several fixed, sticky etc. buttons. One of them can have "position: fixed; top: 0; " another one - "position: fixed; bottom: 0;". We cannot use the same type "fixed" because they have different styles
 
 P.S. Happy hacking!)

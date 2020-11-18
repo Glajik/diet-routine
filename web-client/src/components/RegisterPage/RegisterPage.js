@@ -193,6 +193,7 @@ const RegisterPage = props => {
             <Button
               type="submit"
               btnType="primary"
+              position="authLayout"
               disabled={isDisabledButton}
               onClick={submitHandler}>
               <FormattedMessage id="signIn" />
