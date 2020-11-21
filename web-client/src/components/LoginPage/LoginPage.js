@@ -117,31 +117,27 @@ const LoginPage = props => {
             <FieldsWrapper>
               <Field
                 type="text"
-                label={props.intl.formatMessage({ id: 'emailLabel' })}
+                label="emailLabel"
                 labelColor="#fff"
                 value={controls.email.value}
                 name="email"
                 placeholder="emailPlaceholder"
                 isValid={controls.email.isValid}
                 isTouched={controls.email.isTouched}
-                errorMessage={props.intl.formatMessage({
-                  id: `${emailErrorMessage}`,
-                })}
+                errorMessage={emailErrorMessage}
                 onChange={changeHandler}
                 onBlur={blurHandler}
               />
               <Field
                 type="password"
-                label={props.intl.formatMessage({ id: 'passwordLabel' })}
+                label="passwordLabel"
                 labelColor="#fff"
                 value={controls.password.value}
                 name="password"
                 placeholder="passwordPlaceholder"
                 isValid={controls.password.isValid}
                 isTouched={controls.password.isTouched}
-                errorMessage={props.intl.formatMessage({
-                  id: `${passwordErrorMessage}`,
-                })}
+                errorMessage={passwordErrorMessage}
                 onChange={changeHandler}
                 onBlur={blurHandler}
               />
@@ -150,6 +146,7 @@ const LoginPage = props => {
             <Button
               type="submit"
               btnType="primary"
+              position="authLayout"
               disabled={isDisabledButton}
               onClick={submitHandler}>
               <FormattedMessage id="signIn" />

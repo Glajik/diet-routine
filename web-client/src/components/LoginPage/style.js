@@ -1,20 +1,22 @@
 import styled from 'styled-components'
-import { registerImg } from '../../assets'
+import {registerImg} from '../../assets'
 
 export const LoginWrapper = styled.div`
   background: url(${registerImg}) no-repeat 50% 50% / cover;
   height: 100vh;
   overflow-y: auto;
   color: #fff;
+  position: relative;
 `
 
 export const FormWrapper = styled.div`
   display: flex;
+  max-width: 360px;
+  width: 80%;
+  position: relative;
   flex-direction: column;
   justify-content: center;
   flex-wrap: wrap;
-  position: relative;
-  max-width: 80%;
   margin: 15px auto 0;
   z-index: 999;
 
@@ -23,7 +25,7 @@ export const FormWrapper = styled.div`
   }
 `
 export const Logo = styled.img.attrs({
-  alt: 'Logo',
+  alt: 'Logo'
 })``
 
 export const LoginName = styled.h2`
@@ -39,13 +41,20 @@ export const LoginName = styled.h2`
   }
 `
 
-export const Form = styled.form``
+export const Form = styled.form`
+  height: calc(100vh - 202px);
+`
 
 export const FieldsWrapper = styled.div`
-  margin-bottom: 60px;
+  height: calc(100% - 125px);  
+  overflow-y: auto; 
 
-  @media screen and (min-width: 350px) {
-    margin-bottom: 50px;
+  &::-webkit-scrollbar { 
+    display: none;
+  }
+
+  &::-webkit-scrollbar-thumb { 
+    display: none;
   }
 `
 

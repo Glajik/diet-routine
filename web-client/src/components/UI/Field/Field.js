@@ -19,6 +19,7 @@ import { Error, FieldWrapper, Input, Label, Icon } from './style'
  * @prop {string} rightIconClassNames — Icon class name for Font Awesome
  * @prop {string} iconColor — Color of Icon
  * @prop {(event: object) => void} onChange — Input change handler
+ * @prop {(event: object) => void} onBlur - Input blur handler
  */
 
 /**
@@ -33,7 +34,7 @@ const field = props => (
       labelColor={props.labelColor}
       isValid={props.isValid}
       isTouched={props.isTouched}>
-      {props.label}
+      {props.label ? props.intl.formatMessage({id: `${props.label}`}) : ''}
     </Label>
     <Icon
       className={props.leftIconClassNames}
@@ -46,7 +47,11 @@ const field = props => (
       type={props.type}
       value={props.value}
       name={props.name}
-      placeholder={props.intl.formatMessage({id: `${props.placeholder}`})}
+      placeholder={
+        props.placeholder
+          ? props.intl.formatMessage({id: `${props.placeholder}`})
+          : ''
+      }
       isValid={props.isValid}
       isTouched={props.isTouched}
       leftIconClassNames={props.leftIconClassNames}
@@ -62,7 +67,7 @@ const field = props => (
       iconColor={props.iconColor}
     />
     <Error isValid={props.isValid} isTouched={props.isTouched}>
-      {props.errorMessage}
+      {props.errorMessage ? props.intl.formatMessage({id: `${props.errorMessage}`}) : ''}
     </Error>
   </FieldWrapper>
 )
@@ -81,13 +86,14 @@ field.propTypes = {
   rightIconClassNames: PropTypes.string,
   iconColor: PropTypes.string,
   onChange: PropTypes.func,
+  onBlur: PropTypes.func
 }
 
 field.defaultProps = {
   type: 'text',
   isValid: true,
   isTouched: false,
-  iconColor: 'black',
+  iconColor: 'black'
 }
 
 export default injectIntl(field)

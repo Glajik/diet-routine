@@ -9,12 +9,13 @@ export const RegisterWrapper = styled.div`
 `
 
 export const FormWrapper = styled.div`
+  max-width: 360px;
+  width: 80%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   flex-wrap: wrap;
   position: relative;
-  max-width: 80%;
   margin: 15px auto 10px;
   z-index: 999;
 
@@ -39,13 +40,20 @@ export const RegisterName = styled.h2`
   }
 `
 
-export const Form = styled.form``
+export const Form = styled.form`
+  height: calc(100vh - 200px);
+`
 
 export const FieldsWrapper = styled.div`
-  margin-bottom: 60px;
+  height: calc(100% - 125px);  
+  overflow-y: auto; 
 
-  @media screen and (min-width: 350px) {
-    margin-bottom: 50px;
+  &::-webkit-scrollbar { 
+    display: none;
+  }
+
+  &::-webkit-scrollbar-thumb { 
+    display: none;
   }
 `
 

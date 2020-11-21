@@ -11,6 +11,7 @@ import { Button, Icon } from './style'
  * @prop {string} leftIconClassNames
  * @prop {string} rightIconClassNames
  * @prop {string} iconColor — Color of Icon
+ * @prop {string} position - position of the button
  * @prop {(event: object) => void} onClick — Button click handler
  * @prop {string} children
  */
@@ -23,6 +24,7 @@ const button = props => (
   <Button
     type={props.type}
     btnType={props.btnType}
+    position={props.position}
     disabled={props.disabled}
     onClick={props.onClick}>
     <Icon
@@ -46,6 +48,7 @@ button.propTypes = {
   leftIconClassNames: PropTypes.string,
   rightIconClassNames: PropTypes.string,
   iconColor: PropTypes.string,
+  position: PropTypes.string,
   onClick: PropTypes.func,
   children: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
 }

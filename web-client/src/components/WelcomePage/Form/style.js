@@ -24,7 +24,8 @@ export const FormDiv = styled.div`
  
 `
 export const AnimatQuestion = styled.div`
-  margin-bottom: -10px;
+  // Commented because the elem was looking bad with this style 
+  //margin-bottom: -10px;
   color: #666666;
   transform: translate(0, 0);
   animation: label-animation 0.5s;
