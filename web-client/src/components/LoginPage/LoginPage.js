@@ -1,18 +1,10 @@
-import React, { useState } from 'react'
-import { injectIntl, FormattedMessage } from 'react-intl'
 import * as firebase from 'firebase/app'
-import { Backdrop, Field, Button, Loader } from '../UI'
-import { checkValidity, disableButton, createErrorMessage } from '../../utils'
-import { logo } from '../../assets'
-import {
-  LoginWrapper,
-  FormWrapper,
-  Logo,
-  LoginName,
-  Form,
-  FieldsWrapper,
-  LoaderWrapper,
-} from './style'
+import React, {useState} from 'react'
+import {FormattedMessage, injectIntl} from 'react-intl'
+import {logo} from '../../assets'
+import {checkValidity, createErrorMessage, disableButton} from '../../utils'
+import {Backdrop, Button, Field, Loader, Container} from '../UI'
+import {FieldsWrapper, Form, FormWrapper, LoaderWrapper, LoginName, LoginWrapper, Logo} from './style'
 
 const LoginPage = props => {
   const [controls, setControls] = useState({
@@ -24,8 +16,8 @@ const LoginPage = props => {
       errorMessage: 'error',
       validation: {
         required: true,
-        isEmail: true,
-      },
+        isEmail: true
+      }
     },
     password: {
       id: 2,
@@ -36,17 +28,17 @@ const LoginPage = props => {
       validation: {
         required: true,
         minLength: 6,
-        maxLength: 60,
-      },
-    },
+        maxLength: 60
+      }
+    }
   })
 
   const [isDisabledButton, setDisabledButton] = useState(true)
   const [isLoading, setLoading] = useState(false)
 
   const changeHandler = event => {
-    const controlItems = { ...controls }
-    const { name } = event.target
+    const controlItems = {...controls}
+    const {name} = event.target
 
     controlItems[name].value = event.target.value
     controlItems[name].isValid = checkValidity(
@@ -59,8 +51,8 @@ const LoginPage = props => {
   }
 
   const blurHandler = event => {
-    const controlItems = { ...controls }
-    const { name } = event.target
+    const controlItems = {...controls}
+    const {name} = event.target
 
     if (controlItems[name].value.trim() !== '') {
       controlItems[name].isTouched = true
@@ -72,7 +64,7 @@ const LoginPage = props => {
   const submitHandler = event => {
     event.preventDefault()
 
-    const controlItems = { ...controls }
+    const controlItems = {...controls}
     const formData = {}
 
     for (let control in controls) {
@@ -106,58 +98,60 @@ const LoginPage = props => {
 
   return (
     <LoginWrapper>
-      <Backdrop show />
-      <FormWrapper>
-        <Logo src={logo} />
-        <LoginName>
-          <FormattedMessage id="signInName" />
-        </LoginName>
-        {!isLoading ? (
-          <Form>
-            <FieldsWrapper>
-              <Field
-                type="text"
-                label="emailLabel"
-                labelColor="#fff"
-                value={controls.email.value}
-                name="email"
-                placeholder="emailPlaceholder"
-                isValid={controls.email.isValid}
-                isTouched={controls.email.isTouched}
-                errorMessage={emailErrorMessage}
-                onChange={changeHandler}
-                onBlur={blurHandler}
-              />
-              <Field
-                type="password"
-                label="passwordLabel"
-                labelColor="#fff"
-                value={controls.password.value}
-                name="password"
-                placeholder="passwordPlaceholder"
-                isValid={controls.password.isValid}
-                isTouched={controls.password.isTouched}
-                errorMessage={passwordErrorMessage}
-                onChange={changeHandler}
-                onBlur={blurHandler}
-              />
-            </FieldsWrapper>
+      <Backdrop show/>
+      <Container>
+        <FormWrapper>
+          <Logo src={logo}/>
+          <LoginName>
+            <FormattedMessage id="signInName"/>
+          </LoginName>
+          {!isLoading ? (
+            <Form>
+              <FieldsWrapper>
+                <Field
+                  type="text"
+                  label="emailLabel"
+                  labelColor="#fff"
+                  value={controls.email.value}
+                  name="email"
+                  placeholder="emailPlaceholder"
+                  isValid={controls.email.isValid}
+                  isTouched={controls.email.isTouched}
+                  errorMessage={emailErrorMessage}
+                  onChange={changeHandler}
+                  onBlur={blurHandler}
+                />
+                <Field
+                  type="password"
+                  label="passwordLabel"
+                  labelColor="#fff"
+                  value={controls.password.value}
+                  name="password"
+                  placeholder="passwordPlaceholder"
+                  isValid={controls.password.isValid}
+                  isTouched={controls.password.isTouched}
+                  errorMessage={passwordErrorMessage}
+                  onChange={changeHandler}
+                  onBlur={blurHandler}
+                />
+              </FieldsWrapper>
 
-            <Button
-              type="submit"
-              btnType="primary"
-              position="authLayout"
-              disabled={isDisabledButton}
-              onClick={submitHandler}>
-              <FormattedMessage id="signIn" />
-            </Button>
-          </Form>
-        ) : (
-          <LoaderWrapper>
-            <Loader />
-          </LoaderWrapper>
-        )}
-      </FormWrapper>
+              <Button
+                type="submit"
+                btnType="primary"
+                position="authLayout"
+                disabled={isDisabledButton}
+                onClick={submitHandler}>
+                <FormattedMessage id="signIn"/>
+              </Button>
+            </Form>
+          ) : (
+            <LoaderWrapper>
+              <Loader/>
+            </LoaderWrapper>
+          )}
+        </FormWrapper>
+      </Container>
     </LoginWrapper>
   )
 }

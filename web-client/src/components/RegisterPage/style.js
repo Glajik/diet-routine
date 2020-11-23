@@ -8,20 +8,14 @@ export const RegisterWrapper = styled.div`
   color: #fff;
 `
 
-export const FormWrapper = styled.div`
-  max-width: 360px;
-  width: 80%;
+export const FormWrapper = styled.div` 
   display: flex;
   flex-direction: column;
   justify-content: center;
   flex-wrap: wrap;
   position: relative;
-  margin: 15px auto 10px;
+  margin: 15px auto 0;
   z-index: 999;
-
-  @media screen and (max-width: 359px) {
-    max-width: 90%;
-  }
 `
 export const Logo = styled.img.attrs({
   alt: 'Logo',

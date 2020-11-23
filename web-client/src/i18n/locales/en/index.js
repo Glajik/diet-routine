@@ -11,7 +11,7 @@ export default {
   signUpSuccessMessage: 'You have passed your registration successfully',
   signUpErrorMessage: 'We have such user already',
   message: 'Message',
-  haveAccountBtn: 'Already have an account',
+  haveAccountBtn: 'Have an account',
   nextBtn: 'Next',
   nameQuestion: 'What is your name?',
   register: 'Register',
@@ -42,4 +42,8 @@ export default {
   errorMessagePasswordConfirm: 'Passwords do not match!',
   textForChangeTypeAuth: 'or',
   forgotPassword: 'Forgot your password?',
+  productSearch: 'product search',
+  addProduct: 'add product',
+  calendar: 'calendar',
+  profile: 'profile'
 }

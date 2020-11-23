@@ -44,4 +44,8 @@ export default {
   errorMessagePasswordConfirm: 'Паролі не співпадають!',
   textForChangeTypeAuth: 'або',
   forgotPassword: 'Забули пароль?',
+  productSearch: 'пошук продуктів',
+  addProduct: 'додати продукт',
+  calendar: 'календарь',
+  profile: 'профіль'
 }

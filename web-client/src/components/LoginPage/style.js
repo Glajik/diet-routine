@@ -10,19 +10,13 @@ export const LoginWrapper = styled.div`
 `
 
 export const FormWrapper = styled.div`
-  display: flex;
-  max-width: 360px;
-  width: 80%;
+  display: flex; 
   position: relative;
   flex-direction: column;
   justify-content: center;
   flex-wrap: wrap;
   margin: 15px auto 0;
   z-index: 999;
-
-  @media screen and (max-width: 359px) {
-    max-width: 90%;
-  }
 `
 export const Logo = styled.img.attrs({
   alt: 'Logo'

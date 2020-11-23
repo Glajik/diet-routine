@@ -5,8 +5,8 @@ export const Wrapper = styled.div`
   max-width: 854px;
   margin: auto;
   justify-content: center;
-  background: #f0f0f0;
-  min-height: 100vh;
+  //background: #f0f0f0;
+  //min-height: 100vh;
   .fade-enter {
     transition: transform 1000ms linear;
     transform: translateX(100%);

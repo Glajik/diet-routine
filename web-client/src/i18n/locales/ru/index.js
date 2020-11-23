@@ -46,4 +46,8 @@ export default {
   errorMessagePasswordConfirm: 'Пароли не совпадают!',
   textForChangeTypeAuth: 'или',
   forgotPassword: 'Забыли пароль?',
+  productSearch: 'поиск продуктов',
+  addProduct: 'добавить продукт',
+  calendar: 'календать',
+  profile: 'профиль'
 }

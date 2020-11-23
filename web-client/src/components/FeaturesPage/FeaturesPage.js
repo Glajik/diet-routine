@@ -41,7 +41,10 @@ const FeaturesPage = () => {
             <Button type='button' btnType='secondary' id='button_features'><FormattedMessage id='register'/></Button>
           </SingleButton>
           <SingleButton>
-            <Button type='button' btnType='primary'><FormattedMessage id='start'/></Button>
+            <Button
+              type='button'
+              btnType='primary'
+              onClick={() => history.push('/profile')}><FormattedMessage id='start'/></Button>
           </SingleButton>
         </ButtonGroup>
       </CardsAnimated>
