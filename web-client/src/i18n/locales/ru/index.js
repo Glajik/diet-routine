@@ -49,5 +49,6 @@ export default {
   productSearch: 'поиск продуктов',
   addProduct: 'добавить продукт',
   calendar: 'календать',
-  profile: 'профиль'
+  profile: 'профиль',
+  main: 'Главная'
 }

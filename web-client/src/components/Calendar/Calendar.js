@@ -1,20 +1,19 @@
 import React from 'react'
-import {BottomBar, Container, TopBar} from '../UI'
+import {TopBottomBarsLayout} from '../../layouts'
+import {Container} from '../UI'
 import {CalendarContentWrapper} from './style'
 
 const Calendar = (props) => {
   return (
     <Container>
-      <TopBar
-        pageName="calendar"
-        pageHasSettings={true}
-        history={props.history}/>
-      <CalendarContentWrapper>
-        <h2>Calendar</h2>
-      </CalendarContentWrapper>
-      <BottomBar
-        currentPage="calendar"
-        history={props.history}/>
+      <TopBottomBarsLayout
+        title="calendar"
+        settingsAction={() => console.log('Calendar')}
+        history={props.history}>
+        <CalendarContentWrapper>
+          <h2>Calendar</h2>
+        </CalendarContentWrapper>
+      </TopBottomBarsLayout>
     </Container>
   )
 }

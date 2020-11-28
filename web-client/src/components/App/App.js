@@ -26,7 +26,8 @@ import {
   ProductSearch,
   Profile,
   RegisterPage,
-  WelcomePage
+  WelcomePage,
+  Main
 } from '../index'
 
 import {Wrapper} from './style'
@@ -52,6 +53,7 @@ const App = ({location}) => {
             <Route path="/product-search" component={ProductSearch}/>
             <Route path="/calendar" component={Calendar}/>
             <Route path="/profile" component={Profile}/>
+            <Route path="/main" component={Main}/>
           </Switch>
         </Wrapper>
       </IntlProvider>

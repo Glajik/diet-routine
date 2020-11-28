@@ -12,7 +12,7 @@ const FirstPage = () => {
     setTimeout(() => {
       history.push('/welcome_page')
     }, 1500)
-  }, [])
+  }, [history])
 
   return (
     <MainDiv>

@@ -1,20 +1,19 @@
 import React from 'react'
-import {Container, TopBar, BottomBar} from '../UI'
-
+import {Container} from '../UI'
+import {TopBarLayout} from '../../layouts'
 import {ProductSearchContentWrapper} from './style'
+
 const ProductSearch = (props) => {
   return (
     <Container>
-      <TopBar
-        pageName="productSearch"
-        pageHasSettings={true}
-        history={props.history}/>
-      <ProductSearchContentWrapper>
-        <h2>Product Search</h2>
-      </ProductSearchContentWrapper>
-      <BottomBar
-        currentPage="productSearch"
-        history={props.history}/>
+      <TopBarLayout
+        title="productSearch"
+        history={props.history}>
+        <ProductSearchContentWrapper>
+          <h2>Product Search</h2>
+          <p style={{marginTop: 40}}>Now you can press comeback button. Then you can see that you will be returned to the last page, instead of the Main page.</p>
+        </ProductSearchContentWrapper>
+      </TopBarLayout>
     </Container>
   )
 }

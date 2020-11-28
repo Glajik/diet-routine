@@ -1,20 +1,19 @@
 import React from 'react'
-import {BottomBar, Container, TopBar} from '../UI'
+import {Container} from '../UI'
+import {TopBottomBarsLayout} from '../../layouts'
 import {ProfileContentWrapper} from './style'
 
 const Profile = (props) => {
   return (
     <Container>
-      <TopBar
-        pageName="profile"
-        pageHasSettings={true}
-        history={props.history}/>
-      <ProfileContentWrapper>
-        <h2>Profile</h2>
-      </ProfileContentWrapper>
-      <BottomBar
-        currentPage="profile"
-        history={props.history}/>
+      <TopBottomBarsLayout
+        title="profile"
+        settingsAction={() => console.log('Profile')}
+        history={props.history}>
+        <ProfileContentWrapper>
+          <h2>Profile</h2>
+        </ProfileContentWrapper>
+      </TopBottomBarsLayout>
     </Container>
   )
 }

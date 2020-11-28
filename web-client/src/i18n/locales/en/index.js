@@ -45,5 +45,6 @@ export default {
   productSearch: 'product search',
   addProduct: 'add product',
   calendar: 'calendar',
-  profile: 'profile'
+  profile: 'profile',
+  main: 'Main'
 }

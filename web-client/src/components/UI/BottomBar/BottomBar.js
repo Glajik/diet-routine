@@ -1,5 +1,4 @@
-import React from 'react'
-import {colors} from '../../../assets/colors'
+import React, {useState} from 'react'
 
 import {
   BookOutlined,
@@ -12,52 +11,39 @@ import {
   BarWrapper,
   IconButton,
   IconsWrapper,
-  ActiveDot,
   AddProductButton
 } from './style'
 
 const BottomBar = ({currentPage, history}) => {
-  const moveToProductSearch = () => {
-    if (history.location.pathname !== '/product-search') {
-      history.push('/product-search')
-    }
-  }
+  const [activeRoute] = useState({
+    mainIsActive: history.location.pathname === '/main',
+    calendarIsActive: history.location.pathname === '/calendar',
+    profileIsActive: history.location.pathname === '/profile'
+  })
 
-  const moveToCalendar = () => {
-    if (history.location.pathname !== '/calendar') {
-      history.push('/calendar')
-    }
-  }
-
-  const moveToProfile = () => {
-    if (history.location.pathname !== '/profile') {
-      history.push('/profile')
+  const clickHandler = (path) => {
+    if (history.location.pathname !== path) {
+      history.push(path)
     }
   }
 
   return (
     <BarWrapper>
       <IconsWrapper>
-        <IconButton onClick={moveToProductSearch}>
-          <BookOutlined
-            style={{
-              color: currentPage === 'productSearch' ?  colors.green : '#bfbfbf'
-            }}/>
-          {currentPage === 'productSearch' ? <ActiveDot/> : null}
+        <IconButton
+          isActive={activeRoute.mainIsActive}
+          onClick={() => clickHandler('/main')}>
+          <BookOutlined/>
         </IconButton>
-        <IconButton onClick={moveToCalendar}>
-          <CalendarOutlined
-            style={{
-              color: currentPage === 'calendar' ?  colors.green : '#bfbfbf'
-            }}/>
-          {currentPage === 'calendar' ? <ActiveDot/> : null}
+        <IconButton
+          isActive={activeRoute.calendarIsActive}
+          onClick={() => clickHandler('/calendar')}>
+          <CalendarOutlined/>
         </IconButton>
-        <IconButton onClick={moveToProfile}>
-          <UserOutlined
-            style={{
-              color: currentPage === 'profile' ?  colors.green : '#bfbfbf'
-            }}/>
-          {currentPage === 'profile' ? <ActiveDot/> : null}
+        <IconButton
+          isActive={activeRoute.profileIsActive}
+          onClick={() => clickHandler('/profile')}>
+          <UserOutlined/>
         </IconButton>
         <AddProductButton onClick={() => history.push('/add-product')}>
           <PlusOutlined style={{color: '#ffffff', fontSize: 15}}/>

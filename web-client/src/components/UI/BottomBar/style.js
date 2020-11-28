@@ -35,15 +35,18 @@ export const IconButton = styled.button`
   position: relative;
   font-size: 18px;
   cursor: pointer;
-`
-
-export const ActiveDot = styled.div`
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: ${colors.green};
-  position: absolute;
-  bottom: -4px;
+  color: ${p => p.isActive ? colors.green : '#bfbfbf'};
+  
+  &:after {
+    content: "";
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: ${colors.green};
+    position: absolute;
+    bottom: -4px;
+    opacity: ${p => p.isActive ? 1 : 0};
+  } 
 `
 
 export const AddProductButton = styled.button`

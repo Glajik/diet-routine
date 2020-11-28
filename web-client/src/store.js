@@ -3,7 +3,7 @@ import { reduxFirestore, getFirestore } from 'redux-firestore'
 import firebase from './firebase'
 import thunk from 'redux-thunk'
 import rootReducer from './redux/reducers/rootReducer'
-import { getFirebase, reactReduxFirebase } from 'react-redux-firebase'
+import { getFirebase } from 'react-redux-firebase'
 
 
 const rfConfig = {} // optional redux-firestore Config Options
