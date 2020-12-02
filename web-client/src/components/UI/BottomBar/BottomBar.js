@@ -46,7 +46,7 @@ const BottomBar = ({currentPage, history}) => {
           <UserOutlined/>
         </IconButton>
         <AddProductButton onClick={() => history.push('/add-product')}>
-          <PlusOutlined style={{color: '#ffffff', fontSize: 15}}/>
+          <PlusOutlined/>
         </AddProductButton>
       </IconsWrapper>
     </BarWrapper>

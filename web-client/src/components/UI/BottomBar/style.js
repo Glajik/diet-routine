@@ -37,7 +37,7 @@ export const IconButton = styled.button`
   cursor: pointer;
   color: ${p => p.isActive ? colors.green : '#bfbfbf'};
   
-  &:after {
+  &::after {
     content: "";
     width: 8px;
     height: 8px;
@@ -62,4 +62,6 @@ export const AddProductButton = styled.button`
   position: relative;
   left: 8px;
   bottom: 20px;
+  color: #ffffff;
+  font-size: 15px;
 `
