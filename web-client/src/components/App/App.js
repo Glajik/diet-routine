@@ -4,43 +4,61 @@
   website much faster because when we load our project we don't wait until all components would be loaded. Also we
    need this function because user may not want to see other pages. In such case we don't need to load these pages. This
     function will load page only when user visit it. If he doesn't we don't load page.
-
     We can use lazyLoading function by writing such script:
       const asyncComponent = lazyLoading(() => {
         return import('./component')
       })
-
     (I understand that user may not visit registration form, but log in and registration form was created from the
      same component which I need to import by myself because I have to show log in form to users)
 */
 
 import React from 'react'
-import { Route, Switch } from 'react-router-dom'
+import {IntlProvider} from 'react-intl'
+import {Route, Switch, withRouter} from 'react-router-dom'
+import {CSSTransition, TransitionGroup} from 'react-transition-group'
+import {en} from '../../i18n'
+import {
+  AddProduct,
+  Calendar,
+  FeaturesPage,
+  FirstPage,
+  LoginPage,
+  ProductSearch,
+  Profile,
+  RegisterPage,
+  WelcomePage,
+  Main
+} from '../index'
 
-import { IntlProvider } from 'react-intl'
-import en from '../../i18n/locales/en'
-import ru from '../../i18n/locales/ru'
-import ua from '../../i18n/locales/ua'
+import {Wrapper} from './style'
 
-import lazyLoading from '../../hoc/lazyLoading'
-
-import Counter from '../Counter/Counter'
-import SignInOrSignUpForm from '../SignInOrSignUpForm'
-import CounterOrSignIn from '../CounteOrSignIn/CounterOrSignIn'
-
-const App = (props) => {
-  console.log(props)
+const App = ({location}) => {
   return (
-
-    <div div className="App" >
-      <IntlProvider locale={navigator.language} messages={ru}>
-        <Switch>
-          <Route path="/sign-up" render={() => <SignInOrSignUpForm signUp />} />
-          <Route path="/" component={CounterOrSignIn} />
-        </Switch>
+    <div className="App">
+      <IntlProvider locale={navigator.language} messages={en}>
+        <Wrapper>
+          <TransitionGroup>
+            <CSSTransition key={location.key} classNames="fade" timeout={1000}>
+              <Switch location={location}>
+                <Route path="/welcome_page" component={WelcomePage}/>
+                <Route exact path="/" component={FirstPage}/>
+              </Switch>
+            </CSSTransition>
+          </TransitionGroup>
+          <Switch location={location}>
+            <Route path="/features" component={FeaturesPage}/>
+            <Route path="/login" component={LoginPage}/>
+            <Route path="/register" component={RegisterPage}/>
+            <Route path="/add-product" component={AddProduct}/>
+            <Route path="/product-search" component={ProductSearch}/>
+            <Route path="/calendar" component={Calendar}/>
+            <Route path="/profile" component={Profile}/>
+            <Route path="/main" component={Main}/>
+          </Switch>
+        </Wrapper>
       </IntlProvider>
-    </div >
+    </div>
   )
 }
 
-export default App
+export default withRouter(App)

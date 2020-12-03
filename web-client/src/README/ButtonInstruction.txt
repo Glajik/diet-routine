@@ -1,0 +1,30 @@
+     This is the instruction about how to use the Button (path: src/components/UI/Button)
+
+You can use Button component by writing such code:
+
+<Button
+  type="submit"
+  btnType="secondary"
+  disabled={state.isDisabled}
+  leftIconClassNames="far fa-envelope"
+  iconColor="green"
+  position="authLayout"
+  onClick={clickHandler}>Click me</Button>
+
+
+1. type - this param helps us to choose the type of the button which we want use in depends on the action which button has to do (the information about different kinds of the button you can find on this page: http://htmlbook.ru/html/button/type)
+
+2. btnType - our project will have very big amount of different buttons. Lots of them will have the same styles. So, if we don't want to repeat the same code to style the button we have to group all buttons in different conditional groups. For example we decided that we will have lots of green buttons with the same font-size, color etc. We created one group of buttons which we named 'primary'. Than we decided that we will also have lots of similar purple buttons. We created one more group and named it 'secondary'. Etc...
+The settings for all types of the button you can find in the style file of the Button component.
+
+3. disabled - this param says user if he can use our button or not. For example we need this param when user wants to send form with his data to the server. When user clicks the button browser sends the request to the server with user's data and waits for the response. This action will take the certain amount of time. During this time user can send several requests more with the same data. We as developers must not let user to do it. So, when user clicks the button we have to disable (to block) it until server gives the response to the user
+
+4. leftIconClassNames (rightIconClassNames) - this param helps you to paste the icon into the button on the left or right side. I have used the Font Awesome as the API for icons (you can see its' CDN in public/index.html), so as the value of this param you have to paste Font Awesome classes of that icon which you want to use
+
+5. iconColor - this param offers you to set the color for the icon. You need this param because the icons will have different colors in the different parts of the project
+
+6. onClick - this param will describe the behavior of your button after it was clicked
+
+7. position - we use this prop if our button has special position (for example the button on login and register pages. It has position absolute). I think that we shouldn't use words "absolute, relative, sticky, fixed", because our project can have several fixed, sticky etc. buttons. One of them can have "position: fixed; top: 0; " another one - "position: fixed; bottom: 0;". We cannot use the same type "fixed" because they have different styles
+
+P.S. Happy hacking!)

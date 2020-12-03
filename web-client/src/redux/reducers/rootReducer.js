@@ -2,14 +2,10 @@
 import { combineReducers } from 'redux'
 import { firebaseReducer } from 'react-redux-firebase'
 import { firestoreReducer } from 'redux-firestore'
-import { formReducer } from './formReducer'
 import { loaderReducer } from './loaderReducer'
 import { modalReducer } from './modalReducer'
-import  authReducer  from './authReducer'
 
 const rootReducer = combineReducers({
-  auth: authReducer,
-  form: formReducer,
   loader: loaderReducer,
   modal: modalReducer,
   firebase: firebaseReducer,

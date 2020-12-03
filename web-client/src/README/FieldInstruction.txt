@@ -1,0 +1,102 @@
+      This is the instruction about how to use the Field (path: src/components/UI/Field)
+
+You can use Field component by writing such code:
+
+<Field
+   type="text"
+   label="Email"
+   labelColor="#0000ff"
+   value={state.value}
+   name="email"
+   placeholder="Enter you email"
+   isValid={state.isValid}
+   isTouched={state.isTouched}
+   errorMessage={state.errorMessage}
+   leftIconClassNames="far fa-envelope"
+   iconColor="green"
+   onChange={onChangeHandler}
+   onBlur={onBlurHandler}/>
+
+
+1. type - the type of input (email, password etc.)
+
+2. label - the label of input
+
+3. labelColor - the color of the label
+
+4. value - here you save that text which user entered in the field
+
+5. placeholder - the placeholder for your input
+
+6. isValid - you can get the value of this param (true or false) from the state
+
+7. isTouched - you need this param to understand if the input was touched. You can get the value of this param (true
+or
+false) from the state
+
+8. errorMessage - you will save the error message for your input here
+
+9. leftIconClassNames (rightIconClassNames) - this param helps you to paste the icon into the input on the left or right
+
+side. I have used the Font Awesome as the API for icons (you can see its' CDN in public/index.html), so as the value of
+this param
+you have to
+paste Font Awesome
+classes of that icon which you want to use
+
+10. iconColor - this param offers you to set the color for the icon. You need this param because the icons will have
+different colors in
+the different parts of the project
+
+11. onChange - this param will describe the behavior of your input after the value was changed
+
+12. name - here will be quite long description :)
+  So, I think that the good practice would be to write onChange function for all inputs together rather than for
+  everyone
+   separately.
+  In such case you need special unique name for every input. This is the reason why you need 'name' prop. You can even
+  reuse your onChange function in other forms. You can write this function in the utils file.
+   In such case your
+   code looks like this:
+   
+     export const inputChangeHandler = (event, stateControls) => {
+       const controls = {...stateControls}
+       const {name} = event.target
+       controls[name].value = event.target.value
+       controls[name].touched = true
+       controls[name].valid = checkValidity(event.target.value, controls[name].validation)
+
+       return controls
+     }
+
+   So, in the form component you will need to write only this code:
+     const onChangeHandler = (event) => {
+       const controls = {...state.controls}
+       inputChangeHandler(event, controls)
+
+       setState({controls})
+     }
+
+     I think that the form component will look much easier by writing this code rather than:
+     const onChangeHandler = (event) => {
+       const controls = {...state.controls}
+       controls.email.value = event.target.value
+       controls.email.touched = true
+       controls.email.valid = checkValidity(event.target.value, controls.email.validation)
+
+       controls.password.value = event.target.value
+       controls.password.touched = true
+       controls.password.valid = checkValidity(event.target.value, controls.password.validation)
+
+       controls.age.value = event.target.value
+       controls.age.touched = true
+       controls.age.valid = checkValidity(event.target.value, controls.age.validation)
+
+       (...)
+
+       setState({controls})
+     }
+
+13. onBlur - the behavior of input after the blur
+
+P.S. Happy hacking!)

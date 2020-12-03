@@ -7,9 +7,10 @@ import { createFirestoreInstance } from 'redux-firestore'
 import firebase from './firebase'
 import store from './store'
 import * as serviceWorker from './serviceWorker'
-import { createStoreWithFirebase, a} from './store'
+// import { createStoreWithFirebase, a} from './store'
 
-import App from './components/App'
+import {App} from './components'
+import './fonts.css'
 import './index.css'
 
 // react-redux-firebase config

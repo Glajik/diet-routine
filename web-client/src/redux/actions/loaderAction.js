@@ -1,13 +1,13 @@
-import {LOAD, NOT_LOAD} from '../actionTypes'
+import { LOAD, NOT_LOAD } from '../actionTypes'
 
-export const load = () =>  {
+export const load = () => {
   return {
-    type: LOAD
+    type: LOAD,
   }
 }
 
 export const notLoad = () => {
   return {
-    type: NOT_LOAD
+    type: NOT_LOAD,
   }
 }
