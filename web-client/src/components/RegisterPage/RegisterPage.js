@@ -1,9 +1,9 @@
 import * as firebase from 'firebase/app'
-import React, {useState} from 'react'
-import {FormattedMessage, injectIntl} from 'react-intl'
-import {logo, registerPencil} from '../../assets'
-import {checkValidity, createErrorMessage, disableButton} from '../../utils'
-import {Backdrop, Button, Container, Field, Loader} from '../UI'
+import React, { useState } from 'react'
+import { FormattedMessage, injectIntl } from 'react-intl'
+import { logo, registerPencil } from '../../assets'
+import { checkValidity, createErrorMessage, disableButton } from '../../utils'
+import { Backdrop, Button, Container, Field, Loader } from '../UI'
 import {
   FieldsWrapper,
   Form,
@@ -15,7 +15,7 @@ import {
   RegisterName,
   RegisterWrapper,
   UserName,
-  UserNameWrapper
+  UserNameWrapper,
 } from './style'
 
 const RegisterPage = props => {
@@ -27,8 +27,8 @@ const RegisterPage = props => {
       errorMessage: 'error',
       validation: {
         required: true,
-        isEmail: true
-      }
+        isEmail: true,
+      },
     },
     password: {
       value: '',
@@ -39,8 +39,8 @@ const RegisterPage = props => {
         required: true,
         minLength: 6,
         maxLength: 60,
-        isPassword: true
-      }
+        isPassword: true,
+      },
     },
     repeatPassword: {
       value: '',
@@ -49,17 +49,17 @@ const RegisterPage = props => {
       errorMessage: 'error',
       validation: {
         required: true,
-        isRepeatPassword: true
-      }
-    }
+        isRepeatPassword: true,
+      },
+    },
   })
 
   const [isDisabledButton, setDisabledButton] = useState(true)
   const [isLoading, setLoading] = useState(false)
 
   const changeHandler = event => {
-    const controlItems = {...controls}
-    const {name} = event.target
+    const controlItems = { ...controls }
+    const { name } = event.target
 
     controlItems[name].value = event.target.value
     controlItems[name].isValid = checkValidity(
@@ -73,7 +73,7 @@ const RegisterPage = props => {
   }
 
   const repeatPasswordValidity = () => {
-    const controlItems = {...controls}
+    const controlItems = { ...controls }
 
     if (controlItems.password.value === controlItems.repeatPassword.value) {
       controlItems.repeatPassword.isValid = true
@@ -85,8 +85,8 @@ const RegisterPage = props => {
   }
 
   const blurHandler = event => {
-    const controlItems = {...controls}
-    const {name} = event.target
+    const controlItems = { ...controls }
+    const { name } = event.target
 
     if (controlItems[name].value.trim() !== '') {
       controlItems[name].isTouched = true
@@ -98,7 +98,7 @@ const RegisterPage = props => {
   const submitHandler = event => {
     event.preventDefault()
 
-    const controlItems = {...controls}
+    const controlItems = { ...controls }
     const formData = {}
 
     for (let control in controls) {
@@ -134,16 +134,16 @@ const RegisterPage = props => {
 
   return (
     <RegisterWrapper>
-      <Backdrop show/>
+      <Backdrop show />
       <Container>
         <FormWrapper>
-          <Logo src={logo}/>
+          <Logo src={logo} />
           <RegisterName>
-            <FormattedMessage id="signUpName"/>
+            <FormattedMessage id="signUpName" />
           </RegisterName>
           <UserNameWrapper>
             <PencilButton>
-              <Icon src={registerPencil}/>
+              <Icon src={registerPencil} />
             </PencilButton>
             <UserName>Антонина</UserName>
           </UserNameWrapper>
@@ -197,12 +197,12 @@ const RegisterPage = props => {
                 position="authLayout"
                 disabled={isDisabledButton}
                 onClick={submitHandler}>
-                <FormattedMessage id="signIn"/>
+                <FormattedMessage id="signIn" />
               </Button>
             </Form>
           ) : (
             <LoaderWrapper>
-              <Loader/>
+              <Loader />
             </LoaderWrapper>
           )}
         </FormWrapper>
