@@ -2,17 +2,29 @@ import React from 'react'
 import { Container } from '../UI'
 import { TopBottomBarsLayout } from '../../layouts'
 import { ProductSearchContentWrapper } from './style'
+import { Input } from 'antd'
+import { colors } from '../../assets/colors'
 
-const ProductSearch = (props) => {
+import {
+  CloseCircleOutlined,
+  SearchOutlined
+} from '@ant-design/icons'
+
+const ProductSearch = props => {
   return (
     <Container>
       <TopBottomBarsLayout
-        title="productSearch"
+        title='productSearch'
         settingsAction={() => console.log('Main Page')}
         history={props.history}>
         <ProductSearchContentWrapper>
-          <h2>Product Search</h2>
-          <p style={{ marginTop: 40 }}>Now you can press comeback button. Then you can see that you will be returned to the last page, instead of the Main page.</p>
+          <Input
+            style={{ border: 'none !important' }}
+            bordered={false}
+            placeholder='find a product'
+            prefix={<SearchOutlined style={{ color: colors.green }} />}
+            suffix={<CloseCircleOutlined />}
+          />
         </ProductSearchContentWrapper>
       </TopBottomBarsLayout>
     </Container>

@@ -6,14 +6,18 @@
   outline: none;
 }
 
-input::placeholder {
+/* input::placeholder {
   font-family: 'IBM Plex Sans', sans-serif;
-}
+} */
 
 body {
   margin: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.ant-input-borderless {
+  border: none
 }
 
 /*code {*/
