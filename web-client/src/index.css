@@ -1,56 +1,31 @@
 * {
-  font-family: 'IBM Plex Sans', sans-serif;
+  font-family: Nunito;
   margin: 0;
   padding: 0;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   outline: none;
 }
-
-input::placeholder {
-  font-family: 'IBM Plex Sans', sans-serif;
-}
-
 body {
   margin: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-/*code {*/
-  /*font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;*/
-/*}*/
-
-.link {
-  text-decoration: none;
+input::placeholder {
+  font-family: Nunito;
 }
 
-input[type='password'] {
-  font-family: 'input';
+/* отключение * required input */
+.ant-form-item-label>label.ant-form-item-required::before {
+  content: none !important;
+}
+
+/* label для input */
+.ant-form-item-label>label.ant-form-item-required {
+  margin-left: 20px;
+  margin-bottom: -10px;
   font-style: normal;
   font-weight: normal;
-  speak: none;
-  color: #9d53b4;
-  font-size: 25px;
-  padding: 10px 15px;
-  /*font-size: 25px;*/
-
-  /* For safety - reset parent styles, that can break glyph codes*/
-  font-variant: normal;
-  text-transform: none;
-
-  /* Font smoothing. That was taken from TWBS */
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  /* Uncomment for 3D effect */
-  /* text-shadow: 1px 1px 1px rgba(127, 127, 127, 0.3); */
-
-  /* add spacing to better separate each image */
-  letter-spacing: 3px;
-}
-
-input[type='password']::placeholder {
-  letter-spacing: 0;
   font-size: 16px;
-  position: relative;
-  bottom: 3px;
+  line-height: 22px;
 }

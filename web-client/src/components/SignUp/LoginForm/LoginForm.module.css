@@ -1,0 +1,31 @@
+#forms {
+    margin: -40px auto 0 auto;
+    width: 288px;
+}
+
+.inputItem {
+    padding-bottom: -10px;
+    padding-bottom: -10px;
+}
+
+.inputItem .input {
+    margin-top: -20px;
+    width: 288px;
+    height: 40px;
+    background: #FFFFFF;
+
+    border: 1px solid #D9D9D9;
+    box-sizing: border-box;
+    border-radius: 30px;
+
+}
+
+.input ::placeholder {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 22px;
+
+    color: #000000;
+    opacity: 0.5;
+}

@@ -20,7 +20,7 @@ import {
   AddProduct,
   Calendar,
   FeaturesPage,
-  LoginPage,
+  SignUp,
   ProductSearch,
   Profile,
   RegisterPage,
@@ -36,10 +36,9 @@ const App = () => {
       <IntlProvider locale={navigator.language} messages={en}>
         <Wrapper>
           <Switch>
+            <Route path="/signup" component={SignUp} />
             <Route path="/" component={OnboardingPage} />
             <Route path="/features" component={FeaturesPage} />
-            <Route path="/login" component={LoginPage} />
-            <Route path="/register" component={RegisterPage} />
             <Route path="/add-product" component={AddProduct} />
             <Route path="/product-search" component={ProductSearch} />
             <Route path="/calendar" component={Calendar} />

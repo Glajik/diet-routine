@@ -26,7 +26,6 @@
   font-weight: 1800;
   font-size: 12px;
   line-height: 24px;
-  font-family: Nunito;
 
   line-height: 33px;
   align-items: center;
@@ -42,7 +41,6 @@
 }
 
 button span {
-  font-family: Nunito;
   font-style: normal;
   font-weight: 900;
   font-size: 16px;
@@ -52,6 +50,12 @@ button span {
 .greenBtn {
   width: 288px;
   height: 48px;
+
+  font-family: Nunito;
+  font-style: normal;
+  font-weight: 900;
+  font-size: 16px;
+  line-height: 24px;
 
   background: #3dad06;
   border-radius: 30px;
@@ -67,6 +71,11 @@ button span {
   width: 288px;
   height: 48px;
   margin-top: 16px;
+
+font-style: normal;
+font-weight: 900;
+font-size: 16px;
+line-height: 24px;
 
   background: #ffffff;
   border: 1px solid #3dad06;
@@ -91,7 +100,6 @@ button span {
   width: 163px;
   height: 24px;
 
-  font-family: Nunito;
   font-style: normal;
   font-weight: normal;
   font-size: 14px;
@@ -107,7 +115,7 @@ button span {
   height: 24px;
   padding-left: 8px;
   margin-bottom: 10px;
-  font-family: Nunito;
+
   font-style: normal;
   font-weight: normal;
   font-size: 14px;
