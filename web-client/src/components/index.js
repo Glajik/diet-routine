@@ -1,6 +1,6 @@
 export { default as App } from './App'
 export { default as FeaturesPage } from './FeaturesPage/FeaturesPage'
-export { default as WelcomePage } from './WelcomePage/WelcomePage'
+export { default as OnboardingPage } from './OnboardingPage/OnboardingPage'
 export { default as LoginPage } from './LoginPage'
 export { default as RegisterPage } from './RegisterPage'
 export { default as AddProduct } from './AddProduct'

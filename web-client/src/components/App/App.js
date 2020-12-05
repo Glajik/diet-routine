@@ -24,7 +24,7 @@ import {
   ProductSearch,
   Profile,
   RegisterPage,
-  WelcomePage,
+  OnboardingPage,
   Main,
 } from '../index'
 
@@ -36,7 +36,7 @@ const App = () => {
       <IntlProvider locale={navigator.language} messages={en}>
         <Wrapper>
           <Switch>
-            <Route path="/" component={WelcomePage} />
+            <Route path="/" component={OnboardingPage} />
             <Route path="/features" component={FeaturesPage} />
             <Route path="/login" component={LoginPage} />
             <Route path="/register" component={RegisterPage} />

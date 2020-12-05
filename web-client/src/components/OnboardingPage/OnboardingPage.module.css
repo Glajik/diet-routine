@@ -1,7 +1,6 @@
 .container {
   display: flex;
   flex-direction: column;
-  margin: 20px auto 0 auto;
 }
 
 .imageContainer {
@@ -9,9 +8,7 @@
   width: 240px;
   height: 240px;
 
-  border-style: dashed;
-  border-color: grey;
-  border-width: thin;
+  border-style: none;
 }
 
 .image {
@@ -20,22 +17,36 @@
 }
 
 .phrase {
+  margin: 20px auto 0 auto;
   width: 288px;
   height: 64px;
   margin-top: 8px;
-  font-family: Nunito;
+
   font-style: normal;
-  font-weight: bold;
-  font-size: 24px;
+  font-weight: 1800;
+  font-size: 12px;
+  line-height: 24px;
+  font-family: Nunito;
+
   line-height: 33px;
   align-items: center;
   text-align: center;
 }
 
 .btnGroup {
-  margin: 20px auto 0 auto;
+  margin: 24px auto 0 auto;
   display: flex;
+  align-items: center;
+  justify-content: center;
   flex-direction: column;
+}
+
+button span {
+  font-family: Nunito;
+  font-style: normal;
+  font-weight: 900;
+  font-size: 16px;
+  line-height: 24px;
 }
 
 .greenBtn {
@@ -46,13 +57,6 @@
   border-radius: 30px;
   border-style: none;
 
-  font-family: Nunito;
-  font-style: normal;
-  font-weight: bold;
-  font-weight: 900;
-  font-size: 16px;
-  line-height: 24px;
-
   align-items: center;
   text-align: center;
 
@@ -62,22 +66,25 @@
 .whiteBtn {
   width: 288px;
   height: 48px;
+  margin-top: 16px;
 
-  opacity: 0.8;
+  background: #ffffff;
   border: 1px solid #3dad06;
   box-sizing: border-box;
   border-radius: 30px;
-
-  font-family: Nunito;
-  font-style: normal;
-  font-weight: 900;
-  font-size: 16px;
-  line-height: 24px;
 
   align-items: center;
   text-align: center;
 
   color: #3dad06;
+}
+
+.question {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 16px;
+
 }
 
 .haveAccount {
@@ -92,12 +99,14 @@
   display: flex;
   align-items: center;
 
-  color: #5c5b5b;
+  color: #6a6767;
 }
 
 .signIn {
   width: 47px;
   height: 24px;
+  padding-left: 8px;
+  margin-bottom: 10px;
   font-family: Nunito;
   font-style: normal;
   font-weight: normal;
