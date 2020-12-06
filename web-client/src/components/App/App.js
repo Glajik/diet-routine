@@ -23,7 +23,7 @@ import {
   Login,
   ProductSearch,
   Profile,
-  RegisterPage,
+  SignUp,
   OnboardingPage,
   Main,
 } from '../index'
@@ -37,6 +37,7 @@ const App = () => {
         <Wrapper>
           <Switch>
             <Route path="/login" component={Login} />
+            <Route path="/signup" component={SignUp} />
             <Route path="/" component={OnboardingPage} />
             <Route path="/features" component={FeaturesPage} />
             <Route path="/add-product" component={AddProduct} />

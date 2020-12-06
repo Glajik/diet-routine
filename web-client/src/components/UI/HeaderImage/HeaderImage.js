@@ -1,5 +1,5 @@
 import React from 'react'
-import styled from '../OnboardingPage.module.css'
+import styled from './HeaderImage.module.css'
 
 const HeaderImage = ({ image }) => {
   return (

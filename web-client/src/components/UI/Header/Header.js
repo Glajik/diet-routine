@@ -1,10 +1,11 @@
 import React from 'react'
 import { Typography } from 'antd'
-import styled from '../OnboardingPage.module.css'
+
+import styled from './Header.module.css'
 
 const { Title } = Typography
 
-const Phrase = ({ text }) => {
+const Header = ({ text }) => {
   return (
     <Title level={3} className={styled.phrase}>
       {text}
@@ -12,4 +13,4 @@ const Phrase = ({ text }) => {
   )
 }
 
-export default Phrase
+export default Header
