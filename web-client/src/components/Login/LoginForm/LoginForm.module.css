@@ -29,3 +29,22 @@
     color: #000000;
     opacity: 0.5;
 }
+
+.greenBtn {
+    width: 288px;
+    height: 48px;
+
+    font-style: normal;
+    font-weight: 900;
+    font-size: 16px;
+    line-height: 24px;
+
+    background: #3dad06;
+    border-radius: 30px;
+    border-style: none;
+
+    align-items: center;
+    text-align: center;
+
+    color: #ffffff;
+}

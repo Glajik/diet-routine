@@ -1,0 +1,48 @@
+.container {
+    margin-top: 16px;
+    display: flex;
+    flex-direction: column;
+}
+
+.firstPart {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-right: 24px;
+}
+
+.question {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 16px;
+
+}
+
+.notAMemeber {
+    width: 104px;
+    height: 24px;
+
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 19px;
+    display: flex;
+    align-items: center;
+
+    color: #6a6767;
+}
+
+.link {
+    height: 24px;
+    margin-bottom: 10px;
+
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 19px;
+    align-items: center;
+    text-decoration-line: underline;
+
+    color: #020202;
+}

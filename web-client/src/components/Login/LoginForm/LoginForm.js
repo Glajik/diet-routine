@@ -1,5 +1,5 @@
 import React from 'react'
-import { Form, Input, Button, Checkbox } from 'antd'
+import { Form, Input } from 'antd'
 
 import styled from './LoginForm.module.css'
 
@@ -32,15 +32,9 @@ const LoginForm = () => {
         <Input placeholder="your password" className={styled.input} />
       </Form.Item>
 
-      <Form.Item>
-        <Button type="primary" htmlType="submit" className="login-form-button">
-          Log in
-        </Button>
-      </Form.Item>
-
-      <Form.Item>
-        Or <a href="">register now!</a>
-      </Form.Item>
+      <button type="submit" className={styled.greenBtn}>
+        Log in
+      </button>
     </Form>
   )
 }

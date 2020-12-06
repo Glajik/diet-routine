@@ -1,7 +1,7 @@
 export { default as App } from './App'
 export { default as FeaturesPage } from './FeaturesPage/FeaturesPage'
 export { default as OnboardingPage } from './OnboardingPage/OnboardingPage'
-export { default as SignUp } from './SignUp/SignUp'
+export { default as Login } from './Login/Login'
 export { default as RegisterPage } from './RegisterPage'
 export { default as AddProduct } from './AddProduct'
 export { default as ProductSearch } from './ProductSearch'

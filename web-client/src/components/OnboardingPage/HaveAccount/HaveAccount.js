@@ -6,7 +6,7 @@ const HaveAccount = () => {
   return (
     <div className={styled.question}>
       <p className={styled.haveAccount}>Already have an account?</p>
-      <NavLink to="/signin" className={styled.signIn}>
+      <NavLink to="/login" className={styled.signIn}>
         Log in
       </NavLink>
     </div>
