@@ -2,9 +2,9 @@ import React from 'react'
 
 import { Form } from 'antd'
 import Input from '../../UI/Input/Input'
-import styled from './LoginForm.module.css'
+import styled from './SignUpForm.module.css'
 
-const LoginForm = () => {
+const SignUpForm = () => {
   const onFinish = values => {
     console.log('Received values of form: ', values)
   }
@@ -29,11 +29,18 @@ const LoginForm = () => {
         rules={[{ required: true, message: 'Please input your Password!' }]}
         placeholder="your password"
       />
+      <Input
+        name="retypePassword"
+        type="password"
+        label="Retype Password"
+        rules={[{ required: true, message: 'Please input your Password!' }]}
+        placeholder="your password"
+      />
       <button type="submit" className={styled.greenBtn}>
-        Log in
+        Sign up
       </button>
     </Form>
   )
 }
 
-export default LoginForm
+export default SignUpForm

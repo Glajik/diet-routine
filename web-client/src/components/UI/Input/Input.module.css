@@ -1,0 +1,25 @@
+.inputItem {
+  padding-bottom: -10px;
+  padding-bottom: -10px;
+}
+
+.inputItem .input {
+  margin-top: -20px;
+  width: 288px;
+  height: 40px;
+  background: #ffffff;
+
+  border: 1px solid #d9d9d9;
+  box-sizing: border-box;
+  border-radius: 30px;
+}
+
+.input ::placeholder {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 22px;
+
+  color: #000000;
+  opacity: 0.5;
+}

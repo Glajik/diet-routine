@@ -2,8 +2,9 @@
   display: flex;
   flex-direction: column;
 }
+
 .btnGroup {
-  margin: 24px auto 0 auto;
+  margin: 12px auto 0 auto;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -42,10 +43,10 @@ button span {
   height: 48px;
   margin-top: 16px;
 
-font-style: normal;
-font-weight: 900;
-font-size: 16px;
-line-height: 24px;
+  font-style: normal;
+  font-weight: 900;
+  font-size: 16px;
+  line-height: 24px;
 
   background: #ffffff;
   border: 1px solid #3dad06;
@@ -58,40 +59,14 @@ line-height: 24px;
   color: #3dad06;
 }
 
-.question {
+.footerForm {
   display: flex;
   align-items: center;
   justify-content: center;
   margin-top: 16px;
-
 }
 
-.haveAccount {
-  width: 163px;
-  height: 24px;
-
-  font-style: normal;
-  font-weight: normal;
-  font-size: 14px;
-  line-height: 19px;
-  display: flex;
-  align-items: center;
-
-  color: #6a6767;
-}
-
-.signIn {
-  width: 47px;
-  height: 24px;
+.footerForm :nth-child(2) {
   padding-left: 8px;
-  margin-bottom: 10px;
-
-  font-style: normal;
-  font-weight: normal;
-  font-size: 14px;
-  line-height: 19px;
-  align-items: center;
-  text-decoration-line: underline;
-
-  color: #020202;
+  padding-bottom: 20px;
 }

@@ -1,20 +1,15 @@
 import React from 'react'
-import { NavLink } from 'react-router-dom'
+import QuestionBeforeLink from '../../MyComponents/QuestionBeforeLink/QuestionBeforeLink'
 
+import RedirectLink from '../../MyComponents/RedirectLink/RedirectLink'
 import styled from '../Login.module.css'
 
 const QuestionFooter = () => {
   return (
-    <div className={styled.question}>
-      <div className={styled.firstPart}>
-        <p className={styled.notAMemeber}>Not a member?</p>
-        <NavLink to="/signup" className={styled.link}>
-          Sign up
-        </NavLink>
-      </div>
-      <NavLink to="/forgotpassword" className={styled.link}>
-        Forgot password
-      </NavLink>
+    <div className={styled.footerForm}>
+      <QuestionBeforeLink text="Not a member?" />
+      <RedirectLink text="Sign up" url="/signup" />
+      <RedirectLink text="Forgot password" url="/newpassword" />
     </div>
   )
 }

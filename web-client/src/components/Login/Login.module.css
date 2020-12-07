@@ -1,67 +1,45 @@
 .container {
-    margin-top: 16px;
-    display: flex;
-    flex-direction: column;
+  margin-top: 16px;
+  display: flex;
+  flex-direction: column;
 }
 
 .firstPart {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding-right: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-right: 24px;
 }
 
-.question {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-top: 16px;
-
+.footerForm {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 16px;
 }
 
-.notAMemeber {
-    width: 104px;
-    height: 24px;
-
-    font-style: normal;
-    font-weight: normal;
-    font-size: 14px;
-    line-height: 19px;
-    display: flex;
-    align-items: center;
-
-    color: #6a6767;
+.footerForm :nth-child(2) {
+  padding-left: 8px;
 }
 
-.link {
-    height: 24px;
-    margin-bottom: 10px;
-
-    font-style: normal;
-    font-weight: normal;
-    font-size: 14px;
-    line-height: 19px;
-    align-items: center;
-    text-decoration-line: underline;
-
-    color: #020202;
+.footerForm :nth-child(3) {
+  padding-left: 24px;
 }
 
 .btnBack {
-    position: absolute;
-    width: 45px;
-    height: 24px;
-    left: 16px;
-    top: 32px;
+  position: absolute;
+  width: 45px;
+  height: 24px;
+  left: 16px;
+  top: 32px;
 
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 19px;
+  display: flex;
+  align-items: center;
+  text-decoration-line: underline;
 
-    font-style: normal;
-    font-weight: normal;
-    font-size: 14px;
-    line-height: 19px;
-    display: flex;
-    align-items: center;
-    text-decoration-line: underline;
-
-    color: #595959;
+  color: #595959;
 }
