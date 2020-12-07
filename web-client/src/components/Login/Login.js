@@ -7,11 +7,12 @@ import HeaderImage from '../MyComponents/HeaderImage/HeaderImage'
 import LoginForm from './LoginForm/LoginForm'
 import QuestionFooter from './QuestionFooter/QuestionFooter'
 import Header from '../MyComponents/Header/Header'
+import ButtonBack from '../MyComponents/ButtonBack/ButtonBack'
 
 const Login = () => {
   return (
     <div className={styled.container}>
-      <p className={styled.btnBack}>Back</p>
+      <ButtonBack />
       <HeaderImage image={image} />
       <Header text="Login" />
       <LoginForm />

@@ -25,21 +25,3 @@
 .footerForm :nth-child(3) {
   padding-left: 24px;
 }
-
-.btnBack {
-  position: absolute;
-  width: 45px;
-  height: 24px;
-  left: 16px;
-  top: 32px;
-
-  font-style: normal;
-  font-weight: normal;
-  font-size: 14px;
-  line-height: 19px;
-  display: flex;
-  align-items: center;
-  text-decoration-line: underline;
-
-  color: #595959;
-}
