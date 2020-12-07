@@ -1,6 +1,6 @@
 import React from 'react'
-import QuestionBeforeLink from '../../MyComponents/QuestionBeforeLink/QuestionBeforeLink'
 
+import QuestionBeforeLink from '../../MyComponents/QuestionBeforeLink/QuestionBeforeLink'
 import RedirectLink from '../../MyComponents/RedirectLink/RedirectLink'
 import styled from '../Login.module.css'
 

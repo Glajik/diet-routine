@@ -1,7 +1,7 @@
 import React from 'react'
 
-import HeaderImage from '../UI/HeaderImage/HeaderImage'
-import Header from '../UI/Header/Header'
+import HeaderImage from '../MyComponents/HeaderImage/HeaderImage'
+import Header from '../MyComponents/Header/Header'
 import SignUpForm from './SignUpForm/SignUpForm'
 
 import styled from './SignUp.module.css'

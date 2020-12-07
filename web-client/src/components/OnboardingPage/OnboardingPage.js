@@ -1,9 +1,9 @@
 import React from 'react'
 
-import HeaderImage from '../UI/HeaderImage/HeaderImage'
+import HeaderImage from '../MyComponents/HeaderImage/HeaderImage'
 import ButtonGroup from './ButtonGroup/ButtonGroup'
 import QuestionFooter from './QuestionFooter/QuestionFooter'
-import Header from '../UI/Header/Header'
+import Header from '../MyComponents/Header/Header'
 
 import image from '../../assets/images/girlFirstPage.svg'
 import styled from './OnboardingPage.module.css'

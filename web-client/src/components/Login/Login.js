@@ -3,10 +3,10 @@ import React from 'react'
 import image from '../../assets/images/girlLoginPage.svg'
 import styled from './Login.module.css'
 
-import HeaderImage from '../UI/HeaderImage/HeaderImage'
+import HeaderImage from '../MyComponents/HeaderImage/HeaderImage'
 import LoginForm from './LoginForm/LoginForm'
 import QuestionFooter from './QuestionFooter/QuestionFooter'
-import Header from '../UI/Header/Header'
+import Header from '../MyComponents/Header/Header'
 
 const Login = () => {
   return (
