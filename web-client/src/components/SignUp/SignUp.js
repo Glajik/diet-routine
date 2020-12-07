@@ -6,6 +6,7 @@ import SignUpForm from './SignUpForm/SignUpForm'
 
 import styled from './SignUp.module.css'
 import image from '../../assets/images/girlLoginPage.svg'
+import QuestionFooter from '../OnboardingPage/QuestionFooter/QuestionFooter'
 
 function SignUp() {
   return (
@@ -13,6 +14,7 @@ function SignUp() {
       <HeaderImage image={image} />
       <Header text="Sign up" />
       <SignUpForm />
+      <QuestionFooter />
     </div>
   )
 }
