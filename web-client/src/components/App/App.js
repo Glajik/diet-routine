@@ -26,6 +26,7 @@ import {
   SignUp,
   OnboardingPage,
   ForgotPassword,
+  OnBoardingSlider,
   Main,
 } from '../index'
 
@@ -40,6 +41,7 @@ const App = () => {
             <Route path="/login" component={Login} />
             <Route path="/signup" component={SignUp} />
             <Route path="/forgotpassword" component={ForgotPassword} />
+            <Route path="/info_slider" component={OnBoardingSlider} />
             <Route path="/" component={OnboardingPage} />
             <Route path="/features" component={FeaturesPage} />
             <Route path="/add-product" component={AddProduct} />

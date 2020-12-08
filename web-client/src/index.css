@@ -29,3 +29,20 @@ input::placeholder {
   font-size: 16px;
   line-height: 22px;
 }
+.slick-dots li button {
+  height: 6px !important;
+  width: 6px !important;
+  border-radius: 4px !important;
+  background-color: gray;
+}
+
+.slick-dots .slick-active button {
+  background: rgba(61, 173, 6, 0.8) !important;
+
+}
+
+.ant-carousel .slick-dots li {
+  transition: none !important;
+  width: 11px !important;
+
+}
