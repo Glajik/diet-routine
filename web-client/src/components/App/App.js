@@ -19,7 +19,7 @@ import {CSSTransition, TransitionGroup} from 'react-transition-group'
 import {en} from '../../i18n'
 import {
   AddProduct,
-  Calendar,
+  CalendarPage,
   FeaturesPage,
   FirstPage,
   LoginPage,
@@ -51,7 +51,7 @@ const App = ({location}) => {
             <Route path="/register" component={RegisterPage}/>
             <Route path="/add-product" component={AddProduct}/>
             <Route path="/product-search" component={ProductSearch}/>
-            <Route path="/calendar" component={Calendar}/>
+            <Route path="/calendar" component={CalendarPage}/>
             <Route path="/profile" component={Profile}/>
             <Route path="/main" component={Main}/>
           </Switch>
