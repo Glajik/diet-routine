@@ -4,22 +4,22 @@ import {
   SIGNOUT_SUCCESS,
   SIGNUP_SUCCESS,
   SIGNUP_ERROR,
+  RESET_SUCCESS,
+  RESET_ERROR,
 } from '../actionTypes'
 
 const initState = {
   authError: null,
 }
 
-const authReducer = (state = initState, action) => {
+export const authReducer = (state = initState, action) => {
   switch (action.type) {
     case LOGIN_ERROR:
-      console.log('NO')
       return {
         ...state,
         authError: 'Login failed',
       }
     case LOGIN_SUCCESS:
-      console.log('YES')
       return {
         ...state,
         authError: null,
@@ -27,13 +27,18 @@ const authReducer = (state = initState, action) => {
     case SIGNOUT_SUCCESS:
       return state
     case SIGNUP_SUCCESS:
-      console.log('YES')
       return {
         ...state,
         authError: null,
       }
     case SIGNUP_ERROR:
-      console.log('NO')
+      return {
+        ...state,
+        authError: action.err.message,
+      }
+    case RESET_SUCCESS:
+      return state
+    case RESET_ERROR:
       return {
         ...state,
         authError: action.err.message,
@@ -42,5 +47,3 @@ const authReducer = (state = initState, action) => {
       return state
   }
 }
-
-export default authReducer

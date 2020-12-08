@@ -4,9 +4,11 @@ import {
   SIGNOUT_SUCCESS,
   SIGNUP_SUCCESS,
   SIGNUP_ERROR,
+  RESET_SUCCESS,
+  RESET_ERROR,
 } from '../actionTypes'
 
-export const signIn = (email, password) => {
+export const signIn = ({ email, password }) => {
   return (dispatch, getState, { getFirebase }) => {
     const firebase = getFirebase()
 
@@ -34,25 +36,36 @@ export const signOut = () => {
   }
 }
 
-export const signUp = newUser => {
+export const signUp = ({ email, password }) => {
   return (dispatch, getState, { getFirebase, getFirestore }) => {
     const firebase = getFirebase()
     const firestore = getFirestore()
 
     firebase
       .auth()
-      .createUserWithEmailAndPassword(newUser.email, newUser.password)
-      .then(resp => {
-        return firestore.collection('users').doc(resp.user.uid).set({
-          name: newUser.name,
-          age: newUser.age,
-        })
-      })
+      .createUserWithEmailAndPassword(email, password)
       .then(() => {
         dispatch({ type: SIGNUP_SUCCESS })
       })
       .catch(err => {
         dispatch({ type: SIGNUP_ERROR, err })
+      })
+  }
+}
+
+export const resetPassword = ({ email }) => {
+  return (dispatch, getState, { getFirebase, getFirestore }) => {
+    const firebase = getFirebase()
+    const firestore = getFirestore()
+
+    firebase
+      .auth()
+      .sendPasswordResetEmail(email)
+      .then(() => {
+        dispatch({ type: RESET_SUCCESS })
+      })
+      .catch(err => {
+        dispatch({ type: RESET_ERROR, err })
       })
   }
 }
