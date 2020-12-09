@@ -1,8 +1,13 @@
-import React, {useState, useEffect} from 'react'
 import moment from 'moment'
-import {dayInfo} from './temporaryServer'
+import React, {useEffect, useState} from 'react'
+import {FormattedMessage} from 'react-intl'
 import {ReactComponent as GoBack} from '../../../assets/images/go-back.svg'
 import {ReactComponent as GoNext} from '../../../assets/images/go-next.svg'
+import {getDataOfCurrentDate} from './getDataOfCurrentDate'
+import {getLastMonthDates} from './getLastMonthDates'
+import {getMonthKey} from './getMonthKey'
+import {getNextMonthDates} from './getNextMonthDates'
+import {getWeekdayKey} from './getWekdayKey'
 
 import {
   CalendarHeaderWrapper,
@@ -22,6 +27,7 @@ import {
   WeekDaysSpan,
   WeekDaysTd
 } from './style'
+import {dayInfo} from './temporaryServer'
 
 const Calendar = () => {
   const [dateContext] = useState(moment())
@@ -29,7 +35,7 @@ const Calendar = () => {
   const [selectedDay, setSelectedDay] = useState(moment().subtract(monthsAmountFromToday, 'month').get('date'))
   const [selectedMonth, setSelectedMonth] = useState(moment().subtract(monthsAmountFromToday, 'month').format('M'))
   const [currentYear, checkToAnotherYear] = useState(moment().format('YYYY'))
-  const [selectedYear, setSelectedYear] = useState(moment().format('YYYY'))
+  const [selectedYear, setSelectedYear] = useState(+moment().format('YYYY'))
   const currentMonthForToday = moment().format('M')
   const currentYearForToday = moment().format('YYYY')
   const currentMonthNum = moment().subtract(monthsAmountFromToday, 'month').format('M')
@@ -44,21 +50,17 @@ const Calendar = () => {
   let weekDay
 
   useEffect(() => {
-    if (+currentMonthForToday >= +nextMonthNum && +currentYearForToday >= +nextMonthYear)   {
+    if (+currentMonthForToday >= +nextMonthNum && +currentYearForToday >= +nextMonthYear) {
       setNextMonthButtonDisabled(false)
     } else {
       setNextMonthButtonDisabled(true)
     }
 
-    const selectedDateData = dayInfo.filter(item => {
-      return item.date === moment().format('LL')
-    })
-
-    if (selectedDateData.length) {
-      console.log('This date has such user\'s data: ', selectedDateData)
-    } else {
-      console.log('This date has no user\'s data: ', [{date: moment().format('LL'), calories: 0, water: 0}])
-    }
+    getDataOfCurrentDate(
+      dayInfo,
+      moment().format('LL'),
+      {date: moment().format('LL'), calories: 0, water: 0}
+    )
   }, [currentMonthForToday, currentYearForToday, nextMonthNum, nextMonthYear])
 
   for (let i = 0; i <= 6; i++) {
@@ -69,47 +71,52 @@ const Calendar = () => {
   const getSelectedDateInfo = async (event, d, isCurrentMonthSelected, isLastMonthSelected, isNextMonthSelected) => {
     event.persist()
 
-    if (isNextMonthSelected) {
-      if (+currentMonthNum === 12) {
-        await setSelectedYear(+currentYear + 1)
-      }
+    if (isNextMonthSelected && +currentMonthNum === 12) {
+      console.log(+currentMonthNum === 12)
+      // if () {
+      console.log('1111111111111', setSelectedYear(+currentYear + 1))
+      console.log('Selected year: ', selectedYear)
+      // }
     }
 
-    if (isLastMonthSelected || isNextMonthSelected) {
-      if (+selectedYear > +currentYear) {
-        await setSelectedYear(currentYear)
-      }
+    if (isCurrentMonthSelected) {
+      setSelectedMonth(currentMonthNum)
+    } else if (isNextMonthSelected) {
+      setSelectedMonth(nextMonthNum)
+    } else if (isLastMonthSelected) {
+      setSelectedMonth(lastMonthNum)
+    }
+
+    if (isLastMonthSelected) {
+      setSelectedYear(currentYear)
 
       if (+lastMonthNum === 12) {
-        setSelectedYear(currentYear)
+        setSelectedYear(+currentYear - 1)
       }
     }
 
+    console.log('2222222222222222')
     let isSelectedDateInTheFuture = +event.target.dataset.milliseconds > +moment().format('x')
 
+    console.log('Future: ', isSelectedDateInTheFuture)
 
     if (!isSelectedDateInTheFuture) {
-      if (isCurrentMonthSelected) {
-        await setSelectedMonth(currentMonthNum)
-      } else if (isNextMonthSelected) {
-        await setSelectedMonth(nextMonthNum)
-      } else if (isLastMonthSelected) {
-        await setSelectedMonth(lastMonthNum)
-      }
-
+      console.log('333333333333333')
       if (event.target.id !== selectedDateId) {
-        setSelectedDay(d)
-        setSelectedDateId(event.target.id)
-
-        const selectedDateData = dayInfo.filter(item => {
-            return item.date === event.target.id
-        })
-
-        if (selectedDateData.length) {
-          console.log('This date has such user\'s data: ', selectedDateData)
-        } else {
-          console.log('This date has no user\'s data: ', [{date: event.target.id, calories: 0, water: 0}])
+        if (isNextMonthSelected) {
+          console.log('Current: ', +event.target.dataset.milliseconds)
+          console.log('Today: ', +moment().format('x'))
         }
+
+        setSelectedDay(d)
+
+        getDataOfCurrentDate(
+          dayInfo,
+          event.target.id,
+          {date: event.target.id, calories: 0, water: 0}
+        )
+
+        setSelectedDateId(event.target.id)
       }
     } else {
       alert('Sorry, but we haven\'t information about the future dates')
@@ -120,40 +127,15 @@ const Calendar = () => {
     return (
       <WeekDaysTd key={day}>
         <WeekDaysSpan>
-          {day}
+          <FormattedMessage
+            id={getWeekdayKey(day)}/>
         </WeekDaysSpan>
       </WeekDaysTd>
     )
   })
 
   const lastBlanks = []
-
-  let lastMonthDates = moment().subtract(monthsAmountFromToday + 1, 'month').daysInMonth()
-  let lastMonthDatesArr = []
-
-  const lastMonthWeekDaysDatesArr = []
-  let lastMonthWeekDaysDates
-
-  const firstDayOfCurrentMonth = +moment(dateContext).subtract(monthsAmountFromToday, 'month').startOf('month').format('d')
-
-  for (let i = 0; i < 7; i++) {
-    lastMonthWeekDaysDates = moment().startOf('isoWeek').add(i, 'days').format('d')
-    lastMonthWeekDaysDatesArr.push(lastMonthWeekDaysDates)
-  }
-
-  const emptyDates = lastMonthWeekDaysDatesArr.filter(item => {
-    if (firstDayOfCurrentMonth === 0) {
-      if (+item !== 0) {
-        return item
-      }
-    }
-
-    return +item < firstDayOfCurrentMonth && +item !== 0
-  })
-
-  for (let i = 0; i < emptyDates.length; i++) {
-    lastMonthDatesArr.push(lastMonthDates--)
-  }
+  const lastMonthDatesArr = getLastMonthDates(monthsAmountFromToday, dateContext)
 
   lastMonthDatesArr.reverse().map((item, index) => {
     return (
@@ -177,44 +159,32 @@ const Calendar = () => {
   })
 
   const nextBlanks = []
-
-  let nextMonthDates = parseInt(moment().subtract(monthsAmountFromToday - 1, 'month').startOf('month').format('D'))
-  let nextMonthDatesArr = []
-
-  const nextMonthWeekDaysDatesArr = []
-  let nextMonthWeekDaysDates
-
-  for (let i = 0; i <= 6; i++) {
-    nextMonthWeekDaysDates = moment().subtract(monthsAmountFromToday - 1, 'month').startOf('month').add(i, 'days').format('d')
-    if (i === 0 && +nextMonthWeekDaysDates === 1) {
-      break
-    }
-
-    nextMonthWeekDaysDatesArr.push(nextMonthWeekDaysDates)
-
-    if (+nextMonthWeekDaysDates === 0) {
-      break
-    }
-  }
-
-  for (let i = 0; i < nextMonthWeekDaysDatesArr.length; i++) {
-    nextMonthDatesArr.push(nextMonthDates++)
-  }
+  const nextMonthDatesArr = getNextMonthDates(monthsAmountFromToday)
 
   nextMonthDatesArr.map((item, index) => {
+    let selectedDateInMilliseconds
+
+    if (moment([selectedYear, nextMonthNum, item], moment.defaultFormat).format('MMMM') === 'December')  {
+      selectedDateInMilliseconds = moment([selectedYear + 1, nextMonthNum, item], moment.defaultFormat).format('x')
+    } else {
+      moment([selectedYear, nextMonthNum, item], moment.defaultFormat).format('x')
+    }
+
+    console.log(selectedDateInMilliseconds)
+
     return (
       nextBlanks.push(
         <LastAndNextMonthsDatesTd key={index}>
           <LastAndNextMonthsDatesSpan
             id={moment([selectedYear, nextMonthNum, item], moment.defaultFormat).format('LL')}
-            data-milliseconds={moment([selectedYear, nextMonthNum, item], moment.defaultFormat).format('x')}
+            data-milliseconds={selectedDateInMilliseconds}
             currentDay={item === selectedDay && +nextMonthNum === +selectedMonth}
             onClick={(
-                event,
-                isCurrentMonthSelected = false,
-                isLastMonthSelected = false,
-                isNextMonthSelected = true
-              ) => getSelectedDateInfo(event, item, isCurrentMonthSelected, isLastMonthSelected, isNextMonthSelected)}>
+              event,
+              isCurrentMonthSelected = false,
+              isLastMonthSelected = false,
+              isNextMonthSelected = true
+            ) => getSelectedDateInfo(event, item, isCurrentMonthSelected, isLastMonthSelected, isNextMonthSelected)}>
             {item}
           </LastAndNextMonthsDatesSpan>
         </LastAndNextMonthsDatesTd>
@@ -222,8 +192,8 @@ const Calendar = () => {
     )
   })
 
-  const daysInMonth = moment().subtract(monthsAmountFromToday, 'month').daysInMonth()
   const daysInMonthArr = []
+  const daysInMonth = moment().subtract(monthsAmountFromToday, 'month').daysInMonth()
 
   for (let d = 1; d <= daysInMonth; d++) {
     daysInMonthArr.push(
@@ -264,13 +234,23 @@ const Calendar = () => {
     }
   })
 
-  const trElems = rows.map((d, index) => {
-    return (
-      <DaysRow key={index}>
-        {d}
-      </DaysRow>
-    )
-  })
+  // const TrElems = rows.map((d, index) => {
+  //   return (
+  //     <DaysRow key={index}>
+  //       {d}
+  //     </DaysRow>
+  //   )
+  // })
+
+  const TrElems = () => {
+    return rows.map((d, index) => {
+      return (
+        <DaysRow key={index}>
+          {d}
+        </DaysRow>
+      )
+    })
+  }
 
   const goToNextMonth = async () => {
     if (!isNextMonthButtonDisabled) {
@@ -295,30 +275,34 @@ const Calendar = () => {
   return (
     <Table>
       <Thead>
-        <CalendarHeaderWrapper>
-          <Date>
-            <GoBackBtn onClick={goToLastMonth}>
-              <GoBack fill="#3DAD06"/>
-            </GoBackBtn>
-            <MonthYearLabel>
+      <CalendarHeaderWrapper>
+        <Date>
+          <GoBackBtn onClick={goToLastMonth}>
+            <GoBack fill="#3DAD06"/>
+          </GoBackBtn>
+          <MonthYearLabel>
               <span style={{paddingRight: 5}}>
-                {moment().subtract(monthsAmountFromToday, 'month').format('MMMM')}
+                <FormattedMessage
+                  id={getMonthKey(moment()
+                    .subtract(monthsAmountFromToday, 'month')
+                    .format('MMMM'))}/>
               </span>
-              <span>
+            <span>
                 {currentYear}
               </span>
-            </MonthYearLabel>
-            <GoNextBtn onClick={goToNextMonth}>
-              <GoNext fill={isNextMonthButtonDisabled ? '#bfbfbf' : '#3DAD06'}/>
-            </GoNextBtn>
-          </Date>
-        </CalendarHeaderWrapper>
+          </MonthYearLabel>
+          <GoNextBtn onClick={goToNextMonth}>
+            <GoNext fill={isNextMonthButtonDisabled ? '#bfbfbf' : '#3DAD06'}/>
+          </GoNextBtn>
+        </Date>
+      </CalendarHeaderWrapper>
       </Thead>
       <Tbody>
-        <DaysList>
-          {weekDaysArr}
-        </DaysList>
-        {trElems}
+      <DaysList>
+        {weekDaysArr}
+      </DaysList>
+      <TrElems/>
+      {/*{trElems}*/}
       </Tbody>
     </Table>
   )

@@ -16,7 +16,7 @@ import React from 'react'
 import {IntlProvider} from 'react-intl'
 import {Route, Switch, withRouter} from 'react-router-dom'
 import {CSSTransition, TransitionGroup} from 'react-transition-group'
-import {en} from '../../i18n'
+import {en, ru, ua} from '../../i18n'
 import {
   AddProduct,
   CalendarPage,
@@ -35,7 +35,7 @@ import {Wrapper} from './style'
 const App = ({location}) => {
   return (
     <div className="App">
-      <IntlProvider locale={navigator.language} messages={en}>
+      <IntlProvider locale={navigator.language} messages={ua}>
         <Wrapper>
           <TransitionGroup>
             <CSSTransition key={location.key} classNames="fade" timeout={1000}>
