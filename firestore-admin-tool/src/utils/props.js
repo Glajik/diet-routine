@@ -11,7 +11,7 @@
  *
  * @returns value or `null`
  */
-export function maybeCached(propName, fn = () => null, expiration = 600) {
+export function maybeCached(propName, fn = () => null, expiration = 3600) {
   const cached = CacheService.getScriptCache().get(propName);
 
   const value = cached || fn(propName);

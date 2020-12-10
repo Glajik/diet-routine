@@ -45,7 +45,7 @@ export function addEntry(sheetName, data) {
   sheet.appendRow(rowValues)
 }
 
-export function updateWithEntries(sheetName, list, activate = false) {
+export function updateWithEntries(sheetName, list, activate = true) {
   const fields = columnsBySheetName[sheetName]
   const getRowValues = data => {
     const byField = matchTypes(data)
