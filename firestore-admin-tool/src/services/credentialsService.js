@@ -21,5 +21,9 @@ export function getFirestoreCredentials() {
     throw new Error('Firebase credentials not saved')
   }
 
-  return JSON.parse(json)
+  const { clientEmail, projectId, privateKey } = JSON.parse(json)
+
+  const privateKeyFixed = privateKey.split('\\n').join('\n')
+
+  return { clientEmail, projectId, privateKey: privateKeyFixed }
 }
