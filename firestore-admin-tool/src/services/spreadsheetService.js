@@ -11,18 +11,11 @@ export const matchTypes = data => field => {
         if (!value) {
           return null
         }
-        // Case if value is number of second from Unix Epoch
-        if (value <= 9999999999) {
-          return new Date(value * 1000)
-        }
-        // Case, if value is number of ms from Unix Epoch or iso string
         return new Date(value)
       } catch (error) {
         console.warn(`Can't convert ${value} to Date`);
         return null
       }
-    case 'boolean':
-      return value ? 'yes' : 'no'
     case 'blob':
       return Utilities.newBlob(value).getDataAsString()
     case 'json':
@@ -31,6 +24,7 @@ export const matchTypes = data => field => {
       return `=HYPERLINK("${value}", "Link")`
     case 'numeric':
     case 'text':
+    case 'boolean':
     default:
       return value;
   }

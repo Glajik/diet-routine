@@ -1,6 +1,7 @@
 export var columnsBySheetName = {
   Products: [
-    { name: 'id', type: 'text' },
+    { name: 'selected', type: 'boolean' },
+    { name: 'docId', type: 'text' },
     { name: 'name', type: 'text' },
     { name: 'calories', type: 'num' },
     { name: 'createTime', type: 'timestamp' },

@@ -1,13 +1,8 @@
 /* globals SpreadsheetApp */
 
-// To make this possible, I've added package:
-//     yarn add https://github.com/grahamearley/FirestoreGoogleAppsScript.git
-// And added line: `export default { getFirestore }` to Firestore.ts
-// in node_modules/firestore_google-apps-script
-import FirestoreApp from 'firestore_google-apps-script'
-import { showCredentialsDialog } from '../ui/dialogs' // eslint-disable-line
-import { getFirestoreCredentials } from '../services/credentialsService'
 import { updateWithEntries } from '../services/spreadsheetService'
+import { showCredentialsDialog } from '../ui/credentialService' // eslint-disable-line
+import { getEntriesFromCollection } from '../services/firestoreService'
 
 // eslint-disable-next-line no-unused-vars
 function onOpen() {
@@ -24,23 +19,10 @@ function onOpen() {
     .addToUi()
 }
 
-const getDocId = path => path.split('/').slice(-1)
-
 // eslint-disable-next-line no-unused-vars
 function getProductsAndUpdateTab() {
-  const { clientEmail, privateKey, projectId } = getFirestoreCredentials()
-  const firestore = FirestoreApp.getFirestore(clientEmail, privateKey, projectId)
-  const documents = firestore.getDocuments('Products')
-  const entries = documents.map((doc) => {
-    const { fields, createTime, updateTime, readTime } = doc
-    const { name, calories } = fields
-    return {
-      id: getDocId(doc.name),
-      name: name.stringValue,
-      calories: calories.integerValue,
-      createTime,
-      updateTime,
-    }
-  })
-  updateWithEntries('Products', entries)
+  const name = 'Products'
+  const entries = getEntriesFromCollection(name)
+  console.log(entries)
+  updateWithEntries(name, entries)
 }
