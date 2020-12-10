@@ -24,10 +24,23 @@ function onOpen() {
     .addToUi()
 }
 
+const getDocId = path => path.split('/').slice(-1)
+
 // eslint-disable-next-line no-unused-vars
 function getProductsAndUpdateTab() {
   const { clientEmail, privateKey, projectId } = getFirestoreCredentials()
   const firestore = FirestoreApp.getFirestore(clientEmail, privateKey, projectId)
-  const products = firestore.getDocuments('Products')
-  updateWithEntries('Products', products)
+  const documents = firestore.getDocuments('Products')
+  const entries = documents.map((doc) => {
+    const { fields, createTime, updateTime, readTime } = doc
+    const { name, calories } = fields
+    return {
+      id: getDocId(doc.name),
+      name: name.stringValue,
+      calories: calories.integerValue,
+      createTime,
+      updateTime,
+    }
+  })
+  updateWithEntries('Products', entries)
 }
