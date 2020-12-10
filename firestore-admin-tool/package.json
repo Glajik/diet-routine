@@ -25,6 +25,7 @@
     "sinon": "^8.1.1"
   },
   "dependencies": {
+    "firestore_google-apps-script": "https://github.com/grahamearley/FirestoreGoogleAppsScript.git",
     "ramda": "0.25.0"
   }
 }
