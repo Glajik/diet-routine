@@ -57,13 +57,15 @@ export function getEntriesFromCollection(collection) {
   const { clientEmail, privateKey, projectId } = getFirestoreCredentials()
   const firestore = FirestoreApp.getFirestore(clientEmail, privateKey, projectId)
   const documents = firestore.getDocuments(collection)
-  return documents.map((doc) => {
-    const { name, fields, createTime, updateTime } = doc
+  const docToEntry = ({ name, fields, createTime, updateTime }) => {
     return {
       docId: getDocId(name),
       createTime,
       updateTime,
       ...unwrapFields(fields),
     }
-  })
+  }
+  const entries = documents.map(docToEntry)
+  console.debug(`Got ${entries.length} document(s) from "${collection}" collection (getEntriesFromCollection)`)
+  return entries
 }

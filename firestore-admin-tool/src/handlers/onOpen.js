@@ -4,19 +4,26 @@ import { updateWithEntries } from '../services/spreadsheetService'
 import { showCredentialsDialog } from '../ui/credentialService' // eslint-disable-line
 import { getEntriesFromCollection } from '../services/firestoreService'
 import { toast } from '../utils/ui'
+import { showLogs, hideLogs, cleanLogs } from '../utils/Logger' // eslint-disable-line no-unused-vars
 
 // eslint-disable-next-line no-unused-vars
 function onOpen() {
   const ui = SpreadsheetApp.getUi()
   ui.createMenu('Admin Tool')
+    .addItem('Update Tab', 'updateCurrentTab')
     .addSubMenu(
       ui.createMenu('Products')
-        .addItem('Get All', 'getProductsAndUpdateTab'),
+        .addItem('Get All', 'getProductsAndUpdateTab')
     )
-    .addItem('Update tab', 'updateCurrentTab')
     .addSubMenu(
       ui.createMenu('Settings')
-        .addItem('Set credentials', 'showCredentialsDialog'),
+        .addItem('Set credentials', 'showCredentialsDialog')
+    )
+    .addSubMenu(
+      ui.createMenu('Logger')
+        .addItem('Show Logs', 'showLogs')
+        .addItem('Hide Logs', 'hideLogs')
+        .addItem('Clean', 'cleanLogs')
     )
     .addToUi()
 }
@@ -54,4 +61,5 @@ function updateCurrentTab() {
     return
   }
   toast('Abort. You can\'t update this tab from Firestore')
+  console.warn(`Update not allowed for tab "${name}" (updateCurrentTab)`)
 }

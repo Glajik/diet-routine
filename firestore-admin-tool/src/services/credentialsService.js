@@ -44,6 +44,7 @@ export function showCredentialsDialog() {
   const clientEmail = askUser('Service account email (client_email)', validEmail)
 
   if (!clientEmail) {
+    console.info('Canceled. Service account email was invalid. (showCredentialsDialog)')
     toast('Canceled')
     return
   }
@@ -51,6 +52,7 @@ export function showCredentialsDialog() {
   const projectId = askUser('Project Id', validProjectId)
 
   if (!projectId) {
+    console.info('Canceled. Project Id was invalid. (showCredentialsDialog)')
     toast('Canceled')
     return
   }
@@ -58,11 +60,13 @@ export function showCredentialsDialog() {
   const privateKey = askUser('Private Key', validPrivateKey)
 
   if (!privateKey) {
+    console.info('Canceled. Private Key was invalid. (showCredentialsDialog)')
     toast('Canceled')
     return
   }
 
   setFirestoreCredentials(clientEmail, projectId, privateKey)
 
+  console.info('Success. (showCredentialsDialog)')
   toast('Saved')
 }
