@@ -10,7 +10,7 @@ function onOpen() {
   ui.createMenu('Admin Tool')
     .addSubMenu(
       ui.createMenu('Products')
-        .addItem('Get All', 'getProductsAndUpdateTab'),
+        .addItem('Get All', 'getDocsAndUpdateTab'),
     )
     .addSubMenu(
       ui.createMenu('Settings')
@@ -20,9 +20,13 @@ function onOpen() {
 }
 
 // eslint-disable-next-line no-unused-vars
-function getProductsAndUpdateTab() {
-  const name = 'Products'
-  const entries = getEntriesFromCollection(name)
-  console.log(entries)
-  updateWithEntries(name, entries)
+function getDocsAndUpdateTab() {
+  const allowedToUpdate = ['Products']
+  const ss = SpreadsheetApp.getActiveSpreadsheet()
+  const sheet = ss.getActiveSheet()
+  const name = sheet.getName()
+  if (allowedToUpdate.includes(name)) {
+    const entries = getEntriesFromCollection(name)
+    updateWithEntries(name, entries)
+  }
 }
