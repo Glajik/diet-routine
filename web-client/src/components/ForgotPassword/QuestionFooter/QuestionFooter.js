@@ -1,4 +1,5 @@
 import React from 'react'
+import { handleSignup } from '../../../redux/actions/drawerActions'
 
 import QuestionBeforeLink from '../../MyComponents/QuestionBeforeLink/QuestionBeforeLink'
 import RedirectLink from '../../MyComponents/RedirectLink/RedirectLink'
@@ -8,7 +9,7 @@ const QuestionFooter = () => {
   return (
     <div className={styled.footerForm}>
       <QuestionBeforeLink text="Not a member?" />
-      <RedirectLink text="Sign up" url="/signup" />
+      <RedirectLink text="Sign up" callback={handleSignup} />
     </div>
   )
 }

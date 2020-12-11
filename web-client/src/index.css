@@ -16,16 +16,28 @@ input::placeholder {
 }
 
 /* отключение * required input */
-.ant-form-item-label>label.ant-form-item-required::before {
+.ant-form-item-label > label.ant-form-item-required::before {
   content: none !important;
 }
 
 /* label для input */
-.ant-form-item-label>label.ant-form-item-required {
+.ant-form-item-label > label.ant-form-item-required {
   margin-left: 20px;
-  margin-bottom: -10px;
   font-style: normal;
   font-weight: normal;
   font-size: 16px;
   line-height: 22px;
+}
+.ant-form-item-label {
+  padding: 0px !important;
+  padding-bottom: 3px;
+}
+
+.ant-form-item-required {
+  font-weight: 600 !important;
+  font-size: 13px !important;
+  line-height: 150% !important;
+}
+.ant-drawer-content {
+  overflow: hidden !important;
 }

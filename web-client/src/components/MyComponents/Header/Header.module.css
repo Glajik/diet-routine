@@ -1,15 +1,15 @@
 .phrase {
-    margin: 20px auto 0 auto;
-    width: 288px;
-    height: 64px;
-    margin-top: 8px;
+  margin: 20px auto 0 auto;
+  width: 288px;
+  height: 64px;
+  margin-top: 8px;
 
-    font-style: normal;
-    font-weight: 1800;
-    font-size: 12px;
-    line-height: 24px;
+  font-style: normal;
+  font-weight: 1800;
+  font-size: 12px;
+  line-height: 24px;
 
-    line-height: 33px;
-    align-items: center;
-    text-align: center;
+  line-height: 33px;
+  align-items: center;
+  text-align: center;
 }

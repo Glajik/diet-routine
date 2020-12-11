@@ -1,12 +1,12 @@
 .imageContainer {
-    margin: 20px auto 0 auto;
-    width: 240px;
-    height: 240px;
+  margin: 40px auto 0 auto;
+  width: 240px;
+  height: 240px;
 
-    border-style: none;
+  border-style: none;
 }
 
 .image {
-    width: 240px;
-    height: 240px;
+  width: 240px;
+  height: 240px;
 }

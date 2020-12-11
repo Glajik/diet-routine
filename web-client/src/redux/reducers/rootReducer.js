@@ -5,6 +5,7 @@ import { firestoreReducer } from 'redux-firestore'
 import { loaderReducer } from './loaderReducer'
 import { modalReducer } from './modalReducer'
 import { authReducer } from './authReducer'
+import { draweReducer } from './drawerReducer'
 
 const rootReducer = combineReducers({
   auth: authReducer,
@@ -12,6 +13,7 @@ const rootReducer = combineReducers({
   modal: modalReducer,
   firebase: firebaseReducer,
   firestore: firestoreReducer, // <- needed if using firestore
+  drawer: draweReducer,
 })
 
 export default rootReducer

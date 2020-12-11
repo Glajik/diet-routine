@@ -1,22 +1,28 @@
 import React from 'react'
 
-import HeaderImage from '../MyComponents/HeaderImage/HeaderImage'
-import Header from '../MyComponents/Header/Header'
+import HeaderDrawer from '../MyComponents/HeaderDrawer/HeaderDrawer'
 import SignUpForm from './SignUpForm/SignUpForm'
 import styled from './SignUp.module.css'
-import image from '../../assets/images/girlLoginPage.svg'
 import QuestionFooter from '../OnboardingPage/QuestionFooter/QuestionFooter'
-import ButtonBack from '../MyComponents/ButtonBack/ButtonBack'
+import { Drawer } from 'antd'
+import { useSelector } from 'react-redux'
 
-function SignUp() {
+function SignUp({ onClose }) {
+  const isClick = useSelector(state => state.drawer.isSignup)
   return (
-    <div className={styled.container}>
-      <ButtonBack />
-      <HeaderImage image={image} />
-      <Header text="Sign up" />
-      <SignUpForm />
-      <QuestionFooter />
-    </div>
+    <Drawer
+      placement="bottom"
+      closable={false}
+      visible={isClick}
+      onClose={onClose}
+      key="bottom"
+      height="456px">
+      <div className={styled.container}>
+        <HeaderDrawer text="Sign up" />
+        <SignUpForm />
+        <QuestionFooter />
+      </div>
+    </Drawer>
   )
 }
 

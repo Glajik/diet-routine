@@ -1,23 +1,29 @@
 import React from 'react'
 
-import image from '../../assets/images/girlLoginPage.svg'
 import styled from './Login.module.css'
 
-import HeaderImage from '../MyComponents/HeaderImage/HeaderImage'
 import LoginForm from './LoginForm/LoginForm'
 import QuestionFooter from './QuestionFooter/QuestionFooter'
-import Header from '../MyComponents/Header/Header'
-import ButtonBack from '../MyComponents/ButtonBack/ButtonBack'
+import HeaderDrawer from '../MyComponents/HeaderDrawer/HeaderDrawer'
+import { Drawer } from 'antd'
+import { useSelector } from 'react-redux'
 
-const Login = () => {
+const Login = ({ onClose }) => {
+  const isClick = useSelector(state => state.drawer.islogin)
   return (
-    <div className={styled.container}>
-      <ButtonBack />
-      <HeaderImage image={image} />
-      <Header text="Login" />
-      <LoginForm />
-      <QuestionFooter />
-    </div>
+    <Drawer
+      placement="bottom"
+      closable={false}
+      visible={isClick}
+      onClose={onClose}
+      key="bottom"
+      height="376px">
+      <div className={styled.container}>
+        <HeaderDrawer text="Login" />
+        <LoginForm />
+        <QuestionFooter />
+      </div>
+    </Drawer>
   )
 }
 

@@ -37,9 +37,9 @@ const App = () => {
       <IntlProvider locale={navigator.language} messages={en}>
         <Wrapper>
           <Switch>
-            <Route path="/login" component={Login} />
+            {/* <Route path="/login" component={Login} />
             <Route path="/signup" component={SignUp} />
-            <Route path="/forgotpassword" component={ForgotPassword} />
+            <Route path="/forgotpassword" component={ForgotPassword} /> */}
             <Route path="/" component={OnboardingPage} />
             <Route path="/features" component={FeaturesPage} />
             <Route path="/add-product" component={AddProduct} />
