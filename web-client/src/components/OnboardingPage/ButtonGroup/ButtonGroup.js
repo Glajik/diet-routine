@@ -6,10 +6,12 @@ import styled from '../OnboardingPage.module.css'
 
 const ButtonGroup = () => {
   const history = useHistory()
+
   const dispatch = useDispatch()
 
   const handleTryOut = () => console.log('Try out')
   const handleSignUp = () => dispatch(handleSignup())
+
   return (
     <div className={styled.btnGroup}>
       <button className={styled.greenBtn} onClick={handleTryOut}>

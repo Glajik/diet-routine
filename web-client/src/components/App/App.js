@@ -26,6 +26,7 @@ import {
   SignUp,
   OnboardingPage,
   ForgotPassword,
+  OnBoardingSlider,
   Main,
 } from '../index'
 
