@@ -6,8 +6,8 @@
   width: 288px;
   background: #ffffff;
   border: 1px solid #d9d9d9;
-  box-sizing: border-box;
-  border-radius: 30px;
+  border: none;
+  border-bottom: 1px solid #bfbfbf;
 }
 
 .input ::placeholder {
@@ -15,6 +15,5 @@
   font-weight: 600;
   font-size: 16px;
   line-height: 150%;
-
   color: #000000;
 }
