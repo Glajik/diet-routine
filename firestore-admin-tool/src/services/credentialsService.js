@@ -3,7 +3,8 @@ import { ask, toast } from '../utils/ui'
 import { setProp, getProp } from '../utils/props'
 
 /**
- * Set Firestore credentials
+ * Store credentials for Firestore to Script properties,
+ * using PropertiesService
  * @param {string} clientEmail 
  * @param {string} projectId 
  * @param {string} privateKey 
@@ -14,7 +15,8 @@ export function setFirestoreCredentials(clientEmail, projectId, privateKey) {
 }
 
 /**
- * Get Firestore credentials
+ * Get Firestore credentials from Script properties,
+ * using PropertiesService
  */
 export function getFirestoreCredentials() {
   const json = getProp('FIREBASE_CREDENTIALS')
@@ -30,7 +32,9 @@ export function getFirestoreCredentials() {
   return { clientEmail, projectId, privateKey: privateKeyFixed }
 }
 
-// eslint-disable-next-line no-unused-vars
+/**
+ * Show modal dialog to ask credentials from user
+ */
 export function showCredentialsDialog() {
   const title = 'Set credentials for Firebase'
   const ui = SpreadsheetApp.getUi()
