@@ -6,10 +6,17 @@
  *    yarn add https://github.com/grahamearley/FirestoreGoogleAppsScript.git
  *
  * and I've added next line to Firestore.ts in `node_modules/firestore_google-apps-script` —
- *    export default { getFirestore }` to Firestore.ts
+ *    export default { getFirestore }
+ *
+ * and also added next line to it's package.json
+ *    "main": "Firestore.ts",
+ *
+ * P.S. Maybe you should do this every time when you add or remove a packages
  */
 import FirestoreApp from 'firestore_google-apps-script'
 import { getFirestoreCredentials } from './credentialsService'
+
+/* eslint-disable no-use-before-define */
 
 /**
  * Convert Field object to plain object. Uses recursion to handle types such as

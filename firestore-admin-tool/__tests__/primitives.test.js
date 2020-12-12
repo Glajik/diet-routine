@@ -1,4 +1,4 @@
-import { compose, sortBy, sortTextBy, unique, uniqueBy, flatten } from '../dist/utils/primitives'
+import { compose, sortBy, sortTextBy, unique, uniqueBy, flatten } from '../src/utils/primitives'
 
 test('compose', () => {
   const calc = compose(x => x * 2)
