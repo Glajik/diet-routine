@@ -97,3 +97,16 @@ export function updateEntryByDocId(sheetName, data) {
     range.getCell(1, col).setValue(value)
   })
 }
+
+export function getSelectedDocIds(sheetName) {
+  const ss = SpreadsheetApp.getActive()
+  const sheet = ss.getSheetByName(sheetName)
+  // Skip header
+  const [, ...values] = sheet.getRange('A:B').getValues()
+
+  const isSelected = ([selected]) => !!selected
+  const isValid = docId => !!docId
+  return values.filter(isSelected)
+    .map(([, docId]) => docId)
+    .filter(isValid)
+}

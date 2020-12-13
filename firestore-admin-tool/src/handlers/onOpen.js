@@ -3,7 +3,7 @@ import { showCredentialsDialog } from '../ui/credentialService' // eslint-disabl
 import { showLogs, hideLogs, cleanLogs } from '../utils/Logger' // eslint-disable-line no-unused-vars
 import { doTests } from '../tests/doTests' // eslint-disable-line no-unused-vars
 import { testSpreadsheetService } from '../tests/testSpreadsheetService' // eslint-disable-line no-unused-vars
-import { updateViewTab, createEntryOnViewTab } from '../services/viewService'
+import { updateViewTab, createEntryOnViewTab, deleteSelectedOnViewTab } from '../services/viewService'
 
 // eslint-disable-next-line no-unused-vars
 function onOpen() {
@@ -11,10 +11,12 @@ function onOpen() {
   ui.createMenu('Admin Tool')
     .addItem('Update Tab', 'updateCurrentTab')
     .addItem('Add entry', 'addToCurrentTab')
+    .addItem('Delete selected', 'deleteSelectedOnCurrentTab')
     .addSubMenu(
       ui.createMenu('Products')
         .addItem('Get All', 'getProductsAndUpdateTab')
         .addItem('Create', 'createProduct')
+        .addItem('Delete', 'deleteProduct')
     )
     .addSubMenu(
       ui.createMenu('Settings')
@@ -44,15 +46,11 @@ function getProductsAndUpdateTab() {
 
 // eslint-disable-next-line no-unused-vars
 function createProduct() {
-  createOnViewTab('Products')
-}
-
-function updateProduct() {
-  
+  createEntryOnViewTab('Products')
 }
 
 function deleteProduct() {
-  
+  deleteSelectedOnViewTab('Products')
 }
 
 /**
@@ -77,4 +75,15 @@ function addToCurrentTab() {
   const sheet = ss.getActiveSheet()
   const name = sheet.getName()
   createEntryOnViewTab(name)
+}
+
+/**
+ * Delete selected documents on current tab
+ */
+// eslint-disable-next-line no-unused-vars
+function deleteSelectedOnCurrentTab() {
+  const ss = SpreadsheetApp.getActiveSpreadsheet()
+  const sheet = ss.getActiveSheet()
+  const name = sheet.getName()
+  deleteSelectedOnViewTab(name)
 }

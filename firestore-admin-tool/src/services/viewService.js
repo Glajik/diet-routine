@@ -1,5 +1,5 @@
 import CollectionService from './collectionService'
-import { updateWithEntries, addEntry, updateEntryByDocId } from './spreadsheetService'
+import { updateWithEntries, addEntry, updateEntryByDocId, getSelectedDocIds } from './spreadsheetService'
 import { toast } from '../utils/ui'
 
 const ALLOWED_TABS = ['Products']
@@ -52,4 +52,21 @@ export function updateCellOnViewTab(name, docId, data) {
   updateEntryByDocId(name, entry)
   toast('Updated')
   return entry
+}
+
+export function deleteSelectedOnViewTab(name) {
+  const docIds = getSelectedDocIds(name)
+  console.debug('docIds', docIds)
+  const service = new CollectionService(name)
+  if (!docIds.length) {
+    toast('Abort. No selected entries to delete')
+    console.warn(`No seleced entries on tab "${name}" (deleteSelectedOnViewTab)`)
+    return
+  }
+  const result = docIds.map(
+    (docId) => service.deleteById(docId),
+  )
+  console.debug('result', result)
+
+  updateViewTab(name)
 }

@@ -1,6 +1,5 @@
 import Kava from '../utils/Kava'
 import CollectionService from '../services/collectionService'
-import { is } from 'ramda'
 
 /**
  * Collection Service Integration test
