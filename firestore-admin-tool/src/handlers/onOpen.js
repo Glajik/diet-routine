@@ -2,7 +2,7 @@
 import { showCredentialsDialog } from '../ui/credentialService' // eslint-disable-line
 import { showLogs, hideLogs, cleanLogs } from '../utils/Logger' // eslint-disable-line no-unused-vars
 import { doTests } from '../tests/doTests' // eslint-disable-line no-unused-vars
-import { updateViewTab } from '../services/viewService'
+import { updateViewTab, createOnViewTab } from '../services/viewService'
 
 // eslint-disable-next-line no-unused-vars
 function onOpen() {
@@ -12,6 +12,7 @@ function onOpen() {
     .addSubMenu(
       ui.createMenu('Products')
         .addItem('Get All', 'getProductsAndUpdateTab')
+        .addItem('Create', 'createProduct')
     )
     .addSubMenu(
       ui.createMenu('Settings')
@@ -36,6 +37,19 @@ function onOpen() {
 // eslint-disable-next-line no-unused-vars
 function getProductsAndUpdateTab() {
   updateViewTab('Products')
+}
+
+// eslint-disable-next-line no-unused-vars
+function createProduct() {
+  createOnViewTab('Products')
+}
+
+function updateProduct() {
+  
+}
+
+function deleteProduct() {
+  
 }
 
 /**
