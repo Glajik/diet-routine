@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import testFirestoreService from './testFirestoreService'
+import testCollectionService from './testCollectionService'
 import testFirestoreLibApi from './testFirestoreLibApi'
 
 /**
@@ -7,4 +7,5 @@ import testFirestoreLibApi from './testFirestoreLibApi'
  */
 export function doTests() {
   testFirestoreLibApi()
+  testCollectionService()
 }

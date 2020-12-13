@@ -1,7 +1,6 @@
 import FirestoreApp from 'firestore_google-apps-script'
 import Kava from '../utils/Kava'
 import { getFirestoreCredentials } from '../services/credentialsService'
-import { getEntriesFromCollection } from '../services/firestoreService'
 
 /**
  * Firestore Lib API test
@@ -10,7 +9,7 @@ import { getEntriesFromCollection } from '../services/firestoreService'
 export function testFirestoreLibApi() {
   const t = new Kava('Testing Firestore Lib Api')
 
-  const collection = 'Testing'
+  const collection = 'TestFirestoreLibApi'
 
   const { clientEmail, privateKey, projectId } = getFirestoreCredentials()
   const firestore = FirestoreApp.getFirestore(clientEmail, privateKey, projectId)
