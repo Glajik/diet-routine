@@ -10,6 +10,7 @@ function onOpen() {
   const ui = SpreadsheetApp.getUi()
   ui.createMenu('Admin Tool')
     .addItem('Update Tab', 'updateCurrentTab')
+    .addItem('Add entry', 'addToCurrentTab')
     .addSubMenu(
       ui.createMenu('Products')
         .addItem('Get All', 'getProductsAndUpdateTab')
@@ -65,4 +66,15 @@ function updateCurrentTab() {
   const sheet = ss.getActiveSheet()
   const name = sheet.getName()
   updateViewTab(name)
+}
+
+/**
+ * Create blank document in Firestore and add to current "view" tab
+ */
+// eslint-disable-next-line no-unused-vars
+function addToCurrentTab() {
+  const ss = SpreadsheetApp.getActiveSpreadsheet()
+  const sheet = ss.getActiveSheet()
+  const name = sheet.getName()
+  createEntryOnViewTab(name)
 }
