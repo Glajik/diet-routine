@@ -98,14 +98,14 @@ class Kava {
     throw new Error(`${errorMessage}\nExpected: ${expected}\nReceived: ${received}`);
   }
 
-  isTrue(expression, errorMessage = 'Expression result isn\'t "true"\nExpected: true\nRecieved: false') {
+  isTrue(expression, errorMessage = 'Expression result expected to be "true"') {
     if (expression !== true) {
       throw new Error(errorMessage)
     }
   }
 
-  isFalse(expression, errorMessage = 'Expression result isn\'t "false"\nExpected: false\nRecieved: true') {
-    if (expression !== true) {
+  isFalse(expression, errorMessage = 'Expression result expected to be "false"') {
+    if (expression !== false) {
       throw new Error(errorMessage)
     }
   }
