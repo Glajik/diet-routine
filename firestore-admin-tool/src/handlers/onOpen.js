@@ -5,6 +5,7 @@ import { showCredentialsDialog } from '../ui/credentialService' // eslint-disabl
 import { getEntriesFromCollection } from '../services/firestoreService'
 import { toast } from '../utils/ui'
 import { showLogs, hideLogs, cleanLogs } from '../utils/Logger' // eslint-disable-line no-unused-vars
+import { doTests } from '../tests/doTests' // eslint-disable-line no-unused-vars
 
 // eslint-disable-next-line no-unused-vars
 function onOpen() {
@@ -24,6 +25,10 @@ function onOpen() {
         .addItem('Show Logs', 'showLogs')
         .addItem('Hide Logs', 'hideLogs')
         .addItem('Clean', 'cleanLogs')
+    )
+    .addSubMenu(
+      ui.createMenu('Tests')
+        .addItem('Run all', 'doTests')
     )
     .addToUi()
 }
