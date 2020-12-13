@@ -132,8 +132,13 @@ class Kava {
       return `${index + 1}. ${task}\nOk`;
     })
 
+    const title = errors
+      ? `TEST NOT PASSED: ${this._moduleName}` // eslint-disable-line no-underscore-dangle
+      : `TEST PASSED: ${this._moduleName}` // eslint-disable-line no-underscore-dangle
+
     return [
-      `---- ${this._moduleName}. Total: ${total}, passed: ${total - errors}, errors: ${errors} ----`, // eslint-disable-line no-underscore-dangle
+      title,
+      `---- errors: ${errors}, passed: ${total - errors}, total cases: ${total} ----`,
       ...results,
     ].join('\n')
   }
