@@ -61,7 +61,7 @@ export function updateWithEntries(sheetName, list, activate = true) {
   }
 }
 
-function getRowBy(value, column, sheet) {
+export function getRowBy(value, column, sheet) {
   const allIds = sheet.getRange(toA1n(column)).getValues().map(head)
   const index = allIds.findIndex(eq(value))
   if (index < 0) {
@@ -71,18 +71,18 @@ function getRowBy(value, column, sheet) {
   return sheet.getRange(toA1n(row))
 }
 
-export function updateEntryById(sheetName, data) {
+export function updateEntryByDocId(sheetName, data) {
   // TODO:
   // Handle updates
-  const { id } = data
+  const { docId } = data
   const ss = SpreadsheetApp.getActive()
   const sheet = ss.getSheetByName(sheetName)
 
   // Find row range
-  const column = 'A'
-  const range = getRowBy(id, column, sheet)
+  const DOC_ID_COLUMN = 'B'
+  const range = getRowBy(docId, DOC_ID_COLUMN, sheet)
   if (!range) {
-    throw new RangeError(`Can not find row with index ${id}`)
+    throw new RangeError(`Can not find row with docId ${docId}`)
   }
 
   // Update row cells, only presented in data object

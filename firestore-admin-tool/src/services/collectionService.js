@@ -27,7 +27,7 @@ export const docToEntry = doc => {
 class CollectionService extends Repository {
   getAll() {
     const docs = super.getAll()
-    console.debug(`Got ${docs.length} document(s) from "${super.collection}" collection (CollectionService)`)
+    console.debug(`Got ${docs.length} document(s) from "${this.collection}" collection (CollectionService)`)
     return docs.map(docToEntry)
   }
 

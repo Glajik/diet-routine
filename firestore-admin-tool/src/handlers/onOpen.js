@@ -2,7 +2,8 @@
 import { showCredentialsDialog } from '../ui/credentialService' // eslint-disable-line
 import { showLogs, hideLogs, cleanLogs } from '../utils/Logger' // eslint-disable-line no-unused-vars
 import { doTests } from '../tests/doTests' // eslint-disable-line no-unused-vars
-import { updateViewTab, createOnViewTab } from '../services/viewService'
+import { testSpreadsheetService } from '../tests/testSpreadsheetService' // eslint-disable-line no-unused-vars
+import { updateViewTab, createEntryOnViewTab } from '../services/viewService'
 
 // eslint-disable-next-line no-unused-vars
 function onOpen() {
@@ -27,6 +28,7 @@ function onOpen() {
     .addSubMenu(
       ui.createMenu('Tests')
         .addItem('Run all', 'doTests')
+        .addItem('Run SpreadsheetService Test', 'testSpreadsheetService')
     )
     .addToUi()
 }
