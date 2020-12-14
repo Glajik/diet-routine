@@ -24,5 +24,7 @@ export const getMonthKey = (month) => {
       return 'i18n_october_key'
     case 'November':
       return 'i18n_november_key'
+    default:
+      return ''
   }
 }

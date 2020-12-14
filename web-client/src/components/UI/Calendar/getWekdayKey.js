@@ -14,5 +14,7 @@ export const getWeekdayKey = (day) => {
       return 'i18n_saturday_key'
     case 'Su':
       return 'i18n_sunday_key'
+    default:
+      return ''
   }
 }
