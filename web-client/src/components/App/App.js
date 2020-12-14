@@ -13,10 +13,11 @@
 */
 
 import React from 'react'
-import {IntlProvider} from 'react-intl'
-import {Route, Switch, withRouter} from 'react-router-dom'
-import {CSSTransition, TransitionGroup} from 'react-transition-group'
-import {en} from '../../i18n'
+import { IntlProvider } from 'react-intl'
+import { Route, Switch, withRouter } from 'react-router-dom'
+import { CSSTransition, TransitionGroup } from 'react-transition-group'
+import { en } from '../../i18n'
+import 'antd/dist/antd.css'
 import {
   AddProduct,
   Calendar,
@@ -30,9 +31,9 @@ import {
   Main
 } from '../index'
 
-import {Wrapper} from './style'
+import { Wrapper } from './style'
 
-const App = ({location}) => {
+const App = ({ location }) => {
   return (
     <div className="App">
       <IntlProvider locale={navigator.language} messages={en}>
@@ -40,20 +41,20 @@ const App = ({location}) => {
           <TransitionGroup>
             <CSSTransition key={location.key} classNames="fade" timeout={1000}>
               <Switch location={location}>
-                <Route path="/welcome_page" component={WelcomePage}/>
-                <Route exact path="/" component={FirstPage}/>
+                <Route path="/welcome_page" component={WelcomePage} />
+                <Route exact path="/" component={FirstPage} />
               </Switch>
             </CSSTransition>
           </TransitionGroup>
           <Switch location={location}>
-            <Route path="/features" component={FeaturesPage}/>
-            <Route path="/login" component={LoginPage}/>
-            <Route path="/register" component={RegisterPage}/>
-            <Route path="/add-product" component={AddProduct}/>
-            <Route path="/product-search" component={ProductSearch}/>
-            <Route path="/calendar" component={Calendar}/>
-            <Route path="/profile" component={Profile}/>
-            <Route path="/main" component={Main}/>
+            <Route path="/features" component={FeaturesPage} />
+            <Route path="/login" component={LoginPage} />
+            <Route path="/register" component={RegisterPage} />
+            <Route path="/add-product" component={AddProduct} />
+            <Route path="/product-search" component={ProductSearch} />
+            <Route path="/calendar" component={Calendar} />
+            <Route path="/profile" component={Profile} />
+            <Route path="/main" component={Main} />
           </Switch>
         </Wrapper>
       </IntlProvider>
