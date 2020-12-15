@@ -76,19 +76,6 @@ export function lookupRowRange(value, columnLetter, sheet) {
   return sheet.getRange(toA1n(row))
 }
 
-export function getSelectedDocIds(sheetName) {
-  const ss = SpreadsheetApp.getActive()
-  const sheet = ss.getSheetByName(sheetName)
-  // Skip header
-  const [, ...values] = sheet.getRange('A:B').getValues()
-
-  const isSelected = ([selected]) => !!selected
-  const isValid = docId => !!docId
-  return values.filter(isSelected)
-    .map(([, docId]) => docId)
-    .filter(isValid)
-}
-
 class SheetService {
   /**
    * Create Sheet service
@@ -183,6 +170,21 @@ class SheetService {
         this.sheet.getRange(row, column).setValue(value)
       }
     })
+  }
+
+  /**
+   * Get selected ids
+   */
+  getSelectedIds() {
+    // Skip header
+    const [, ...values] = this.sheet.getRange('A:B').getValues()
+
+    const isSelected = ([selected]) => !!selected
+    const isValid = docId => !!docId
+
+    return values.filter(isSelected)
+      .map(([, id]) => id)
+      .filter(isValid)
   }
 }
 

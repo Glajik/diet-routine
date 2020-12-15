@@ -32,6 +32,28 @@ export function createEntryOnViewTab(name) {
   new SheetService(sheet).addEntry(entry)
 }
 
+export function deleteSelectedOnViewTab(name) {
+  const sheet = getSheetByName(name)
+
+  const docIds = new SheetService(sheet).getSelectedIds()
+  console.debug('docIds', docIds)
+
+  if (!docIds.length) {
+    toast('Abort. No selected entries to delete')
+    console.warn(`No seleced entries on tab "${name}" (deleteSelectedOnViewTab)`)
+    return
+  }
+
+  const service = new CollectionService(name)
+
+  const result = docIds.map(
+    (docId) => service.deleteById(docId),
+  )
+  console.debug('result', result)
+
+  updateViewTab(name)
+}
+
 /**
  * Handle editing cells.
  * @param {Event} e Edit trigger event
@@ -88,21 +110,4 @@ export function onEditViewTab(e) {
 
   // Update time
   toast('Updated')
-}
-
-export function deleteSelectedOnViewTab(name) {
-  const docIds = getSelectedDocIds(name)
-  console.debug('docIds', docIds)
-  const service = new CollectionService(name)
-  if (!docIds.length) {
-    toast('Abort. No selected entries to delete')
-    console.warn(`No seleced entries on tab "${name}" (deleteSelectedOnViewTab)`)
-    return
-  }
-  const result = docIds.map(
-    (docId) => service.deleteById(docId),
-  )
-  console.debug('result', result)
-
-  updateViewTab(name)
 }
