@@ -60,46 +60,9 @@ export function getSheetByName(name) {
  * @param {GoogleAppsScript.Spreadsheet.Sheet} sheet
  * @returns {[]} Header values
  */
-export function getHeaders(sheet) {
+export function getSheetHeaders(sheet) {
   const [headers] = sheet.getRange('1:1').getValues()
   return headers.filter(v => !!v)
-}
-
-/**
- * Append entry to sheet
- * @param {GoogleAppsScript.Spreadsheet.Sheet} sheet 
- * @param {object} entry 
- */
-export function addEntry(sheet, entry) {
-  const fields = getHeaders(sheet)
-  const { toValues } = useColumns(fields)
-  const rowValues = toValues(entry)
-  sheet.appendRow(rowValues)
-}
-
-/**
- * Update sheet with entries
- * @param {GoogleAppsScript.Spreadsheet.Sheet} sheet 
- * @param {[object]} entries 
- * @param {boolean} activate Activate sheet after update
- */
-export function updateWithEntries(sheet, entries, activate = true) {
-  const fields = getHeaders(sheet)
-  const { toValues } = useColumns(fields)
-  const row = 1;
-  const col = 1;
-  const rows = entries.length + 1
-  const cols = fields.length
-  const body = entries.map(toValues)
-  const values = [fields].concat(body)
-
-  sheet.clearContents()
-    .getRange(row, col, rows, cols)
-    .setValues(values)
-
-  if (activate) {
-    sheet.activate()
-  }
 }
 
 export function getRowBy(value, column, sheet) {
@@ -151,3 +114,62 @@ export function getSelectedDocIds(sheetName) {
     .map(([, docId]) => docId)
     .filter(isValid)
 }
+
+class SheetService {
+  /**
+   * Create Sheet service
+   * @param {GoogleAppsScript.Spreadsheet.Sheet} sheet
+   */
+  constructor(sheet) {
+    this.sheet = sheet
+    this.memo_fields = []
+  }
+
+  /**
+   * Get headers of sheet
+   * @returns {[]} Header values
+   */
+  get fields() {
+    if (this.memo_fields.length) {
+      return this.memo_fields
+    }
+    this.memo_fields = getSheetHeaders(this.sheet)
+    return this.memo_fields
+  }
+
+  /**
+   * Update sheet with entries
+   * @param {[{}]} entries
+   * @param {boolean} activate Activate sheet after update
+   */
+  updateWithEntries(entries, activate = true) {
+    const { fields } = this
+    const { toValues } = useColumns(fields)
+    const row = 1;
+    const col = 1;
+    const rows = entries.length + 1
+    const cols = fields.length
+    const body = entries.map(toValues)
+    const values = [fields].concat(body)
+
+    this.sheet.clearContents()
+      .getRange(row, col, rows, cols)
+      .setValues(values)
+
+    if (activate) {
+      this.sheet.activate()
+    }
+  }
+
+  /**
+   * Append entry to sheet
+   * @param {GoogleAppsScript.Spreadsheet.Sheet} sheet
+   * @param {object} entry
+   */
+  addEntry(entry) {
+    const { toValues } = useColumns(this.fields)
+    this.sheet.appendRow(toValues(entry))
+  }
+}
+
+export default SheetService

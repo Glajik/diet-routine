@@ -1,7 +1,7 @@
 /* globals SpreadsheetApp */
 
 import Kava from '../utils/Kava';
-import { getRowBy } from '../services/spreadsheetService'
+import { getRowBy } from '../services/SheetService'
 
 export function testSpreadsheetService() {
   const t = new Kava('Test Spreadsheet Service')

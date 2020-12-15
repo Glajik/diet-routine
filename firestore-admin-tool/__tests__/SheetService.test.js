@@ -11,7 +11,7 @@ global.Utilities = {
 }
 
 // eslint-disable-next-line import/first
-import { matchTypes, getHeaders } from '../src/services/spreadsheetService'
+import { getSheetHeaders, matchTypes } from '../src/services/SheetService'
 
 test('Check converting plain object entry to rowValues by scheme', () => {
   const schema = {
@@ -66,5 +66,5 @@ test('getHeaders() function should works', () => {
     })
   }
 
-  expect(getHeaders(sheet)).toEqual(['id', 'name'])
+  expect(getSheetHeaders(sheet)).toEqual(['id', 'name'])
 })

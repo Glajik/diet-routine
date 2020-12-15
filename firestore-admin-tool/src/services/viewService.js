@@ -1,5 +1,5 @@
 import CollectionService from './collectionService'
-import { getSheetByName, updateWithEntries, addEntry, updateEntryByDocId, getSelectedDocIds } from './spreadsheetService'
+import SheetService, { getSheetByName, updateEntryByDocId, getSelectedDocIds } from './SheetService'
 import { toast } from '../utils/ui'
 
 const ALLOWED_TABS = ['Products']
@@ -18,7 +18,7 @@ export function updateViewTab(name) {
   }
   const entries = new CollectionService(name).getAll()
   const sheet = getSheetByName(name)
-  updateWithEntries(sheet, entries)
+  new SheetService(sheet).updateWithEntries(entries)
 }
 
 export function createEntryOnViewTab(name) {
@@ -29,7 +29,7 @@ export function createEntryOnViewTab(name) {
   }
   const entry = new CollectionService(name).create({})
   const sheet = getSheetByName(name)
-  addEntry(sheet, entry)
+  new SheetService(sheet).addEntry(entry)
 }
 
 export function updateCellOnViewTab(name, docId, data) {
