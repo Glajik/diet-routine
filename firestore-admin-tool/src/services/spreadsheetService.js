@@ -1,5 +1,5 @@
 /* globals SpreadsheetApp, Utilities */
-import { head, eq, toA1n } from '../utils/primitives'
+import fp from '../utils/fp'
 import { columnsBySheetName } from '../schema'
 
 export const matchTypes = data => field => {
@@ -62,6 +62,7 @@ export function updateWithEntries(sheetName, list, activate = true) {
 }
 
 export function getRowBy(value, column, sheet) {
+  const { toA1n, head, eq } = fp
   const allIds = sheet.getRange(toA1n(column)).getValues().map(head)
   const index = allIds.findIndex(eq(value))
   if (index < 0) {
@@ -72,7 +73,6 @@ export function getRowBy(value, column, sheet) {
 }
 
 export function updateEntryByDocId(sheetName, data) {
-  // TODO:
   // Handle updates
   const { docId } = data
   const ss = SpreadsheetApp.getActive()

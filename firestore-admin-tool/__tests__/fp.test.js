@@ -1,6 +1,7 @@
-import { compose, sortBy, sortTextBy, unique, uniqueBy, flatten } from '../src/utils/primitives'
+import fp from '../src/utils/fp'
 
 test('compose', () => {
+  const { compose } = fp
   const calc = compose(x => x * 2)
   expect(calc(3)).toBe(6)
   const calc2 = compose(x => x * 2, x => x + 3)
@@ -8,6 +9,7 @@ test('compose', () => {
 })
 
 test('unique', () => {
+  const { unique } = fp
   expect(unique([])).toEqual([])
   expect(unique([1])).toEqual([1])
   expect(unique([1, 2, 3])).toEqual([1, 2, 3])
@@ -22,7 +24,7 @@ test('uniqueBy', () => {
     { id: 3, color: 'yellow' },
     { id: 4, color: 'black' },
   ]
-  const uniqueByColor = uniqueBy('color')
+  const uniqueByColor = fp.uniqueBy('color')
   expect(uniqueByColor(assert)).toEqual([
     { id: 1, color: 'red' },
     { id: 2, color: 'yellow' },
@@ -38,7 +40,7 @@ test('sortBy', () => {
     { id: 1, color: 'red' },
     { id: 3, color: 'yellow' },
   ]
-  const sortById = sortBy('id', 'asc')
+  const sortById = fp.sortBy('id', 'asc')
   expect(sortById(assert)).toEqual([
     { id: 1, color: 'red' },
     { id: 2, color: 'yellow' },
@@ -54,7 +56,7 @@ test('sortTextBy', () => {
     { id: 3, color: 'yellow' },
     { id: 4, color: 'black' },
   ]
-  const sortByColor = sortTextBy('color', 'asc')
+  const sortByColor = fp.sortTextBy('color', 'asc')
   expect(sortByColor(assert)).toEqual([
     { id: 4, color: 'black' },
     { id: 1, color: 'red' },
@@ -64,6 +66,7 @@ test('sortTextBy', () => {
 })
 
 test('flatten', () => {
+  const { flatten } = fp
   expect(flatten([])).toEqual([])
   expect(flatten([1])).toEqual([1])
   expect(flatten([1, 2])).toEqual([1, 2])
