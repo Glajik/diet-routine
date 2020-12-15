@@ -1,5 +1,5 @@
 import CollectionService from './collectionService'
-import SheetService, { getSheetByName, updateEntryByDocId, getSelectedDocIds } from './SheetService'
+import SheetService, { getSheetByName, getSelectedDocIds } from './SheetService'
 import { toast } from '../utils/ui'
 
 const ALLOWED_TABS = ['Products']
@@ -48,8 +48,6 @@ export function updateCellOnViewTab(name, docId, data) {
     return null
   }
 
-  // Update row
-  updateEntryByDocId(name, entry)
   toast('Updated')
   return entry
 }

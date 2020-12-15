@@ -76,32 +76,6 @@ export function getRowBy(value, column, sheet) {
   return sheet.getRange(toA1n(row))
 }
 
-export function updateEntryByDocId(sheetName, data) {
-  // Handle updates
-  const { docId } = data
-  const ss = SpreadsheetApp.getActive()
-  const sheet = ss.getSheetByName(sheetName)
-
-  // Find row range
-  const DOC_ID_COLUMN = 'B'
-  const range = getRowBy(docId, DOC_ID_COLUMN, sheet)
-  if (!range) {
-    throw new RangeError(`Can not find row with docId ${docId}`)
-  }
-
-  // Update row cells, only presented in data object
-  const fields = columnsBySheetName[sheetName]
-  fields.forEach((field, index) => {
-    const byField = matchTypes(data)
-    const value = byField(field)
-    if (value === undefined) {
-      return
-    }
-    const col = index + 1
-    range.getCell(1, col).setValue(value)
-  })
-}
-
 export function getSelectedDocIds(sheetName) {
   const ss = SpreadsheetApp.getActive()
   const sheet = ss.getSheetByName(sheetName)
@@ -169,6 +143,14 @@ class SheetService {
   addEntry(entry) {
     const { toValues } = useColumns(this.fields)
     this.sheet.appendRow(toValues(entry))
+  }
+
+  updateById(id, entry) {
+    const { toValues } = useColumns(this.fields)
+    const rowValues = toValues(entry)
+    // Find row to update
+    const finder = this.sheet.createDeveloperMetadataFinder()
+    finder.withKey('docId').withValue(docId)
   }
 }
 

@@ -37,9 +37,14 @@ function onEditInstall(e) {
   const docId = sheet.getRange(row, DOC_ID).getValue()
 
   // Use header as key
-  const header = sheet.getRange(1, column).getValue()
+  const key = sheet.getRange(1, column).getValue()
 
-  const data = { [header]: value }
+  const data = { [key]: value }
 
-  updateCellOnViewTab(name, docId, data)
+  const result = updateCellOnViewTab(name, docId, data)
+
+  // Revert data
+  if (!result) {
+    range.setValue(oldValue)
+  }
 }
