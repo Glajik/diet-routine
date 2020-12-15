@@ -27,9 +27,9 @@ export function createEntryOnViewTab(name) {
     console.warn(`Creating is not allowed for tab "${name}" (createEntryOnViewTab)`)
     return
   }
-  const service = new CollectionService(name)
-  const entry = service.create({})
-  addEntry(name, entry)
+  const entry = new CollectionService(name).create({})
+  const sheet = getSheetByName(name)
+  addEntry(sheet, entry)
 }
 
 export function updateCellOnViewTab(name, docId, data) {

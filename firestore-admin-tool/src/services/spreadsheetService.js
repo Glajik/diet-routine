@@ -1,6 +1,23 @@
 /* globals SpreadsheetApp, Utilities */
 import fp from '../utils/fp'
 
+/**
+ * Create set of useful functions to work with sheet and it's data
+ * @param {[string]} fields List of field names
+ * @returns Set of fuctions
+ */
+export const useColumns = fields => {
+  const { zipObj, unzipObj } = fp
+  const getColIndex = key => fields.indexOf(key)
+  const getColNum = key => getColIndex(key) + 1
+  const fromValues = values => zipObj(fields, values)
+  const toValues = item => unzipObj(item, fields)
+  const getColCount = () => fields.length
+  return {
+    getColNum, getColIndex, getColCount, fromValues, toValues,
+  }
+}
+
 export const matchTypes = data => field => {
   const value = data[field.name]
   switch (field.type) {
@@ -38,15 +55,6 @@ export function getSheetByName(name) {
   return SpreadsheetApp.getActiveSpreadsheet().getSheetByName(name)
 }
 
-export function addEntry(sheetName, data) {
-  const byField = matchTypes(data)
-  const fields = columnsBySheetName[sheetName]
-  const rowValues = fields.map(byField)
-  const ss = SpreadsheetApp.getActive().getActiveSheet()
-  const sheet = ss.getSheetByName(sheetName)
-  sheet.appendRow(rowValues)
-}
-
 /**
  * Get headers of sheet
  * @param {GoogleAppsScript.Spreadsheet.Sheet} sheet
@@ -58,20 +66,15 @@ export function getHeaders(sheet) {
 }
 
 /**
- * Create set of useful functions to work with sheet and it's data
- * @param {[string]} fields List of field names
- * @returns Set of fuctions
+ * Append entry to sheet
+ * @param {GoogleAppsScript.Spreadsheet.Sheet} sheet 
+ * @param {object} entry 
  */
-export const useColumns = fields => {
-  const { zipObj, unzipObj } = fp
-  const getColIndex = key => fields.indexOf(key)
-  const getColNum = key => getColIndex(key) + 1
-  const fromValues = values => zipObj(fields, values)
-  const toValues = item => unzipObj(item, fields)
-  const getColCount = () => fields.length
-  return {
-    getColNum, getColIndex, getColCount, fromValues, toValues,
-  }
+export function addEntry(sheet, entry) {
+  const fields = getHeaders(sheet)
+  const { toValues } = useColumns(fields)
+  const rowValues = toValues(entry)
+  sheet.appendRow(rowValues)
 }
 
 /**
