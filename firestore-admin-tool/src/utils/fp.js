@@ -54,6 +54,29 @@ const fp = (function () {
     return [acc, list]
   }, [])
 
+  /**
+   * Make plain object from two lists
+   * @param {array} keys List of keys
+   * @param {array} values List of values
+   */
+  const zipObj = (keys, values) => keys.reduce(
+    (acc, key, index) => ({ ...acc, [key]: values[index] }), {},
+  )
+
+  /**
+   * Get list of values in order, specified in keys
+   * @param {object} item Plain object
+   * @param {array} keys List of keys
+   */
+  const unzipObj = (item, keys) => keys.map(key => item[key])
+
+  /**
+   * Make an object from list, as key use specified value from each element
+   * @param {string} key Specify, which key in the objects will be used as pivot
+   * @param {[object]} list List of plain objects
+   */
+  const pivot = (key, list) => list.reduce((acc, item) => ({ ...acc, [item[key]]: item }), {})
+
   return {
     head,
     tail,
@@ -71,6 +94,9 @@ const fp = (function () {
     unique,
     uniqueBy,
     flatten,
+    unzipObj,
+    zipObj,
+    pivot,
   }
 }())
 
