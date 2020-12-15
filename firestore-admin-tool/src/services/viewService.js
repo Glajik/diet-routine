@@ -1,5 +1,5 @@
 import CollectionService from './collectionService'
-import SheetService, { getSheetByName, getSelectedDocIds } from './SheetService'
+import SheetService, { getSheetByName, useColumns } from './SheetService'
 import { toast } from '../utils/ui'
 
 const ALLOWED_TABS = ['Products']
@@ -66,13 +66,15 @@ export function onEditViewTab(e) {
   const SELECTED = 1
   const DOC_ID = 2
 
-  const { range, value, oldValue } = e
+  const { range, oldValue } = e
   const sheet = range.getSheet()
   const name = sheet.getName()
 
   // Get edited row, column and new value
   const row = range.getRow()
   const column = range.getColumn()
+
+  const sheetService = new SheetService(sheet)
 
   if (!isValidTab(name)) {
     console.info(`Ignore editing for tab "${name}" (onEditViewTab)`)
@@ -85,28 +87,27 @@ export function onEditViewTab(e) {
     return
   }
 
-  // Ignore SELECTED column
   if (column === SELECTED) {
-    console.info(`Ignore selecting for tab "${name}" (onEditViewTab)`)
+    console.info(`Ignore selected column ${column} for tab "${name}" (onEditViewTab)`)
     return
   }
 
-  const docId = sheet.getRange(row, DOC_ID).getValue()
+  const entry = sheetService.getEntryByRow(row)
 
-  // Use header as key
-  const key = sheet.getRange(1, column).getValue()
-  const data = { [key]: value }
+  const {
+    selected, docId, created, updated, ...rest
+  } = entry
 
-  const entry = new CollectionService(name).updateById(docId, data)
+  const updatedEntry = new CollectionService(name).updateById(docId, rest)
 
   // Revert data
-  if (!entry) {
+  if (!updatedEntry) {
     toast('Error. Entry not updated')
     console.warn(`Entry not updated on tab "${name}" (updateCellOnViewTab)`)
     range.setValue(oldValue)
   }
 
-  new SheetService(sheet).updateEntryByRow(row, entry)
+  new SheetService(sheet).updateEntryByRow(row, updatedEntry)
 
   // Update time
   toast('Updated')

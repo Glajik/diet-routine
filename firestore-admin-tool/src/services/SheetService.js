@@ -10,11 +10,12 @@ export const useColumns = fields => {
   const { zipObj, unzipObj } = fp
   const getColIndex = key => fields.indexOf(key)
   const getColNum = key => getColIndex(key) + 1
+  const getColName = colNum => fields.find((value, index) => colNum === index + 1)
   const fromValues = values => zipObj(fields, values)
   const toValues = item => unzipObj(item, fields)
   const getColCount = () => fields.length
   return {
-    getColNum, getColIndex, getColCount, fromValues, toValues,
+    getColNum, getColName, getColIndex, getColCount, fromValues, toValues,
   }
 }
 
