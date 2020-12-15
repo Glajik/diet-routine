@@ -32,24 +32,62 @@ export function createEntryOnViewTab(name) {
   new SheetService(sheet).addEntry(entry)
 }
 
-export function updateCellOnViewTab(name, docId, data) {
+/**
+ * Handle editing cells.
+ * @param {Event} e Edit trigger event
+ *
+ * @param {Event} e Edit trigger event
+ * @see https://developers.google.com/apps-script/guides/triggers/events#edit
+ */
+// eslint-disable-next-line no-unused-vars
+export function onEditViewTab(e) {
+  const SELECTED = 1
+  const DOC_ID = 2
+
+  const { range, value, oldValue } = e
+  const sheet = range.getSheet()
+  const name = sheet.getName()
+
+  // Get edited row, column and new value
+  const row = range.getRow()
+  const column = range.getColumn()
+
   if (!isValidTab(name)) {
-    toast('Abort. You can\'t update entry on this tab')
-    console.warn(`Updating is not allowed for tab "${name}" (updateCellOnViewTab)`)
-    return null
+    console.info(`Ignore editing for tab "${name}" (onEditViewTab)`)
+    return
   }
 
-  const service = new CollectionService(name)
-  const entry = service.updateById(docId, data)
+  // Ignore header
+  if (row < 2) {
+    console.info(`Ignore editing headers for tab "${name}" (onEditViewTab)`)
+    return
+  }
 
+  // Ignore SELECTED column
+  if (column === SELECTED) {
+    console.info(`Ignore selecting for tab "${name}" (onEditViewTab)`)
+    return
+  }
+
+  const docId = sheet.getRange(row, DOC_ID).getValue()
+
+  // Use header as key
+  const key = sheet.getRange(1, column).getValue()
+  const data = { [key]: value }
+
+  const entry = new CollectionService(name).updateById(docId, data)
+
+  // Revert data
   if (!entry) {
     toast('Error. Entry not updated')
     console.warn(`Entry not updated on tab "${name}" (updateCellOnViewTab)`)
-    return null
+    range.setValue(oldValue)
   }
 
+  new SheetService(sheet).updateEntryByRow(row, entry)
+
+  // Update time
   toast('Updated')
-  return entry
 }
 
 export function deleteSelectedOnViewTab(name) {

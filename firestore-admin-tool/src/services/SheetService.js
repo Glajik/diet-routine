@@ -65,9 +65,9 @@ export function getSheetHeaders(sheet) {
   return headers.filter(v => !!v)
 }
 
-export function getRowBy(value, column, sheet) {
+export function lookupRowRange(value, columnLetter, sheet) {
   const { toA1n, head, eq } = fp
-  const allIds = sheet.getRange(toA1n(column)).getValues().map(head)
+  const allIds = sheet.getRange(toA1n(columnLetter)).getValues().map(head)
   const index = allIds.findIndex(eq(value))
   if (index < 0) {
     return null
@@ -145,12 +145,44 @@ class SheetService {
     this.sheet.appendRow(toValues(entry))
   }
 
-  updateById(id, entry) {
+  /**
+   * Get entry by row numer
+   * @param {number} row Row number (not index)
+   * @returns {object} entry
+   */
+  getEntryByRow(row) {
+    const { fromValues } = useColumns(this.fields)
+    const [rowValues] = this.sheet.getRange(fp.toA1n(row)).getValues()
+    return fromValues(rowValues)
+  }
+
+  /**
+   * Update row with entry
+   * @param {number} row
+   * @param {object} entry
+   */
+  updateEntryByRow(row, entry) {
     const { toValues } = useColumns(this.fields)
-    const rowValues = toValues(entry)
-    // Find row to update
-    const finder = this.sheet.createDeveloperMetadataFinder()
-    finder.withKey('docId').withValue(docId)
+    const col = 1;
+    const rows = 1
+    const cols = this.fields.length
+    const values = [toValues(entry)]
+    this.sheet.getRange(row, col, rows, cols).setValues(values)
+  }
+
+  /**
+   * Update cells in row by data
+   * @param {number} row
+   * @param {object} data Cell data
+   */
+  updateCellByRow(row, data) {
+    this.fields.forEach((key, index) => {
+      const column = index + 1
+      const value = data[key]
+      if (value) {
+        this.sheet.getRange(row, column).setValue(value)
+      }
+    })
   }
 }
 
