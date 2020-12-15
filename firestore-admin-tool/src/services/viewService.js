@@ -1,5 +1,5 @@
 import CollectionService from './collectionService'
-import { updateWithEntries, addEntry, updateEntryByDocId, getSelectedDocIds } from './spreadsheetService'
+import { getSheetByName, updateWithEntries, addEntry, updateEntryByDocId, getSelectedDocIds } from './spreadsheetService'
 import { toast } from '../utils/ui'
 
 const ALLOWED_TABS = ['Products']
@@ -16,9 +16,9 @@ export function updateViewTab(name) {
     console.warn(`Update not allowed for tab "${name}" (updateCurrentTab)`)
     return
   }
-  const service = new CollectionService(name)
-  const entries = service.getAll()
-  updateWithEntries(name, entries)
+  const entries = new CollectionService(name).getAll()
+  const sheet = getSheetByName(name)
+  updateWithEntries(sheet, entries)
 }
 
 export function createEntryOnViewTab(name) {

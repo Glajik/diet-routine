@@ -1,6 +1,5 @@
 /* globals SpreadsheetApp, Utilities */
 import fp from '../utils/fp'
-import { columnsBySheetName } from '../schema'
 
 export const matchTypes = data => field => {
   const value = data[field.name]
@@ -30,32 +29,71 @@ export const matchTypes = data => field => {
   }
 }
 
+/**
+ * Get sheet by name
+ * @param {string} name Sheet name
+ * @returns {GoogleAppsScript.Spreadsheet.Sheet} sheet
+ */
+export function getSheetByName(name) {
+  return SpreadsheetApp.getActiveSpreadsheet().getSheetByName(name)
+}
+
 export function addEntry(sheetName, data) {
   const byField = matchTypes(data)
   const fields = columnsBySheetName[sheetName]
   const rowValues = fields.map(byField)
-  const ss = SpreadsheetApp.getActive()
+  const ss = SpreadsheetApp.getActive().getActiveSheet()
   const sheet = ss.getSheetByName(sheetName)
   sheet.appendRow(rowValues)
 }
 
-export function updateWithEntries(sheetName, list, activate = true) {
-  const fields = columnsBySheetName[sheetName]
-  const getRowValues = data => {
-    const byField = matchTypes(data)
-    return fields.map(byField)
+/**
+ * Get headers of sheet
+ * @param {GoogleAppsScript.Spreadsheet.Sheet} sheet
+ * @returns {[]} Header values
+ */
+export function getHeaders(sheet) {
+  const [headers] = sheet.getRange('1:1').getValues()
+  return headers.filter(v => !!v)
+}
+
+/**
+ * Create set of useful functions to work with sheet and it's data
+ * @param {[string]} fields List of field names
+ * @returns Set of fuctions
+ */
+export const useColumns = fields => {
+  const { zipObj, unzipObj } = fp
+  const getColIndex = key => fields.indexOf(key)
+  const getColNum = key => getColIndex(key) + 1
+  const fromValues = values => zipObj(fields, values)
+  const toValues = item => unzipObj(item, fields)
+  const getColCount = () => fields.length
+  return {
+    getColNum, getColIndex, getColCount, fromValues, toValues,
   }
-  const body = list.map(getRowValues)
-  const headers = fields.map(f => f.name)
-  const values = [headers].concat(body)
+}
+
+/**
+ * Update sheet with entries
+ * @param {GoogleAppsScript.Spreadsheet.Sheet} sheet 
+ * @param {[object]} entries 
+ * @param {boolean} activate Activate sheet after update
+ */
+export function updateWithEntries(sheet, entries, activate = true) {
+  const fields = getHeaders(sheet)
+  const { toValues } = useColumns(fields)
   const row = 1;
   const col = 1;
-  const rows = values.length
+  const rows = entries.length + 1
   const cols = fields.length
-  const ss = SpreadsheetApp.getActive()
-  const sheet = ss.getSheetByName(sheetName)
+  const body = entries.map(toValues)
+  const values = [fields].concat(body)
+
   sheet.clearContents()
-  sheet.getRange(row, col, rows, cols).setValues(values)
+    .getRange(row, col, rows, cols)
+    .setValues(values)
+
   if (activate) {
     sheet.activate()
   }

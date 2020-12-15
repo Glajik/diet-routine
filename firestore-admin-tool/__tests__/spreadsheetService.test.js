@@ -11,7 +11,7 @@ global.Utilities = {
 }
 
 // eslint-disable-next-line import/first
-import { matchTypes } from '../src/services/spreadsheetService'
+import { matchTypes, getHeaders } from '../src/services/spreadsheetService'
 
 test('Check converting plain object entry to rowValues by scheme', () => {
   const schema = {
@@ -53,4 +53,18 @@ test('Check converting plain object entry to rowValues by scheme', () => {
   expect(link).toBe('=HYPERLINK("https://www.example.com", "Link")')
   expect(created instanceof Date).toBeTruthy()
   expect(created.getTime()).toEqual(new Date('2020-12-02T15:45:02.12345Z').getTime())
+})
+
+test('getHeaders() function should works', () => {
+  const rangeValues = [
+    ['id', 'name', null, null, null]
+  ]
+  // Fake sheet
+  const sheet = {
+    getRange: a1Notation => ({
+      getValues: () => rangeValues
+    })
+  }
+
+  expect(getHeaders(sheet)).toEqual(['id', 'name'])
 })
