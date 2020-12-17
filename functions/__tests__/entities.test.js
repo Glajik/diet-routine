@@ -232,20 +232,82 @@ beforeAll(async () => {
   db.collection('UserProfiles')
     .doc(user.uid)
     .set({ ...UserProfile, favorites: [] })
+
+  // Create Products 
+  const productsRef = db.collection('Products')
+
+  await productsRef.add({
+    ...Product,
+    name: 'Cow\'s milk',
+    calories: 71.33,
+    proteins: 9.9,
+    fats: 2.33,
+    carbohydrates: 6.5,
+    type: 'liquid',
+    amountUnit: 'ml',
+    category: 'dairy_products',
+    author: null,
+    isVerified: true,
+    isStandard: true,
+  })
+
+  await productsRef.add({
+    ...Product,
+    name: 'Lobster, steamed',
+    calories: 92,
+    proteins: 18,
+    fats: 1,
+    carbohydrates: 0,
+    type: 'solid',
+    amountUnit: 'g',
+    category: 'fish_and_seafood',
+    author: null,
+    isVerified: true,
+    isStandard: true,
+  })
+
+  await productsRef.add({
+    ...Product,
+    name: 'Broccoli, steamed',
+    calories: 30,
+    proteins: 3,
+    fats: 0,
+    carbohydrates: 6,
+    type: 'solid',
+    amountUnit: 'g',
+    category: 'vegetables',
+    author: null,
+    isVerified: true,
+    isStandard: true,
+  })
 });
 
 /**
  * Cleanup after tests
  */
 afterAll(async () => {
-  // Delete test user profile and user itself
   const db = admin.firestore();
   const auth = admin.auth()
+  const batch = db.batch();
+
   const user = await auth.getUserByEmail('john@example.com')
+
   // Delete profile
-  db.collection('UserProfiles').doc(user.uid).delete()
+  const userProfile = db.collection('UserProfiles').doc(user.uid)
+  batch.delete(userProfile)
+
   // Delete user
   auth.deleteUser(user.uid)
+
+  // Delete products
+  const products = await db.collection('Products').listDocuments()
+  products.forEach(docRef => batch.delete(docRef))
+
+  // Delete categories
+  const categories = await db.collection('Categories').listDocuments()
+  categories.forEach(docRef => batch.delete(docRef))
+
+  await batch.commit()
 });
 
 describe('Check entities creation', () => {
@@ -258,7 +320,7 @@ describe('Check entities creation', () => {
     // Extract collection names
     const names = collections.map(ref => ref.id)
     // Check, if 'Categories' is there
-    expect(names.includes('Categories')).toBeTruthy()
+    expect(names).toContain('Categories')
   })
 
   test('Check if collection "Categories" has documents', async () => {
@@ -268,7 +330,7 @@ describe('Check entities creation', () => {
     const documents = await collectionRef.listDocuments()
     // Check count
     const expectedCount = Object.keys(Categories).length
-    expect(documents.length).toBe(expectedCount)
+    expect(documents).toHaveLength(expectedCount)
     
     // Get document reference by id (no need await)
     const docRef = collectionRef.doc('desserts_and_sweets')
@@ -290,6 +352,27 @@ describe('Check entities creation', () => {
     expect(profile).not.toBeUndefined()
     expect(profile.email).toBe('john@example.com')
     expect(profile.name).toBe('John Doe')
+  })
+
+  test('Check if Products is exist', async () => {
+    const productsRef = db.collection('Products')
+    const documents = await productsRef.listDocuments()
+    expect(documents).toHaveLength(3)
+
+    // Use query to take solid products
+    const querySnap = await productsRef.where('type', '==', 'solid').get()
+    // You can use "empty" prop
+    expect(querySnap.empty).toBeFalsy()
+    // You also can get size of selection
+    expect(querySnap.size).toBe(2)
+    // Get document data from selection
+    const productNames = querySnap.docs.map(item => {
+      const { name } = item.data()
+      return name
+    })
+    expect(productNames).toContain('Broccoli, steamed')
+    expect(productNames).toContain('Lobster, steamed')
+    expect(productNames).not.toContain('Cow\'s milk')
   })
 
   test('Ensure that Authentication can\'t store additional fields', async () => {
