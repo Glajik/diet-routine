@@ -68,14 +68,28 @@ admin.initializeApp({
 /* Assets */
 
 /**
+ * User
+ * 
+ * Fields below taken from documentation (Table 1)
+ * @see https://firebase.google.com/docs/auth/admin/manage-users?authuser=0#create_a_user
+ */
+const User = {
+  email: 'john@example.com',
+  emailVerified: false,
+  phoneNumber: '+11234567890',
+  password: 'secretPassword',
+  displayName: 'John Doe',
+  photoURL: 'http://www.example.com/12345678/photo.png',
+  disabled: false,
+}
+
+/**
  * User Profile
  * 
- * `uid` — Document `docId` should be the same
  */
 const UserProfile = {
-  uid: 'U1abcdefghijklmnopqrstuvwxyz',
-  email: 'john@example.com',
-  name: 'John',
+  email: User.email,
+  name: User.displayName,
   age: 28,
   weight: 75, // in kg
   height: 180, // in cm
@@ -209,45 +223,15 @@ beforeAll(async () => {
   // Create Categories collection
   const prefillCategories = prefillByObject(db.collection('Categories'))
   
-  await prefillCategories({
-    dairy_products:            { name: 'Dairy products' },
-    oils_fats_and_shortenings: { name: 'Oils, fats and shortenings' },
-    meat_and_poultry:          { name: 'Meat and poultry' },
-    fish_and_seafood:          { name: 'Fish and seafood' },
-    vegetables:                { name: 'Vegetables' },
-    fruits:                    { name: 'Fruits' },
-    breads_cereals_and_grains: { name: 'Breads, cereals and grains' },
-    soups:                     { name: 'Soups' },
-    desserts_and_sweets:       { name: 'Desserts and sweets' },
-    nuts_and_seeds:            { name: 'Nuts and seeds' },
-    beverages:                 { name: 'Beverages' },
-  })
+  await prefillCategories(Categories)
 
-  const user = await createUser({
-    email: 'john@example.com',
-    emailVerified: false,
-    phoneNumber: '+11234567890',
-    password: 'secretPassword',
-    displayName: 'John Doe',
-    photoURL: 'http://www.example.com/12345678/photo.png',
-    disabled: false,
-    weight: 75,
-  })
+  // Create user
+  const user = await createUser(User)
 
   // Create Profile
-  db.collection('UserProfiles').doc(user.uid)
-    .set({
-      email: user.email,
-      name: user.displayName,
-      age: 28,
-      weight: 75,
-      height: 180,
-      gender: 'male',
-      goal: 'lose',
-      activity: 'medium',
-      avatar: [],
-      favorites: [],
-    })
+  db.collection('UserProfiles')
+    .doc(user.uid)
+    .set({ ...UserProfile, favorites: [] })
 });
 
 /**
@@ -262,26 +246,42 @@ afterAll(async () => {
   db.collection('UserProfiles').doc(user.uid).delete()
   // Delete user
   auth.deleteUser(user.uid)
-
 });
 
 describe('Check entities creation', () => {
   const db = admin.firestore();
   const auth = admin.auth()
 
-  test('Check if "Categories" collection was created', async () => {
+  test('Check if collection "Categories" was created', async () => {
+    // Get all collections
     const collections = await db.listCollections()
+    // Extract collection names
     const names = collections.map(ref => ref.id)
+    // Check, if 'Categories' is there
     expect(names.includes('Categories')).toBeTruthy()
   })
 
   test('Check if collection "Categories" has documents', async () => {
+    // Get collection reference (no need await)
     const collectionRef = db.collection('Categories')
-    const docRefs = await collectionRef.listDocuments()
-    expect(docRefs.length).toBe(Object.keys(Categories).length)
-  })
+    // List all documents in collection 
+    const documents = await collectionRef.listDocuments()
+    // Check count
+    const expectedCount = Object.keys(Categories).length
+    expect(documents.length).toBe(expectedCount)
     
-  test('Created User & User Profile', async () => {
+    // Get document reference by id (no need await)
+    const docRef = collectionRef.doc('desserts_and_sweets')
+    // Get document snapshot
+    const docSnap = await docRef.get()
+    // Extract document content (no need await)
+    const sweets = docSnap.data()
+    // Check
+    expect(sweets).not.toBeUndefined()
+    expect(sweets.name).toBe('Desserts and sweets')
+  })
+      
+  test('Check if User & User Profile is exist', async () => {
     const user = await auth.getUserByEmail('john@example.com')
     expect(user).not.toBeNull()
     
@@ -290,6 +290,5 @@ describe('Check entities creation', () => {
     expect(profile).not.toBeUndefined()
     expect(profile.email).toBe('john@example.com')
     expect(profile.name).toBe('John Doe')
-    expect(profile.weight).toBe(75)
   })
 })
