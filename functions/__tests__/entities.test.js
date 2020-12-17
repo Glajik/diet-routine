@@ -188,7 +188,7 @@ const prefillByObject = collectionRef => async (object) => {
   toPairs(object).forEach(
     ([docId, data]) => {
       const docRef = collectionRef.doc(docId)
-      batch.set(docRef, data)
+      batch.set(docRef, { ...data, isTest: true })
     })
   
   // Commit the batch
@@ -231,7 +231,7 @@ beforeAll(async () => {
   // Create Profile
   db.collection('UserProfiles')
     .doc(user.uid)
-    .set({ ...UserProfile, favorites: [] })
+    .set({ ...UserProfile, favorites: [], isTest: true, })
 
   // Create Products 
   const productsRef = db.collection('Products')
@@ -249,6 +249,7 @@ beforeAll(async () => {
     author: null,
     isVerified: true,
     isStandard: true,
+    isTest: true,
   })
 
   await productsRef.add({
@@ -264,6 +265,7 @@ beforeAll(async () => {
     author: null,
     isVerified: true,
     isStandard: true,
+    isTest: true,
   })
 
   await productsRef.add({
@@ -279,6 +281,7 @@ beforeAll(async () => {
     author: null,
     isVerified: true,
     isStandard: true,
+    isTest: true,
   })
 });
 
@@ -300,12 +303,18 @@ afterAll(async () => {
   auth.deleteUser(user.uid)
 
   // Delete products
-  const products = await db.collection('Products').listDocuments()
-  products.forEach(docRef => batch.delete(docRef))
+  const productsQuerySnap = await db.collection('Products')
+    .where('isTest', '==', true)
+    .get()
+  
+  productsQuerySnap.forEach(doc => batch.delete(doc.ref))
 
   // Delete categories
-  const categories = await db.collection('Categories').listDocuments()
-  categories.forEach(docRef => batch.delete(docRef))
+  const categoriesQuerySnap = await db.collection('Categories')
+    .where('isTest', '==', true)
+    .get()
+    
+  categoriesQuerySnap.forEach(doc => batch.delete(doc.ref))
 
   await batch.commit()
 });
