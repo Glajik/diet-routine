@@ -20,6 +20,7 @@
 
 // The Firebase Admin SDK to access Cloud Firestore.
 const admin = require('firebase-admin');
+const { toPairs } = require('ramda');
 
 const serviceAccount = require('../diet-routine-873104497ace.json')
 
@@ -156,39 +157,139 @@ const Journal = {
   isDraft: true,
 }
 
-describe('Prefill DB', () => {
-  test('Fill "Categories" collection', async () => {
-    const db = admin.firestore();
-    const byKey = obj => key => obj[key]
-    const getContent = byKey(Categories)
+// Helpers
+
+/**
+ * Add documents to collection, using object keys as docId, and
+ * values as document's content
+ * @param {*} collectionRef 
+ */
+const prefillByObject = collectionRef => async (object) => {
+  const db = admin.firestore();
+
+  // Get a new write batch
+  const batch = db.batch();
+
+  // Add documents to collection with specified docId
+  toPairs(object).forEach(
+    ([docId, data]) => {
+      const docRef = collectionRef.doc(docId)
+      batch.set(docRef, data)
+    })
   
-    // Get a new write batch
-    const batch = db.batch();
+  // Commit the batch
+  await batch.commit()
+}
+
+/**
+ * Create new user, if not exist
+ * @param {*} data 
+ * @returns user
+ */
+const createUser = async (data) => {
+  const auth = admin.auth()
+  const { email } = data
+  try {
+    const user = await auth.getUserByEmail(email) 
+    console.info('User "John Doe" is exist. Skip creating.') 
+    return user
+  } catch (error) {
+    const user = await auth.createUser(data)
+    console.info('New user "John Doe" was created.')
+    return user
+  }
+}
+
+/**
+ * Prepare database & users
+ */
+beforeAll(async () => {
+  const db = admin.firestore();
     
-    // Set document in collection
-    const setDoc = colRef => docId => {
-      const docRef = colRef.doc(docId)
-      const content = getContent(docId)
-      batch.set(docRef, content)
-    }
+  // Create Categories collection
+  const prefillCategories = prefillByObject(db.collection('Categories'))
   
-    // Fill collection
-    const categoriesRef = db.collection('Categories')
-    Object.keys(Categories).forEach(setDoc(categoriesRef))
-  
-    // Commit the batch
-    await batch.commit()
-    
-    // Check if collection was created
+  await prefillCategories({
+    dairy_products:            { name: 'Dairy products' },
+    oils_fats_and_shortenings: { name: 'Oils, fats and shortenings' },
+    meat_and_poultry:          { name: 'Meat and poultry' },
+    fish_and_seafood:          { name: 'Fish and seafood' },
+    vegetables:                { name: 'Vegetables' },
+    fruits:                    { name: 'Fruits' },
+    breads_cereals_and_grains: { name: 'Breads, cereals and grains' },
+    soups:                     { name: 'Soups' },
+    desserts_and_sweets:       { name: 'Desserts and sweets' },
+    nuts_and_seeds:            { name: 'Nuts and seeds' },
+    beverages:                 { name: 'Beverages' },
+  })
+
+  const user = await createUser({
+    email: 'john@example.com',
+    emailVerified: false,
+    phoneNumber: '+11234567890',
+    password: 'secretPassword',
+    displayName: 'John Doe',
+    photoURL: 'http://www.example.com/12345678/photo.png',
+    disabled: false,
+    weight: 75,
+  })
+
+  // Create Profile
+  db.collection('UserProfiles').doc(user.uid)
+    .set({
+      email: user.email,
+      name: user.displayName,
+      age: 28,
+      weight: 75,
+      height: 180,
+      gender: 'male',
+      goal: 'lose',
+      activity: 'medium',
+      avatar: [],
+      favorites: [],
+    })
+});
+
+/**
+ * Cleanup after tests
+ */
+afterAll(async () => {
+  // Delete test user profile and user itself
+  const db = admin.firestore();
+  const auth = admin.auth()
+  const user = await auth.getUserByEmail('john@example.com')
+  // Delete profile
+  db.collection('UserProfiles').doc(user.uid).delete()
+  // Delete user
+  auth.deleteUser(user.uid)
+
+});
+
+describe('Check entities creation', () => {
+  const db = admin.firestore();
+  const auth = admin.auth()
+
+  test('Check if "Categories" collection was created', async () => {
     const collections = await db.listCollections()
     const names = collections.map(ref => ref.id)
-    console.log("Collections:", names);
     expect(names.includes('Categories')).toBeTruthy()
+  })
 
-    // Check if documents created
-    const docRefs = await categoriesRef.listDocuments()
-    const docsCount = docRefs.length
-    const expectedDocsCount = Object.keys(Categories).length
-    expect(docsCount).toBe(expectedDocsCount)
+  test('Check if collection "Categories" has documents', async () => {
+    const collectionRef = db.collection('Categories')
+    const docRefs = await collectionRef.listDocuments()
+    expect(docRefs.length).toBe(Object.keys(Categories).length)
+  })
+    
+  test('Created User & User Profile', async () => {
+    const user = await auth.getUserByEmail('john@example.com')
+    expect(user).not.toBeNull()
+    
+    const docSnap = await db.collection('UserProfiles').doc(user.uid).get()
+    const profile = docSnap.data()
+    expect(profile).not.toBeUndefined()
+    expect(profile.email).toBe('john@example.com')
+    expect(profile.name).toBe('John Doe')
+    expect(profile.weight).toBe(75)
   })
 })
