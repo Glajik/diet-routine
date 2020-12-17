@@ -291,4 +291,19 @@ describe('Check entities creation', () => {
     expect(profile.email).toBe('john@example.com')
     expect(profile.name).toBe('John Doe')
   })
+
+  test('Ensure that Authentication can\'t store additional fields', async () => {
+    const user = await auth.createUser({
+      email: 'test2325@example.com',
+      displayName: 'Big Franky',
+      weight: 120,
+    })
+
+    // You cannot get weight
+    expect(user.weight).not.toBe(120)
+    expect(user.weight).toBeUndefined()
+
+    // Delete user
+    await auth.deleteUser(user.uid)
+  })
 })
