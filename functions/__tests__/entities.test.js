@@ -6,7 +6,7 @@
  * To use emulator you should export first env variable:
  *    export FIRESTORE_EMULATOR_HOST="localhost:8080"
  * 
- * Then run:
+ * Then run from project root (!):
  *    firebase emulators:start
  * 
  * Check:
@@ -14,12 +14,14 @@
  * 
  * Remove:
  *    unset FIRESTORE_EMULATOR_HOST
+ * 
+ * firebase emulators:start --import=./.export --export-on-exit exec: './tests.sh'
  */
 
 // The Firebase Admin SDK to access Cloud Firestore.
 const admin = require('firebase-admin');
 
-const serviceAccount = require('./diet-routine-873104497ace.json')
+const serviceAccount = require('../diet-routine-873104497ace.json')
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount)
@@ -79,7 +81,7 @@ const UserProfile = {
   gender: 'male',
   goal: 'lose', // lose | hold | gain
   activity: 'medium', // low | light | medium | high | extra
-  avatar: new Blob(), // Ограничить размер 100 кб
+  avatar: new Array(), // Ограничить размер 100 кб
   favorites: ['P1abcdefghijklmnopqrstuvwxyz'], /* [Product.docId, ...] */
 }
 
@@ -153,3 +155,40 @@ const Journal = {
   carbohydrates: 9.75,
   isDraft: true,
 }
+
+describe('Prefill DB', () => {
+  test('Fill "Categories" collection', async () => {
+    const db = admin.firestore();
+    const byKey = obj => key => obj[key]
+    const getContent = byKey(Categories)
+  
+    // Get a new write batch
+    const batch = db.batch();
+    
+    // Set document in collection
+    const setDoc = colRef => docId => {
+      const docRef = colRef.doc(docId)
+      const content = getContent(docId)
+      batch.set(docRef, content)
+    }
+  
+    // Fill collection
+    const categoriesRef = db.collection('Categories')
+    Object.keys(Categories).forEach(setDoc(categoriesRef))
+  
+    // Commit the batch
+    await batch.commit()
+    
+    // Check if collection was created
+    const collections = await db.listCollections()
+    const names = collections.map(ref => ref.id)
+    console.log("Collections:", names);
+    expect(names.includes('Categories')).toBeTruthy()
+
+    // Check if documents created
+    const docRefs = await categoriesRef.listDocuments()
+    const docsCount = docRefs.length
+    const expectedDocsCount = Object.keys(Categories).length
+    expect(docsCount).toBe(expectedDocsCount)
+  })
+})
