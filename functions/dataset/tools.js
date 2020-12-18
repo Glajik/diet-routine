@@ -104,7 +104,7 @@ async function removeDataset() {
   batch.delete(userProfile)
 
   // Delete user
-  auth.deleteUser(user.uid)
+  // auth.deleteUser(user.uid)
 
   // Delete products
   const productsQuerySnap = await db.collection('Products')
