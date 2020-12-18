@@ -1,5 +1,13 @@
 // Here will be types of our actions
 
+export const INIT_SIGN_UP_FORM = 'INIT_SIGN_UP_FORM'
+export const INIT_SIGN_IN_FORM = 'INIT_SIGN_IN_FORM'
+
+export const FIELD_CHANGED = 'FIELD_CHANGED'
+export const CLEAR_FORM = 'CLEAR_FORM'
+export const DISABLED = 'DISABLED'
+export const NOT_DISABLED = 'NOT_DISABLED'
+
 export const LOAD = 'LOAD'
 export const NOT_LOAD = 'NOT_LOAD'
 
@@ -20,3 +28,11 @@ export const CHANGE_CURRENT_YEAR = 'CHANGE_CURRENT_YEAR'
 export const CHANGE_SELECTED_YEAR = 'CHANGE_SELECTED_YEAR'
 
 export const GET_CURRENT_USER_ID = 'GET_CURRENT_USER_ID'
+
+export const RESET_SUCCESS = 'RESET_SUCCESS'
+export const RESET_ERROR = 'RESET_ERROR'
+
+export const IS_LOGIN_DRAWER = 'IS_LOGIN_DRAWER'
+export const IS_SIGNUP_DRAWER = 'IS_SIGNUP_DRAWER'
+export const IS_FORGOT_PASS_DRAWER = 'IS_FORGOT_PASS_DRAWER'
+export const ALL_CLOSE_DRAWER = 'ALL_CLOSE_DRAWER'

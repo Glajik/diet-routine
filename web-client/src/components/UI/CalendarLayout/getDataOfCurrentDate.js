@@ -3,7 +3,6 @@ export const getDataOfCurrentDate = (dayInfo, selectedDate, currentUserId) => {
     return item.userId === currentUserId && item.dates.filter(item => item.date === selectedDate).length
   })
 
-
   if (selectedDateData.length) {
     return {
       userId: selectedDateData[0].userId,

@@ -16,25 +16,21 @@ import React from 'react'
 import {IntlProvider} from 'react-intl'
 import {connect} from 'react-redux'
 import {Route, Switch, withRouter} from 'react-router-dom'
-import {CSSTransition, TransitionGroup} from 'react-transition-group'
+// import {CSSTransition, TransitionGroup} from 'react-transition-group'
+import {getCurrentUserId} from '../../redux/actions/profileAction'
 import {ua} from '../../i18n'
 import 'antd/dist/antd.css'
-import {getCurrentUserId} from '../../redux/actions/profileAction'
+import { Wrapper } from './style'
 
 import {
   AddProduct,
   CalendarPage,
   FeaturesPage,
-  FirstPage,
-  LoginPage,
   ProductSearch,
   Profile,
-  RegisterPage,
-  WelcomePage,
-  Main
+  OnboardingPage,
+  Main,
 } from '../index'
-
-import {Wrapper} from './style'
 
 const App = (props) => {
   const userId = 1
@@ -44,23 +40,29 @@ const App = (props) => {
     <div className="App">
       <IntlProvider locale={navigator.language} messages={ua}>
         <Wrapper>
-          <TransitionGroup>
-            <CSSTransition key={props.location.key} classNames="fade" timeout={1000}>
-              <Switch location={props.location}>
-                <Route path="/welcome_page" component={WelcomePage}/>
-                <Route exact path="/" component={FirstPage}/>
-              </Switch>
-            </CSSTransition>
-          </TransitionGroup>
+          {/*<TransitionGroup>*/}
+            {/*<CSSTransition key={props.location.key} classNames="fade" timeout={1000}>*/}
+              {/*<Switch location={props.location}>*/}
+                {/*/!*<Route exact path="/" component={FirstPage}/>*!/*/}
+              {/*</Switch>*/}
+            {/*</CSSTransition>*/}
+          {/*</TransitionGroup>*/}
           <Switch location={props.location}>
             <Route path="/features" component={FeaturesPage}/>
-            <Route path="/login" component={LoginPage}/>
-            <Route path="/register" component={RegisterPage}/>
             <Route path="/add-product" component={AddProduct}/>
             <Route path="/product-search" component={ProductSearch}/>
             <Route path="/calendar" component={CalendarPage}/>
             <Route path="/profile" component={Profile}/>
             <Route path="/main" component={Main}/>
+            {/* <Route path="/login" component={Login} />
+            <Route path="/signup" component={SignUp} />
+            <Route path="/forgotpassword" component={ForgotPassword} /> */}
+            <Route path="/features" component={FeaturesPage} />
+            <Route path="/add-product" component={AddProduct} />
+            <Route path="/product-search" component={ProductSearch} />
+            <Route path="/profile" component={Profile} />
+            <Route path="/main" component={Main} />
+            <Route path="/" component={OnboardingPage} />
           </Switch>
         </Wrapper>
       </IntlProvider>

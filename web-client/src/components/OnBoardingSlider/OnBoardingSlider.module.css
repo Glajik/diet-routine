@@ -1,0 +1,16 @@
+.imageContainer {
+    margin: 44px auto 0 auto;
+    width: 276px;
+    height: 272px;
+
+    border-style: none;
+}
+
+.image {
+    width: 276px;
+    height: 272px;
+}
+
+.hid {
+    display: none;
+}
