@@ -1,7 +1,7 @@
-import React, {useEffect, useState} from 'react'
 import moment from 'moment'
-import {dayInfo} from './temporaryServer'
+import React, {useEffect, useState} from 'react'
 import {FormattedMessage} from 'react-intl'
+import {connect} from 'react-redux'
 import {ReactComponent as GoBack} from '../../../assets/images/go-back.svg'
 import {ReactComponent as GoNext} from '../../../assets/images/go-next.svg'
 import {getDataOfCurrentDate} from './getDataOfCurrentDate'
@@ -9,9 +9,14 @@ import {getLastMonthDates} from './getLastMonthDates'
 import {getMonthKey} from './getMonthKey'
 import {getNextMonthDates} from './getNextMonthDates'
 import {getWeekdayKey} from './getWekdayKey'
+import {getDateData} from '../../../redux/actions/dateDataAction'
+import {changeSelectedDate} from '../../../redux/actions/calendarAction'
+import {changeMonthsAmountFromToday} from '../../../redux/actions/calendarAction'
+import {changeCurrentYear} from '../../../redux/actions/calendarAction'
+import {changeSelectedYear} from '../../../redux/actions/calendarAction'
 
 import {
-  CalendarHeaderWrapper,
+  DateWrapper,
   Date,
   DateNum,
   DateTd,
@@ -24,48 +29,45 @@ import {
   MonthYearLabel,
   Table,
   Tbody,
-  Thead,
   WeekDaysSpan,
   WeekDaysTd
 } from './style'
+import {dayInfo} from './temporaryServer'
 
-const Calendar = () => {
-  const [dateContext] = useState(moment())
-  const [monthsAmountFromToday, setMonthsAmountFromToday] = useState(0)
-  const [selectedDay, setSelectedDay] = useState(moment().subtract(monthsAmountFromToday, 'month').get('date'))
-  const [selectedMonth, setSelectedMonth] = useState(moment().subtract(monthsAmountFromToday, 'month').format('M'))
-  const [currentYear, checkToAnotherYear] = useState(moment().format('YYYY'))
-  const [selectedYear, setSelectedYear] = useState(moment().format('YYYY'))
+const CalendarLayout = (props) => {
   const currentMonthForToday = moment().format('M')
+  const currentMonthNum = moment().subtract(props.monthsAmountFromToday, 'month').format('M')
+  const nextMonthYear = moment().subtract(props.monthsAmountFromToday - 1, 'month').format('YYYY')
+  const nextMonthNum = moment().subtract(props.monthsAmountFromToday - 1, 'month').format('M')
+  const lastMonthNum = moment().subtract(props.monthsAmountFromToday + 1, 'month').format('M')
   const currentYearForToday = moment().format('YYYY')
-  const currentMonthNum = moment().subtract(monthsAmountFromToday, 'month').format('M')
-  const nextMonthYear = moment().subtract(monthsAmountFromToday - 1, 'month').format('YYYY')
-  const nextMonthNum = moment().subtract(monthsAmountFromToday - 1, 'month').format('M')
   const [isNextMonthButtonDisabled, setNextMonthButtonDisabled] = useState(true)
-  const lastMonthNum = moment().subtract(monthsAmountFromToday + 1, 'month').format('M')
-  const [selectedDateId, setSelectedDateId] = useState(moment([currentYear, currentMonthNum, selectedDay], moment.defaultFormat).format('LL'))
 
   const weekDaysShort = []
   let weekDay
 
+  let selectedDateId = props.selectedDate
+
   useEffect(() => {
-    if (+currentMonthForToday >= +nextMonthNum && +currentYearForToday >= +nextMonthYear)   {
+    if (+currentMonthForToday >= +nextMonthNum && +currentYearForToday >= +nextMonthYear) {
       setNextMonthButtonDisabled(false)
     } else {
       setNextMonthButtonDisabled(true)
     }
 
-    getDataOfCurrentDate(
-      dayInfo,
-      selectedDateId,
-      {date: moment().subtract(monthsAmountFromToday, 'month').format('LL'), calories: 0, water: 0}
+    props.getSelectedDateData(
+      getDataOfCurrentDate(
+        dayInfo,
+        selectedDateId,
+        props.currentUserId
+      )
     )
   }, [
     currentMonthForToday,
     currentYearForToday,
     nextMonthNum,
     nextMonthYear,
-    monthsAmountFromToday
+    props.monthsAmountFromToday
   ])
 
   for (let i = 0; i <= 6; i++) {
@@ -78,21 +80,21 @@ const Calendar = () => {
 
     if (isNextMonthSelected) {
       if (+currentMonthNum === 12) {
-        await setSelectedYear(+currentYear + 1)
+        await props.changeSelectedYearCmp(+props.currentYear + 1)
       }
 
       if (+nextMonthNum === 12) {
-        await setSelectedYear(+currentYear)
+        await props.changeSelectedYearCmp(+props.currentYear)
       }
     }
 
     if (isLastMonthSelected) {
-      if (+selectedYear > +currentYear) {
-        await setSelectedYear(currentYear)
+      if (+props.selectedYear > +props.currentYear) {
+        await props.changeSelectedYearCmp(props.currentYear)
       }
 
       if (+lastMonthNum === 12) {
-        await setSelectedYear(currentYear)
+        await props.changeSelectedYearCmp(props.currentYear - 1)
       }
     }
 
@@ -100,21 +102,15 @@ const Calendar = () => {
 
 
     if (!isSelectedDateInTheFuture) {
-      if (isCurrentMonthSelected) {
-        await setSelectedMonth(currentMonthNum)
-      } else if (isNextMonthSelected) {
-        await setSelectedMonth(nextMonthNum)
-      } else if (isLastMonthSelected) {
-        await setSelectedMonth(lastMonthNum)
-      }
-      if (event.target.id !== selectedDateId) {
-        setSelectedDay(d)
-        setSelectedDateId(event.target.id)
+      if (event.target.id !== props.selectedDate) {
+        props.changeSelectedDateCmp(event.target.id)
 
-        getDataOfCurrentDate(
-          dayInfo,
-          event.target.id,
-          {date: event.target.id, calories: 0, water: 0}
+        props.getSelectedDateData(
+          getDataOfCurrentDate(
+            dayInfo,
+            event.target.id,
+            props.currentUserId
+          )
         )
       }
     } else {
@@ -134,16 +130,16 @@ const Calendar = () => {
   })
 
   const lastBlanks = []
-  const lastMonthDatesArr = getLastMonthDates(monthsAmountFromToday, dateContext)
+  const lastMonthDatesArr = getLastMonthDates(props.monthsAmountFromToday, moment())
 
   lastMonthDatesArr.reverse().map((item, index) => {
     return (
       lastBlanks.push(
         <LastAndNextMonthsDatesTd key={index}>
           <LastAndNextMonthsDatesSpan
-            id={moment([selectedYear, lastMonthNum, item], moment.defaultFormat).format('LL')}
-            data-milliseconds={moment([selectedYear, lastMonthNum, item], moment.defaultFormat).format('x')}
-            currentDay={item === +selectedDay && +lastMonthNum === +selectedMonth}
+            id={moment([props.selectedYear, lastMonthNum, item], moment.defaultFormat).format('LL')}
+            data-milliseconds={moment([props.selectedYear, lastMonthNum, item], moment.defaultFormat).format('x')}
+            currentDay={moment([props.selectedYear, lastMonthNum, item], moment.defaultFormat).format('LL') === props.selectedDate}
             onClick={(
               event,
               isCurrentMonthSelected = false,
@@ -158,16 +154,16 @@ const Calendar = () => {
   })
 
   const nextBlanks = []
-  const nextMonthDatesArr = getNextMonthDates(monthsAmountFromToday)
+  const nextMonthDatesArr = getNextMonthDates(props.monthsAmountFromToday)
 
   nextMonthDatesArr.map((item, index) => {
     return (
       nextBlanks.push(
         <LastAndNextMonthsDatesTd key={index}>
           <LastAndNextMonthsDatesSpan
-            id={moment([selectedYear, nextMonthNum, item], moment.defaultFormat).format('LL')}
-            data-milliseconds={moment([selectedYear, nextMonthNum, item], moment.defaultFormat).format('x')}
-            currentDay={item === +selectedDay && +nextMonthNum === +selectedMonth}
+            id={moment([props.selectedYear, nextMonthNum, item], moment.defaultFormat).format('LL')}
+            data-milliseconds={moment([props.selectedYear, nextMonthNum, item], moment.defaultFormat).format('x')}
+            currentDay={moment([props.selectedYear, nextMonthNum, item], moment.defaultFormat).format('LL') === props.selectedDate}
             onClick={(
               event,
               isCurrentMonthSelected = false,
@@ -181,16 +177,16 @@ const Calendar = () => {
     )
   })
 
-  const daysInMonth = moment().subtract(monthsAmountFromToday, 'month').daysInMonth()
+  const daysInMonth = moment().subtract(props.monthsAmountFromToday, 'month').daysInMonth()
   const daysInMonthArr = []
 
   for (let d = 1; d <= daysInMonth; d++) {
     daysInMonthArr.push(
       <DateTd key={d + Math.random()}>
         <DateNum
-          id={moment([currentYear, currentMonthNum, d], moment.defaultFormat).format('LL')}
-          data-milliseconds={moment([currentYear, currentMonthNum, d], moment.defaultFormat).format('x')}
-          currentDay={d === +selectedDay && currentMonthNum === selectedMonth}
+          id={moment([props.currentYear, currentMonthNum, d], moment.defaultFormat).format('LL')}
+          data-milliseconds={moment([props.currentYear, currentMonthNum, d], moment.defaultFormat).format('x')}
+          currentDay={moment([props.currentYear, currentMonthNum, d], moment.defaultFormat).format('LL') === props.selectedDate}
           onClick={(
             event,
             isCurrentMonthSelected = true,
@@ -233,11 +229,9 @@ const Calendar = () => {
 
   const goToNextMonth = async () => {
     if (!isNextMonthButtonDisabled) {
-      setMonthsAmountFromToday(monthsAmountFromToday - 1)
-      checkToAnotherYear(nextMonthYear)
-      setSelectedMonth(nextMonthNum)
-      setSelectedDateId(moment().subtract(monthsAmountFromToday - 1, 'month').format('LL'))
-      setSelectedDay(moment().subtract(monthsAmountFromToday - 1, 'month').format('D'))
+      props.changeMonthsAmountFromTodayCmp(props.monthsAmountFromToday - 1)
+      props.changeCurrentYearCmp(nextMonthYear)
+      props.changeSelectedDateCmp(selectedDateId)
     } else {
       alert('Sorry, but we haven\'t information about the next month.')
     }
@@ -245,18 +239,15 @@ const Calendar = () => {
 
   const goToLastMonth = async () => {
     setNextMonthButtonDisabled(false)
-    setMonthsAmountFromToday(monthsAmountFromToday + 1)
-    const year = moment().subtract(monthsAmountFromToday + 1, 'month').format('YYYY')
-    checkToAnotherYear(year)
-    setSelectedMonth(moment().subtract(monthsAmountFromToday + 1, 'month').format('M'))
-    setSelectedDateId(moment().subtract(monthsAmountFromToday + 1, 'month').format('LL'))
-    setSelectedDay(moment().subtract(monthsAmountFromToday + 1, 'month').format('D'))
+    props.changeMonthsAmountFromTodayCmp(props.monthsAmountFromToday + 1)
+    const year = moment().subtract(props.monthsAmountFromToday + 1, 'month').format('YYYY')
+    props.changeCurrentYearCmp(year)
+    props.changeSelectedDateCmp(selectedDateId)
   }
 
   return (
-    <Table>
-      <Thead>
-      <CalendarHeaderWrapper>
+    <>
+      <DateWrapper>
         <Date>
           <GoBackBtn onClick={goToLastMonth}>
             <GoBack fill="#3DAD06"/>
@@ -265,27 +256,55 @@ const Calendar = () => {
               <span style={{paddingRight: 5}}>
                 <FormattedMessage
                   id={getMonthKey(moment()
-                    .subtract(monthsAmountFromToday, 'month')
+                    .subtract(props.monthsAmountFromToday, 'month')
                     .format('MMMM'))}/>
               </span>
             <span>
-                {currentYear}
+                {props.currentYear}
               </span>
           </MonthYearLabel>
-          <GoNextBtn onClick={goToNextMonth}>
+          <GoNextBtn
+            isNextMonthButtonDisabled={isNextMonthButtonDisabled}
+            onClick={goToNextMonth}>
             <GoNext fill={isNextMonthButtonDisabled ? '#bfbfbf' : '#3DAD06'}/>
           </GoNextBtn>
         </Date>
-      </CalendarHeaderWrapper>
-      </Thead>
-      <Tbody>
-      <DaysList>
-        {weekDaysArr}
-      </DaysList>
-      {trElems}
-      </Tbody>
-    </Table>
+      </DateWrapper>
+      <Table>
+        <Tbody>
+        <tr>
+          <td>
+            {props.children}
+          </td>
+        </tr>
+        <DaysList>
+          {weekDaysArr}
+        </DaysList>
+        {trElems}
+        </Tbody>
+      </Table>
+    </>
   )
 }
 
-export default Calendar
+const mapStateToProps = (state) => {
+  return {
+    selectedDate: state.calendar.selectedDate,
+    currentUserId: state.profile.currentUserId,
+    monthsAmountFromToday: state.calendar.monthsAmountFromToday,
+    currentYear: state.calendar.currentYear,
+    selectedYear: state.calendar.selectedYear
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    getSelectedDateData: (data) => dispatch(getDateData(data)),
+    changeSelectedDateCmp: (date) => dispatch(changeSelectedDate(date)),
+    changeMonthsAmountFromTodayCmp: (amount) => dispatch(changeMonthsAmountFromToday(amount)),
+    changeCurrentYearCmp: (year) => dispatch(changeCurrentYear(year)),
+    changeSelectedYearCmp: (year) => dispatch(changeSelectedYear(year))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(CalendarLayout)

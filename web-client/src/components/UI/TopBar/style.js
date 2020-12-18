@@ -26,6 +26,7 @@ export const PageName = styled.h2`
   font-size: 16px;
   font-weight: 700;
   color: #595959;
+  margin-bottom: 0;
 `
 
 export const SettingsButton = styled.button`

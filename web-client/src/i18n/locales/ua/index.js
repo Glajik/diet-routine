@@ -67,5 +67,13 @@ export default {
   i18n_thursday_key: 'Чт',
   i18n_friday_key: 'Пт',
   i18n_saturday_key: 'Сб',
-  i18n_sunday_key: 'Нд'
+  i18n_sunday_key: 'Нд',
+  i18n_calendar_header: 'Календар',
+  i18n_products_list_link: 'Переглянути перелік продуктів',
+  i18n_proteins: 'Білки',
+  i18n_fats: 'Жири',
+  i18n_carbs: 'Вуглеводи',
+  i18n_grams: 'г',
+  i18n_millilitres: 'мл',
+  i18n_litres: 'л'
 }

@@ -1,18 +1,42 @@
 import React from 'react'
-import {TopBottomBarsLayout} from '../../layouts'
-import {Container, Calendar} from '../UI'
-import {CalendarContentWrapper} from './style'
+import {FormattedMessage} from 'react-intl'
+import {Link} from 'react-router-dom'
+import {BottomBarLayout} from '../../layouts'
+import {CalendarLayout, Container} from '../UI'
+import ProgressCircle from './ProgressCircle'
+import ProgressLine from './ProgressLine'
+import {
+  CalendarContentWrapper,
+  ProgressBarsWrapper,
+  CalendarPageHeader,
+  ProductListLinkWrapper
+} from './style'
 
 const CalendarPage = (props) => {
   return (
     <Container>
-      <TopBottomBarsLayout
+      <BottomBarLayout
         title="calendar"
         history={props.history}>
         <CalendarContentWrapper>
-          <Calendar/>
+          <CalendarPageHeader>
+            <FormattedMessage id="i18n_calendar_header"/>
+          </CalendarPageHeader>
+          <CalendarLayout>
+            <ProgressBarsWrapper>
+              <ProgressCircle/>
+              <ProgressLine/>
+            </ProgressBarsWrapper>
+            <ProductListLinkWrapper>
+              <Link
+                to="/main"
+                style={{color: '#262626', textDecoration: 'underline'}}>
+                <FormattedMessage id="i18n_products_list_link"/>
+              </Link>
+            </ProductListLinkWrapper>
+          </CalendarLayout>
         </CalendarContentWrapper>
-      </TopBottomBarsLayout>
+      </BottomBarLayout>
     </Container>
   )
 }

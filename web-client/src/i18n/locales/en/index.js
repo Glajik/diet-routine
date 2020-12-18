@@ -65,5 +65,13 @@ export default {
   i18n_thursday_key: 'Th',
   i18n_friday_key: 'Fr',
   i18n_saturday_key: 'Sa',
-  i18n_sunday_key: 'Su'
+  i18n_sunday_key: 'Su',
+  i18n_calendar_header: 'Calendar',
+  i18n_products_list_link: 'View products list',
+  i18n_proteins: 'Proteins',
+  i18n_fats: 'Fats',
+  i18n_carbs: 'Carbs',
+  i18n_grams: 'g',
+  i18n_millilitres: 'ml',
+  i18n_litres: 'l'
 }

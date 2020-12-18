@@ -14,9 +14,13 @@
 
 import React from 'react'
 import {IntlProvider} from 'react-intl'
+import {connect} from 'react-redux'
 import {Route, Switch, withRouter} from 'react-router-dom'
 import {CSSTransition, TransitionGroup} from 'react-transition-group'
-import {en, ru, ua} from '../../i18n'
+import {ua} from '../../i18n'
+import 'antd/dist/antd.css'
+import {getCurrentUserId} from '../../redux/actions/profileAction'
+
 import {
   AddProduct,
   CalendarPage,
@@ -32,20 +36,23 @@ import {
 
 import {Wrapper} from './style'
 
-const App = ({location}) => {
+const App = (props) => {
+  const userId = 1
+  props.setCurrentUserId(userId)
+
   return (
     <div className="App">
       <IntlProvider locale={navigator.language} messages={ua}>
         <Wrapper>
           <TransitionGroup>
-            <CSSTransition key={location.key} classNames="fade" timeout={1000}>
-              <Switch location={location}>
+            <CSSTransition key={props.location.key} classNames="fade" timeout={1000}>
+              <Switch location={props.location}>
                 <Route path="/welcome_page" component={WelcomePage}/>
                 <Route exact path="/" component={FirstPage}/>
               </Switch>
             </CSSTransition>
           </TransitionGroup>
-          <Switch location={location}>
+          <Switch location={props.location}>
             <Route path="/features" component={FeaturesPage}/>
             <Route path="/login" component={LoginPage}/>
             <Route path="/register" component={RegisterPage}/>
@@ -61,4 +68,10 @@ const App = ({location}) => {
   )
 }
 
-export default withRouter(App)
+const mapDispatchToProps = (dispatch) => {
+  return {
+    setCurrentUserId: (id) => dispatch(getCurrentUserId(id))
+  }
+}
+
+export default withRouter(connect(null, mapDispatchToProps)(App))
