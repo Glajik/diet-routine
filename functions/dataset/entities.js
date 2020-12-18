@@ -6,14 +6,14 @@
  * Fields below taken from documentation (Table 1)
  * @see https://firebase.google.com/docs/auth/admin/manage-users?authuser=0#create_a_user
  
- * @param {string} uid	The uid to assign to the newly created user. Must be a string between 1 and 128 characters long, inclusive. If not provided, a random uid will be automatically generated.
- * @param {string} email	The user's primary email. Must be a valid email address.
- * @param {boolean} emailVerified	Whether or not the user's primary email is verified. If not provided, the default is false.
- * @param {string} phoneNumber	The user's primary phone number. Must be a valid E.164 spec compliant phone number.
- * @param {string} password	The user's raw, unhashed password. Must be at least six characters long.
- * @param {string} displayName	The users' display name.
- * @param {string} photoURL	The user's photo URL.
- * @param {boolean} disabled	Whether or not the user is disabled. true for disabled; false for enabled. If not provided, the default is false.
+ * @param {string} uid The uid to assign to the newly created user. Must be a string between 1 and 128 characters long, inclusive. If not provided, a random uid will be automatically generated.
+ * @param {string} email The user's primary email. Must be a valid email address.
+ * @param {boolean} emailVerified Whether or not the user's primary email is verified. If not provided, the default is false.
+ * @param {string} phoneNumber The user's primary phone number. Must be a valid E.164 spec compliant phone number.
+ * @param {string} password The user's raw, unhashed password. Must be at least six characters long.
+ * @param {string} displayName The users' display name.
+ * @param {string} photoURL The user's photo URL.
+ * @param {boolean} disabled Whether or not the user is disabled. true for disabled; false for enabled. If not provided, the default is false.
  */
 const User = {
   email: 'john@example.com',
