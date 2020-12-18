@@ -48,9 +48,50 @@ async function initDataset() {
 
   // Create products 
   const productsRef = db.collection('Products')
-  await Promise.all(
+  const productDocumentRefs = await Promise.all(
     dataset.products.map(data => productsRef.add(data))
   )
+
+  // Create some journal items
+  const productDocumentSnapshots = await Promise.all(
+    productDocumentRefs.map(ref => ref.get())
+  )
+
+  const journalItems = productDocumentSnapshots.map((docSnap) => {
+    const product = docSnap.data()
+    const { name, type, amountUnit } = product
+    
+    const amount = 100 + Math.round(Math.random() * 300)
+    const calc = (value, amount) => value / 100 * amount
+
+    return {
+      name,
+      type,
+      amountUnit,
+      calories: calc(product.calories, amount),
+      proteins: calc(product.proteins, amount),
+      fats: calc(product.fats, amount),
+      carbohydrates: calc(product.carbohydrates, amount),
+      product: docSnap.id,
+      author: user.uid,
+      isTest: true,
+      isDraft: false,
+    }
+  })
+  
+  const journalRef = db.collection('Journal')
+  await Promise.all(
+    journalItems.map(data => journalRef.add(data))
+  )
+
+  // Set one entry to draft
+  const [journalItem] = journalItems
+
+  await journalRef.add({
+    ...journalItem,
+    isDraft: true,
+    calories: 999
+  })
 }
 
 async function removeDataset() {
@@ -78,6 +119,13 @@ async function removeDataset() {
     .get()
     
   categoriesQuerySnap.forEach(doc => batch.delete(doc.ref))
+
+  // Delete journal
+  const journalQuerySnap = await db.collection('Journal')
+    .where('isTest', '==', true)
+    .get()
+
+  journalQuerySnap.forEach(doc => batch.delete(doc.ref))
 
   await batch.commit()
 }

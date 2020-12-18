@@ -80,6 +80,12 @@ describe('Check entities creation', () => {
     expect(productNames).not.toContain('Cow\'s milk')
   })
 
+  test('Check if Journal items is exist', async () => {
+    const journalRef = db.collection('Journal')
+    const documents = await journalRef.listDocuments()
+    expect(documents).toHaveLength(4)
+  })
+
   test('Ensure that Authentication can\'t store additional fields', async () => {
     const user = await auth.createUser({
       email: 'test2325@example.com',
