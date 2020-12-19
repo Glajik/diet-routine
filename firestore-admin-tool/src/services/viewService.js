@@ -32,6 +32,24 @@ export function createEntryOnViewTab(name) {
   new SheetService(sheet).addEntry(entry)
 }
 
+export function uploadSelectedOnViewTab(name) {
+  const sheet = getSheetByName(name)
+  const sheetService = new SheetService(sheet)
+
+  const collectionService = new CollectionService(name)
+
+  sheetService.getSelectedEntries()
+    .filter(item => !item.docId)
+    .forEach((entry) => {
+      const {
+        rowId, selected, docId, created, updated, ...rest
+      } = entry
+
+      const result = collectionService.create(rest)
+      sheetService.updateEntryByRow(rowId, result)
+    })
+}
+
 export function deleteSelectedOnViewTab(name) {
   const sheet = getSheetByName(name)
 

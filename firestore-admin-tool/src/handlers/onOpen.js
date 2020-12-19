@@ -3,7 +3,7 @@ import { showCredentialsDialog } from '../ui/credentialService' // eslint-disabl
 import { showLogs, hideLogs, cleanLogs } from '../utils/Logger' // eslint-disable-line no-unused-vars
 import { doTests } from '../tests/doTests' // eslint-disable-line no-unused-vars
 import { testSpreadsheetService } from '../tests/testSpreadsheetService' // eslint-disable-line no-unused-vars
-import { updateViewTab, createEntryOnViewTab, deleteSelectedOnViewTab } from '../services/viewService'
+import { updateViewTab, createEntryOnViewTab, uploadSelectedOnViewTab, deleteSelectedOnViewTab } from '../services/viewService'
 
 // eslint-disable-next-line no-unused-vars
 function onOpen() {
@@ -11,7 +11,11 @@ function onOpen() {
   ui.createMenu('Admin Tool')
     .addItem('Update Tab', 'updateCurrentTab')
     .addItem('Add entry', 'addToCurrentTab')
+    .addSeparator()
+    .addItem('Add selected', 'addSelectedOnCurrentTab')
+    .addSeparator()
     .addItem('Delete selected', 'deleteSelectedOnCurrentTab')
+    .addSeparator()
     .addSubMenu(
       ui.createMenu('Products')
         .addItem('Get All', 'getProductsAndUpdateTab')
@@ -75,6 +79,16 @@ function addToCurrentTab() {
   const sheet = ss.getActiveSheet()
   const name = sheet.getName()
   createEntryOnViewTab(name)
+}
+
+/**
+ * Add new documents from selected rows
+ */
+function addSelectedOnCurrentTab() {
+  const ss = SpreadsheetApp.getActiveSpreadsheet()
+  const sheet = ss.getActiveSheet()
+  const name = sheet.getName()
+  uploadSelectedOnViewTab(name)
 }
 
 /**

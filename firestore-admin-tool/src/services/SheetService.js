@@ -187,6 +187,24 @@ class SheetService {
       .map(([, id]) => id)
       .filter(isValid)
   }
+
+  /**
+   * Get selected entries
+   */
+  getSelectedEntries() {
+    const addRowId = (item, index) => ({ rowId: index + 2, ...item })
+    const isSelected = item => !!item.selected
+    const isValid = item => !!item.name
+
+    // Skip header
+    const [, ...values] = this.sheet.getDataRange().getValues()
+    const { fromValues } = useColumns(this.fields)
+
+    return values.map(fromValues)
+      .map(addRowId)
+      .filter(isSelected)
+      .filter(isValid)
+  }
 }
 
 export default SheetService
