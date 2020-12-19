@@ -1,0 +1,14 @@
+.link {
+    height: 24px;
+    margin-bottom: 10px;
+
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 25px;
+    text-decoration-line: underline;
+
+    margin-left: 16px;
+
+    color: #595959;
+}

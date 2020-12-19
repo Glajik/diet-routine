@@ -16,7 +16,7 @@ function SignUp({ onClose }) {
       visible={isClick}
       onClose={onClose}
       key="bottom"
-      height="456px">
+      height="475px">
       <div className={styled.container}>
         <HeaderDrawer text="Sign up" />
         <SignUpForm />

@@ -17,7 +17,7 @@ const Login = ({ onClose }) => {
       visible={isClick}
       onClose={onClose}
       key="bottom"
-      height="376px">
+      height="475px">
       <div className={styled.container}>
         <HeaderDrawer text="Login" />
         <LoginForm />

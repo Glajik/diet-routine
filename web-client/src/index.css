@@ -16,22 +16,29 @@ input::placeholder {
   font-family: Nunito;
 }
 
+.ant-form {
+  margin: 26px auto 0 -10px !important
+}
+
 /* отключение * required input */
-.ant-form-item-label > label.ant-form-item-required::before {
+.ant-form-item-label>label.ant-form-item-required::before {
   content: none !important;
 }
 
 /* label для input */
-.ant-form-item-label > label.ant-form-item-required {
+.ant-form-item-label>label.ant-form-item-required {
   font-style: normal;
-  font-weight: normal;
-  font-size: 16px;
-  line-height: 22px;
+  font-weight: 600;
+  font-size: 13px;
+  line-height: 150%;
+
+
+  color: #BFBFBF;
 }
 
 .ant-form-item-label {
   padding: 0px !important;
-  padding-bottom: 3px;
+  margin-bottom: -10px !important;
 }
 
 .ant-form-item-required {
@@ -39,6 +46,20 @@ input::placeholder {
   font-size: 13px !important;
   line-height: 150% !important;
 }
+.ant-input:placeholder-shown {
+  padding-left: 0px;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 150%;
+
+  color: #BFBFBF;
+}
+
+.ant-form-item {
+  margin-bottom: 0px;
+}
+
 .ant-drawer-content {
   overflow: hidden !important;
 }
@@ -47,7 +68,7 @@ input::placeholder {
   height: 6px !important;
   width: 6px !important;
   border-radius: 4px !important;
-  background-color: gray;
+  background-color: gray !important;
 }
 
 .slick-dots .slick-active button {

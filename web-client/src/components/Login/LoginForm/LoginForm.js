@@ -37,18 +37,23 @@ const LoginForm = () => {
             message: 'Please input valid Email!',
           },
         ]}
-        placeholder="your email"
+        placeholder="Your email"
       />
       <Input
         name="password"
         label="Password"
         type="password"
         rules={[{ required: true, message: 'Please input your Password!' }]}
-        placeholder="your password"
+        placeholder="Your password"
       />
-      <button type="submit" className={styled.greenBtn}>
-        Log in
-      </button>
+      <div className={styled.btnGroup}>
+        <button type="submit" className={styled.greenBtn}>
+          Login
+        </button>
+        <button type="submit" className={styled.whiteBtn}>
+          Not a member? Sign up
+        </button>
+      </div>
     </Form>
   )
 }

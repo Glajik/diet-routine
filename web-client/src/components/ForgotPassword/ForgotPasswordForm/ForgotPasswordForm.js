@@ -39,9 +39,14 @@ const ForgotPasswordForm = () => {
         ]}
         placeholder="your email"
       />
-      <button type="submit" className={styled.greenBtn}>
-        Continue
-      </button>
+      <div className={styled.btnGroup}>
+        <button type="submit" className={styled.greenBtn}>
+          Send
+        </button>
+        <button type="submit" className={styled.whiteBtn}>
+          Back to Log in
+        </button>
+      </div>
     </Form>
   )
 }

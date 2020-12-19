@@ -16,7 +16,7 @@ const ForgotPassword = ({ onClose }) => {
       visible={isClick}
       onClose={onClose}
       key="bottom"
-      height="392px">
+      height="475px">
       <div className={styled.container}>
         <HeaderDrawer text="Password assistance" />
         <div className={styled.explanationText}>

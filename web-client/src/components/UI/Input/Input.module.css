@@ -1,5 +1,7 @@
 .inputItem {
   height: 55px;
+  width: 288px;
+  margin-bottom: 24px !important;
 }
 
 .inputItem .input {
@@ -13,7 +15,7 @@
 .input ::placeholder {
   font-style: normal;
   font-weight: 600;
-  font-size: 16px;
+  font-size: 45px;
   line-height: 150%;
   color: #000000;
 }
