@@ -3,6 +3,7 @@ import {
   LOGIN_ERROR,
   SIGNUP_SUCCESS,
   SIGNUP_ERROR,
+  SIGNOUT_SUCCESS,
   RESET_SUCCESS,
   RESET_ERROR,
 } from '../actionTypes'
@@ -23,17 +24,17 @@ export const signIn = ({ email, password }) => {
   }
 }
 
-// export const signOut = () => {
-//   return (dispatch, getState, { getFirebase }) => {
-//     const firebase = getFirebase()
-//     firebase
-//       .auth()
-//       .signOut()
-//       .then(() => {
-//         dispatch({ type: SIGNOUT_SUCCESS })
-//       })
-//   }
-// }
+export const signOut = () => {
+  return (dispatch, getState, { getFirebase }) => {
+    const firebase = getFirebase()
+    firebase
+      .auth()
+      .signOut()
+      .then(() => {
+        dispatch({ type: SIGNOUT_SUCCESS })
+      })
+  }
+}
 
 export const signUp = ({ email, password }) => {
   return (dispatch, getState, { getFirebase, getFirestore }) => {
