@@ -16,11 +16,6 @@
   justify-content: center;
   margin-top: 16px;
 }
-
-.footerForm :nth-child(2) {
-  padding-left: 4px;
-}
-
 .footerForm :nth-child(3) {
   padding-left: 18px;
 }

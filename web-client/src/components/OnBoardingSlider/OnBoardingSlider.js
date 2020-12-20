@@ -1,44 +1,65 @@
-import React from 'react'
+import React, { useRef, useState } from 'react'
+import { useHistory } from 'react-router-dom'
 import { Carousel } from 'antd'
-// import styled from './OnBoardingSlider.module.css'
+import FooterSlider from './FooterSlider/FooterSlider'
+import styled from './OnBoardingSlider.module.css'
+import FirstSlide from './FirstSlide/FirstSlide'
+import SecondSlide from './SecondSlide/SecondSlide'
 
-// let data = [
-//   { title: 'Card title1', value: 'Card content1' },
-//   { title: 'Card title2', value: 'Card content2' },
-//   { title: 'Card title3', value: 'Card content3' },
-// ]
+import image1 from '../../assets/images/slide_1.svg'
+import image2 from '../../assets/images/slide_2.svg'
+import image3 from '../../assets/images/slide_3.svg'
 
 const OnBoardingSlider = () => {
-  // const [value, setValue] = useState(0)
+  const slider = useRef(null)
+  const [sliderNumber, setSliderNumber] = useState(0)
 
-  function onChange(a, b, c) {
-    console.log(a, b, c)
-  }
+  const history = useHistory()
 
-  const contentStyle = {
-    height: '160px',
-    color: '#fff',
-    lineHeight: '160px',
-    textAlign: 'center',
-    background: '#364d79',
+  const handleStart = () => history.push('/main')
+
+  const handleNext = () => {
+    setSliderNumber(slider.current.innerSlider.state.currentSlide)
+    return slider.current.next()
   }
 
   return (
     <>
-      <Carousel afterChange={onChange}>
-        <div>
-          <h3 style={contentStyle}>1</h3>
+      <Carousel
+        className={styled.slider}
+        ref={slider}
+        afterChange={() =>
+          setSliderNumber(slider.current.innerSlider.state.currentSlide)
+        }>
+        <div className={styled.slide}>
+          <FirstSlide
+            image={image1}
+            header="Calories tracking"
+            text="You can calculate and set your daily calorie limit. Now you can easily decide
+        whether you can have another slice of sweets."
+          />
         </div>
-        <div>
-          <h3 style={contentStyle}>2</h3>
+        <div className={styled.slide}>
+          <FirstSlide
+            image={image2}
+            header="Food quality"
+            text="You can track the balance of proteins, fats and carbohydrates during the day, and understand your habits."
+          />
         </div>
-        <div>
-          <h3 style={contentStyle}>3</h3>
-        </div>
-        <div>
-          <h3 style={contentStyle}>4</h3>
+        
+        <div className={styled.slide}>
+          <SecondSlide
+            image={image3}
+            header={['Get ready', <br />, 'for the holidays']}
+            text="Try to accumulate a calorie shortage to relax on the holidays."
+          />
         </div>
       </Carousel>
+      {sliderNumber === 0 || sliderNumber === 1 ? (
+        <FooterSlider next={handleNext} btnText="Next" />
+      ) : (
+        <FooterSlider next={handleStart} btnText="Start" />
+      )}
     </>
   )
 }

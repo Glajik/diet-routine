@@ -36,14 +36,14 @@ const SignUpForm = () => {
             message: 'Please input valid Email!',
           },
         ]}
-        placeholder="your email"
+        placeholder="Your email"
       />
       <Input
         name="password"
         label="Password"
         type="password"
         rules={[{ required: true, message: 'Please input your Password!' }]}
-        placeholder="your password"
+        placeholder="Password"
       />
       <Input
         name="retypePassword"
@@ -63,7 +63,7 @@ const SignUpForm = () => {
             },
           }),
         ]}
-        placeholder="your password"
+        placeholder="Password"
       />
       <button type="submit" className={styled.greenBtn}>
         Sign up
