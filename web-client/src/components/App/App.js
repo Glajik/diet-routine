@@ -14,13 +14,12 @@
 
 import React from 'react'
 import {IntlProvider} from 'react-intl'
-
 import { connect, useSelector } from 'react-redux'
-
-import {getCurrentUserId} from '../../redux/actions/profileAction'
-import {ua} from '../../i18n'
 import 'antd/dist/antd.css'
 import { Wrapper } from './style'
+import Routes from './Routes'
+import {ua} from '../../i18n'
+import {getCurrentUserId} from '../../redux/actions/profileAction'
 
 
 const App = (props) => {
@@ -55,4 +54,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default withRouter(connect(null, mapDispatchToProps)(App))
+export default connect(null, mapDispatchToProps)(App)
