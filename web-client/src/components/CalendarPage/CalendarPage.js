@@ -22,11 +22,15 @@ const CalendarPage = (props) => {
   // Calendar state
   const [date, setDate] = useState(new Date())
 
+  // Get auth data from firebase
+  const auth = useSelector(state => state.firebase.auth)
+
   // Configure query to Firestore collection
   useFirestoreConnect([{
     collection: 'Journal',
     where: [
       ['isDraft', '==', false],
+      ['author', '==', auth.uid]
     ],
   }])
   
