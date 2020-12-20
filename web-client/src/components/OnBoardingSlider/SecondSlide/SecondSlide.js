@@ -1,14 +1,13 @@
-
 import React from 'react'
 import { Typography } from 'antd'
 import PropTypes from 'prop-types'
 
 import HeaderImage from '../../MyComponents/HeaderImage/HeaderImage'
-import styled from './FirstSlide.module.css'
+import styled from './SecondSlide.module.css'
 
 const { Title } = Typography
 
-const FirstSlide = ({ image, text, header }) => {
+const SecondSlide = ({ image, text, header }) => {
   return (
     <div className={styled.container}>
       <HeaderImage image={image} />
@@ -20,10 +19,9 @@ const FirstSlide = ({ image, text, header }) => {
   )
 }
 
-FirstSlide.propTypes = {
+SecondSlide.propTypes = {
   image: PropTypes.string.isRequired,
   text: PropTypes.string.isRequired,
-  header: PropTypes.string.isRequired,
 }
 
-export default FirstSlide
+export default SecondSlide

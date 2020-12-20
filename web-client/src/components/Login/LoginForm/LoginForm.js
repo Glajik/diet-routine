@@ -5,6 +5,7 @@ import { Form } from 'antd'
 import Input from '../../UI/Input/Input'
 import styled from './LoginForm.module.css'
 import { signIn } from '../../../redux/actions/authActions'
+import { handleSignup } from '../../../redux/actions/drawerActions'
 
 const LoginForm = () => {
   const dispatch = useDispatch()
@@ -14,6 +15,11 @@ const LoginForm = () => {
     console.log('Received values of form: ', user)
     dispatch(signIn(user))
     form.resetFields()
+  }
+
+  const handlerSignUp = () => {
+    form.resetFields()
+    dispatch(handleSignup())
   }
 
   return (
@@ -50,7 +56,7 @@ const LoginForm = () => {
         <button type="submit" className={styled.greenBtn}>
           Login
         </button>
-        <button type="submit" className={styled.whiteBtn}>
+        <button type="button" onClick={handlerSignUp} className={styled.whiteBtn}>
           Not a member? Sign up
         </button>
       </div>

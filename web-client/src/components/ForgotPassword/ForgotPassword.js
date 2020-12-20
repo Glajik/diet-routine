@@ -1,5 +1,5 @@
 import React from 'react'
-
+import PropTypes from 'prop-types'
 import { Drawer } from 'antd'
 import HeaderDrawer from '../MyComponents/HeaderDrawer/HeaderDrawer'
 import styled from './ForgotPassword.module.css'
@@ -28,6 +28,10 @@ const ForgotPassword = ({ onClose }) => {
       </div>
     </Drawer>
   )
+}
+
+ForgotPassword.propTypes = {
+  onClose: PropTypes.func.isRequired,
 }
 
 export default ForgotPassword

@@ -1,5 +1,5 @@
 import React from 'react'
-
+import PropTypes from 'prop-types'
 import styled from './Login.module.css'
 
 import LoginForm from './LoginForm/LoginForm'
@@ -25,6 +25,10 @@ const Login = ({ onClose }) => {
       </div>
     </Drawer>
   )
+}
+
+Login.propTypes = {
+  onClose: PropTypes.func.isRequired,
 }
 
 export default Login

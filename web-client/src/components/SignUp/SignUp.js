@@ -1,5 +1,5 @@
 import React from 'react'
-
+import PropTypes from 'prop-types'
 import HeaderDrawer from '../MyComponents/HeaderDrawer/HeaderDrawer'
 import SignUpForm from './SignUpForm/SignUpForm'
 import styled from './SignUp.module.css'
@@ -24,6 +24,10 @@ function SignUp({ onClose }) {
       </div>
     </Drawer>
   )
+}
+
+SignUp.propTypes = {
+  onClose: PropTypes.func.isRequired,
 }
 
 export default SignUp

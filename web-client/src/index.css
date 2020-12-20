@@ -79,3 +79,9 @@ input::placeholder {
   transition: none !important;
   width: 11px !important;
 }
+h3 {
+
+  font-weight: bold !important;
+
+  color: #262626;
+}

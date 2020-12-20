@@ -17,10 +17,11 @@
 
     color: #262626;
 }
+
 .phrase {
     margin: 16px auto 0 auto;
     width: 288px;
-    height: 32px;
+    height: 64px;
 
     font-style: normal;
     font-weight: bold;

@@ -6,16 +6,22 @@ import { useDispatch } from 'react-redux'
 import Input from '../../UI/Input/Input'
 import styled from './ForgotPasswordForm.module.css'
 import { resetPassword } from '../../../redux/actions/authActions'
+import { handleLogin } from '../../../redux/actions/drawerActions'
 
 const ForgotPasswordForm = () => {
   const dispatch = useDispatch()
   const [form] = Form.useForm()
 
   const onFinish = email => {
-    console.log('Received values of form: ', email)
     dispatch(resetPassword(email))
     form.resetFields()
   }
+
+  const handlerLogIn = () => {
+    dispatch(handleLogin())
+    form.resetFields()
+  }
+
   return (
     <Form
       form={form}
@@ -43,7 +49,7 @@ const ForgotPasswordForm = () => {
         <button type="submit" className={styled.greenBtn}>
           Send
         </button>
-        <button type="submit" className={styled.whiteBtn}>
+        <button className={styled.whiteBtn} onClick={handlerLogIn}>
           Back to Log in
         </button>
       </div>

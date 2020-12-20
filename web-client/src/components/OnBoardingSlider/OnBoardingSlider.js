@@ -4,6 +4,7 @@ import { Carousel } from 'antd'
 import FooterSlider from './FooterSlider/FooterSlider'
 import styled from './OnBoardingSlider.module.css'
 import FirstSlide from './FirstSlide/FirstSlide'
+import SecondSlide from './SecondSlide/SecondSlide'
 
 import image1 from '../../assets/images/slide_1.svg'
 import image2 from '../../assets/images/slide_2.svg'
@@ -24,7 +25,12 @@ const OnBoardingSlider = () => {
 
   return (
     <>
-      <Carousel className={styled.slider} ref={slider}>
+      <Carousel
+        className={styled.slider}
+        ref={slider}
+        afterChange={() =>
+          setSliderNumber(slider.current.innerSlider.state.currentSlide)
+        }>
         <div className={styled.slide}>
           <FirstSlide
             image={image1}
@@ -40,15 +46,16 @@ const OnBoardingSlider = () => {
             text="You can track the balance of proteins, fats and carbohydrates during the day, and understand your habits."
           />
         </div>
+        
         <div className={styled.slide}>
-          <FirstSlide
+          <SecondSlide
             image={image3}
             header={['Get ready', <br />, 'for the holidays']}
             text="Try to accumulate a calorie shortage to relax on the holidays."
           />
         </div>
       </Carousel>
-      {sliderNumber === 0 ? (
+      {sliderNumber === 0 || sliderNumber === 1 ? (
         <FooterSlider next={handleNext} btnText="Next" />
       ) : (
         <FooterSlider next={handleStart} btnText="Start" />
