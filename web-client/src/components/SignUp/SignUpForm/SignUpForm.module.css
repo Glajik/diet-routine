@@ -1,11 +1,13 @@
 #forms {
-  margin: 0 auto;
+  margin: 26px auto 0 auto;
   width: 288px;
 }
 
 .greenBtn {
   width: 288px;
   height: 48px;
+
+  margin-top: 16px;
 
   font-style: normal;
   font-weight: 900;

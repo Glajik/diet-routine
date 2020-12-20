@@ -21,7 +21,7 @@ const WelcomePage = () => {
   return (
     <div className={styled.container}>
       <HeaderImage image={image} />
-      <Header text={['Sign up or', <br />, 'try out right now']}/>
+      <Header text={['Sign up or', <br />, 'try out right now']} key="onCoardings" />
       <ButtonGroup />
       <QuestionFooter />
       <Login onClose={onClose} />

@@ -15,8 +15,7 @@
 import React from 'react'
 import {IntlProvider} from 'react-intl'
 import {connect} from 'react-redux'
-import {Route, Switch, withRouter} from 'react-router-dom'
-// import {CSSTransition, TransitionGroup} from 'react-transition-group'
+import { Route, Switch, withRouter } from 'react-router-dom'
 import {getCurrentUserId} from '../../redux/actions/profileAction'
 import {ua} from '../../i18n'
 import 'antd/dist/antd.css'
@@ -30,6 +29,7 @@ import {
   Profile,
   OnboardingPage,
   Main,
+  OnBoardingSlider
 } from '../index'
 
 const App = (props) => {
@@ -40,28 +40,15 @@ const App = (props) => {
     <div className="App">
       <IntlProvider locale={navigator.language} messages={ua}>
         <Wrapper>
-          {/*<TransitionGroup>*/}
-            {/*<CSSTransition key={props.location.key} classNames="fade" timeout={1000}>*/}
-              {/*<Switch location={props.location}>*/}
-                {/*/!*<Route exact path="/" component={FirstPage}/>*!/*/}
-              {/*</Switch>*/}
-            {/*</CSSTransition>*/}
-          {/*</TransitionGroup>*/}
           <Switch location={props.location}>
-            <Route path="/features" component={FeaturesPage}/>
-            <Route path="/add-product" component={AddProduct}/>
-            <Route path="/product-search" component={ProductSearch}/>
-            <Route path="/calendar" component={CalendarPage}/>
-            <Route path="/profile" component={Profile}/>
-            <Route path="/main" component={Main}/>
-            {/* <Route path="/login" component={Login} />
-            <Route path="/signup" component={SignUp} />
-            <Route path="/forgotpassword" component={ForgotPassword} /> */}
+            <Route path="/add-product" component={AddProduct} />
+            <Route path="/calendar" component={CalendarPage} />
             <Route path="/features" component={FeaturesPage} />
             <Route path="/add-product" component={AddProduct} />
             <Route path="/product-search" component={ProductSearch} />
             <Route path="/profile" component={Profile} />
             <Route path="/main" component={Main} />
+            <Route path="/try_out" component={OnBoardingSlider} />
             <Route path="/" component={OnboardingPage} />
           </Switch>
         </Wrapper>
