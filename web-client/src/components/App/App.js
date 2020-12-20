@@ -26,7 +26,6 @@ import { Wrapper } from './style'
 import {
   AddProduct,
   CalendarPage,
-  FeaturesPage,
   ProductSearch,
   Profile,
   OnboardingPage,
@@ -36,7 +35,6 @@ import {
 
 const PublicSide = () => (
   <>
-    <Route path="/features" component={FeaturesPage} />
     <Route path="/try_out" component={OnBoardingSlider} />
     <Route path="/" component={OnboardingPage} />
     <Redirect to="/" />
