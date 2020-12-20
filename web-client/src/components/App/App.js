@@ -16,7 +16,7 @@ import React from 'react'
 import {IntlProvider} from 'react-intl'
 
 import { connect, useSelector } from 'react-redux'
-import {Route, Switch, withRouter} from 'react-router-dom
+import {Route, Switch, withRouter} from 'react-router-dom'
 
 import {getCurrentUserId} from '../../redux/actions/profileAction'
 import {ua} from '../../i18n'
