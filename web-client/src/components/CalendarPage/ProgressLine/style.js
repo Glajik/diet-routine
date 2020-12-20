@@ -4,10 +4,6 @@ export const ProgressLineWrapper = styled.div`
   margin-bottom: ${p => !p.lastLine ? '5px' : 0};
 `
 
-export const ProgressLinesWrapper = styled.div`
-  width: 136px;  
-`
-
 export const ProgressLineData = styled.div`
   display: flex;
   justify-content: space-between;

@@ -10,6 +10,7 @@ import ProgressLine from './ProgressLine'
 import {
   CalendarContentWrapper,
   ProgressBarsWrapper,
+  ProgressLinesWrapper,
   CalendarPageHeader,
   ProductListLinkWrapper
 } from './style'
@@ -32,6 +33,10 @@ const CalendarPage = (props) => {
   // Data can be found in the store
   const entries = useSelector(state => state.firestore.ordered.Journal) || []
   console.log("state.firestore.ordered.Journal", entries)
+
+  const sum = key => (acc, item) => acc + item[key]
+  const totals = key => Math.round(entries.reduce(sum(key), 0))
+
   return (
     <Container>
       <BottomBarLayout
@@ -43,8 +48,12 @@ const CalendarPage = (props) => {
           </CalendarPageHeader>
           <CalendarLayout onChange={date => setDate(date)} >
             <ProgressBarsWrapper>
-              <ProgressCircle/>
-              <ProgressLine/>
+              <ProgressCircle value={totals('calories')} limit={2000} />
+              <ProgressLinesWrapper>
+                <ProgressLine name="i18n_proteins" value={totals('proteins')} limit={100} />
+                <ProgressLine name="i18n_fats" value={totals('fats')} limit={100} />
+                <ProgressLine name="i18n_carbs" value={totals('carbohydrates')} limit={100} />
+              </ProgressLinesWrapper>
             </ProgressBarsWrapper>
             <ProductListLinkWrapper>
               <Link
