@@ -16,7 +16,7 @@ import React from 'react'
 import {IntlProvider} from 'react-intl'
 
 import { connect, useSelector } from 'react-redux'
-import {Route, Switch, withRouter} from 'react-router-dom'
+import {Redirect, Route, Switch, withRouter} from 'react-router-dom'
 
 import {getCurrentUserId} from '../../redux/actions/profileAction'
 import {ua} from '../../i18n'
@@ -34,8 +34,28 @@ import {
   OnBoardingSlider
 } from '../index'
 
+const PublicSide = () => (
+  <>
+    <Route path="/features" component={FeaturesPage} />
+    <Route path="/try_out" component={OnBoardingSlider} />
+    <Route path="/" component={OnboardingPage} />
+    <Redirect to="/" />
+  </>
+)
+
+const PrivateSide = () => (
+  <>
+    <Redirect exact from="/" to="/main" />
+    <Route path="/add-product" component={AddProduct} />
+    <Route path="/calendar" component={CalendarPage} />
+    <Route path="/product-search" component={ProductSearch} />
+    <Route path="/profile" component={Profile} />
+    <Route path="/main" component={Main} />
+  </>
+)
+
 const App = (props) => {
-  const { setCurrentUserId, location, history } = props
+  const { setCurrentUserId, location } = props
   
   const userId = 1
   setCurrentUserId(userId)
@@ -49,26 +69,17 @@ const App = (props) => {
     return 'Loading ...'
   }
 
-  // If user not logined, redirect to the public
-  // part of the application
-  if (!auth.uid) {
-    history.push('/')
-  }
-
   return (
     <div className="App">
       <IntlProvider locale={navigator.language} messages={ua}>
-        <Wrapper>  
-          <Switch location={props.location}>
-            <Route path="/add-product" component={AddProduct} />
-            <Route path="/calendar" component={CalendarPage} />
-            <Route path="/features" component={FeaturesPage} />
-            <Route path="/add-product" component={AddProduct} />
-            <Route path="/product-search" component={ProductSearch} />
-            <Route path="/profile" component={Profile} />
-            <Route path="/main" component={Main} />
-            <Route path="/try_out" component={OnBoardingSlider} />
-            <Route path="/" component={OnboardingPage} />
+        <Wrapper>
+          <Switch location={location}>
+            { // If user not logined, redirect to the public
+              // part of the application
+              !auth.uid
+                ? <PublicSide />
+                : <PrivateSide />
+            }
           </Switch>
         </Wrapper>
       </IntlProvider>
