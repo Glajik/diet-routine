@@ -16,44 +16,15 @@ import React from 'react'
 import {IntlProvider} from 'react-intl'
 
 import { connect, useSelector } from 'react-redux'
-import {Redirect, Route, Switch, withRouter} from 'react-router-dom'
 
 import {getCurrentUserId} from '../../redux/actions/profileAction'
 import {ua} from '../../i18n'
 import 'antd/dist/antd.css'
 import { Wrapper } from './style'
 
-import {
-  AddProduct,
-  CalendarPage,
-  ProductSearch,
-  Profile,
-  OnboardingPage,
-  Main,
-  OnBoardingSlider
-} from '../index'
-
-const PublicSide = () => (
-  <>
-    <Route path="/try_out" component={OnBoardingSlider} />
-    <Route path="/" component={OnboardingPage} />
-    <Redirect to="/" />
-  </>
-)
-
-const PrivateSide = () => (
-  <>
-    <Redirect exact from="/" to="/main" />
-    <Route path="/add-product" component={AddProduct} />
-    <Route path="/calendar" component={CalendarPage} />
-    <Route path="/product-search" component={ProductSearch} />
-    <Route path="/profile" component={Profile} />
-    <Route path="/main" component={Main} />
-  </>
-)
 
 const App = (props) => {
-  const { setCurrentUserId, location } = props
+  const { setCurrentUserId } = props
   
   const userId = 1
   setCurrentUserId(userId)
@@ -71,14 +42,7 @@ const App = (props) => {
     <div className="App">
       <IntlProvider locale={navigator.language} messages={ua}>
         <Wrapper>
-          <Switch location={location}>
-            { // If user not logined, redirect to the public
-              // part of the application
-              !auth.uid
-                ? <PublicSide />
-                : <PrivateSide />
-            }
-          </Switch>
+          <Routes isAuthorized={!!auth.uid} />
         </Wrapper>
       </IntlProvider>
     </div>
