@@ -14,8 +14,10 @@
 
 import React from 'react'
 import {IntlProvider} from 'react-intl'
-import {connect} from 'react-redux'
-import { Route, Switch, withRouter } from 'react-router-dom'
+
+import { connect, useSelector } from 'react-redux'
+import {Route, Switch, withRouter} from 'react-router-dom
+
 import {getCurrentUserId} from '../../redux/actions/profileAction'
 import {ua} from '../../i18n'
 import 'antd/dist/antd.css'
@@ -33,13 +35,30 @@ import {
 } from '../index'
 
 const App = (props) => {
+  const { setCurrentUserId, location, history } = props
+  
   const userId = 1
-  props.setCurrentUserId(userId)
+  setCurrentUserId(userId)
+
+  // Get auth data from firebase
+  const auth = useSelector(state => state.firebase.auth)
+  console.log("state.firebase.auth", auth)
+
+  // Wait auth loading. Maybe we should show spinner?
+  if (!auth.isLoaded) {
+    return 'Loading ...'
+  }
+
+  // If user not logined, redirect to the public
+  // part of the application
+  if (!auth.uid) {
+    history.push('/')
+  }
 
   return (
     <div className="App">
       <IntlProvider locale={navigator.language} messages={ua}>
-        <Wrapper>
+        <Wrapper>  
           <Switch location={props.location}>
             <Route path="/add-product" component={AddProduct} />
             <Route path="/calendar" component={CalendarPage} />

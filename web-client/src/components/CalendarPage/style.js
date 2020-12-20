@@ -12,6 +12,10 @@ export const ProgressBarsWrapper = styled.div`
   margin-top: 24px;
 `
 
+export const ProgressLinesWrapper = styled.div`
+  width: 136px;  
+`
+
 export const CalendarPageHeader = styled.h2`
   font-size: 24px;
   font-weight: bold;
