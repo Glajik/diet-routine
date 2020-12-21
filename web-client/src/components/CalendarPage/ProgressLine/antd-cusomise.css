@@ -1,0 +1,15 @@
+.ant-progress-text {
+  display: block;
+  width: 100%;
+  margin-left: 0;
+}
+
+.ant-progress-small.ant-progress-line, .ant-progress-small.ant-progress-line .ant-progress-text .anticon {
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+.ant-progress-show-info .ant-progress-outer {
+  margin: 0;
+  padding: 0;
+}

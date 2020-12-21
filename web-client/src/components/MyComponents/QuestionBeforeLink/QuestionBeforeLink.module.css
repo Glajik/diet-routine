@@ -1,0 +1,12 @@
+.question {
+  height: 24px;
+
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 19px;
+  display: flex;
+  align-items: center;
+
+  color: #6a6767;
+}

@@ -1,0 +1,10 @@
+.footerForm {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 16px;
+}
+
+.footerForm :nth-child(2) {
+  padding-left: 8px;
+}
