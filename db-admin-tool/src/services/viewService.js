@@ -2,7 +2,7 @@ import CollectionService from './collectionService'
 import SheetService, { getSheetByName, useColumns } from './SheetService'
 import { toast } from '../utils/ui'
 
-const ALLOWED_TABS = ['Products']
+const ALLOWED_TABS = ['Products', 'UserProfiles', 'Journal']
 
 const isValidTab = name => ALLOWED_TABS.includes(name)
 
