@@ -18,7 +18,7 @@ import {connect} from 'react-redux'
 import {Route, Switch, withRouter} from 'react-router-dom'
 // import {CSSTransition, TransitionGroup} from 'react-transition-group'
 import {getCurrentUserId} from '../../redux/actions/profileAction'
-import {ua} from '../../i18n'
+import {en} from '../../i18n'
 import 'antd/dist/antd.css'
 import { Wrapper } from './style'
 
@@ -33,12 +33,12 @@ import {
 } from '../index'
 
 const App = (props) => {
-  const userId = 1
+  const userId = '2x9bJliY7Beq6eN7v8K54YPifmu1'
   props.setCurrentUserId(userId)
 
   return (
     <div className="App">
-      <IntlProvider locale={navigator.language} messages={ua}>
+      <IntlProvider locale={navigator.language} messages={en}>
         <Wrapper>
           {/*<TransitionGroup>*/}
             {/*<CSSTransition key={props.location.key} classNames="fade" timeout={1000}>*/}
