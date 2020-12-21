@@ -1,3 +1,6 @@
+# Local db export data
+.export/
+
 # Logs
 logs
 *.log

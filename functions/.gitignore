@@ -1,1 +1,4 @@
 node_modules/
+
+# Credentials
+diet-routine-*.json
