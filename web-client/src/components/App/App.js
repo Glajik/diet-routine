@@ -13,24 +13,23 @@
 */
 
 import React from 'react'
-import {IntlProvider} from 'react-intl'
+import { IntlProvider } from 'react-intl'
 import { connect, useSelector } from 'react-redux'
 import 'antd/dist/antd.css'
 import { Wrapper } from './style'
 import Routes from './Routes'
-import {ua} from '../../i18n'
-import {getCurrentUserId} from '../../redux/actions/profileAction'
+import { ua } from '../../i18n'
+import { getCurrentUserId } from '../../redux/actions/profileAction'
 
-
-const App = (props) => {
+const App = props => {
   const { setCurrentUserId } = props
-  
+
   const userId = 1
   setCurrentUserId(userId)
 
   // Get auth data from firebase
   const auth = useSelector(state => state.firebase.auth)
-  console.log("state.firebase.auth", auth)
+  console.log('state.firebase.auth', auth)
 
   // Wait auth loading. Maybe we should show spinner?
   if (!auth.isLoaded) {
@@ -48,9 +47,9 @@ const App = (props) => {
   )
 }
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = dispatch => {
   return {
-    setCurrentUserId: (id) => dispatch(getCurrentUserId(id))
+    setCurrentUserId: id => dispatch(getCurrentUserId(id)),
   }
 }
 
