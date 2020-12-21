@@ -1,0 +1,7 @@
+node_modules/
+yarn.lock
+.vscode
+
+# Credentials
+.clasp.json
+diet-routine-e52b7c7c528e.json

@@ -1,0 +1,31 @@
+{
+  "name": "db-admin-tool",
+  "version": "1.0.0",
+  "description": "DB admin tool for Firestore. Google Apps Script project.",
+  "main": "index.js",
+  "author": "V.Glazhevskyi",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "lint": "eslint dist __tests__",
+    "test": "jest",
+    "deploy": "./comment.sh && clasp push && ./uncomment.sh"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.7.4",
+    "@babel/core": "^7.7.4",
+    "@babel/preset-env": "^7.7.4",
+    "@types/google-apps-script": "^1.0.7",
+    "@types/jest": "^25.1.1",
+    "eslint": "^6.5.1",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-plugin-import": "^2.18.2",
+    "jest": "^25.1.0",
+    "prettier": "^2.0.5",
+    "sinon": "^8.1.1"
+  },
+  "dependencies": {
+    "firestore_google-apps-script": "https://github.com/grahamearley/FirestoreGoogleAppsScript.git",
+    "ramda": "0.25.0"
+  }
+}

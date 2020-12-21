@@ -1,0 +1,18 @@
+parserOptions:
+  ecmaVersion: 9
+  sourceType: 'module'
+extends:
+  - 'airbnb-base'
+env:
+  es6: true
+  node: true
+  jest: true
+rules:
+  arrow-parens: 0
+  no-var: 0
+  comma-dangle: 1
+  prefer-template: 1
+  # no-extra-semi: 2
+  semi: 0
+  import/prefer-default-export: 0
+  import/no-mutable-exports: 0
