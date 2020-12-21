@@ -1,5 +1,5 @@
 {
-  "name": "firestore-admin-tool",
+  "name": "db-admin-tool",
   "version": "1.0.0",
   "description": "DB admin tool for Firestore. Google Apps Script project.",
   "main": "index.js",
