@@ -1,0 +1,72 @@
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+.btnGroup {
+  margin: 12px auto 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+button span {
+  font-style: normal;
+  font-weight: 900;
+  font-size: 16px;
+  line-height: 24px;
+}
+
+.greenBtn {
+  width: 288px;
+  height: 48px;
+
+  font-family: Nunito;
+  font-style: normal;
+  font-weight: 900;
+  font-size: 16px;
+  line-height: 24px;
+
+  background: #3dad06;
+  border-radius: 30px;
+  border-style: none;
+
+  align-items: center;
+  text-align: center;
+
+  color: #ffffff;
+}
+
+.whiteBtn {
+  width: 288px;
+  height: 48px;
+  margin-top: 16px;
+
+  font-style: normal;
+  font-weight: 900;
+  font-size: 16px;
+  line-height: 24px;
+
+  background: #ffffff;
+  border: 1px solid #3dad06;
+  box-sizing: border-box;
+  border-radius: 30px;
+
+  align-items: center;
+  text-align: center;
+
+  color: #3dad06;
+}
+
+.footerForm {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 16px;
+}
+
+.footerForm :nth-child(2) {
+  padding-left: 8px;
+  padding-bottom: 20px;
+}

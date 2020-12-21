@@ -1,17 +1,13 @@
 * {
-  font-family: 'IBM Plex Sans', sans-serif;
+  font-family: Nunito;
   margin: 0;
   padding: 0;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   outline: none;
 }
-
-/* input::placeholder {
-  font-family: 'IBM Plex Sans', sans-serif;
-} */
-
 body {
   margin: 0;
+  height: auto;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -52,38 +48,76 @@ body {
 /*code {*/
   /*font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;*/
 /*}*/
-
-.link {
-  text-decoration: none;
+input::placeholder {
+  font-family: Nunito;
 }
 
-input[type='password'] {
-  font-family: 'input';
+.ant-form {
+  margin: 26px auto 0 -10px !important
+}
+
+/* отключение * required input */
+.ant-form-item-label>label.ant-form-item-required::before {
+  content: none !important;
+}
+
+/* label для input */
+.ant-form-item-label>label.ant-form-item-required {
   font-style: normal;
-  font-weight: normal;
-  speak: none;
-  color: #9d53b4;
-  font-size: 25px;
-  padding: 10px 15px;
-  /*font-size: 25px;*/
+  font-weight: 600;
+  font-size: 13px;
+  line-height: 150%;
 
-  /* For safety - reset parent styles, that can break glyph codes*/
-  font-variant: normal;
-  text-transform: none;
 
-  /* Font smoothing. That was taken from TWBS */
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  /* Uncomment for 3D effect */
-  /* text-shadow: 1px 1px 1px rgba(127, 127, 127, 0.3); */
-
-  /* add spacing to better separate each image */
-  letter-spacing: 3px;
+  color: #BFBFBF;
 }
 
-input[type='password']::placeholder {
-  letter-spacing: 0;
+.ant-form-item-label {
+  padding: 0px !important;
+  margin-bottom: -10px !important;
+}
+
+.ant-form-item-required {
+  font-weight: 600 !important;
+  font-size: 13px !important;
+  line-height: 150% !important;
+}
+.ant-input:placeholder-shown {
+  padding-left: 0px;
+  font-style: normal;
+  font-weight: 600;
   font-size: 16px;
-  position: relative;
-  bottom: 3px;
+  line-height: 150%;
+
+  color: #BFBFBF;
+}
+
+.ant-form-item {
+  margin-bottom: 0px;
+}
+
+.ant-drawer-content {
+  overflow: hidden !important;
+}
+
+.slick-dots li button {
+  height: 6px !important;
+  width: 6px !important;
+  border-radius: 4px !important;
+  background-color: gray !important;
+}
+
+.slick-dots .slick-active button {
+  background: rgba(61, 173, 6, 0.8) !important;
+}
+
+.ant-carousel .slick-dots li {
+  transition: none !important;
+  width: 11px !important;
+}
+h3 {
+
+  font-weight: bold !important;
+
+  color: #262626;
 }

@@ -13,53 +13,45 @@
 */
 
 import React from 'react'
-import { IntlProvider } from 'react-intl'
-import { Route, Switch, withRouter } from 'react-router-dom'
-import { CSSTransition, TransitionGroup } from 'react-transition-group'
-import { en } from '../../i18n'
+import {IntlProvider} from 'react-intl'
+import { connect, useSelector } from 'react-redux'
 import 'antd/dist/antd.css'
-import {
-  AddProduct,
-  Calendar,
-  FeaturesPage,
-  FirstPage,
-  LoginPage,
-  ProductSearch,
-  Profile,
-  RegisterPage,
-  WelcomePage,
-  Main
-} from '../index'
-
 import { Wrapper } from './style'
+import Routes from './Routes'
+import {ua} from '../../i18n'
+import {getCurrentUserId} from '../../redux/actions/profileAction'
 
-const App = ({ location }) => {
+
+const App = (props) => {
+  const { setCurrentUserId } = props
+  
+  const userId = 1
+  setCurrentUserId(userId)
+
+  // Get auth data from firebase
+  const auth = useSelector(state => state.firebase.auth)
+  console.log("state.firebase.auth", auth)
+
+  // Wait auth loading. Maybe we should show spinner?
+  if (!auth.isLoaded) {
+    return 'Loading ...'
+  }
+
   return (
     <div className="App">
-      <IntlProvider locale={navigator.language} messages={en}>
+      <IntlProvider locale={navigator.language} messages={ua}>
         <Wrapper>
-          <TransitionGroup>
-            <CSSTransition key={location.key} classNames="fade" timeout={1000}>
-              <Switch location={location}>
-                <Route path="/welcome_page" component={WelcomePage} />
-                <Route exact path="/" component={FirstPage} />
-              </Switch>
-            </CSSTransition>
-          </TransitionGroup>
-          <Switch location={location}>
-            <Route path="/features" component={FeaturesPage} />
-            <Route path="/login" component={LoginPage} />
-            <Route path="/register" component={RegisterPage} />
-            <Route path="/add-product" component={AddProduct} />
-            <Route path="/product-search" component={ProductSearch} />
-            <Route path="/calendar" component={Calendar} />
-            <Route path="/profile" component={Profile} />
-            <Route path="/main" component={Main} />
-          </Switch>
+          <Routes isAuthorized={!!auth.uid} />
         </Wrapper>
       </IntlProvider>
     </div>
   )
 }
 
-export default withRouter(App)
+const mapDispatchToProps = (dispatch) => {
+  return {
+    setCurrentUserId: (id) => dispatch(getCurrentUserId(id))
+  }
+}
+
+export default connect(null, mapDispatchToProps)(App)

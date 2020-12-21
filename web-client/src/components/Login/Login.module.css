@@ -1,0 +1,21 @@
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+.firstPart {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-right: 24px;
+}
+
+.footerForm {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 16px;
+}
+.footerForm :nth-child(3) {
+  padding-left: 18px;
+}

@@ -16,7 +16,7 @@ import {
 
 const BottomBar = ({currentPage, history}) => {
   const [activeRoute] = useState({
-    mainIsActive: history.location.pathname === '/main',
+    mainIsActive: history.location.pathname === '/',
     calendarIsActive: history.location.pathname === '/calendar',
     profileIsActive: history.location.pathname === '/profile'
   })
@@ -32,7 +32,7 @@ const BottomBar = ({currentPage, history}) => {
       <IconsWrapper>
         <IconButton
           isActive={activeRoute.mainIsActive}
-          onClick={() => clickHandler('/main')}>
+          onClick={() => clickHandler('/')}>
           <BookOutlined/>
         </IconButton>
         <IconButton

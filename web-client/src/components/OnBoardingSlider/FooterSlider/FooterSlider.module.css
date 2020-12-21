@@ -1,0 +1,10 @@
+.wrapper {
+    height: 72px;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
