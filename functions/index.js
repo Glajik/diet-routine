@@ -6,7 +6,7 @@ const functions = require('firebase-functions')
 
 const setCreatedAtField = snap => {
   const createdAt = snap.createTime.toDate()
-  return snap.ref.set({ createdAt }, { merge: true })
+  return snap.ref.set({ createdAt, updatedAt: createdAt }, { merge: true })
 }
 
 exports.onCreateUserProfileDoc = functions.firestore
