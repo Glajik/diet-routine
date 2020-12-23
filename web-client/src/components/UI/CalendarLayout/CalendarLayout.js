@@ -3,6 +3,7 @@ import React, {useEffect, useState} from 'react'
 import {FormattedMessage} from 'react-intl'
 import {connect} from 'react-redux'
 import {useSelector} from 'react-redux'
+import {Loader} from '../index'
 import {useFirestoreConnect} from 'react-redux-firebase'
 import {ReactComponent as GoBack} from '../../../assets/images/go-back.svg'
 import {ReactComponent as GoNext} from '../../../assets/images/go-next.svg'
@@ -44,11 +45,22 @@ const CalendarLayout = (props) => {
   const lastMonthNum = moment().subtract(props.monthsAmountFromToday + 1, 'month').format('M')
   const currentYearForToday = moment().format('YYYY')
   const [isNextMonthButtonDisabled, setNextMonthButtonDisabled] = useState(true)
+  const [isLoading, setIsLoading] = useState(false)
 
   useFirestoreConnect(['Journal'])
   const journal = useSelector((state) => state.firestore.data.Journal)
+  let datesInfo
+  if (journal) {
+    datesInfo = Object.values(journal).map(item => item)
+  }
 
-  const datesInfo = journal ? Object.values(journal).map(item => item) : false
+  useFirestoreConnect(['UserProfiles'])
+  const dailyLimits = useSelector((state) => state.firestore.data.UserProfiles)
+  let dailyLimitsInfo
+  if (dailyLimits) {
+    dailyLimitsInfo = Object.values(dailyLimits).map(item => item)
+  }
+  console.log('Daily limits: ', dailyLimits)
 
   const weekDaysShort = []
   let weekDay
@@ -62,15 +74,25 @@ const CalendarLayout = (props) => {
       setNextMonthButtonDisabled(true)
     }
 
+    if (dailyLimits) {
+      setIsLoading(false)
+    } else {
+      setIsLoading(true)
+    }
+
     if (journal) {
+      setIsLoading(false)
       props.getSelectedDateData(
         getDataOfCurrentDate(
           dayInfo,
           selectedDateId,
           props.currentUserId,
-          datesInfo
+          datesInfo,
+          dailyLimitsInfo
         )
       )
+    } else {
+      setIsLoading(true)
     }
   }, [
     currentMonthForToday,
@@ -78,7 +100,10 @@ const CalendarLayout = (props) => {
     nextMonthNum,
     nextMonthYear,
     props.monthsAmountFromToday,
-    journal
+    journal,
+    dailyLimits,
+    datesInfo,
+    dailyLimitsInfo
   ])
 
   for (let i = 0; i <= 6; i++) {
@@ -122,7 +147,8 @@ const CalendarLayout = (props) => {
               dayInfo,
               event.target.id,
               props.currentUserId,
-              datesInfo
+              datesInfo,
+              dailyLimitsInfo
             )
           )
         }
@@ -287,8 +313,8 @@ const CalendarLayout = (props) => {
       <Table>
         <Tbody>
         <tr>
-          <td>
-            {props.children}
+          <td style={{height: 152, textAlign: 'center'}}>
+            {isLoading ? <Loader/> : props.children}
           </td>
         </tr>
         <DaysList>

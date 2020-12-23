@@ -1,34 +1,73 @@
-export const getDataOfCurrentDate = (dayInfo, selectedDate, currentUserId, serverDates) => {
+export const getDataOfCurrentDate = (
+  dayInfo,
+  selectedDate,
+  currentUserId,
+  serverDates,
+  dailyLimits
+) => {
   console.log('Server: ', serverDates)
 
-  const selectedDateData = serverDates.filter(item => {
-    return item.author === currentUserId && +item.createdAt.seconds.toString().slice(0, 6) === +selectedDate.slice(0, 6)
+
+  const selectedDateData = []
+
+  serverDates.forEach(item => {
+    if (item.author === currentUserId){
+      if (+item.createdAt.seconds.toString().slice(0, 6) === +selectedDate.slice(0, 6)) {
+        selectedDateData.push(item)
+      }
+    }
   })
 
-  console.log('Selected: ', selectedDateData[0])
+  // console.log('Daily limits: ', dailyLimits)
+
 
   if (selectedDateData.length) {
+    const usedCalories = selectedDateData.reduce((accumulator, item) => {
+      return accumulator + item.calories
+    }, 0)
+
+    const usedProteins = selectedDateData.reduce((accumulator, item) => {
+      return accumulator + item.proteins
+    }, 0)
+
+    const usedFats = selectedDateData.reduce((accumulator, item) => {
+      return accumulator + item.fats
+    }, 0)
+
+    const usedCarbs = selectedDateData.reduce((accumulator, item) => {
+      return accumulator + item.carbohydrates
+    }, 0)
+
+    console.log('Calories: ', usedCalories.toFixed())
+    console.log('Selected: ', selectedDateData)
+
     return {
-      userId: selectedDateData[0].author,
-      caloriesPerDay: 1400,
-      proteinsPerDay: 75,
-      fatsPerDay: 64,
-      carbsPerDay: 110,
-      date: selectedDateData[0].createdAt.seconds,
-      usedCalories: selectedDateData[0].calories,
-      usedProteins: selectedDateData[0].proteins,
-      usedFats: selectedDateData[0].fats,
-      usedCarbs: selectedDateData[0].carbohydrates,
-      products: selectedDateData[0].product
+      userId: '2x9bJliY7Beq6eN7v8K54YPifmu1',
+      caloriesPerDay: dailyLimits[0].dailyLimits.calories,
+      proteinsPerDay: dailyLimits[0].dailyLimits.proteins,
+      fatsPerDay: dailyLimits[0].dailyLimits.fats,
+      carbsPerDay: dailyLimits[0].dailyLimits.carbohydrates,
+      date: +selectedDateData[0].createdAt.seconds.toString().slice(0, 6),
+      usedCalories: usedCalories.toFixed(),
+      usedProteins: usedProteins.toFixed(),
+      usedFats: usedFats.toFixed(),
+      usedCarbs: usedCarbs.toFixed(),
+      products: selectedDateData
+      // date: selectedDateData[0].createdAt.seconds,
+      // usedCalories: selectedDateData[0].calories,
+      // usedProteins: selectedDateData[0].proteins,
+      // usedFats: selectedDateData[0].fats,
+      // usedCarbs: selectedDateData[0].carbohydrates,
+      // products: selectedDateData[0].product
       // ...selectedDateData[0].dates.filter(item => item.date === selectedDate)[0]
     }
   } else {
     return {
       userId: currentUserId,
-      caloriesPerDay: 1400,
-      proteinsPerDay: 75,
-      fatsPerDay: 64,
-      carbsPerDay: 110,
+      caloriesPerDay: dailyLimits ? dailyLimits[0].dailyLimits.calories : 0,
+      proteinsPerDay: dailyLimits ? dailyLimits[0].dailyLimits.proteins : 0,
+      fatsPerDay: dailyLimits ? dailyLimits[0].dailyLimits.fats : 0,
+      carbsPerDay: dailyLimits ? dailyLimits[0].dailyLimits.carbohydrates : 0,
       date: selectedDate,
       usedCalories: 0,
       usedProteins: 0,
