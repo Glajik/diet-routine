@@ -7,7 +7,7 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "lint": "eslint dist __tests__",
+    "lint": "eslint --fix",
     "test": "jest",
     "deploy": "./comment.sh && clasp push && ./uncomment.sh"
   },
