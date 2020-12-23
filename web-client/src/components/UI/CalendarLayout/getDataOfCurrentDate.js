@@ -5,9 +5,6 @@ export const getDataOfCurrentDate = (
   serverDates,
   dailyLimits
 ) => {
-  console.log('Server: ', serverDates)
-
-
   const selectedDateData = []
 
   serverDates.forEach(item => {
@@ -17,9 +14,6 @@ export const getDataOfCurrentDate = (
       }
     }
   })
-
-  // console.log('Daily limits: ', dailyLimits)
-
 
   if (selectedDateData.length) {
     const usedCalories = selectedDateData.reduce((accumulator, item) => {
@@ -53,13 +47,6 @@ export const getDataOfCurrentDate = (
       usedFats: usedFats.toFixed(),
       usedCarbs: usedCarbs.toFixed(),
       products: selectedDateData
-      // date: selectedDateData[0].createdAt.seconds,
-      // usedCalories: selectedDateData[0].calories,
-      // usedProteins: selectedDateData[0].proteins,
-      // usedFats: selectedDateData[0].fats,
-      // usedCarbs: selectedDateData[0].carbohydrates,
-      // products: selectedDateData[0].product
-      // ...selectedDateData[0].dates.filter(item => item.date === selectedDate)[0]
     }
   } else {
     return {

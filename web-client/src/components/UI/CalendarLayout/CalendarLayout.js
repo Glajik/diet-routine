@@ -60,7 +60,6 @@ const CalendarLayout = (props) => {
   if (dailyLimits) {
     dailyLimitsInfo = Object.values(dailyLimits).map(item => item)
   }
-  console.log('Daily limits: ', dailyLimits)
 
   const weekDaysShort = []
   let weekDay
