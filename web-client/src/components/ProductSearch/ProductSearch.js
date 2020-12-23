@@ -10,6 +10,8 @@ import {
   SearchOutlined
 } from '@ant-design/icons'
 
+import ProductsList from './ProductsList/ProductsList.js'
+
 const ProductSearch = props => {
   return (
     <Container>
@@ -25,6 +27,7 @@ const ProductSearch = props => {
           suffix={<CloseCircleOutlined style={{ color: colors.neutralDark }} />}
         />
       </TopBottomBarsLayout>
+      <ProductsList />
     </Container>
   )
 }

@@ -1,0 +1,39 @@
+.container{
+    display: flex;
+    width: 100%;
+    height: 72px;
+    background-color: aquamarine;
+}
+
+.product{
+    display: flex;
+    flex-direction: column;
+}
+
+.productName{
+    font-style: normal;
+font-weight: normal;
+font-size: 16px;
+line-height: 24px;
+
+color: #262626;
+
+flex: none;
+order: 0;
+flex-grow: 0;
+margin: 4px 0px;
+}
+
+.productDescriptions{
+    font-style: normal;
+font-weight: normal;
+font-size: 12px;
+line-height: 20px;
+
+color: #595959;
+
+flex: none;
+order: 1;
+flex-grow: 0;
+margin: 0px 4px;
+}
