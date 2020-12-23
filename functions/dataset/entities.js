@@ -41,6 +41,9 @@ const User = {
  * @param {string} activity Level of activity, one from ['low', 'light', 'medium', 'high', 'extra']
  * @param {string} photoURL Url, taken from `User.photoURL`
  * @param {[string]} favorites list of favorites products by `Product.docId`
+ * @param {object} dailyLimits Contains user-set calorie, protein, fat, and carbohydrate limits
+ * @param {timestamp} createdAt The date the document was created. The field is added automatically.
+ * @param {timestamp} updatedAt Date when the document was updated. The field is updated automatically.
  */
 const UserProfile = {
   email: 'john@example.com', /* User.email */
@@ -53,6 +56,14 @@ const UserProfile = {
   activity: 'medium',
   photoURL: 'http://www.example.com/12345678/photo.png', /* User.photoURL */
   favorites: ['P1abcdefghijklmnopqrstuvwxyz'], /* [Product.docId] */
+  dailyLimits: {
+    calories: 1750,
+    proteins: 75,
+    fats: 50,
+    carbohydrates: 200,
+  },
+  createdAt: new Date(),
+  updatedAt: new Date(),
 }
 
 /**
@@ -102,6 +113,8 @@ const Categories = [
  * @param {string} author Should be equals to `User.uid`
  * @param {boolean} isVerified Should be `true`, if product was verified by moderator
  * @param {boolean} isStandard Should be `true`, if this is a product from standard set
+ * @param {timestamp} createdAt The date the document was created. The field is added automatically.
+ * @param {timestamp} updatedAt Date when the document was updated. The field is updated automatically.
  * 
  * Idea:
  * 1. Удельную калорийность можно задавать не за 100 г, а за
@@ -122,6 +135,8 @@ const Product = {
   author: 'U1abcdefghijklmnopqrstuvwxyz', /* UserProfile.uid */
   isVerified: false,
   isStandard: true,
+  createdAt: new Date(),
+  updatedAt: new Date(),
 }
 
 
@@ -140,6 +155,8 @@ const Product = {
  * @param {string} fats Total amount
  * @param {string} carbohydrates Total amount
  * @param {string} isDraft If `true`, this entry is only prepared but not added to the daily journal
+ * @param {timestamp} createdAt The date the document was created. The field is added automatically.
+ * @param {timestamp} updatedAt Date when the document was updated. The field is updated automatically.
  *
  * `isDraft` — пометка, что запись находится в корзине отобранных
  * продуктов. После того как пользователь найдет и выберет все
@@ -157,4 +174,6 @@ const Journal = {
   fats: 3.5,
   carbohydrates: 9.75,
   isDraft: true,
+  createdAt: new Date(),
+  updatedAt: new Date(),
 }
