@@ -2,6 +2,9 @@ import moment from 'moment'
 import React, {useEffect, useState} from 'react'
 import {FormattedMessage} from 'react-intl'
 import {connect} from 'react-redux'
+import {useSelector} from 'react-redux'
+import {Loader} from '../index'
+import {useFirestoreConnect} from 'react-redux-firebase'
 import {ReactComponent as GoBack} from '../../../assets/images/go-back.svg'
 import {ReactComponent as GoNext} from '../../../assets/images/go-next.svg'
 import {getDataOfCurrentDate} from './getDataOfCurrentDate'
@@ -42,6 +45,21 @@ const CalendarLayout = (props) => {
   const lastMonthNum = moment().subtract(props.monthsAmountFromToday + 1, 'month').format('M')
   const currentYearForToday = moment().format('YYYY')
   const [isNextMonthButtonDisabled, setNextMonthButtonDisabled] = useState(true)
+  const [isLoading, setIsLoading] = useState(false)
+
+  useFirestoreConnect(['Journal'])
+  const journal = useSelector((state) => state.firestore.data.Journal)
+  let datesInfo
+  if (journal) {
+    datesInfo = Object.values(journal).map(item => item)
+  }
+
+  useFirestoreConnect(['UserProfiles'])
+  const dailyLimits = useSelector((state) => state.firestore.data.UserProfiles)
+  let dailyLimitsInfo
+  if (dailyLimits) {
+    dailyLimitsInfo = Object.values(dailyLimits).map(item => item)
+  }
 
   const weekDaysShort = []
   let weekDay
@@ -55,19 +73,36 @@ const CalendarLayout = (props) => {
       setNextMonthButtonDisabled(true)
     }
 
-    props.getSelectedDateData(
-      getDataOfCurrentDate(
-        dayInfo,
-        selectedDateId,
-        props.currentUserId
+    if (dailyLimits) {
+      setIsLoading(false)
+    } else {
+      setIsLoading(true)
+    }
+
+    if (journal) {
+      setIsLoading(false)
+      props.getSelectedDateData(
+        getDataOfCurrentDate(
+          dayInfo,
+          selectedDateId,
+          props.currentUserId,
+          datesInfo,
+          dailyLimitsInfo
+        )
       )
-    )
+    } else {
+      setIsLoading(true)
+    }
   }, [
     currentMonthForToday,
     currentYearForToday,
     nextMonthNum,
     nextMonthYear,
-    props.monthsAmountFromToday
+    props.monthsAmountFromToday,
+    journal,
+    dailyLimits,
+    datesInfo,
+    dailyLimitsInfo
   ])
 
   for (let i = 0; i <= 6; i++) {
@@ -105,13 +140,17 @@ const CalendarLayout = (props) => {
       if (event.target.id !== props.selectedDate) {
         props.changeSelectedDateCmp(event.target.id)
 
-        props.getSelectedDateData(
-          getDataOfCurrentDate(
-            dayInfo,
-            event.target.id,
-            props.currentUserId
+        if (journal) {
+          props.getSelectedDateData(
+            getDataOfCurrentDate(
+              dayInfo,
+              event.target.id,
+              props.currentUserId,
+              datesInfo,
+              dailyLimitsInfo
+            )
           )
-        )
+        }
       }
     } else {
       alert('Sorry, but we haven\'t information about the future dates')
@@ -137,9 +176,9 @@ const CalendarLayout = (props) => {
       lastBlanks.push(
         <LastAndNextMonthsDatesTd key={index}>
           <LastAndNextMonthsDatesSpan
-            id={moment([props.selectedYear, lastMonthNum, item], moment.defaultFormat).format('LL')}
+            id={moment([props.selectedYear, lastMonthNum, item], moment.defaultFormat).format('x')}
             data-milliseconds={moment([props.selectedYear, lastMonthNum, item], moment.defaultFormat).format('x')}
-            currentDay={moment([props.selectedYear, lastMonthNum, item], moment.defaultFormat).format('LL') === props.selectedDate}
+            currentDay={moment([props.selectedYear, lastMonthNum, item], moment.defaultFormat).format('x') === props.selectedDate}
             onClick={(
               event,
               isCurrentMonthSelected = false,
@@ -161,9 +200,9 @@ const CalendarLayout = (props) => {
       nextBlanks.push(
         <LastAndNextMonthsDatesTd key={index}>
           <LastAndNextMonthsDatesSpan
-            id={moment([props.selectedYear, nextMonthNum, item], moment.defaultFormat).format('LL')}
+            id={moment([props.selectedYear, nextMonthNum, item], moment.defaultFormat).format('x')}
             data-milliseconds={moment([props.selectedYear, nextMonthNum, item], moment.defaultFormat).format('x')}
-            currentDay={moment([props.selectedYear, nextMonthNum, item], moment.defaultFormat).format('LL') === props.selectedDate}
+            currentDay={moment([props.selectedYear, nextMonthNum, item], moment.defaultFormat).format('x') === props.selectedDate}
             onClick={(
               event,
               isCurrentMonthSelected = false,
@@ -184,9 +223,9 @@ const CalendarLayout = (props) => {
     daysInMonthArr.push(
       <DateTd key={d + Math.random()}>
         <DateNum
-          id={moment([props.currentYear, currentMonthNum, d], moment.defaultFormat).format('LL')}
+          id={moment([props.currentYear, currentMonthNum, d], moment.defaultFormat).format('x')}
           data-milliseconds={moment([props.currentYear, currentMonthNum, d], moment.defaultFormat).format('x')}
-          currentDay={moment([props.currentYear, currentMonthNum, d], moment.defaultFormat).format('LL') === props.selectedDate}
+          currentDay={moment([props.currentYear, currentMonthNum, d], moment.defaultFormat).format('x') === props.selectedDate}
           onClick={(
             event,
             isCurrentMonthSelected = true,
@@ -273,8 +312,8 @@ const CalendarLayout = (props) => {
       <Table>
         <Tbody>
         <tr>
-          <td>
-            {props.children}
+          <td style={{height: 152, textAlign: 'center'}}>
+            {isLoading ? <Loader/> : props.children}
           </td>
         </tr>
         <DaysList>

@@ -11,7 +11,7 @@ const currentMonthNum = moment().format('M')
 const selectedDay = moment().format('D')
 
 const initialState = {
-  selectedDate: moment([currentYearForToday, currentMonthNum, selectedDay], moment.defaultFormat).format('LL'),
+  selectedDate: moment([currentYearForToday, currentMonthNum, selectedDay], moment.defaultFormat).format('x'),
   monthsAmountFromToday: 0,
   currentYear: moment().format('YYYY'),
   selectedYear: moment().format('YYYY')
