@@ -9,6 +9,7 @@
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
     "antd": "^4.8.5",
+    "antd-mobile": "^2.3.4",
     "axios": "^0.19.2",
     "firebase": "^7.18.0",
     "lodash": "^4.17.20",
