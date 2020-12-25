@@ -1,10 +1,10 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
-import { useFirestoreConnect } from 'react-redux-firebase'
+import { useFirebase, useFirestore, useFirestoreConnect } from 'react-redux-firebase'
 import { Container, BottomBar } from '../UI'
 import PageTitle from './PageTitle/index'
 import UserPhoto from './UserPhoto'
-import UserName from './UserName/index'
+import UserName from './UserName'
 import { List } from 'antd-mobile'
 import styles from './index.module.css'
 
@@ -18,6 +18,10 @@ import {
 
 
 const ProfilePage = ({ history }) => {
+  // Used to r/w access to auth and firestore
+  const firestore = useFirestore()
+  const firebase = useFirebase()
+
   // Get auth data from firebase
   const auth = useSelector(state => state.firebase.auth)
 
@@ -50,11 +54,23 @@ const ProfilePage = ({ history }) => {
 
   const { photoURL, displayName } = userProfile
 
+  
+
+  const onUsernameChange = (name) => {
+    firestore.collection('UserProfiles')
+      .doc(auth.uid)
+      .update({
+        displayName: name
+      })
+
+    firebase.updateAuth({ displayName: name })
+  }
+
   return (
     <Container>
       <PageTitle>Profile</PageTitle>
       <UserPhoto photoURL={photoURL}/>
-      <UserName>{displayName}</UserName>
+      <UserName onChange={onUsernameChange}>{displayName}</UserName>
       <List className={styles.profileMenu}>
         <List.Item
           arrow="horizontal"
