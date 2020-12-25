@@ -105,7 +105,7 @@ const ProfilePage = ({ history }) => {
         <List.Item
           arrow="horizontal"
           thumb={<LogoutOutlined className={styles.icon}/>}
-          onClick={() => {}}
+          onClick={() => firebase.logout()}
         >
           Sign Out
         </List.Item>
