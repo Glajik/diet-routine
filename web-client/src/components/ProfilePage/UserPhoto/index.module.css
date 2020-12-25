@@ -1,0 +1,13 @@
+.container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.image {
+  width: 64px;
+  height: 64px;
+  border-style: none;
+  border-radius: 100%;
+  background-color: #f0f0f0;
+}
