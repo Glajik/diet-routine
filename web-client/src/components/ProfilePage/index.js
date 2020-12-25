@@ -5,6 +5,7 @@ import { Container, BottomBar } from '../UI'
 import PageTitle from './PageTitle/index'
 import UserPhoto from './UserPhoto'
 import UserName from './UserName'
+import Spinner from './Spinner'
 import { List } from 'antd-mobile'
 import styles from './index.module.css'
 
@@ -41,7 +42,7 @@ const ProfilePage = ({ history }) => {
   const userProfileByUid = useSelector(state => state.firestore.data.UserProfiles)
 
   if (!userProfileByUid) {
-    return 'Loading profile...'
+    return <Spinner />
   }
 
   const userProfile = userProfileByUid[auth.uid]
