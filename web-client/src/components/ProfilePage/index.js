@@ -2,6 +2,7 @@ import React from 'react'
 import { Container, BottomBar } from '../UI'
 import PageTitle from './PageTitle/index'
 import UserPhoto from './UserPhoto/index'
+import UserName from './UserName/index'
 import styles from './index.module.css'
 
 const ProfilePage = ({ history }) => {
@@ -11,6 +12,7 @@ const ProfilePage = ({ history }) => {
     <Container>
       <PageTitle>Profile</PageTitle>
       <UserPhoto photoUrl={null}/>
+      <UserName>John Doe</UserName>
       <BottomBar history={history} />
     </Container>
   )
