@@ -55,8 +55,6 @@ const ProfilePage = ({ history }) => {
 
   const { photoURL, displayName } = userProfile
 
-  
-
   const onUsernameChange = (name) => {
     firestore.collection('UserProfiles')
       .doc(auth.uid)
@@ -72,6 +70,7 @@ const ProfilePage = ({ history }) => {
       <PageTitle>Profile</PageTitle>
       <UserPhoto photoURL={photoURL}/>
       <UserName onChange={onUsernameChange}>{displayName}</UserName>
+      
       <List className={styles.profileMenu}>
         <List.Item
           arrow="horizontal"
@@ -110,6 +109,7 @@ const ProfilePage = ({ history }) => {
           Sign Out
         </List.Item>
       </List>
+
       <BottomBar history={history} />
     </Container>
   )
