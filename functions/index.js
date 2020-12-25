@@ -25,18 +25,18 @@ exports.onCreateJournalDoc = functions.firestore
  * Triggers for updatedAt
  */
 const setUpdatedAtField = snap => {
-  const diff = snap.after.updateTime.seconds - snap.before.updateTime.seconds
-  console.log('diff', diff)
-  // Skip update updatedAt field, If the time has passed since the last update less than 5 seconds.
+  console.log('Updating document detected')
   // This need to avoid infinity loop.
-  if (diff < 5) {
-    console.log(
-      'The document is updated too often, skip the update "updatedAt" field'
-    )
-    return null
+  console.log(snap.before.data().updatedAt);
+  console.log(snap.after.data().updatedAt);
+  if (snap.before.data().updatedAt === snap.after.data().updatedAt) {
+    console.log('Set new value to "updatedAt"', updatedAt)
+    const updatedAt = changes.after.updateTime.toDate()
+    const createdAt = changes.after.createdTime.toDate()
+    return changes.after.ref.set({ updatedAt, createdAt }, { merge: true })
   }
-  const updatedAt = snap.after.updateTime.toDate()
-  return snap.after.ref.set({ updatedAt }, { merge: true })
+  console.log('Skip the update "updatedAt" field')
+  return null
 }
 
 exports.onUpdateUserProfileDoc = functions.firestore
