@@ -2,12 +2,12 @@ import React from 'react'
 import styles from './UserPhoto.module.css'
 import UploadPhoto from './UploadPhoto'
 
-const UserPhoto = ({ photoUrl }) => (
+const UserPhoto = ({ photoURL }) => (
   <div className={styles.container}>
     {
-      !photoUrl
+      !photoURL
         ? <UploadPhoto />
-        : <img src={photoUrl} className={styles.image}/>
+        : <img src={photoURL} className={styles.image}/>
     }
   </div>
 )
