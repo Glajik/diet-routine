@@ -10,7 +10,7 @@ const ProfilePage = ({ history }) => {
   return (
     <Container>
       <PageTitle>Profile</PageTitle>
-      <UserPhoto photoUrl={photoUrl}/>
+      <UserPhoto photoUrl={null}/>
       <BottomBar history={history} />
     </Container>
   )

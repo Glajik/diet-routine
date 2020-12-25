@@ -1,0 +1,15 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 64px;
+  height: 64px;
+  border-style: none;
+  border-radius: 100%;
+  background-color: #f0f0f0;
+}
+
+.icon {
+  font-size: 16px;
+}
+
