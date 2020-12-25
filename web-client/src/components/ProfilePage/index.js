@@ -55,7 +55,7 @@ const ProfilePage = ({ history }) => {
       <PageTitle>Profile</PageTitle>
       <UserPhoto photoURL={photoURL}/>
       <UserName>{displayName}</UserName>
-      <List className={styles.container}>
+      <List className={styles.profileMenu}>
         <List.Item
           arrow="horizontal"
           thumb={<CalculatorOutlined className={styles.icon}/>}
