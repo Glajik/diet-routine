@@ -2,11 +2,11 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 import { useFirebase, useFirestore, useFirestoreConnect } from 'react-redux-firebase'
 import { Container, BottomBar } from '../UI'
+import { message } from 'antd'
 import PageTitle from './PageTitle'
 import PageMenu from './PageMenu'
 import UserPhoto from './UserPhoto'
 import UserName from './UserName'
-
 
 const ProfilePage = ({ history }) => {
   // Used to r/w access to auth and firestore
@@ -17,7 +17,8 @@ const ProfilePage = ({ history }) => {
   const auth = useSelector(state => state.firebase.auth)
 
   if (!auth.uid) {
-    throw new Error('User Not Authed')
+    console.error('User Not Authed')
+    message.error('You should login')
   }
 
   // Set query and listeners to Firestore collection
@@ -47,7 +48,8 @@ const ProfilePage = ({ history }) => {
   const userProfile = userProfileByUid[auth.uid]
 
   if (!userProfile) {
-    throw new Error('No valid user profile entry in colleciton')
+    console.error('Can\'t find user profile entry in "UserProfiles" colleciton')
+    message.error('Can\'t find your profile')
   }
 
   console.log(userProfile)

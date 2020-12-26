@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { LoadingOutlined, PlusOutlined, PlusCircleOutlined } from '@ant-design/icons'
-import { Skeleton } from 'antd'
+import { Skeleton, message } from 'antd'
 import getTextAvatarUrl from './getTextAvatarUrl'
 import styles from './index.module.css'
 
@@ -10,15 +10,15 @@ import styles from './index.module.css'
  */
 function canUpload(file) {
   if (!file) {
-    throw new Error("Can't take the file for some reason!")
+    message.error("Can't upload the file for some reason!")
   }
   const isJpgOrPng = ['image/jpeg', 'image/png'].includes(file.type)
   if (!isJpgOrPng) {
-    throw new Error('You can only upload JPG/PNG file!')
+    message.error('You can only upload JPG/PNG file!')
   }
   const isLt2M = file.size <= 1024 ** 2 * 2
   if (!isLt2M) {
-    throw new Error('Image must smaller than 2MB!')
+    message.error('Image must smaller than 2MB!')
   }
   return isJpgOrPng && isLt2M
 }
@@ -40,13 +40,13 @@ const UserPhoto = ({ photoURL, name, onPick, skeleton }) => {
   }
 
   const onSuccess = () => {
-    console.log('Success uploading')
     setLoading(false)
   }
 
   const onFail = reason => {
     setLoading(false)
-    throw new Error(`Photo upload error. Reason: ${reason}`)
+    console.error(`Photo upload error. Reason: ${reason}`)
+    message.error(`Upload failed`)
   }
 
   // Сhecks if the file meets the conditions and passes it
