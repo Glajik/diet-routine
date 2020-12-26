@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Form } from 'antd'
 import { InputItem } from 'antd-mobile'
 import Input from '../../UI/Input/Input'
@@ -12,14 +12,23 @@ const rules = [
 ]
 
 
-const EditForm = ({ name, onFinish }) => (
-  <div>
-    <Form name="edit_name" onFinish={onFinish} initialValues={{ name }}>
-      <Item label="Your name" name="name" rules={rules}>
-        <InputItem placeholder="John Doe" />
-      </Item>
-    </Form>
-  </div>
-)
+const EditForm = ({ name, onFinish }) => {
+  const [ref, setRef] = useState()
+  
+  // Used for autofocus
+  useEffect(() => {
+    if (ref) ref.focus()
+  })
+
+  return (
+    <div>
+      <Form name="edit_name" onFinish={onFinish} initialValues={{ name }}>
+        <Item label="Your name" name="name" rules={rules}>
+          <InputItem placeholder="John Doe" ref={el => setRef(el)} />
+        </Item>
+      </Form>
+    </div>
+  )
+}
 
 export default EditForm
