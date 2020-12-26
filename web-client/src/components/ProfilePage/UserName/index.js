@@ -6,6 +6,8 @@ import UserNameForm from './Form'
 import Modal from './Modal'
 
 const UserName = ({ children: name, onChange }) => {
+  const defaultText = 'Type your name'
+
   const [modalVisible, setModalVisible] = useState(false)
 
   const onFinishHandler = ({ name }) => {
@@ -17,7 +19,7 @@ const UserName = ({ children: name, onChange }) => {
     <>
       <div className={styles.container}>
         <p className={styles.body}>
-          <span>{name}</span>
+          <span>{name || defaultText}</span>
           <IconButton onClick={() => setModalVisible(true)}>
             <EditOutlined className={styles.icon} />
           </IconButton>
