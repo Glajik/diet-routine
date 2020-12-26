@@ -65,10 +65,23 @@ const ProfilePage = ({ history }) => {
     firebase.updateAuth({ displayName: name })
   }
 
+  // https://randomuser.me/api/portraits/men/44.jpg
+  const onPhotoPicked = (file, onUploadSuccess, onUploadFail) => {
+    console.log("onPhotoUpload", file)
+    // Destructure File properties, all of them, for reference.
+    const { uid, name, type, size, lastModified, lastModifiedDate } = file
+    // Make filename and path to store avatar photo.
+    const path = `UserData/${auth.uid}/avatar`
+    // Upload file to storage
+    firebase.uploadFile(path, file)
+      .then(onUploadSuccess)
+      .catch(onUploadFail)
+  }
+
   return (
     <Container>
       <PageTitle>Profile</PageTitle>
-      <UserPhoto photoURL={photoURL}/>
+      <UserPhoto photoURL={photoURL} onPick={onPhotoPicked}/>
       <UserName onChange={onUsernameChange}>{displayName}</UserName>
       
       <List className={styles.profileMenu}>

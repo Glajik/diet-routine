@@ -1,15 +1,25 @@
 .container {
   display: flex;
+  position: relative;
   flex-direction: column;
   justify-content: center;
-  width: 64px;
-  height: 64px;
-  border-style: none;
   border-radius: 100%;
   background-color: #f0f0f0;
+  width: 64px;
+  height: 64px;
 }
 
 .icon {
   font-size: 16px;
 }
 
+.fileInput {
+  position: absolute;
+  top: 0px;
+  opacity: 0;
+  cursor: pointer;
+  overflow: hidden;
+  border-radius: 100%;
+  width: 64px;
+  height: 64px;
+}
