@@ -10,6 +10,7 @@ body {
   height: auto;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #fff;
 }
 
 input::placeholder {
@@ -18,6 +19,10 @@ input::placeholder {
 
 .ant-form {
   margin: 26px auto 0 -10px !important
+}
+
+.ant-form[id="UserNameForm"] {
+  margin: 0 !important
 }
 
 /* отключение * required input */
@@ -60,8 +65,14 @@ input::placeholder {
   margin-bottom: 0px;
 }
 
+.ant-drawer-content-wrapper {
+  border-top-right-radius: 15px;
+  border-top-left-radius: 15px;
+}
+
 .ant-drawer-content {
   overflow: hidden !important;
+  border-radius: inherit;
 }
 
 .slick-dots li button {
@@ -84,4 +95,39 @@ h3 {
   font-weight: bold !important;
 
   color: #262626;
+}
+
+/**
+ * Override Ant.Mobile
+ */
+
+/* List items */
+.am-list-item .am-list-line .am-list-content {
+  font-size: 16px;
+}
+
+/* Spinner */
+.ant-spin-dot-item {
+  background-color: #3dad06; /* green/6 */
+}
+
+/* Input */
+.am-list-item .am-input-control input {
+  font-size: 16px;
+  font-size: 16px;
+  font-style: normal;
+  line-height: 24px;
+  border: none;
+  border-bottom: 1px solid #bfbfbf;
+}
+
+.am-list-item .am-input-control input::placeholder {
+  padding-left: 11px;
+  font-weight: 600;
+  padding-left: 0;
+  color: #bfbfbf;
+}
+
+.am-list-item.am-input-item {
+  padding-left: 0;
 }
