@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Form } from 'antd'
 import { InputItem } from 'antd-mobile'
-import Input from '../../UI/Input/Input'
 
 const Item = Form.Item
 

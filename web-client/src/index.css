@@ -100,3 +100,24 @@ h3 {
 .ant-spin-dot-item {
   background-color: #3dad06; /* green/6 */
 }
+
+/* Input */
+.am-list-item .am-input-control input {
+  font-size: 16px;
+  font-size: 16px;
+  font-style: normal;
+  line-height: 24px;
+  border: none;
+  border-bottom: 1px solid #bfbfbf;
+}
+
+.am-list-item .am-input-control input::placeholder {
+  padding-left: 11px;
+  font-weight: 600;
+  padding-left: 0;
+  color: #bfbfbf;
+}
+
+.am-list-item.am-input-item {
+  padding-left: 0;
+}
