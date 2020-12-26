@@ -59,8 +59,6 @@ const UserPhoto = ({ photoURL, name, onPick }) => {
       return <LoadingOutlined className={styles.icon} />
     }
     if (name) {
-      console.log((name.trim()))
-      console.log(getTextAvatarUrl(name))
       return <img src={getTextAvatarUrl(name)} className={styles.image}/>
     }
     return <PlusOutlined className={styles.icon} />
@@ -68,7 +66,7 @@ const UserPhoto = ({ photoURL, name, onPick }) => {
 
   return (
     <div className={styles.container}>
-      <figure className={styles.content}>
+      <figure className={styles.avatar}>
         {renderAvatar()}
         <input
           className={styles.fileInput}
