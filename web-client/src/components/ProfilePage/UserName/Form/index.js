@@ -11,17 +11,23 @@ const rules = [
   { max: 64, message: 'Try to shorten somehow!' },
 ]
 
-const EditForm = ({ name, onFinish }) => {
+const UserNameForm = ({ name, onFinish, visible }) => {
   const [ref, setRef] = useState()
+  const [form] = Form.useForm()
   
-  // Used for autofocus
+  const onFinishHandler = (values) => {
+    form.resetFields()
+    onFinish(values)
+  }
+  
+  // Activate input automatically
   useEffect(() => {
     if (ref) ref.focus()
   })
   
   return (
     <div>
-      <Form name="edit_name" onFinish={onFinish} initialValues={{ name }}>
+      <Form name="UserNameForm" className={styles.UserNameForm} onFinish={onFinishHandler} initialValues={{ name }}>
         <Item label="Your name" name="name" rules={rules}>
           <InputItem placeholder="John Doe" ref={el => setRef(el)} />
         </Item>
@@ -42,4 +48,4 @@ const EditForm = ({ name, onFinish }) => {
   )
 }
 
-export default EditForm
+export default UserNameForm

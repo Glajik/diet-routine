@@ -45,7 +45,7 @@ const UserName = ({ children: name, onChange, skeleton }) => {
         title="Edit Name"
         onClose={() => setModalVisible(false)}
         visible={modalVisible}>
-        <UserNameForm name={name} onFinish={onFinishHandler} />
+        <UserNameForm name={name} onFinish={onFinishHandler} visible={modalVisible}/>
       </Modal>
     </>
   )

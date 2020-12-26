@@ -9,11 +9,10 @@ const Modal = ({ title, onClose, visible, children, height = 220 }) => (
     closable={true}
     visible={visible}
     onClose={onClose}
+    destroyOnClose
     key="bottom"
     height={height}>
-    {/* <div className={styles.container}> */}
       {children}
-    {/* </div> */}
   </Drawer>
 )
 

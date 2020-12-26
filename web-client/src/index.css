@@ -21,7 +21,7 @@ input::placeholder {
   margin: 26px auto 0 -10px !important
 }
 
-.ant-form[id="edit_name"] {
+.ant-form[id="UserNameForm"] {
   margin: 0 !important
 }
 
