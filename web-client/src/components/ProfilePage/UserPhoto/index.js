@@ -52,11 +52,11 @@ const UserPhoto = ({ photoURL, name, onPick }) => {
    * state.
    */
   const renderAvatar = () => {
-    if (photoURL) {
-      return <img src={photoURL} className={styles.image}/>
-    }
     if (loading) {
       return <LoadingOutlined className={styles.icon} />
+    }
+    if (photoURL) {
+      return <img src={photoURL} className={styles.image}/>
     }
     if (name) {
       return <img src={getTextAvatarUrl(name)} className={styles.image}/>
