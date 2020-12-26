@@ -18,7 +18,11 @@ const UserName = ({ children: name, onChange }) => {
           </IconButton>
         </p>
       </div>
-      <Modal onClose={() => setModalVisible(false)} visible={modalVisible}>
+      <Modal
+        title="Edit Name"
+        onClose={() => setModalVisible(false)}
+        visible={modalVisible}
+      >
         <UserName.Form name={name} onFinish={values => console.log("New username form result:", values)} />
       </Modal>
     </>

@@ -2,17 +2,18 @@ import React from 'react'
 import { Drawer } from 'antd'
 import styles from './index.module.css'
 
-const Modal = ({ onClose, visible, children, height=160 }) => (
+const Modal = ({ title, onClose, visible, children, height = 180 }) => (
   <Drawer
+    title={title}
     placement="bottom"
     closable={true}
     visible={visible}
     onClose={onClose}
     key="bottom"
     height={height}>
-    <div className={styles.container}>
+    {/* <div className={styles.container}> */}
       {children}
-    </div>
+    {/* </div> */}
   </Drawer>
 )
 

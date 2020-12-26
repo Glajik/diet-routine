@@ -21,6 +21,10 @@ input::placeholder {
   margin: 26px auto 0 -10px !important
 }
 
+.ant-form[id="edit_name"] {
+  margin: 0 !important
+}
+
 /* отключение * required input */
 .ant-form-item-label>label.ant-form-item-required::before {
   content: none !important;

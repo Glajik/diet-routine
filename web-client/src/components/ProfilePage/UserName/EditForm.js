@@ -10,7 +10,6 @@ const rules = [
   { max: 64, message: 'Try to shorten somehow!'},
 ]
 
-
 const EditForm = ({ name, onFinish }) => {
   const [ref, setRef] = useState()
   
