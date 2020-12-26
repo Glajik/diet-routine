@@ -61,8 +61,14 @@ input::placeholder {
   margin-bottom: 0px;
 }
 
+.ant-drawer-content-wrapper {
+  border-top-right-radius: 15px;
+  border-top-left-radius: 15px;
+}
+
 .ant-drawer-content {
   overflow: hidden !important;
+  border-radius: inherit;
 }
 
 .slick-dots li button {
