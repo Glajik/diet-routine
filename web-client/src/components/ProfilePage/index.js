@@ -83,7 +83,7 @@ const ProfilePage = ({ history }) => {
   return (
     <Container>
       <PageTitle>Profile</PageTitle>
-      <UserPhoto photoURL={photoURL} onPick={onPhotoPicked}/>
+      <UserPhoto name={displayName} photoURL={photoURL} onPick={onPhotoPicked}/>
       <UserName onChange={onUsernameChange}>{displayName}</UserName>
       
       <List className={styles.profileMenu}>
