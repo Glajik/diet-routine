@@ -29,7 +29,7 @@ const ProgressCircle = (props) => {
           {caloriesHadBeenEaten}/{caloriesPerDay}
         </span>}
       percent={caloriesDayPart}
-      width={88} />
+      width={props.barWidth} />
   )
 }
 

@@ -15,16 +15,14 @@ import {
 const CalendarPage = (props) => {
   return (
     <Container>
-      <BottomBarLayout
-        title="calendar"
-        history={props.history}>
+      <BottomBarLayout history={props.history}>
         <CalendarContentWrapper>
           <CalendarPageHeader>
             <FormattedMessage id="i18n_calendar_header"/>
           </CalendarPageHeader>
           <CalendarLayout>
             <ProgressBarsWrapper>
-              <ProgressCircle/>
+              <ProgressCircle barWidth={88}/>
               <ProgressLine/>
             </ProgressBarsWrapper>
             <ProductListLinkWrapper>

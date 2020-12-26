@@ -27,7 +27,7 @@ const App = props => {
   const auth = useSelector(state => state.firebase.auth)
   // console.log('state.firebase.auth', auth)
 
-  props.setCurrentUserId(auth.uid)
+  props.setCurrentUserId('2x9bJliY7Beq6eN7v8K54YPifmu1')
 
   // Wait auth loading. Maybe we should show spinner?
   if (!auth.isLoaded) {

@@ -1,10 +1,9 @@
-import moment from 'moment'
 import React, {useEffect, useState} from 'react'
+import moment from 'moment'
 import {FormattedMessage} from 'react-intl'
-import {connect} from 'react-redux'
-import {useSelector} from 'react-redux'
-import {Loader} from '../index'
+import {connect, useSelector} from 'react-redux'
 import {useFirestoreConnect} from 'react-redux-firebase'
+import {Loader} from '../index'
 import {ReactComponent as GoBack} from '../../../assets/images/go-back.svg'
 import {ReactComponent as GoNext} from '../../../assets/images/go-next.svg'
 import {getDataOfCurrentDate} from './getDataOfCurrentDate'
@@ -13,10 +12,13 @@ import {getMonthKey} from './getMonthKey'
 import {getNextMonthDates} from './getNextMonthDates'
 import {getWeekdayKey} from './getWekdayKey'
 import {getDateData} from '../../../redux/actions/dateDataAction'
-import {changeSelectedDate} from '../../../redux/actions/calendarAction'
-import {changeMonthsAmountFromToday} from '../../../redux/actions/calendarAction'
-import {changeCurrentYear} from '../../../redux/actions/calendarAction'
-import {changeSelectedYear} from '../../../redux/actions/calendarAction'
+import {
+  changeMonthsAmountFromToday,
+  changeSelectedMonth,
+  changeSelectedDate,
+  changeCurrentYear,
+  changeSelectedYear
+} from '../../../redux/actions/calendarAction'
 
 import {
   DateWrapper,
@@ -35,7 +37,6 @@ import {
   WeekDaysSpan,
   WeekDaysTd
 } from './style'
-import {dayInfo} from './temporaryServer'
 
 const CalendarLayout = (props) => {
   const currentMonthForToday = moment().format('M')
@@ -83,7 +84,6 @@ const CalendarLayout = (props) => {
       setIsLoading(false)
       props.getSelectedDateData(
         getDataOfCurrentDate(
-          dayInfo,
           selectedDateId,
           props.currentUserId,
           datesInfo,
@@ -143,7 +143,6 @@ const CalendarLayout = (props) => {
         if (journal) {
           props.getSelectedDateData(
             getDataOfCurrentDate(
-              dayInfo,
               event.target.id,
               props.currentUserId,
               datesInfo,
@@ -270,7 +269,7 @@ const CalendarLayout = (props) => {
     if (!isNextMonthButtonDisabled) {
       props.changeMonthsAmountFromTodayCmp(props.monthsAmountFromToday - 1)
       props.changeCurrentYearCmp(nextMonthYear)
-      props.changeSelectedDateCmp(selectedDateId)
+      props.changeSelectedMonthCmp(moment(selectedDateId, "x").subtract(props.monthsAmountFromToday - 1, 'months').format('x'))
     } else {
       alert('Sorry, but we haven\'t information about the next month.')
     }
@@ -281,7 +280,7 @@ const CalendarLayout = (props) => {
     props.changeMonthsAmountFromTodayCmp(props.monthsAmountFromToday + 1)
     const year = moment().subtract(props.monthsAmountFromToday + 1, 'month').format('YYYY')
     props.changeCurrentYearCmp(year)
-    props.changeSelectedDateCmp(selectedDateId)
+    props.changeSelectedMonthCmp(moment(selectedDateId, "x").subtract(props.monthsAmountFromToday + 1, 'months').format('x'))
   }
 
   return (
@@ -294,9 +293,7 @@ const CalendarLayout = (props) => {
           <MonthYearLabel>
               <span style={{paddingRight: 5}}>
                 <FormattedMessage
-                  id={getMonthKey(moment()
-                    .subtract(props.monthsAmountFromToday, 'month')
-                    .format('MMMM'))}/>
+                  id={getMonthKey(props.selectedMonth)}/>
               </span>
             <span>
                 {props.currentYear}
@@ -329,6 +326,7 @@ const CalendarLayout = (props) => {
 const mapStateToProps = (state) => {
   return {
     selectedDate: state.calendar.selectedDate,
+    selectedMonth: state.calendar.selectedMonth,
     currentUserId: state.profile.currentUserId,
     monthsAmountFromToday: state.calendar.monthsAmountFromToday,
     currentYear: state.calendar.currentYear,
@@ -342,7 +340,8 @@ const mapDispatchToProps = (dispatch) => {
     changeSelectedDateCmp: (date) => dispatch(changeSelectedDate(date)),
     changeMonthsAmountFromTodayCmp: (amount) => dispatch(changeMonthsAmountFromToday(amount)),
     changeCurrentYearCmp: (year) => dispatch(changeCurrentYear(year)),
-    changeSelectedYearCmp: (year) => dispatch(changeSelectedYear(year))
+    changeSelectedYearCmp: (year) => dispatch(changeSelectedYear(year)),
+    changeSelectedMonthCmp: (date) => dispatch(changeSelectedMonth(date))
   }
 }
 

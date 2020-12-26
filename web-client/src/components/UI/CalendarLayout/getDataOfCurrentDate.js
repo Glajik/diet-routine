@@ -1,5 +1,4 @@
 export const getDataOfCurrentDate = (
-  dayInfo,
   selectedDate,
   currentUserId,
   serverDates,
@@ -8,7 +7,7 @@ export const getDataOfCurrentDate = (
   const selectedDateData = []
 
   serverDates.forEach(item => {
-    if (item.author === currentUserId){
+    if (item.author === currentUserId) {
       if (+item.createdAt.seconds.toString().slice(0, 6) === +selectedDate.slice(0, 6)) {
         selectedDateData.push(item)
       }
@@ -31,9 +30,6 @@ export const getDataOfCurrentDate = (
     const usedCarbs = selectedDateData.reduce((accumulator, item) => {
       return accumulator + item.carbohydrates
     }, 0)
-
-    console.log('Calories: ', usedCalories.toFixed())
-    console.log('Selected: ', selectedDateData)
 
     return {
       userId: currentUserId,
