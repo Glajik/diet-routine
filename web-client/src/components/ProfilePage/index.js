@@ -55,15 +55,12 @@ const ProfilePage = ({ history }) => {
 
   const { photoURL, displayName } = userProfile
 
-  const onUsernameChange = (name) => {
-    firestore.collection('UserProfiles')
-      .doc(auth.uid)
-      .update({
-        displayName: name
-      })
-
-    firebase.updateAuth({ displayName: name })
+  const onProfileChange = async (options) => {
+    await firestore.collection('UserProfiles').doc(auth.uid).update(options)
+    await firebase.updateAuth(options)
   }
+
+  const onUsernameChange = async name => await onProfileChange({ displayName: name })
 
   // https://randomuser.me/api/portraits/men/44.jpg
   const onPhotoPicked = async (file, onUploadSuccess, onUploadFail) => {
@@ -72,9 +69,11 @@ const ProfilePage = ({ history }) => {
     const { uid, name, type, size, lastModified, lastModifiedDate } = file
     // Make filename and path to store avatar photo.
     const path = `UserData/${auth.uid}/avatar`
-    // Upload file to storage
     try {
-      await firebase.uploadFile(path, file)
+      // Upload file to storage
+      const { uploadTaskSnapshot } = await firebase.uploadFile(path, file)
+      const url = await uploadTaskSnapshot.ref.getDownloadURL()
+      await onProfileChange({ photoURL: url })
       onUploadSuccess()
     } catch (error) {
       onUploadFail(error)
