@@ -11,14 +11,14 @@ const rules = [
   { max: 64, message: 'Try to shorten somehow!' },
 ]
 
-const EditForm = ({ name, onFinish, children: actionBar }) => {
+const EditForm = ({ name, onFinish }) => {
   const [ref, setRef] = useState()
-
+  
   // Used for autofocus
   useEffect(() => {
     if (ref) ref.focus()
   })
-
+  
   return (
     <div>
       <Form name="edit_name" onFinish={onFinish} initialValues={{ name }}>
