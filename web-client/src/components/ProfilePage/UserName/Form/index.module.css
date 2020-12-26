@@ -1,0 +1,35 @@
+
+.actionBar {
+  display: flex;
+  flex-direction: row-reverse;
+  margin-top: 16px;
+}
+
+.doneButton {
+  /* green/6 */
+  background: #3dad06;
+  border-color: #3dad06;
+  box-shadow: 0px 2px 0px rgba(0, 0, 0, 0.043);
+  margin-left: 16px;
+}
+
+.doneButton:hover {
+  background: #3dad06;
+  border-color: #3dad06;
+}
+
+.closeButton {
+  /* neutral/1 */
+  background: #FFFFFF;
+
+  /* neutral/6 */
+  border: 1px solid #BFBFBF;
+  box-sizing: border-box;
+  box-shadow: 0px 2px 0px rgba(0, 0, 0, 0.016);
+}
+
+.closeButton:hover {
+  background: #FFFFFF;
+  border-color: #BFBFBF;
+  color: #3dad06;
+}

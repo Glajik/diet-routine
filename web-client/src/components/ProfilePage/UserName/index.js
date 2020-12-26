@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import styles from './index.module.css'
 import { EditOutlined } from '@ant-design/icons'
 import IconButton from './IconButton'
-import EditForm from './EditForm'
+import UserNameForm from './Form'
 import Modal from './Modal'
 
 const UserName = ({ children: name, onChange }) => {
@@ -23,12 +23,10 @@ const UserName = ({ children: name, onChange }) => {
         onClose={() => setModalVisible(false)}
         visible={modalVisible}
       >
-        <UserName.Form name={name} onFinish={values => console.log("New username form result:", values)} />
+        <UserNameForm name={name} onFinish={values => console.log("New username form result:", values)} />
       </Modal>
     </>
   )
 }
-
-UserName.Form = EditForm
 
 export default UserName
