@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import styles from './index.module.css'
 import { EditOutlined } from '@ant-design/icons'
-import IconButton from '../IconButton'
+import IconButton from './IconButton'
 import UserNameForm from './Form'
 import Modal from './Modal'
 
