@@ -1,14 +1,30 @@
 import React, { useState } from 'react'
 import styles from './index.module.css'
 import { EditOutlined } from '@ant-design/icons'
+import { Skeleton } from 'antd'
 import IconButton from './IconButton'
 import UserNameForm from './Form'
 import Modal from './Modal'
 
-const UserName = ({ children: name, onChange }) => {
+const UserName = ({ children: name, onChange, skeleton }) => {
   const defaultText = 'Type your name'
 
   const [modalVisible, setModalVisible] = useState(false)
+
+  if (skeleton) {
+    return (
+      <div className={styles.container}>
+        <Skeleton.Button
+          active
+          className={styles.skeleton}
+          style={{ width: 200 }}
+          buttonShape="round"
+          size="small"
+          title
+        />
+      </div>
+    )
+  }
 
   const onFinishHandler = ({ name }) => {
     setModalVisible(false)

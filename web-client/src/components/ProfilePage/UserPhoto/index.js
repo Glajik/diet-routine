@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
-import styles from './index.module.css'
 import { LoadingOutlined, PlusOutlined, PlusCircleOutlined } from '@ant-design/icons'
+import { Skeleton } from 'antd'
 import getTextAvatarUrl from './getTextAvatarUrl'
+import styles from './index.module.css'
 
 /**
  * Various checks to see if this file can be loaded
@@ -22,9 +23,21 @@ function canUpload(file) {
   return isJpgOrPng && isLt2M
 }
 
-const UserPhoto = ({ photoURL, name, onPick }) => {
+const UserPhoto = ({ photoURL, name, onPick, skeleton }) => {
   // Used to indicate loading process
   const [loading, setLoading] = useState(false)
+
+  if (skeleton) {
+    return (
+      <div className={styles.container}>
+        <Skeleton.Avatar
+          active
+          className={styles.skeleton}
+          style={{ width: 64, height: 64 }}
+        />
+      </div>
+    )
+  }
 
   const onSuccess = () => {
     console.log('Success uploading')
@@ -56,10 +69,10 @@ const UserPhoto = ({ photoURL, name, onPick }) => {
       return <LoadingOutlined className={styles.icon} />
     }
     if (photoURL) {
-      return <img src={photoURL} className={styles.image}/>
+      return <img src={photoURL} className={styles.image} />
     }
     if (name) {
-      return <img src={getTextAvatarUrl(name)} className={styles.image}/>
+      return <img src={getTextAvatarUrl(name)} className={styles.image} />
     }
     return <PlusOutlined className={styles.icon} />
   }

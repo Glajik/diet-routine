@@ -17,7 +17,7 @@ const ProfilePage = ({ history }) => {
   const auth = useSelector(state => state.firebase.auth)
 
   if (!auth.uid) {
-    throw new Error("User Not Authed")
+    throw new Error('User Not Authed')
   }
 
   // Set query and listeners to Firestore collection
@@ -25,27 +25,36 @@ const ProfilePage = ({ history }) => {
     {
       collection: 'UserProfiles',
       doc: auth.uid,
-    }
+    },
   ])
 
   // Get user profile from store
   const userProfileByUid = useSelector(state => state.firestore.data.UserProfiles)
 
+  // Show to user page with stubs, instead name and photo, while loading
   if (!userProfileByUid) {
-    return <Spinner />
+    return (
+      <Container>
+        <PageTitle>Profile</PageTitle>
+        <UserPhoto skeleton />
+        <UserName skeleton />
+        <PageMenu />
+        <BottomBar history={history} />
+      </Container>
+    )
   }
 
   const userProfile = userProfileByUid[auth.uid]
 
   if (!userProfile) {
-    throw new Error("No valid user profile entry in colleciton")
+    throw new Error('No valid user profile entry in colleciton')
   }
 
   console.log(userProfile)
 
   const { photoURL, displayName } = userProfile
 
-  const onProfileChange = async (options) => {
+  const onProfileChange = async options => {
     await firestore.collection('UserProfiles').doc(auth.uid).update(options)
     await firebase.updateAuth(options)
   }
@@ -54,7 +63,7 @@ const ProfilePage = ({ history }) => {
 
   // https://randomuser.me/api/portraits/men/44.jpg
   const onPhotoPicked = async (file, onUploadSuccess, onUploadFail) => {
-    console.log("onPhotoUpload", file)
+    console.log('onPhotoUpload', file)
     // Destructure File properties, all of them, for reference.
     const { uid, name, type, size, lastModified, lastModifiedDate } = file
     // Make filename and path to store avatar photo.
@@ -73,7 +82,7 @@ const ProfilePage = ({ history }) => {
   return (
     <Container>
       <PageTitle>Profile</PageTitle>
-      <UserPhoto name={displayName} photoURL={photoURL} onPick={onPhotoPicked}/>
+      <UserPhoto name={displayName} photoURL={photoURL} onPick={onPhotoPicked} />
       <UserName onChange={onUsernameChange}>{displayName}</UserName>
       <PageMenu />
       <BottomBar history={history} />
