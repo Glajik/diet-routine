@@ -66,16 +66,19 @@ const ProfilePage = ({ history }) => {
   }
 
   // https://randomuser.me/api/portraits/men/44.jpg
-  const onPhotoPicked = (file, onUploadSuccess, onUploadFail) => {
+  const onPhotoPicked = async (file, onUploadSuccess, onUploadFail) => {
     console.log("onPhotoUpload", file)
     // Destructure File properties, all of them, for reference.
     const { uid, name, type, size, lastModified, lastModifiedDate } = file
     // Make filename and path to store avatar photo.
     const path = `UserData/${auth.uid}/avatar`
     // Upload file to storage
-    firebase.uploadFile(path, file)
-      .then(onUploadSuccess)
-      .catch(onUploadFail)
+    try {
+      await firebase.uploadFile(path, file)
+      onUploadSuccess()
+    } catch (error) {
+      onUploadFail(error)
+    }
   }
 
   return (
