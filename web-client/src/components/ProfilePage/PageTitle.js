@@ -1,6 +1,6 @@
 import { divide } from 'lodash'
 import React from 'react'
-import styles from './index.module.css'
+import styles from './PageTitle.module.css'
 
 const PageTitle = ({ children }) => (
   <div className={styles.container}>
