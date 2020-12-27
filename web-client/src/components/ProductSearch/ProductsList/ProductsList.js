@@ -1,25 +1,15 @@
 import React, { Fragment, useMemo } from 'react'
-import { useFirestoreConnect } from 'react-redux-firebase'
-import { useSelector } from 'react-redux'
 
 import styled from './ProductsList.module.css'
 import ProductItem from './ProductItem/ProductItem.js'
 
 
-const ProductsList = () => {
-  useFirestoreConnect({
-    collection: 'Products',
-    storeAs: 'products',
-  })
-
-  const products = useSelector(state => state.firestore.data.products) || {}
-  console.log(Object.values(products))
-
+const ProductsList = ({ products }) => {
   const objWithCategories = useMemo(() => {
-    return Object.values(products)
-      .sort((a, b) => (a.name > b.name ? 1 : -1))
+    return products()
+      .sort((a, b) => (a[1].name > b[1].name ? 1 : -1))
       .reduce((acc, name) => {
-        let firstLetter = name.name[0].toLocaleUpperCase()
+        let firstLetter = name[1].name[0].toLocaleUpperCase()
         if (!acc[firstLetter]) {
           acc[firstLetter] = { title: firstLetter, data: [name] }
         } else {
