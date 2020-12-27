@@ -9,6 +9,7 @@ import {
   OnboardingPage,
   Main,
   OnBoardingSlider,
+  ProductDetail,
 } from '../index'
 
 const PublicSide = () => (
@@ -24,7 +25,7 @@ const PrivateSide = () => (
     <Route path="/add-product" component={AddProduct} />
     <Route path="/calendar" component={CalendarPage} />
     <Route path="/product-search" component={ProductSearch} />
-    <Route path="/product-detail/:id">Hi</Route>
+    <Route path="/product-detail/:id" component={ProductDetail} />
     <Route path="/profile" component={ProfilePage} />
     <Route path="/" exact component={Main} />
     <Redirect to="/" />
@@ -32,8 +33,6 @@ const PrivateSide = () => (
 )
 
 const Routes = ({ isAuthorized }) =>
-  isAuthorized
-    ? <PrivateSide />
-    : <PublicSide />
+  isAuthorized ? <PrivateSide /> : <PublicSide />
 
 export default Routes

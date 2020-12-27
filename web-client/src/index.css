@@ -17,7 +17,7 @@ body {
   justify-self: end;
 }
 
-.ant-input::placeholder {  
+.ant-input::placeholder {
   font-family: 'Nunito', sans-serif;
   font-size: 16px;
   font-style: normal;
@@ -33,7 +33,7 @@ body {
 }
 
 .ant-input-affix-wrapper {
-  margin: 65px 0; 
+  margin: 65px 0;
   height: 40px;
   border: 1px solid #bfbfbf;
   box-sizing: border-box;
@@ -45,36 +45,34 @@ body {
   width: 1.2em;
 }
 
-
 /*code {*/
-  /*font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;*/
+/*font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;*/
 /*}*/
 input::placeholder {
   font-family: Nunito;
 }
 
 .ant-form {
-  margin: 26px auto 0 -10px !important
+  margin: 26px auto 0 -10px !important;
 }
 
-.ant-form[id="UserNameForm"] {
-  margin: 0 !important
+.ant-form[id='UserNameForm'] {
+  margin: 0 !important;
 }
 
 /* отключение * required input */
-.ant-form-item-label>label.ant-form-item-required::before {
+.ant-form-item-label > label.ant-form-item-required::before {
   content: none !important;
 }
 
 /* label для input */
-.ant-form-item-label>label.ant-form-item-required {
+.ant-form-item-label > label.ant-form-item-required {
   font-style: normal;
   font-weight: 600;
   font-size: 13px;
   line-height: 150%;
 
-
-  color: #BFBFBF;
+  color: #bfbfbf;
 }
 
 .ant-form-item-label {
@@ -94,7 +92,7 @@ input::placeholder {
   font-size: 16px;
   line-height: 150%;
 
-  color: #BFBFBF;
+  color: #bfbfbf;
 }
 
 .ant-form-item {
@@ -127,7 +125,6 @@ input::placeholder {
   width: 11px !important;
 }
 h3 {
-
   font-weight: bold !important;
 
   color: #262626;
@@ -167,3 +164,19 @@ h3 {
 .am-list-item.am-input-item {
   padding-left: 0;
 }
+
+/* Vadym23 --- ProductAdd change Button 
+  Заменил стандартное поведение кнопки с антдизайна цвет и вес шрифта по макету
+*/
+button span {
+  font-weight: 400 !important;
+}
+
+.ant-btn:hover,
+.ant-btn:focus,
+.ant-btn:active {
+  text-decoration: none;
+  background: #3dad06;
+  color: #fff;
+}
+/* Vadym23 End Button */
