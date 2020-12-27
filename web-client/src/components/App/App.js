@@ -22,18 +22,18 @@ import 'antd/dist/antd.css'
 import { Wrapper } from './style'
 import Routes from './Routes'
 
+import Spinner from '../Spinner'
+
 const App = props => {
   // Get auth data from firebase
   const auth = useSelector(state => state.firebase.auth)
-  // console.log('state.firebase.auth', auth)
 
-  props.setCurrentUserId(auth.uid)
-
-  // Wait auth loading. Maybe we should show spinner?
   if (!auth.isLoaded) {
-    return 'Loading ...'
+    return <Spinner />
   }
-
+  
+  props.setCurrentUserId(auth.uid)
+ 
   return (
     <div className="App">
       <IntlProvider locale={navigator.language} messages={en}>

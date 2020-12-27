@@ -1,0 +1,21 @@
+.container {
+    margin-top: -45px;
+    padding-bottom: 40px;
+}
+
+.firstLetter {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 130%;
+
+    text-align: center;
+
+    color: #595959;
+
+    flex: none;
+    order: 0;
+    align-self: stretch;
+    flex-grow: 0;
+    margin: 0px 0px;
+}

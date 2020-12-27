@@ -1,6 +1,6 @@
 import React from 'react'
-import {backArrow, settings} from '../../../assets'
-import {FormattedMessage} from 'react-intl'
+import { backArrow, settings } from '../../../assets'
+import { FormattedMessage } from 'react-intl'
 
 import {
   BarWrapper,
@@ -17,7 +17,8 @@ const TopBar = (props) => {
       props.history.location.pathname === '/main' ||
       props.history.location.pathname === '/calendar' ||
       props.history.location.pathname === '/profile' ||
-      props.history.location.pathname === '/add-product'
+      props.history.location.pathname === '/add-product' ||
+      props.history.location.pathname === '/product-search'
     ) {
       props.history.push('/main')
     } else {
@@ -28,19 +29,19 @@ const TopBar = (props) => {
   return (
     <BarWrapper>
       <ComeBackButton onClick={clickHandler}>
-        <ComeBackImg src={backArrow}/>
+        <ComeBackImg src={backArrow} />
       </ComeBackButton>
       <PageName>
-        {props.title ? <FormattedMessage id={props.title}/> : ''}
+        {props.title ? <FormattedMessage id={props.title} /> : ''}
       </PageName>
       {
         props.settingsAction ? (
           <SettingsButton onClick={props.settingsAction}>
-            <SettingsImg src={settings}/>
+            <SettingsImg src={settings} />
           </SettingsButton>
         ) : (
-         <div style={{width: '18px'}}/>
-        )
+            <div style={{ width: '18px' }} />
+          )
       }
     </BarWrapper>
   )

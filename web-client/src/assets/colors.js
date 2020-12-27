@@ -7,5 +7,7 @@ export const colors = {
   secondary: '#9D53B4',
   inputValuePlaceholder: '#474b4f',
   error: '#FFE600',
-  green: '#3DAD06'
+  green: '#3DAD06',
+  neutral: "#BFBFBF",
+  neutralDark: '#8C8C8C'
 }

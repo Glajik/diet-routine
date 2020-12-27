@@ -10,14 +10,55 @@ body {
   height: auto;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #fff;
 }
 
+.ant-input-borderless {
+  justify-self: end;
+}
+
+.ant-input::placeholder {  
+  font-family: 'Nunito', sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 24px;
+  letter-spacing: 0em;
+  text-align: left;
+}
+
+.anticon-close-circle svg {
+  height: 1.2em;
+  width: 1.2em;
+}
+
+.ant-input-affix-wrapper {
+  margin: 65px 0; 
+  height: 40px;
+  border: 1px solid #bfbfbf;
+  box-sizing: border-box;
+  border-radius: 30px;
+}
+
+.anticon-search svg {
+  height: 1.2em;
+  width: 1.2em;
+}
+
+
+/*code {*/
+  /*font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;*/
+/*}*/
 input::placeholder {
   font-family: Nunito;
 }
 
 .ant-form {
   margin: 26px auto 0 -10px !important
+}
+
+.ant-form[id="UserNameForm"] {
+  margin: 0 !important
 }
 
 /* отключение * required input */
@@ -60,8 +101,14 @@ input::placeholder {
   margin-bottom: 0px;
 }
 
+.ant-drawer-content-wrapper {
+  border-top-right-radius: 15px;
+  border-top-left-radius: 15px;
+}
+
 .ant-drawer-content {
   overflow: hidden !important;
+  border-radius: inherit;
 }
 
 .slick-dots li button {
@@ -84,4 +131,39 @@ h3 {
   font-weight: bold !important;
 
   color: #262626;
+}
+
+/**
+ * Override Ant.Mobile
+ */
+
+/* List items */
+.am-list-item .am-list-line .am-list-content {
+  font-size: 16px;
+}
+
+/* Spinner */
+.ant-spin-dot-item {
+  background-color: #3dad06; /* green/6 */
+}
+
+/* Input */
+.am-list-item .am-input-control input {
+  font-size: 16px;
+  font-size: 16px;
+  font-style: normal;
+  line-height: 24px;
+  border: none;
+  border-bottom: 1px solid #bfbfbf;
+}
+
+.am-list-item .am-input-control input::placeholder {
+  padding-left: 11px;
+  font-weight: 600;
+  padding-left: 0;
+  color: #bfbfbf;
+}
+
+.am-list-item.am-input-item {
+  padding-left: 0;
 }
