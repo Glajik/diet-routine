@@ -1,0 +1,28 @@
+.container {
+  display: flex;
+  justify-content: center;
+  margin-top: 16px;
+}
+
+.body {
+  /* body 16/normal */
+  font-family: Nunito;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 24px;
+  padding-left: 10px;
+  /* identical to box height, or 150% */
+
+  /* neutral/10 */
+  color: #262626;
+}
+
+.icon {
+  /* green/6 */
+  color: #3dad06;  
+}
+
+.skeleton {
+  margin-bottom: 12px;
+}

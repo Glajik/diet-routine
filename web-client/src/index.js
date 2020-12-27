@@ -8,6 +8,7 @@ import firebase from './firebase'
 import store from './store'
 import * as serviceWorker from './serviceWorker'
 import 'antd/dist/antd.css'
+import 'antd-mobile/dist/antd-mobile.css'
 // import { createStoreWithFirebase, a} from './store'
 
 import {App} from './components'

@@ -1,0 +1,44 @@
+.container {
+  display: flex;
+  justify-content: center;
+}
+
+.avatar {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  justify-content: center;
+  border-radius: 100%;
+  background-color: #f0f0f0;
+  width: 64px;
+  height: 64px;
+  margin: 0 auto;
+}
+
+.icon {
+  font-size: 16px;
+}
+
+.image {
+  width: 64px;
+  height: 64px;
+  border-style: none;
+  border-radius: 100%;
+}
+
+
+.fileInput {
+  position: absolute;
+  top: 0px;
+  opacity: 0;
+  cursor: pointer;
+  overflow: hidden;
+  border-radius: 100%;
+  width: 64px;
+  height: 64px;
+}
+
+.skeleton {
+  width: 64px;
+  height: 64px;
+}

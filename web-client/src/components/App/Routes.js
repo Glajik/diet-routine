@@ -5,7 +5,7 @@ import {
   AddProduct,
   CalendarPage,
   ProductSearch,
-  Profile,
+  ProfilePage,
   OnboardingPage,
   Main,
   OnBoardingSlider,
@@ -25,7 +25,7 @@ const PrivateSide = () => (
     <Route path="/calendar" component={CalendarPage} />
     <Route path="/product-search" component={ProductSearch} />
     <Route path="/product-detail/:id">Hi</Route>
-    <Route path="/profile" component={Profile} />
+    <Route path="/profile" component={ProfilePage} />
     <Route path="/" exact component={Main} />
     <Redirect to="/" />
   </Switch>

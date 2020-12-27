@@ -21,6 +21,8 @@ import Routes from './Routes'
 import { ua } from '../../i18n'
 import { getCurrentUserId } from '../../redux/actions/profileAction'
 
+import Spinner from '../Spinner'
+
 const App = props => {
   const { setCurrentUserId } = props
 
@@ -29,11 +31,12 @@ const App = props => {
 
   // Get auth data from firebase
   const auth = useSelector(state => state.firebase.auth)
+
   console.log('state.firebase.auth', auth)
 
-  // Wait auth loading. Maybe we should show spinner?
+
   if (!auth.isLoaded) {
-    return 'Loading ...'
+    return <Spinner />
   }
 
   return (
