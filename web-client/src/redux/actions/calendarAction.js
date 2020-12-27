@@ -2,7 +2,8 @@ import {
   CHANGE_SELECTED_DATE,
   CHANGE_MONTH_AMOUNT_FROM_TODAY,
   CHANGE_CURRENT_YEAR,
-  CHANGE_SELECTED_YEAR
+  CHANGE_SELECTED_YEAR,
+  CHANGE_SELECTED_MONTH
 } from '../actionTypes'
 
 export const changeSelectedDate = (date) => {
@@ -30,5 +31,12 @@ export const changeSelectedYear = (year) => {
   return {
     type: CHANGE_SELECTED_YEAR,
     payload: year
+  }
+}
+
+export const changeSelectedMonth = (date) => {
+  return {
+    type: CHANGE_SELECTED_MONTH,
+    payload: date
   }
 }
