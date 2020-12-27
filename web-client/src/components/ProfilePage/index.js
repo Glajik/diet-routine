@@ -15,7 +15,7 @@ const ProfilePage = ({ history }) => {
 
   // Get auth data from firebase
   const auth = useSelector(state => state.firebase.auth)
-
+  console.log(auth)
   if (!auth.uid) {
     console.error('User Not Authed')
     message.error('You should login')
