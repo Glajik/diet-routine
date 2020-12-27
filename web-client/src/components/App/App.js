@@ -20,6 +20,7 @@ import { Wrapper } from './style'
 import Routes from './Routes'
 import { ua } from '../../i18n'
 import { getCurrentUserId } from '../../redux/actions/profileAction'
+
 import Spinner from '../Spinner'
 
 const App = props => {
@@ -30,6 +31,9 @@ const App = props => {
 
   // Get auth data from firebase
   const auth = useSelector(state => state.firebase.auth)
+
+  console.log('state.firebase.auth', auth)
+
 
   if (!auth.isLoaded) {
     return <Spinner />

@@ -13,6 +13,42 @@ body {
   background-color: #fff;
 }
 
+.ant-input-borderless {
+  justify-self: end;
+}
+
+.ant-input::placeholder {  
+  font-family: 'Nunito', sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 24px;
+  letter-spacing: 0em;
+  text-align: left;
+}
+
+.anticon-close-circle svg {
+  height: 1.2em;
+  width: 1.2em;
+}
+
+.ant-input-affix-wrapper {
+  margin: 65px 0; 
+  height: 40px;
+  border: 1px solid #bfbfbf;
+  box-sizing: border-box;
+  border-radius: 30px;
+}
+
+.anticon-search svg {
+  height: 1.2em;
+  width: 1.2em;
+}
+
+
+/*code {*/
+  /*font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;*/
+/*}*/
 input::placeholder {
   font-family: Nunito;
 }
