@@ -1,5 +1,5 @@
 import moment from 'moment'
-import React, {useEffect, useState} from 'react'
+import React, {useEffect, useState, useRef} from 'react'
 import {connect, useSelector} from 'react-redux'
 import {useFirestoreConnect} from 'react-redux-firebase'
 import {branchUp, branchDown} from '../../assets'
@@ -59,10 +59,14 @@ const Main = (props) => {
     dailyLimitsInfo = Object.values(dailyLimits).map(item => item)
   }
 
+  const productListRef = useRef(null)
+
   useEffect(() => {
-    const productsList = document.querySelector('.sc-fzooss')
-    const isTheEndOfProductList = productsList.scrollHeight - productsList.scrollTop === productsList.clientHeight
-    const isProductListOverflow = productsList.scrollHeight > productsList.offsetHeight
+    if (!productListRef) {
+      return
+    }
+    const isTheEndOfProductList = productListRef.scrollHeight - productListRef.scrollTop === productListRef.clientHeight
+    const isProductListOverflow = productListRef.scrollHeight > productListRef.offsetHeight
 
     if (isProductListOverflow && !isTheEndOfProductList) {
       setIsShadowHidden(false)
@@ -174,7 +178,8 @@ const Main = (props) => {
           </div>
           <ProductListWrapper
             isShadowHidden={isShadowHidden}
-            onScroll={scrolled}>
+            onScroll={scrolled}
+            ref={productListRef}>
             {selectedDateData && selectedDateData.products.length ? selectedDateData.products.map((item, index) => (
               <ProductListItemWrapper key={index}>
                 <ProductListLeftPart>
