@@ -7,19 +7,19 @@ import SkipButton from './SkipButton/SkipButton'
 
 const Spacer = () => <span> </span>
 
-const FooterSlider = ({ next, btnText, isLast }) => {
+const FooterSlider = ({ btnText, onNext, onSkip }) => {
   return (
     <div className={styled.wrapper}>
-      {!isLast ? <SkipButton /> : <Spacer /> }
-      <GreenLittleButton text={btnText} next={next} />
+      {onSkip ? <SkipButton onClick={onSkip}/> : <Spacer /> }
+      <GreenLittleButton text={btnText} onClick={onNext} />
     </div>
   )
 }
 
 FooterSlider.propTypes = {
   btnText: PropTypes.string.isRequired,
-  next: PropTypes.func.isRequired,
-  isLast: PropTypes.bool,
+  onNext: PropTypes.func.isRequired,
+  onSkip: PropTypes.func,
 }
 
 export default FooterSlider
