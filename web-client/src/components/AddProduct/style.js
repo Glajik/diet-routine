@@ -1,10 +1,17 @@
 import styled from 'styled-components'
 
 export const AddProductContentWrapper = styled.div`
-  margin: 96px 0; 
+  margin: 60px 0; 
 `
 
-export const Form = styled.form``
+export const Form = styled.form`
+  position: relative;
+`
+
+export const FieldsWrapper = styled.div`
+  max-height: calc(100vh - 180px);
+  overflow: auto;
+`
 
 export const FieldWrapper = styled.div`
   position: relative;
@@ -79,12 +86,15 @@ export const AmountUnitLabel = styled.span`
 `
 
 export const SaveProductButton = styled.button`
-  margin: 43px 0 32px;
+  display: block;
+  margin: 0 auto;
   text-align: center;
   padding: 12px 0;
-  width: 288px;
+  width: 100%;
   background: #3DAD06;
   border: none;
   border-radius: 30px;
-  color: #ffffff;
+  color: #ffffff; 
+  position: absolute;
+  bottom: -90px;
 `
