@@ -1,6 +1,6 @@
 import React, { useCallback, useState } from 'react'
 import { Container } from '../UI'
-import { TopBottomBarsLayout } from '../../layouts'
+import { TopBarLayout } from '../../layouts'
 import { Input } from 'antd'
 import { colors } from '../../assets/colors'
 import 'antd/dist/antd.css'
@@ -39,7 +39,7 @@ const ProductSearch = props => {
 
   return (
     <Container>
-      <TopBottomBarsLayout
+      <TopBarLayout
         title="productSearch"
         settingsAction={() => console.log('Main Page')}
         history={props.history}>
@@ -52,7 +52,7 @@ const ProductSearch = props => {
           prefix={<SearchOutlined style={{ color: colors.green }} />}
           suffix={<CloseCircleOutlined style={{ color: colors.neutralDark }} />}
         />
-      </TopBottomBarsLayout>
+      </TopBarLayout>
       <ProductsList products={productsArray} />
     </Container>
   )

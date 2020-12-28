@@ -45,7 +45,7 @@ const BottomBar = ({currentPage, history}) => {
           onClick={() => clickHandler('/profile')}>
           <UserOutlined/>
         </IconButton>
-        <AddProductButton onClick={() => history.push('/add-product')}>
+        <AddProductButton onClick={() => history.push('/product-search')}>
           <PlusOutlined/>
         </AddProductButton>
       </IconsWrapper>

@@ -1,17 +1,15 @@
 import React from 'react'
-import { useHistory } from 'react-router-dom'
-
+import PropTypes from 'prop-types'
 import styled from './SkipButton.module.css'
 
-const SkipButton = () => {
-  const history = useHistory()
+const SkipButton = ({ onClick }) => (
+  <p className={styled.link} onClick={onClick}>
+    Skip
+  </p>
+)
 
-  const handleSkip = () => history.push('/main')
-  return (
-    <p className={styled.link} onClick={handleSkip}>
-      Skip
-    </p>
-  )
+SkipButton.propTypes = {
+  onClick: PropTypes.func.isRequired,
 }
 
 export default SkipButton

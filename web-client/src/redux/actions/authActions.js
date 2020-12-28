@@ -37,19 +37,24 @@ export const signOut = () => {
 }
 
 export const signUp = ({ email, password }) => {
-  return (dispatch, getState, { getFirebase, getFirestore }) => {
+  return async (dispatch, getState, { getFirebase, getFirestore }) => {
     const firebase = getFirebase()
-    // const firestore = getFirestore()
-
-    firebase
-      .auth()
-      .createUserWithEmailAndPassword(email, password)
-      .then(() => {
-        dispatch({ type: SIGNUP_SUCCESS })
-      })
-      .catch(err => {
-        dispatch({ type: SIGNUP_ERROR, err })
-      })
+    const firestore = getFirestore()
+    try {
+      const result = await firebase.auth().createUserWithEmailAndPassword(email, password)
+      const { uid } = result.user
+      // Get username for guest
+      const displayName = 'Guest'
+      // Update profile
+      await firebase.updateAuth({ displayName })
+      // Create user profile
+      await firestore.collection('UserProfiles')
+        .doc(uid)
+        .set({ displayName, email })
+      dispatch({ type: SIGNUP_SUCCESS })
+    } catch (error) {
+      dispatch({ type: SIGNUP_ERROR, error })
+    }
   }
 }
 
