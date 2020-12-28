@@ -14,7 +14,7 @@ import {
 
 const PublicSide = () => (
   <Switch>
-    <Route path="/try_out" component={OnBoardingSlider} />
+    <Route path="/try-out" component={OnBoardingSlider} />
     <Route path="/" exact component={OnboardingPage} />
     <Redirect to="/" />
   </Switch>
