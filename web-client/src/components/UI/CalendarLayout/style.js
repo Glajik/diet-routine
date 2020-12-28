@@ -93,12 +93,12 @@ export const DateWrapper = styled.div`
   background: #ffffff;
   z-index: 100;
   padding: 10px 0;
-  //box-sizing: border-box;
 `
 
 export const Date = styled.div`
   display: flex;
   justify-content: space-between;
+  align-items: center;
   width: 76%;
   margin: 0 auto;
 `
@@ -112,11 +112,13 @@ export const MonthYearLabel = styled.div`
 export const GoNextBtn = styled.button`
   border: none;
   background: none;
+  height: 16px;
   cursor: ${p => p.isNextMonthButtonDisabled ? 'not-allowed' : 'pointer'};
 `
 
 export const GoBackBtn = styled.button`
   border: none;
   background: none;
+  height: 16px;
   cursor: pointer;
 `

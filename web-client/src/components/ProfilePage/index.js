@@ -1,5 +1,6 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
+import { useHistory } from 'react-router-dom'
 import { useFirebase, useFirestore, useFirestoreConnect } from 'react-redux-firebase'
 import { Container, BottomBar } from '../UI'
 import { message } from 'antd'
@@ -8,7 +9,19 @@ import PageMenu from './PageMenu'
 import UserPhoto from './UserPhoto'
 import UserName from './UserName'
 
-const ProfilePage = ({ history }) => {
+const ProfilePageSkeleton = ({ history, active }) => (
+  <Container>
+    <PageTitle>Profile</PageTitle>
+    <UserPhoto skeleton isLoading={active} />
+    <UserName skeleton isLoading={active} />
+    <PageMenu />
+    <BottomBar history={history} />
+  </Container>
+)
+
+
+const ProfilePage = () => {
+  const history = useHistory()
   // Used to r/w access to auth and firestore
   const firestore = useFirestore()
   const firebase = useFirebase()
@@ -34,22 +47,16 @@ const ProfilePage = ({ history }) => {
 
   // Show to user page with stubs, instead name and photo, while loading
   if (!userProfileByUid) {
-    return (
-      <Container>
-        <PageTitle>Profile</PageTitle>
-        <UserPhoto skeleton />
-        <UserName skeleton />
-        <PageMenu />
-        <BottomBar history={history} />
-      </Container>
-    )
+    return <ProfilePageSkeleton active history={history}/>
   }
 
   const userProfile = userProfileByUid[auth.uid]
 
   if (!userProfile) {
     console.error('Can\'t find user profile entry in "UserProfiles" colleciton')
-    message.error("Can't find your profile")
+
+    message.error('Can\'t find your profile')
+    return <ProfilePageSkeleton history={history}/>
   }
 
   const { photoURL, displayName } = userProfile

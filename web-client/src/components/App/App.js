@@ -11,35 +11,32 @@
     (I understand that user may not visit registration form, but log in and registration form was created from the
      same component which I need to import by myself because I have to show log in form to users)
 */
-
 import React from 'react'
 import { IntlProvider } from 'react-intl'
 import { connect, useSelector } from 'react-redux'
+// import {Route, Switch, withRouter} from 'react-router-dom'
+// import {CSSTransition, TransitionGroup} from 'react-transition-group'
+import {getCurrentUserId} from '../../redux/actions/profileAction'
+import {en} from '../../i18n'
 import 'antd/dist/antd.css'
 import { Wrapper } from './style'
 import Routes from './Routes'
-import { ua } from '../../i18n'
-import { getCurrentUserId } from '../../redux/actions/profileAction'
 
 import Spinner from '../Spinner'
 
 const App = props => {
-  const { setCurrentUserId } = props
-
-  const userId = 1
-  setCurrentUserId(userId)
-
   // Get auth data from firebase
   const auth = useSelector(state => state.firebase.auth)
 
-  console.log(auth)
   if (!auth.isLoaded) {
     return <Spinner />
   }
-
+  
+  props.setCurrentUserId(auth.uid)
+ 
   return (
     <div className="App">
-      <IntlProvider locale={navigator.language} messages={ua}>
+      <IntlProvider locale={navigator.language} messages={en}>
         <Wrapper>
           <Routes isAuthorized={!!auth.uid} />
         </Wrapper>

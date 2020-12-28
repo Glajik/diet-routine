@@ -23,7 +23,7 @@ function canUpload(file) {
   return isJpgOrPng && isLt2M
 }
 
-const UserPhoto = ({ photoURL, name, onPick, skeleton }) => {
+const UserPhoto = ({ photoURL, name, onPick, skeleton, isLoading }) => {
   // Used to indicate loading process
   const [loading, setLoading] = useState(false)
 
@@ -31,7 +31,7 @@ const UserPhoto = ({ photoURL, name, onPick, skeleton }) => {
     return (
       <div className={styles.container}>
         <Skeleton.Avatar
-          active
+          active={!!isLoading}
           className={styles.skeleton}
           style={{ width: 64, height: 64 }}
         />
