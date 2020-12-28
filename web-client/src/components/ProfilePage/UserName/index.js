@@ -6,7 +6,7 @@ import IconButton from './IconButton'
 import UserNameForm from './Form'
 import Modal from './Modal'
 
-const UserName = ({ children: name, onChange, skeleton }) => {
+const UserName = ({ children: name, onChange, skeleton, isLoading }) => {
   const defaultText = 'Type your name'
 
   const [modalVisible, setModalVisible] = useState(false)
@@ -15,7 +15,7 @@ const UserName = ({ children: name, onChange, skeleton }) => {
     return (
       <div className={styles.container}>
         <Skeleton.Button
-          active
+          active={!!isLoading}
           className={styles.skeleton}
           style={{ width: 200 }}
           buttonShape="round"

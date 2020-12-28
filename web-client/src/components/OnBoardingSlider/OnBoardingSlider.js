@@ -28,7 +28,7 @@ const OnBoardingSlider = () => {
       message.success('You are welcome!')
       const { uid } = result.user
       // Get username for guest
-      const displayName = `Guest ${uid.slice(6)}`
+      const displayName = `Guest ${uid.slice(0, 5)}`
       // Update profile
       await firebase.updateAuth({ displayName })
       // Create user profile
