@@ -1,4 +1,5 @@
 import React from 'react'
+import { useHistory } from 'react-router-dom'
 import { backArrow, settings } from '../../../assets'
 import { FormattedMessage } from 'react-intl'
 
@@ -11,20 +12,10 @@ import {
   SettingsImg
 } from './style'
 
-const TopBar = (props) => {
-  const clickHandler = () => {
-    if (
-      props.history.location.pathname === '/main' ||
-      props.history.location.pathname === '/calendar' ||
-      props.history.location.pathname === '/profile' ||
-      props.history.location.pathname === '/add-product' ||
-      props.history.location.pathname === '/product-search'
-    ) {
-      props.history.push('/main')
-    } else {
-      props.history.goBack()
-    }
-  }
+const TopBar = ({ title, settingsAction }) => {
+  const history = useHistory()
+
+  const clickHandler = () => history.goBack()
 
   return (
     <BarWrapper>
@@ -32,11 +23,11 @@ const TopBar = (props) => {
         <ComeBackImg src={backArrow} />
       </ComeBackButton>
       <PageName>
-        {props.title ? <FormattedMessage id={props.title} /> : ''}
+        {title ? <FormattedMessage id={title} /> : ''}
       </PageName>
       {
-        props.settingsAction ? (
-          <SettingsButton onClick={props.settingsAction}>
+        settingsAction ? (
+          <SettingsButton onClick={settingsAction}>
             <SettingsImg src={settings} />
           </SettingsButton>
         ) : (
