@@ -71,6 +71,7 @@ const ProductWeight = () => {
             <Modal
               title="Custom"
               onClose={() => setModalVisible(false)}
+              className={styled.customModalPlacement}
               visible={modalVisible}>
               <CustomForm
                 custom={custom}
@@ -82,7 +83,11 @@ const ProductWeight = () => {
           </Col>
         </Row>
         <Row>
-          <Button className={styled.greenBtn}>Save Product</Button>
+          <Button
+            className={styled.greenBtn}
+            onClick={() => console.log('Save Product Button', 'hi')}>
+            Save Product
+          </Button>
         </Row>
       </div>
     </>

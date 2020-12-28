@@ -1,5 +1,5 @@
 .productWrapper {
-  background-color: #FAFAFA;
+  background-color: #fafafa;
   background-size: contain;
   background-attachment: fixed;
   padding-top: 50px;
@@ -20,7 +20,7 @@
   line-height: 24px;
 
   background: #ffffff;
-  border: 1px solid #BFBFBF;
+  border: 1px solid #bfbfbf;
   box-sizing: border-box;
   border-radius: 30px;
 
@@ -49,4 +49,3 @@
 
   color: #ffffff;
 }
-

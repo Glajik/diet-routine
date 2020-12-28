@@ -1,3 +1,13 @@
+.modalFormContainer {
+  /* display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row; */
+  /* margin: 0;
+  padding: 0; */
+  border: 1px solid red;
+}
+
 .greenBtn {
   width: 69px;
   height: 28px;
@@ -11,12 +21,22 @@
   border-style: none;
   align-items: center;
   text-align: center;
+  top: -20px;
+  right: 17px;
   color: #ffffff;
 }
 
 .inputCustom {
-  width: 50%;
+  top: -20px;
+  width: 80%;
+  /* max-width: 70%; */
+  left: 10px;
   border: none;
   border-bottom: 1px solid #bfbfbf;
-  margin: 0 auto;
+}
+
+.labelCustom {
+  font-weight: 600;
+  font-size: 13px;
+  color: #bfbfbf;
 }

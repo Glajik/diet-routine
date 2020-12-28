@@ -180,3 +180,9 @@ button span {
   color: #fff;
 }
 /* Vadym23 End Button */
+
+.ant-form-inline {
+  display: flex;
+  justify-content: flex-start !important;
+  flex-wrap: nowrap !important;
+}
