@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import ProductSection from '../ProductSection/ProductSection'
+import CustomForm from './CustomForm/CustomForm'
+import Modal from '../../ProfilePage/UserName/Modal'
 import { Row, Col, Button } from 'antd'
 import styled from './ProductWeight.module.css'
 
@@ -9,14 +11,21 @@ const ProductWeight = () => {
   const { id } = useParams()
   const products = useSelector(state => state.firestore.data.products) || {}
   const [weight, setWeight] = useState(100)
+  const [modalVisible, setModalVisible] = useState(false)
+  let custom = ''
 
   const updateWeight = value => {
     return setWeight(value)
   }
 
+  const onFinishHandler = value => {
+    setModalVisible(false)
+    setWeight(value.custom)
+  }
+
   return (
     <>
-      <ProductSection weight={weight} />
+      <ProductSection weight={weight} custom={custom} />
       <div className={styled.productWrapper}>
         <Row>
           <Col span={5} offset={1}>
@@ -54,7 +63,22 @@ const ProductWeight = () => {
         </Row>
         <Row className={styled.productWeightButtons}>
           <Col span={6} offset={9}>
-            <Button className={styled.whiteBtn}>Custom</Button>
+            <Button
+              className={styled.whiteBtn}
+              onClick={() => setModalVisible(true)}>
+              Custom
+            </Button>
+            <Modal
+              title="Custom"
+              onClose={() => setModalVisible(false)}
+              visible={modalVisible}>
+              <CustomForm
+                custom={custom}
+                onFinish={onFinishHandler}
+                visible={modalVisible}
+              />
+            </Modal>
+            <p>{custom}</p>
           </Col>
         </Row>
         <Row>

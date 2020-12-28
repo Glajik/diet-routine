@@ -1,11 +1,10 @@
-import React, { useRef, useState } from 'react'
+import React from 'react'
 import { useParams } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { Row, Col } from 'antd'
 import styled from './ProductSection.module.css'
 
-const ProductSection = props => {
-  const { weight } = props
+const ProductSection = ({ weight }) => {
   const { id } = useParams()
   const products = useSelector(state => state.firestore.data.products) || {}
   console.log(products[id])

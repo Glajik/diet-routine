@@ -1,0 +1,22 @@
+.greenBtn {
+  width: 69px;
+  height: 28px;
+  margin: 0 auto;
+  font-style: normal;
+  font-weight: 900;
+  font-size: 12px;
+  line-height: 18px;
+  background: #3dad06;
+  border-radius: 30px;
+  border-style: none;
+  align-items: center;
+  text-align: center;
+  color: #ffffff;
+}
+
+.inputCustom {
+  width: 50%;
+  border: none;
+  border-bottom: 1px solid #bfbfbf;
+  margin: 0 auto;
+}
