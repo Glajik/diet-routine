@@ -3,9 +3,9 @@ import PropTypes from 'prop-types'
 
 import styled from './GreenLittleButton.module.css'
 
-const GreenLittleButton = ({ text, next }) => {
+const GreenLittleButton = ({ text, onClick }) => {
   return (
-    <button className={styled.greenButton} onClick={next}>
+    <button className={styled.greenButton} onClick={onClick}>
       {text}
     </button>
   )
@@ -13,7 +13,7 @@ const GreenLittleButton = ({ text, next }) => {
 
 GreenLittleButton.propTypes = {
   text: PropTypes.string.isRequired,
-  next: PropTypes.func.isRequired,
+  onClick: PropTypes.func.isRequired,
 }
 
 export default GreenLittleButton

@@ -47,10 +47,10 @@ export const getDataOfCurrentDate = (
   } else {
     return {
       userId: currentUserId,
-      caloriesPerDay: dailyLimits ? dailyLimits[0].dailyLimits.calories : 0,
-      proteinsPerDay: dailyLimits ? dailyLimits[0].dailyLimits.proteins : 0,
-      fatsPerDay: dailyLimits ? dailyLimits[0].dailyLimits.fats : 0,
-      carbsPerDay: dailyLimits ? dailyLimits[0].dailyLimits.carbohydrates : 0,
+      caloriesPerDay: dailyLimits ? dailyLimits[0].dailyLimits.calories : 2000,
+      proteinsPerDay: dailyLimits ? dailyLimits[0].dailyLimits.proteins : 150,
+      fatsPerDay: dailyLimits ? dailyLimits[0].dailyLimits.fats : 67,
+      carbsPerDay: dailyLimits ? dailyLimits[0].dailyLimits.carbohydrates : 200,
       date: selectedDate,
       usedCalories: 0,
       usedProteins: 0,

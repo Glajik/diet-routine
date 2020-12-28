@@ -9,7 +9,7 @@ const ButtonGroup = () => {
 
   const dispatch = useDispatch()
 
-  const handleTryOut = () => history.push('/try_out')
+  const handleTryOut = () => history.push('/try-out')
   const handleSignUp = () => dispatch(handleSignup())
 
   return (
