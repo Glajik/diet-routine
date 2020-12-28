@@ -18,6 +18,8 @@ const OnBoardingSlider = () => {
 
   const handleStart = () => history.push('/main')
 
+  const lastSlide = 2
+
   const handleNext = () => {
     setSliderNumber(slider.current.innerSlider.state.currentSlide)
     return slider.current.next()
@@ -55,11 +57,11 @@ const OnBoardingSlider = () => {
           />
         </div>
       </Carousel>
-      {sliderNumber === 0 || sliderNumber === 1 ? (
-        <FooterSlider next={handleNext} btnText="Next" />
-      ) : (
-        <FooterSlider next={handleStart} btnText="Start" />
-      )}
+      {
+        sliderNumber < lastSlide
+          ? <FooterSlider next={handleNext} btnText="Next"/>
+          : <FooterSlider next={handleStart} btnText="Start" isLast/>
+      }
     </>
   )
 }

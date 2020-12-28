@@ -5,10 +5,12 @@ import styled from './FooterSlider.module.css'
 import GreenLittleButton from './GreenLittleButton/GreenLittleButton'
 import SkipButton from './SkipButton/SkipButton'
 
-const FooterSlider = ({ next, btnText }) => {
+const Spacer = () => <span> </span>
+
+const FooterSlider = ({ next, btnText, isLast }) => {
   return (
     <div className={styled.wrapper}>
-      <SkipButton />
+      {!isLast ? <SkipButton /> : <Spacer /> }
       <GreenLittleButton text={btnText} next={next} />
     </div>
   )
@@ -17,6 +19,7 @@ const FooterSlider = ({ next, btnText }) => {
 FooterSlider.propTypes = {
   btnText: PropTypes.string.isRequired,
   next: PropTypes.func.isRequired,
+  isLast: PropTypes.bool,
 }
 
 export default FooterSlider
