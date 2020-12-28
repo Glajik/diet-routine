@@ -1,5 +1,7 @@
 import styled from 'styled-components'
 
 export const AddProductContentWrapper = styled.div`
-  margin: 65px 0; 
+  margin: 96px 0; 
 `
+
+export const Form = styled.form``
