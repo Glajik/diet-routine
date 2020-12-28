@@ -15,7 +15,7 @@ const AddProduct = (props) => {
         history={props.history}>
         <AddProductContentWrapper>
            <Form>
-             <Input className="product-name" placeholder="Write a product name"/>
+             <Input id="productName" className="product-name" placeholder="Write a product name"/>
              <Input.Group compact>
                <Select style={{ width: '100%' }} placeholder="Select Address">
                  <Option value="Home">Home</Option>

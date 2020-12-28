@@ -6,3 +6,7 @@
   padding: 4px 2px;
 }
 
+#productName {
+  outline: 0 !important;
+  outline-offset: 0 !important;
+}
