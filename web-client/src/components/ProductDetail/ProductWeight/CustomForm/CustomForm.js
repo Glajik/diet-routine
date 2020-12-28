@@ -1,5 +1,6 @@
 import React from 'react'
-import { Form, Input, Button } from 'antd'
+import { Form, Button } from 'antd'
+import { InputItem } from 'antd-mobile'
 import styled from './CustomForm.module.css'
 import 'antd/dist/antd.css'
 
@@ -10,12 +11,13 @@ const CustomForm = ({ onFinish }) => {
     onFinish(values)
   }
 
+  const rules = [{ required: true, message: 'Please input weight!' }]
   return (
     <>
       <label className={styled.labelCustom}>Enter custom value</label>
       <Form layout="inline" name="CustomForm" form={form} onFinish={onFinishHandler}>
-        <Form.Item name="custom" className={styled.formItems}>
-          <Input
+        <Form.Item name="custom" className={styled.formItems} rules={rules}>
+          <InputItem
             className={styled.inputCustom}
             type="number"
             inputMode="numeric"
