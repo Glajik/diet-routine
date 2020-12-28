@@ -15,7 +15,7 @@ const ProfilePage = ({ history }) => {
 
   // Get auth data from firebase
   const auth = useSelector(state => state.firebase.auth)
-  console.log(auth)
+
   if (!auth.uid) {
     console.error('User Not Authed')
     message.error('You should login')
@@ -49,10 +49,8 @@ const ProfilePage = ({ history }) => {
 
   if (!userProfile) {
     console.error('Can\'t find user profile entry in "UserProfiles" colleciton')
-    message.error('Can\'t find your profile')
+    message.error("Can't find your profile")
   }
-
-  console.log(userProfile)
 
   const { photoURL, displayName } = userProfile
 

@@ -32,9 +32,7 @@ const App = props => {
   // Get auth data from firebase
   const auth = useSelector(state => state.firebase.auth)
 
-  console.log('state.firebase.auth', auth)
-
-
+  console.log(auth)
   if (!auth.isLoaded) {
     return <Spinner />
   }
