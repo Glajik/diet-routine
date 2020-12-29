@@ -1,5 +1,5 @@
 import React from 'react'
-import { Form, Button } from 'antd'
+import { Form, Button, message } from 'antd'
 import { InputItem } from 'antd-mobile'
 import styled from './CustomForm.module.css'
 import 'antd/dist/antd.css'
@@ -26,7 +26,7 @@ const CustomForm = ({ onFinish }) => {
             maxLength={4}
           />
         </Form.Item>
-        <Form.Item className={styled.formItems}>
+        <Form.Item className={styled.formItems} >
           <Button className={styled.greenBtn} htmlType="submit">
             Done
           </Button>

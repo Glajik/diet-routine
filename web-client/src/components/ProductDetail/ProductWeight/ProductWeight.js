@@ -1,11 +1,12 @@
 import React, { useState } from 'react'
 import { useParams } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { useFirebase, useFirestore} from 'react-redux-firebase'
 import ProductSection from '../ProductSection/ProductSection'
 import CustomForm from './CustomForm/CustomForm'
 import Modal from '../../ProfilePage/UserName/Modal'
-import { Row, Col, Button } from 'antd'
+import { Row, Col, Button, message  } from 'antd'
 import styled from './ProductWeight.module.css'
 
 const calc = (value, weight) => {
@@ -42,6 +43,7 @@ const ProductWeight = ({product, onSave}) => {
   }
 
   const onClickHandler = () => {
+    message.success('Success, add product')
     onSave(weight, totals)
   }
 
@@ -105,8 +107,8 @@ const ProductWeight = ({product, onSave}) => {
           </Col>
         </Row>
         <Row>
-          <Button className={styled.greenBtn} onClick={onClickHandler}>
-            Save Product
+          <Button className={styled.greenBtn}  onClick={onClickHandler}>
+          <NavLink to={`/product-search/`}>Save Product</NavLink>
           </Button>
         </Row>
       </div>
