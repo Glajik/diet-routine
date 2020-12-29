@@ -1,0 +1,51 @@
+.productWrapper {
+  /* background-color: #fafafa; */
+  background-size: contain;
+  background-attachment: fixed;
+  padding-top: 50px;
+  padding-bottom: 10vh;
+}
+
+.productWeightButtons {
+  padding-bottom: 10px;
+}
+
+.whiteBtn {
+  width: 80px;
+  height: 32px;
+
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 24px;
+
+  background: #ffffff;
+  border: 1px solid #bfbfbf;
+  box-sizing: border-box;
+  border-radius: 30px;
+
+  align-items: center;
+  text-align: center;
+  cursor: pointer;
+  color: #595959;
+  margin-bottom: 32px;
+}
+
+.greenBtn {
+  width: 288px;
+  height: 48px;
+  margin: 0 auto;
+  font-style: normal;
+  font-weight: 900;
+  font-size: 16px;
+  line-height: 24px;
+
+  background: #3dad06;
+  border-radius: 30px;
+  border-style: none;
+
+  align-items: center;
+  text-align: center;
+
+  color: #ffffff;
+}
