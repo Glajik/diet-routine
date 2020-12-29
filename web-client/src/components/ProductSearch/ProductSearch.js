@@ -10,6 +10,7 @@ import { CloseCircleOutlined, SearchOutlined } from '@ant-design/icons'
 import ProductsList from './ProductsList/ProductsList.js'
 import { useFirestoreConnect } from 'react-redux-firebase'
 import { useSelector } from 'react-redux'
+import ButtonAdd from './ButtonAdd/ButtonAdd'
 
 const ProductSearch = props => {
   const [input, setInput] = useState('')
@@ -53,8 +54,9 @@ const ProductSearch = props => {
           prefix={<SearchOutlined style={{ color: colors.green }} />}
           suffix={<CloseCircleOutlined style={{ color: colors.neutralDark }} />}
         />
+        <ProductsList products={productsArray} />
+        <ButtonAdd />
       </TopBarLayout>
-      <ProductsList products={productsArray} />
     </Container>
   )
 }
