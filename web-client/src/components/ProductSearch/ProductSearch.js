@@ -22,6 +22,7 @@ const ProductSearch = props => {
   const products = useSelector(state => state.firestore.data.products) || {}
 
   const productsArray = useCallback(() => {
+    console.log(products)
     if (input.length === 0) {
       return Object.entries(products)
     }

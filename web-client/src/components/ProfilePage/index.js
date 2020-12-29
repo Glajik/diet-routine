@@ -54,11 +54,10 @@ const ProfilePage = () => {
 
   if (!userProfile) {
     console.error('Can\'t find user profile entry in "UserProfiles" colleciton')
+
     message.error('Can\'t find your profile')
     return <ProfilePageSkeleton history={history}/>
   }
-
-  console.log(userProfile)
 
   const { photoURL, displayName } = userProfile
 
