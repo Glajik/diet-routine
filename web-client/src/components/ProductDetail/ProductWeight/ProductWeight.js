@@ -1,63 +1,85 @@
 import React, { useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { useSelector } from 'react-redux'
+import { useFirebase, useFirestore} from 'react-redux-firebase'
 import ProductSection from '../ProductSection/ProductSection'
 import CustomForm from './CustomForm/CustomForm'
 import Modal from '../../ProfilePage/UserName/Modal'
 import { Row, Col, Button } from 'antd'
 import styled from './ProductWeight.module.css'
 
-const ProductWeight = () => {
-  const { id } = useParams()
-  const products = useSelector(state => state.firestore.data.products) || {}
+const calc = (value, weight) => {
+  let formulas = (value / 100) * weight
+  let formulasResult = formulas.toFixed(1)
+  return formulasResult
+}
+
+const calcTotals = (product, weight) => {
+  const { calories = 0, proteins = 0, fats = 0, carbohydrates = 0 } = product
+  return {
+    calories: calc(calories, weight) ,
+    proteins: calc(proteins, weight) ,
+    fats: calc(fats, weight) ,
+    carbohydrates: calc(carbohydrates, weight) 
+  }
+}
+
+const ProductWeight = ({product, onSave}) => {
+  const { amountUnit='g' } = product
   const [weight, setWeight] = useState(100)
+  const [totals, setTotals] = useState(calcTotals(product, weight))
   const [modalVisible, setModalVisible] = useState(false)
-  let custom = ''
 
   const updateWeight = value => {
-    return setWeight(value)
+    setWeight(value)
+    const newTotals = calcTotals(product, value)
+    setTotals(newTotals)
   }
 
   const onFinishHandler = value => {
     setModalVisible(false)
-    setWeight(value.custom)
+    updateWeight(value.custom)
+  }
+
+  const onClickHandler = () => {
+    onSave(weight, totals)
   }
 
   return (
     <>
-      <ProductSection weight={weight} custom={custom} />
+      <ProductSection weight={weight} product={product} totals={totals}/>
       <div className={styled.productWrapper}>
         <Row>
           <Col span={5} offset={1}>
             <Button className={styled.whiteBtn} onClick={() => updateWeight(150)}>
-              150 {products[id].amountUnit}.
+              150 {amountUnit}.
             </Button>
           </Col>
           <Col span={5} offset={3}>
             <Button className={styled.whiteBtn} onClick={() => updateWeight(200)}>
-              200 {products[id].amountUnit}.
+              200 {amountUnit}.
             </Button>
           </Col>
           <Col span={5} offset={3}>
             <Button className={styled.whiteBtn} onClick={() => updateWeight(250)}>
-              250 {products[id].amountUnit}.
+              250 {amountUnit}.
             </Button>
           </Col>
         </Row>
         <Row>
           <Col span={5} offset={1}>
             <Button className={styled.whiteBtn} onClick={() => updateWeight(300)}>
-              300 {products[id].amountUnit}.
+              300 {amountUnit}.
             </Button>
           </Col>
           <Col span={5} offset={3}>
             <Button className={styled.whiteBtn} onClick={() => updateWeight(350)}>
-              350 {products[id].amountUnit}.
+              350 {amountUnit}.
             </Button>
           </Col>
           <Col span={5} offset={3}>
             <Button className={styled.whiteBtn} onClick={() => updateWeight(400)}>
-              400 {products[id].amountUnit}.
+              400 {amountUnit}.
             </Button>
           </Col>
         </Row>
@@ -74,18 +96,16 @@ const ProductWeight = () => {
               className={styled.customModalPlacement}
               visible={modalVisible}>
               <CustomForm
-                custom={custom}
+                custom={weight}
                 onFinish={onFinishHandler}
                 visible={modalVisible}
               />
             </Modal>
-            <p>{custom}</p>
+            {/* <p>{custom}</p> */}
           </Col>
         </Row>
         <Row>
-          <Button
-            className={styled.greenBtn}
-            onClick={() => console.log('Save Product Button', 'hi')}>
+          <Button className={styled.greenBtn} onClick={onClickHandler}>
             Save Product
           </Button>
         </Row>

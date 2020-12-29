@@ -4,16 +4,9 @@ import { useSelector } from 'react-redux'
 import { Row, Col } from 'antd'
 import styled from './ProductSection.module.css'
 
-const ProductSection = ({ weight }) => {
-  const { id } = useParams()
-  const products = useSelector(state => state.firestore.data.products) || {}
-  const { name, amountUnit, calories, proteins, fats, carbohydrates } = products[id]
-
-  const calc = value => {
-    let formulas = (value / 100) * weight
-    let formulasResult = formulas.toFixed(1)
-    return formulasResult
-  }
+const ProductSection = ({ weight = 0, product = {}, totals = {} }) => {
+  const { name, amountUnit, calories } = product
+  console.log(product)
 
   return (
     <>
@@ -23,15 +16,15 @@ const ProductSection = ({ weight }) => {
             <p>{name}</p>
           </Col>
           <Col span={6} className={styled.productName}>
-            {weight} {amountUnit}.
+            {weight} {amountUnit || 0}.
           </Col>
         </Row>
         <Row className={styled.productSectionRowCcal}>
           <Col span={18} className={styled.productCalories}>
-            {calories} ccal / 100 g.
+            {calories || 0} kcal / 100 g.
           </Col>
           <Col span={6} className={styled.productCaloriesSpan}>
-            {calc(calories)} kcal
+            {totals.calories || 0} kcal
           </Col>
         </Row>
         <Row className={styled.productSectionRowPFC}>
@@ -47,13 +40,13 @@ const ProductSection = ({ weight }) => {
         </Row>
         <Row className={styled.productSectionRowPFCweight}>
           <Col span={6} offset={2}>
-            {calc(proteins)} g.
+            {totals.proteins || 0} g.
           </Col>
           <Col span={6} offset={2}>
-            {calc(fats)} g.
+            {totals.fats || 0} g.
           </Col>
           <Col span={6} offset={2}>
-            {calc(carbohydrates)} g.
+            {totals.carbohydrates || 0} g.
           </Col>
         </Row>
       </div>
