@@ -106,7 +106,7 @@ const Main = (props) => {
           props.selectedDate,
           props.currentUserId,
           datesInfo,
-          dailyLimitsInfo[0][1].dailyLimits
+          dailyLimitsInfo[0] ? dailyLimitsInfo[0][1].dailyLimits : dailyLimitsInfo[0]
         )
       )
     }
@@ -131,7 +131,7 @@ const Main = (props) => {
       props.selectedDate,
       props.currentUserId,
       datesInfo,
-      dailyLimitsInfo[0][1].dailyLimits
+      dailyLimitsInfo[0] ? dailyLimitsInfo[0][1].dailyLimits : dailyLimitsInfo[0]
     )
   }
 

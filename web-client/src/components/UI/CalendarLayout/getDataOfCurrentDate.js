@@ -33,10 +33,10 @@ export const getDataOfCurrentDate = (
 
     return {
       userId: currentUserId,
-      caloriesPerDay: dailyLimits.calories ? dailyLimits.calories : 2000,
-      proteinsPerDay: dailyLimits.proteins ? dailyLimits.proteins : 150,
-      fatsPerDay: dailyLimits.fats ? dailyLimits.fats : 67,
-      carbsPerDay: dailyLimits.carbohydrates ? dailyLimits.carbohydrates : 200,
+      caloriesPerDay: dailyLimits ? dailyLimits.calories : 2000,
+      proteinsPerDay: dailyLimits ? dailyLimits.proteins : 150,
+      fatsPerDay: dailyLimits ? dailyLimits.fats : 67,
+      carbsPerDay: dailyLimits ? dailyLimits.carbohydrates : 200,
       date: +selectedDateData[0].createdAt.seconds.toString().slice(0, 6),
       usedCalories: usedCalories.toFixed(),
       usedProteins: usedProteins.toFixed(),
@@ -47,10 +47,10 @@ export const getDataOfCurrentDate = (
   } else {
     return {
       userId: currentUserId,
-      caloriesPerDay: dailyLimits.calories ? dailyLimits.calories : 2000,
-      proteinsPerDay: dailyLimits.proteins ? dailyLimits.proteins : 150,
-      fatsPerDay: dailyLimits.fats ? dailyLimits.fats : 67,
-      carbsPerDay: dailyLimits.carbohydrates ? dailyLimits.carbohydrates : 200,
+      caloriesPerDay: dailyLimits ? dailyLimits.calories : 2000,
+      proteinsPerDay: dailyLimits ? dailyLimits.proteins : 150,
+      fatsPerDay: dailyLimits ? dailyLimits.fats : 67,
+      carbsPerDay: dailyLimits ? dailyLimits.carbohydrates : 200,
       date: selectedDate,
       usedCalories: 0,
       usedProteins: 0,
