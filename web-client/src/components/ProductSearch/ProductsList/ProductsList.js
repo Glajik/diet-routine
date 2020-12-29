@@ -3,7 +3,8 @@ import React, { Fragment, useMemo } from 'react'
 import styled from './ProductsList.module.css'
 import ProductItem from './ProductItem/ProductItem.js'
 import { useSelector } from 'react-redux'
-import { useFirebase, useFirestore, useFirestoreConnect } from 'react-redux-firebase'
+import { useFirestoreConnect } from 'react-redux-firebase'
+import { Redirect } from 'react-router-dom'
 
 const ProductsList = ({ products }) => {
   //Змінити щоб профіль отримувати тільки 1 раз!!!!!!!!!!!!!!!!
@@ -36,20 +37,21 @@ const ProductsList = ({ products }) => {
 
   return (
     <div className={styled.container}>
-      {Object.values(objWithCategories).map((item, i) => (
-        <Fragment key={i}>
-          <p className={styled.firstLetter}>- {item.title} -</p>
-          {item.data.map((product, index) => (
-            <ProductItem
-              product={product}
-              key={index}
-              userProfileByUid={userProfileByUid}
-              auth={auth}
-              favoriteProducts={userProfileByUid[auth.uid].favorites}
-            />
-          ))}
-        </Fragment>
-      ))}
+      {userProfileByUid &&
+        Object.values(objWithCategories).map((item, i) => (
+          <Fragment key={i}>
+            <p className={styled.firstLetter}>- {item.title} -</p>
+            {item.data.map((product, index) => (
+              <ProductItem
+                product={product}
+                key={index}
+                userProfileByUid={userProfileByUid}
+                auth={auth}
+                favoriteProducts={userProfileByUid[auth.uid].favorites}
+              />
+            ))}
+          </Fragment>
+        ))}
     </div>
   )
 }

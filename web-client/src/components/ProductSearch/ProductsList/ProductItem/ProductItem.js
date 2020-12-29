@@ -15,24 +15,26 @@ const ProductItem = ({ product, favoriteProducts, userProfileByUid, auth }) => {
   const [isActive, setIsActive] = useState(false)
 
   const onProfileChange = async options => {
-    await firestore.collection('UserProfiles').doc(auth.uid).update(options)
+    await firestore.collection('UserProfiles').doc(auth.uid).set(options)
     await firebase.updateAuth(options)
   }
 
   //add to favorites
-  const handleAddToFavorite = id => {
-    onProfileChange({ favorites: [...userProfileByUid[auth.uid].favorites, id] })
+  const handleAddToFavorite = async id => {
+    onProfileChange({ favorites: [...favoriteProducts, id] })
   }
 
   //delete from favorites
   const handleDeleteFromFavourite = id => {
-    const favorites = userProfileByUid[auth.uid].favorites.filter(
-      item => item !== id
-    )
+    const favorites = favoriteProducts.filter(item => item !== id)
     onProfileChange({ favorites })
   }
 
   useEffect(() => {
+    if (!favoriteProducts) {
+      onProfileChange({ favorites: [] })
+      return
+    }
     setIsActive(favoriteProducts.includes(product[0]))
   }, [isActive, favoriteProducts])
 
