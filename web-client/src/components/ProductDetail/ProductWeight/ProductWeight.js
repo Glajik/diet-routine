@@ -1,8 +1,5 @@
 import React, { useState } from 'react'
-import { useParams } from 'react-router-dom'
 import { NavLink } from 'react-router-dom'
-import { useSelector } from 'react-redux'
-import { useFirebase, useFirestore} from 'react-redux-firebase'
 import ProductSection from '../ProductSection/ProductSection'
 import CustomForm from './CustomForm/CustomForm'
 import Modal from '../../ProfilePage/UserName/Modal'

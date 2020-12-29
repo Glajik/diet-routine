@@ -1,9 +1,10 @@
 import React from 'react'
 import ProductWeight from './ProductWeight'
-import { useParams } from 'react-router-dom'
+import { useParams, Redirect } from 'react-router-dom'
 import { Container } from '../UI'
 import { useSelector } from 'react-redux'
 import { useFirestore} from 'react-redux-firebase'
+import {message} from 'antd'
 import { TopBarLayout } from '../../layouts'
 import { ProductDetailContentWrapper } from './style'
 
