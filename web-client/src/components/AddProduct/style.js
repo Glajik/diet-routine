@@ -15,16 +15,16 @@ export const FieldsWrapper = styled.div`
 
 export const FieldWrapper = styled.div`
   position: relative;
+  margin-bottom: 2px;
 `
 
 export const Input = styled.input`
   width: 100%;
   border-width: 0 0 1px 0;
   border-style: solid;
-  border-color: #bfbfbf;
+  border-color: ${p => !p.isValid && p.isTouched ? '#ff0000': '#bfbfbf'};
   font-size: 16px;
   color: #262626;
-  margin-bottom: 25px;
   padding: 10px 0;
   
   &::placeholder {
@@ -53,17 +53,19 @@ export const Input = styled.input`
     ` : ''}
 `
 
+export const SelectWrapper = styled.div``
+
 export const Select = styled.select`
   width: 100%;
   border-width: 0 0 1px 0;
   border-style: solid;
-  border-color: #bfbfbf;
+  border-color: ${p => !p.isValid && p.isTouched ? '#ff0000' : '#bfbfbf'};
   font-size: 16px;
   font-weight: ${p => p.value !== 'select_an_option' ? 'normal' : 600};
   font-family: 'Nunito', sans-serif;
   padding: 10px 0;
   color: ${p => p.value !== 'select_an_option' ? '#262626' : '#bfbfbf'};
-  margin-bottom: 25px;
+  margin-bottom: 2px;
 `
 
 export const Option = styled.option`
@@ -91,10 +93,19 @@ export const SaveProductButton = styled.button`
   text-align: center;
   padding: 12px 0;
   width: 100%;
-  background: #3DAD06;
+  background: ${p => p.disabled ? 'grey' : '#3DAD06'};
   border: none;
   border-radius: 30px;
   color: #ffffff; 
   position: absolute;
   bottom: -90px;
+`
+
+export const Error = styled.p`
+  font-size: 12px;
+  color: #ff0000;
+  text-align: right;
+  margin: 0;
+  padding-top: 5px;
+  opacity: ${p => !p.isValid && p.isTouched ? 1 : 0}
 `
