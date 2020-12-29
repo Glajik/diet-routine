@@ -45,6 +45,8 @@ const Main = (props) => {
   const lastDay = moment(props.selectedDate, 'x').subtract(1, 'days').format('x')
   const today = moment().format('x')
 
+  const auth = useSelector(state => state.firebase.auth)
+
   useFirestoreConnect(['Journal'])
   const journal = useSelector((state) => state.firestore.data.Journal)
   let datesInfo
@@ -56,7 +58,15 @@ const Main = (props) => {
   const dailyLimits = useSelector((state) => state.firestore.data.UserProfiles)
   let dailyLimitsInfo
   if (dailyLimits) {
-    dailyLimitsInfo = Object.values(dailyLimits).map(item => item)
+    const dailyLimitsIds = Object.keys(dailyLimits).filter(item => {
+      if (item === auth.uid) {
+        return item
+      }
+    })
+
+    dailyLimitsInfo = Object.entries(dailyLimits).filter(entrie => {
+      return entrie[0] === dailyLimitsIds[0]
+    })
   }
 
   const productListRef = useRef(null)
@@ -96,7 +106,7 @@ const Main = (props) => {
           props.selectedDate,
           props.currentUserId,
           datesInfo,
-          dailyLimitsInfo
+          dailyLimitsInfo[0][1].dailyLimits
         )
       )
     }
@@ -121,7 +131,7 @@ const Main = (props) => {
       props.selectedDate,
       props.currentUserId,
       datesInfo,
-      dailyLimitsInfo
+      dailyLimitsInfo[0][1].dailyLimits
     )
   }
 
