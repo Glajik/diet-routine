@@ -43,7 +43,7 @@ export default {
   textForChangeTypeAuth: 'or',
   forgotPassword: 'Forgot your password?',
   productSearch: 'product search',
-  addProduct: 'add product',
+  addNewProduct: 'add new product',
   calendar: 'calendar',
   profile: 'profile',
   main: 'Main',

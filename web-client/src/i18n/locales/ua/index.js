@@ -45,7 +45,7 @@ export default {
   textForChangeTypeAuth: 'або',
   forgotPassword: 'Забули пароль?',
   productSearch: 'пошук продуктів',
-  addProduct: 'додати продукт',
+  addNewProduct: 'додати новий продукт',
   calendar: 'календарь',
   profile: 'профіль',
   main: 'Головна',

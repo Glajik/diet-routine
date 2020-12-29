@@ -48,6 +48,8 @@ const CalendarLayout = (props) => {
   const [isNextMonthButtonDisabled, setNextMonthButtonDisabled] = useState(true)
   const [isLoading, setIsLoading] = useState(false)
 
+  const auth = useSelector(state => state.firebase.auth)
+
   useFirestoreConnect(['Journal'])
   const journal = useSelector((state) => state.firestore.data.Journal)
   let datesInfo
@@ -59,7 +61,15 @@ const CalendarLayout = (props) => {
   const dailyLimits = useSelector((state) => state.firestore.data.UserProfiles)
   let dailyLimitsInfo
   if (dailyLimits) {
-    dailyLimitsInfo = Object.values(dailyLimits).map(item => item)
+    const dailyLimitsIds = Object.keys(dailyLimits).filter(item => {
+      if (item === auth.uid) {
+        return item
+      }
+    })
+
+    dailyLimitsInfo = Object.entries(dailyLimits).filter(entrie => {
+      return entrie[0] === dailyLimitsIds[0]
+    })
   }
 
   const weekDaysShort = []
@@ -80,14 +90,14 @@ const CalendarLayout = (props) => {
       setIsLoading(true)
     }
 
-    if (journal) {
+    if (journal && dailyLimitsInfo) {
       setIsLoading(false)
       props.getSelectedDateData(
         getDataOfCurrentDate(
           selectedDateId,
-          props.currentUserId,
+          auth.uid,
           datesInfo,
-          dailyLimitsInfo
+          dailyLimitsInfo[0][1].dailyLimits
         )
       )
     } else {
@@ -140,13 +150,13 @@ const CalendarLayout = (props) => {
       if (event.target.id !== props.selectedDate) {
         props.changeSelectedDateCmp(event.target.id)
 
-        if (journal) {
+        if (journal && dailyLimitsInfo) {
           props.getSelectedDateData(
             getDataOfCurrentDate(
               event.target.id,
-              props.currentUserId,
+              auth.uid,
               datesInfo,
-              dailyLimitsInfo
+              dailyLimitsInfo[0][1].dailyLimits
             )
           )
         }
